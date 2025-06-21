@@ -8,12 +8,14 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "check-types": "tsc --noEmit"
+    "check-types": "tsc --noEmit",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
   },
   "dependencies": {
+    "@emotion/react": "^11.14.0",
     "@repo/theme": "workspace:*",
     "@repo/ui-emotion": "workspace:*",
-    "@emotion/react": "^11.14.0",
     "@tanstack/react-query": "^5.80.10",
     "jotai": "^2.12.5",
     "react": "^19.1.0",
@@ -22,6 +24,8 @@
   "devDependencies": {
     "@emotion/babel-plugin": "^11.13.5",
     "@eslint/js": "^9.25.0",
+    "@storybook/addon-docs": "^9.0.12",
+    "@storybook/react-vite": "^9.0.12",
     "@tailwindcss/vite": "^4.1.10",
     "@tanstack/eslint-plugin-query": "^5.78.0",
     "@tanstack/react-query-devtools": "^5.80.10",
@@ -32,8 +36,10 @@
     "eslint": "^9.25.0",
     "eslint-plugin-react-hooks": "^5.2.0",
     "eslint-plugin-react-refresh": "^0.4.19",
+    "eslint-plugin-storybook": "^9.0.12",
     "globals": "^16.0.0",
     "jotai-devtools": "^0.12.0",
+    "storybook": "^9.0.12",
     "tailwindcss": "^4",
     "typescript": "~5.8.3",
     "typescript-eslint": "^8.30.1",
