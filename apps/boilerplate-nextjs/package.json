@@ -10,6 +10,8 @@
     "check-types": "tsc --noEmit"
   },
   "dependencies": {
+    "@emotion/react": "^11.14.0",
+    "@repo/ui-emotion": "workspace:*",
     "@svgr/webpack": "^8.1.0",
     "next": "15.3.4",
     "react": "^19.0.0",

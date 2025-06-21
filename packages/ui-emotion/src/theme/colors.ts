@@ -1,12 +1,12 @@
 const colors = {
-  /** #3b82f6 */
-  main500: '#3b82f6',
   /** #2563eb */
-  mainHover: '#2563eb',
-  /** #f87171 */
-  red500: '#f87171',
+  main500: '#2563eb',
+  /** #3b82f6 */
+  mainHover: '#3b82f6',
   /** #ef4444 */
-  red500Hover: '#ef4444',
+  red500: '#ef4444',
+  /** #f87171 */
+  red500Hover: '#f87171',
   /** #fde047 */
   yellow500: '#fde047',
   /** #14b8a6 */
