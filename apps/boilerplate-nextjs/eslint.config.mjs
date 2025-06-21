@@ -1,3 +1,6 @@
+// For more info, see https://github.com/storybookjs/eslint-plugin-storybook#configuration-flat-config-format
+import storybook from 'eslint-plugin-storybook';
+
 import { dirname } from 'path';
 import { fileURLToPath } from 'url';
 import { FlatCompat } from '@eslint/eslintrc';
@@ -16,10 +19,9 @@ const compat = new FlatCompat({
 
 const eslintConfig = [
   // ESLint recommended 규칙들
-  ...compat.extends('eslint:recommended'),
-  // Next.js 관련 설정들
-  ...compat.extends('next/core-web-vitals', 'next/typescript'),
-  // TypeScript 관련 설정
+  ...compat.extends('eslint:recommended'), // Next.js 관련 설정들
+  ...compat.extends('next/core-web-vitals', 'next/typescript'), // TypeScript 관련 설정
+  ...storybook.configs['flat/recommended'],
   {
     files: ['**/*.{js,jsx,ts,tsx}'],
     languageOptions: {
