@@ -9,6 +9,6 @@
     },
     "types": ["@emotion/react/types/css-prop"]
   },
-  "include": ["src"],
+  "include": ["svgr.d.ts", "src"],
   "exclude": ["node_modules"]
 }
