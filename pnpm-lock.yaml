@@ -350,6 +350,9 @@ importers:
       react-feather:
         specifier: ^2.0.10
         version: 2.0.10(react@19.1.0)
+      react-hook-form:
+        specifier: ^7.58.1
+        version: 7.58.1(react@19.1.0)
     devDependencies:
       '@storybook/addon-docs':
         specifier: ^9.0.12
@@ -4122,6 +4125,7 @@ packages:
     resolution: {integrity: sha512-Quz3MvAwHxVYNXsOByL7xI5EB2WYOeFswqaHIA3qOK3isRWTxiplBEocmmru6XmxDB2L7jDNYtYA4FyimoAFEw==}
     engines: {node: '>=8.17.0'}
     hasBin: true
+    bundledDependencies: []
 
   jsonfile@6.1.0:
     resolution: {integrity: sha512-5dgndWOriYSm5cnYaJNhalLNDKOqFwyDB/rr1E9ZsGciGvKPs8R2xYGCacuf3z6K1YKDz182fd+fY3cn3pMqXQ==}
@@ -4796,6 +4800,12 @@ packages:
     resolution: {integrity: sha512-BLhukwJ+Z92Nmdcs+EMw6dy1Z/VLiJTzEQACDUEnWMClhYnFykJCGWQx+NmwP/qQHGX/5CzQ+TGi8ofg2+HzVQ==}
     peerDependencies:
       react: '>=16.8.6'
+
+  react-hook-form@7.58.1:
+    resolution: {integrity: sha512-Lml/KZYEEFfPhUVgE0RdCVpnC4yhW+PndRhbiTtdvSlQTL8IfVR+iQkBjLIvmmc6+GGoVeM11z37ktKFPAb0FA==}
+    engines: {node: '>=18.0.0'}
+    peerDependencies:
+      react: ^16.8.0 || ^17 || ^18 || ^19
 
   react-is@16.13.1:
     resolution: {integrity: sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==}
@@ -11073,6 +11083,10 @@ snapshots:
   react-feather@2.0.10(react@19.1.0):
     dependencies:
       prop-types: 15.8.1
+      react: 19.1.0
+
+  react-hook-form@7.58.1(react@19.1.0):
+    dependencies:
       react: 19.1.0
 
   react-is@16.13.1: {}
