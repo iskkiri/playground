@@ -17,7 +17,8 @@
     "generate:component": "turbo gen react-component",
     "check-types": "tsc --noEmit",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "test": "vitest"
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",
@@ -31,15 +32,20 @@
   "devDependencies": {
     "@storybook/addon-docs": "^9.0.12",
     "@storybook/react-vite": "^9.0.12",
+    "@testing-library/jest-dom": "^6.6.3",
+    "@testing-library/react": "^16.3.0",
+    "@testing-library/user-event": "^14.6.1",
     "@types/node": "^22.15.3",
     "@types/react": "19.1.0",
     "@types/react-dom": "19.1.1",
     "@vitejs/plugin-react": "^4.4.1",
     "eslint": "^9.29.0",
     "eslint-plugin-storybook": "^9.0.12",
+    "jsdom": "^26.1.0",
     "storybook": "^9.0.12",
     "typescript": "5.8.2",
     "vite": "^6.3.5",
-    "vite-plugin-svgr": "^4.3.0"
+    "vite-plugin-svgr": "^4.3.0",
+    "vitest": "^3.2.4"
   }
 }
