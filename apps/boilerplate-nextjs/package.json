@@ -12,9 +12,9 @@
     "build-storybook": "storybook build"
   },
   "dependencies": {
-    "@emotion/react": "^11.14.0",
     "@repo/theme": "workspace:*",
     "@repo/ui-emotion": "workspace:*",
+    "@emotion/react": "^11.14.0",
     "@svgr/webpack": "^8.1.0",
     "@tanstack/react-query": "^5.80.10",
     "@tanstack/react-query-devtools": "^5.80.10",

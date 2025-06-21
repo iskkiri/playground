@@ -1,7 +1,7 @@
 import '../styles/globals.css';
 
+import React, { Suspense } from 'react';
 import type { Metadata } from 'next';
-import { Suspense } from 'react';
 import Providers from '@/components/Providers';
 import { pretendard } from '@/theme/fonts';
 
