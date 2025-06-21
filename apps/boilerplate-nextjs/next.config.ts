@@ -1,4 +1,8 @@
 import type { NextConfig } from 'next';
+import { validateEnv } from '@/utils/validateEnv';
+
+// 환경변수 검증
+validateEnv();
 
 const nextConfig: NextConfig = {
   compiler: {
