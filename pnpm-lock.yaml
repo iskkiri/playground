@@ -35,6 +35,12 @@ importers:
       '@svgr/webpack':
         specifier: ^8.1.0
         version: 8.1.0(typescript@5.8.2)
+      '@tanstack/react-query':
+        specifier: ^5.80.10
+        version: 5.80.10(react@19.1.0)
+      '@tanstack/react-query-devtools':
+        specifier: ^5.80.10
+        version: 5.80.10(@tanstack/react-query@5.80.10(react@19.1.0))(react@19.1.0)
       next:
         specifier: 15.3.4
         version: 15.3.4(@babel/core@7.27.4)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
@@ -1339,6 +1345,23 @@ packages:
     resolution: {integrity: sha512-hYkhWr3UP0CkAsn/phBVR98UQawbw8CmTSgWtdgEBUjI60/GBaEIkpgi/Bp/2I8eIDK4+vdY7ac6jZx+GR+hEQ==}
     peerDependencies:
       eslint: ^8.57.0 || ^9.0.0
+
+  '@tanstack/query-core@5.80.10':
+    resolution: {integrity: sha512-mUNQOtzxkjL6jLbyChZoSBP6A5gQDVRUiPvW+/zw/9ftOAz+H754zCj3D8PwnzPKyHzGkQ9JbH48ukhym9LK1Q==}
+
+  '@tanstack/query-devtools@5.80.0':
+    resolution: {integrity: sha512-D6gH4asyjaoXrCOt5vG5Og/YSj0D/TxwNQgtLJIgWbhbWCC/emu2E92EFoVHh4ppVWg1qT2gKHvKyQBEFZhCuA==}
+
+  '@tanstack/react-query-devtools@5.80.10':
+    resolution: {integrity: sha512-6JL63fSc7kxyGOLV2w466SxhMn/m7LZk/ximQciy6OpVt+n2A8Mq3S0QwhIzfm4WEwLK/F3OELfzRToQburnYA==}
+    peerDependencies:
+      '@tanstack/react-query': ^5.80.10
+      react: ^18 || ^19
+
+  '@tanstack/react-query@5.80.10':
+    resolution: {integrity: sha512-6zM098J8sLy9oU60XAdzUlAH4wVzoMVsWUWiiE/Iz4fd67PplxeyL4sw/MPcVJJVhbwGGXCsHn9GrQt2mlAzig==}
+    peerDependencies:
+      react: ^18 || ^19
 
   '@trysound/sax@0.2.0':
     resolution: {integrity: sha512-L7z9BgrNEcYyUYtF+HaEfiS5ebkh9jXqbszz7pC0hRBPaatV0XjSD3+eHrpqFemQfgwiFF0QPIarnIihIDn7OA==}
@@ -4494,6 +4517,21 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
       - typescript
+
+  '@tanstack/query-core@5.80.10': {}
+
+  '@tanstack/query-devtools@5.80.0': {}
+
+  '@tanstack/react-query-devtools@5.80.10(@tanstack/react-query@5.80.10(react@19.1.0))(react@19.1.0)':
+    dependencies:
+      '@tanstack/query-devtools': 5.80.0
+      '@tanstack/react-query': 5.80.10(react@19.1.0)
+      react: 19.1.0
+
+  '@tanstack/react-query@5.80.10(react@19.1.0)':
+    dependencies:
+      '@tanstack/query-core': 5.80.10
+      react: 19.1.0
 
   '@trysound/sax@0.2.0': {}
 
