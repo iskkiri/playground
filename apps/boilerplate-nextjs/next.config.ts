@@ -11,6 +11,16 @@ const nextConfig: NextConfig = {
   // Learn more here - https://nextjs.org/docs/advanced-features/compiler#module-transpilation
   // Required for UI css to be transpiled correctly 👇
   transpilePackages: ['jotai-devtools'],
+  images: {
+    remotePatterns: [
+      // 더미 데이터 이미지로 인한 임시 처리
+      {
+        protocol: 'https',
+        hostname: '*',
+      },
+    ],
+  },
+
   turbopack: {
     rules: {
       '*.svg': {
