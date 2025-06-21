@@ -3,6 +3,7 @@ import './globals.css';
 import type { Metadata } from 'next';
 import { Suspense } from 'react';
 import Providers from '@/components/Providers';
+import { pretendard } from '@/theme/fonts';
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -16,7 +17,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko">
-      <body>
+      <body className={pretendard.className}>
         <Suspense>
           <Providers>{children}</Providers>
         </Suspense>
