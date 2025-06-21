@@ -15,17 +15,17 @@
   },
   "scripts": {
     "lint": "eslint . --max-warnings 0",
-    "generate:component": "turbo gen react-component",
     "check-types": "tsc --noEmit",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "test": "vitest"
   },
   "dependencies": {
-    "@emotion/react": "^11.14.0",
     "@repo/eslint-config": "workspace:*",
     "@repo/theme": "workspace:*",
     "@repo/typescript-config": "workspace:*",
+    "@repo/hooks": "workspace:*",
+    "@emotion/react": "^11.14.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-feather": "^2.0.10",
