@@ -6,7 +6,12 @@ import svgr from 'vite-plugin-svgr';
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [
-    react(),
+    react({
+      jsxImportSource: '@emotion/react',
+      babel: {
+        plugins: ['@emotion/babel-plugin'],
+      },
+    }),
     svgr({
       include: '**/*.svg', // 접미사 ?react 없이 svg컴포넌트를 임포트 할 수 있도록 합니다.
       svgrOptions: {
