@@ -43,6 +43,7 @@ export const buttonSize = {
 export const buttonTypeCss = {
   primary: css`
     background: ${colors.main500};
+    border: 1px solid ${colors.main500};
     color: ${colors.white};
 
     &:hover {
@@ -58,6 +59,7 @@ export const buttonTypeCss = {
 
   linePrimary: css`
     border: 1px solid ${colors.main500};
+    background: transparent;
     color: ${colors.main500};
 
     &:hover {
@@ -74,6 +76,7 @@ export const buttonTypeCss = {
 
   gray: css`
     background: ${colors.coolGray50};
+    border: 1px solid ${colors.coolGray50};
     color: ${colors.coolGray500};
 
     &:hover {
@@ -88,6 +91,7 @@ export const buttonTypeCss = {
 
   danger: css`
     background: ${colors.red500};
+    border: 1px solid ${colors.red500};
     color: ${colors.white};
 
     &:hover {
