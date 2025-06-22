@@ -1,0 +1,37 @@
+import { css } from '@emotion/react';
+
+export const barLoadingCss = {
+  block: css`
+    position: relative;
+    width: 400px;
+    height: 8px;
+    display: inline-block;
+    overflow: hidden;
+
+    background: #ccc;
+    border-radius: 100px;
+
+    &::after {
+      content: '';
+      position: absolute;
+      width: 200px;
+      height: 8px;
+      background: linear-gradient(90deg, #ccc 0%, #65abfb 50%, #ccc 100%);
+      top: 0;
+      left: 0;
+      box-sizing: border-box;
+      animation: hitZak 2s linear infinite alternate;
+    }
+
+    @keyframes hitZak {
+      0% {
+        left: 0;
+        transform: translateX(-50%);
+      }
+      100% {
+        left: 100%;
+        transform: translateX(-50%);
+      }
+    }
+  `,
+};

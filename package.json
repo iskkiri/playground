@@ -18,6 +18,14 @@
   },
   "packageManager": "pnpm@10.8.0",
   "engines": {
-    "node": ">=18"
+    "node": ">=22"
+  },
+  "pnpm": {
+    "overrides": {
+      "react": "^19.1.0",
+      "react-dom": "^19.1.0",
+      "@types/react": "19.1.0",
+      "@types/react-dom": "19.1.1"
+    }
   }
 }

@@ -1,5 +1,5 @@
-import media from '#src/theme/media';
 import { css } from '@emotion/react';
+import theme from '../theme';
 
 // 프로젝트의 헤더 높이, 푸터 높이에 따라 변경
 const MOBILE_HEADER_HEIGHT = 60;
@@ -11,7 +11,7 @@ export const commonCss = {
   fullPage: css`
     min-height: ${`calc(100dvh - ${MOBILE_HEADER_HEIGHT}px - ${MOBILE_FOOTER_HEIGHT}px)`};
 
-    ${media.pc} {
+    ${theme.media.pc} {
       min-height: ${`calc(100dvh - ${PC_HEADER_HEIGHT}px - ${PC_FOOTER_HEIGHT}px)`};
     }
   `,
@@ -49,7 +49,7 @@ export const commonCss = {
   `,
 
   onlyMobileVisible: css`
-    ${media.pc} {
+    ${theme.media.pc} {
       display: none;
     }
   `,
@@ -57,7 +57,7 @@ export const commonCss = {
   onlyPcVisibleBlock: css`
     display: none;
 
-    ${media.pc} {
+    ${theme.media.pc} {
       display: block;
     }
   `,
@@ -65,7 +65,7 @@ export const commonCss = {
   onlyPcVisibleFlex: css`
     display: none;
 
-    ${media.pc} {
+    ${theme.media.pc} {
       display: flex;
     }
   `,

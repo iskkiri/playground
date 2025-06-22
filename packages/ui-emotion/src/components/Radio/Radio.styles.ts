@@ -1,5 +1,4 @@
-import colors from '#src/theme/colors';
-import typography from '#src/theme/typography';
+import theme from '#src/theme/index';
 import { css } from '@emotion/react';
 
 export const radioCss = {
@@ -9,13 +8,13 @@ export const radioCss = {
     align-items: center;
     cursor: pointer;
 
-    color: ${colors.coolGray800};
-    ${typography['P3/16r']}
+    color: ${theme.colors.coolGray800};
+    ${theme.typography['P3/16r']}
 
     input[type='radio'] {
-      --radio-border: ${colors.coolGray200};
-      --radio-checked: ${colors.main500};
-      --radio-disabled: ${colors.coolGray100};
+      --radio-border: ${theme.colors.coolGray200};
+      --radio-checked: ${theme.colors.primary};
+      --radio-disabled: ${theme.colors.coolGray100};
 
       position: relative;
       margin: 1px;
@@ -55,7 +54,7 @@ export const radioCss = {
 
   disabled: css`
     cursor: not-allowed;
-    color: ${colors.coolGray300};
+    color: ${theme.colors.coolGray300};
 
     input[type='radio'] {
       border-color: var(--radio-disabled);
