@@ -1,7 +1,5 @@
 import { css } from '@emotion/react';
-import colors from '#src/theme/colors';
-import media from '#src/theme/media';
-import typography from '#src/theme/typography';
+import theme from '#src/theme/index';
 
 export const overlayStyle: ReactModal.Styles['overlay'] = {
   backgroundColor: 'transparent',
@@ -79,26 +77,26 @@ export const modalCss = {
     max-width: 480px;
 
     border-radius: 16px;
-    background: ${colors.white};
+    background: ${theme.colors.white};
     box-shadow: 0px 0px 40px 0px rgba(0, 0, 0, 0.1);
   `,
 
   header: css`
     padding: 24px 20px 16px;
 
-    ${media.pc} {
+    ${theme.media.pc} {
       padding: 24px 24px 16px;
     }
   `,
 
   title: css`
-    ${typography['P2/18b']}
+    ${theme.typography['P2/18b']}
   `,
 
   body: css`
     padding: 0 20px;
 
-    ${media.pc} {
+    ${theme.media.pc} {
       padding: 0 24px;
     }
   `,
@@ -109,7 +107,7 @@ export const modalCss = {
     display: flex;
     gap: 12px;
 
-    ${media.pc} {
+    ${theme.media.pc} {
       padding: 24px;
     }
   `,
