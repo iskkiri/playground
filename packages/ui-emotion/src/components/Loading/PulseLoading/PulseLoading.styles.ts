@@ -1,0 +1,43 @@
+import { css } from '@emotion/react';
+
+export const pulseLoadingCss = {
+  block: css`
+    --purse-inactive: #e5e7eb;
+    --purse-active: #006ae6;
+
+    margin: 0 auto;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    animation: shadowPulse 1s linear infinite;
+
+    /* Pulse loading */
+    @keyframes shadowPulse {
+      0% {
+        background: var(--purse-inactive);
+        box-shadow:
+          -24px 0 var(--purse-inactive),
+          24px 0 var(--purse-inactive);
+      }
+
+      33% {
+        background: var(--purse-inactive);
+        box-shadow:
+          -24px 0 var(--purse-active),
+          24px 0 var(--purse-inactive);
+      }
+      66% {
+        background: var(--purse-active);
+        box-shadow:
+          -24px 0 var(--purse-inactive),
+          24px 0 var(--purse-inactive);
+      }
+      100% {
+        background: var(--purse-inactive);
+        box-shadow:
+          -24px 0 var(--purse-inactive),
+          24px 0 var(--purse-active);
+      }
+    }
+  `,
+};
