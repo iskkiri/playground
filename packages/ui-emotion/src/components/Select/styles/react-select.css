@@ -1,0 +1,11 @@
+:root {
+  --rs-background: #fff;
+  --rs-border: #c2c4c8;
+  --rs-placeholder: #70737c;
+  --rs-text: #70737c;
+  --rs-active: #f4f4f5;
+  --rs-active-text: #1b1c1e;
+  --rs-active-border: #0f0f10;
+  --rs-scroll-thumb: #c2c4c8;
+  --rs-disabled: #c2c4c8;
+}
