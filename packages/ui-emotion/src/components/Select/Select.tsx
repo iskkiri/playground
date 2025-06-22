@@ -4,7 +4,6 @@ import { useEffect, useId, useMemo, useState } from 'react';
 import ReactSelect, { GroupBase, Props, type ControlProps } from 'react-select';
 import { Global, type Interpolation, type Theme } from '@emotion/react';
 import DropdownIndicator from './DropdownIndicator/DropdownIndicator';
-import SelectOption from './SelectOption/SelectOption';
 import { selectCss, selectPortalCss } from './Select.styles';
 import ControlWithLabel from './ControlWithLabel/ControlWithLabel';
 
@@ -57,7 +56,6 @@ export default function Select<
           components={{
             ...(label && { Control: MemoizedControlWithLabel }),
             DropdownIndicator,
-            Option: SelectOption,
             ...props.components,
           }}
         />

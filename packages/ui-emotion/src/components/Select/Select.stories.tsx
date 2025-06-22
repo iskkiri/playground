@@ -7,6 +7,7 @@ import { controlWithLabelCss } from './ControlWithLabel/ControlWithLabel.styles'
 import type { SelectOption } from './types/select.types';
 import MultiSelectOption from './MultiSelectOption/MultiSelectOption';
 import MultiValue from './MultiValue/MultiValue';
+import { default as SelectOptionWithCheckIcon } from './SelectOption/SelectOption';
 
 const mockOptions = [
   { label: 'Select List1', value: 'Select List1' },
@@ -101,6 +102,35 @@ export const ControllerExample: Story = {
               value={mockOptions.find((option) => option.value === value) ?? null}
             />
           )}
+        />
+      </div>
+    );
+  },
+};
+
+export const SelectWithCustomOption: Story = {
+  render: function Render(props) {
+    const [value, setValue] = useState<string>();
+
+    return (
+      <div style={{ width: 240 }}>
+        <Select
+          {...props}
+          // isDisabled
+          options={mockOptions}
+          // options의 타입으로부터 SingleValue<SelectOption> 타입이 추론되어야 하는데, 스토리북에서 타입추론이 안되는 이슈가 있음
+          // => 실제 사용시에는 타입가드 불필요
+          onChange={(option) => {
+            if (!option) return;
+
+            if (isSingleValue(option) && typeof option.value === 'string') {
+              setValue(option.value);
+            } else {
+              setValue(undefined);
+            }
+          }}
+          value={mockOptions.find((option) => option.value === value) ?? null}
+          components={{ Option: SelectOptionWithCheckIcon }}
         />
       </div>
     );
