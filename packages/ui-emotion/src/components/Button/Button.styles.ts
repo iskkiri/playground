@@ -116,6 +116,7 @@ export const buttonCss = {
     align-items: center;
     flex-shrink: 0;
     color: ${theme.colors.coolGray800};
+    cursor: pointer;
 
     &:disabled {
       cursor: not-allowed;
