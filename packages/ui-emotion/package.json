@@ -21,17 +21,18 @@
     "test": "vitest"
   },
   "dependencies": {
-    "@repo/eslint-config": "workspace:*",
-    "@repo/typescript-config": "workspace:*",
-    "@repo/vitest-config": "workspace:*",
-    "@repo/theme": "workspace:*",
-    "@repo/hooks": "workspace:*",
-    "@repo/utils": "workspace:*",
     "@emotion/react": "^11.14.0",
+    "@repo/eslint-config": "workspace:*",
+    "@repo/hooks": "workspace:*",
+    "@repo/theme": "workspace:*",
+    "@repo/typescript-config": "workspace:*",
+    "@repo/utils": "workspace:*",
+    "@repo/vitest-config": "workspace:*",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-feather": "^2.0.10",
-    "react-hook-form": "^7.58.1"
+    "react-hook-form": "^7.58.1",
+    "react-modal": "^3.16.1"
   },
   "devDependencies": {
     "@storybook/addon-docs": "^9.0.12",
@@ -42,6 +43,7 @@
     "@types/node": "^22.15.3",
     "@types/react": "19.1.0",
     "@types/react-dom": "19.1.1",
+    "@types/react-modal": "^3.16.3",
     "@vitejs/plugin-react": "^4.4.1",
     "eslint": "^9.29.0",
     "eslint-plugin-storybook": "^9.0.12",
