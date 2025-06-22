@@ -15,8 +15,8 @@ export default function ToastSonner() {
       <Toaster
         position="top-center"
         icons={{
-          success: <FeatherIcons.Check size={16} color={theme.colors.teal500} />,
-          error: <FeatherIcons.X size={16} color={theme.colors.red500} />,
+          success: <FeatherIcons.Check size={16} color={theme.colors.success} />,
+          error: <FeatherIcons.X size={16} color={theme.colors.danger} />,
         }}
         toastOptions={{
           duration: 5000 * 100,

@@ -41,14 +41,14 @@ export const buttonSize = {
 
 export const buttonTypeCss = {
   primary: css`
-    background: ${theme.colors.main500};
-    border: 1px solid ${theme.colors.main500};
+    background: ${theme.colors.primary};
+    border: 1px solid ${theme.colors.primary};
     color: ${theme.colors.white};
 
     &:hover {
       background:
         linear-gradient(0deg, rgba(0, 0, 0, 0.12) 0%, rgba(0, 0, 0, 0.12) 100%),
-        ${theme.colors.main500};
+        ${theme.colors.primary};
     }
 
     &:disabled {
@@ -58,13 +58,13 @@ export const buttonTypeCss = {
   `,
 
   linePrimary: css`
-    border: 1px solid ${theme.colors.main500};
+    border: 1px solid ${theme.colors.primary};
     background: transparent;
-    color: ${theme.colors.main500};
+    color: ${theme.colors.primary};
 
     &:hover {
-      border: 1px solid ${theme.colors.mainHover};
-      color: ${theme.colors.mainHover};
+      border: 1px solid ${theme.colors.primaryHover};
+      color: ${theme.colors.primaryHover};
     }
 
     &:disabled {
@@ -90,12 +90,12 @@ export const buttonTypeCss = {
   `,
 
   danger: css`
-    background: ${theme.colors.red500};
-    border: 1px solid ${theme.colors.red500};
+    background: ${theme.colors.danger};
+    border: 1px solid ${theme.colors.danger};
     color: ${theme.colors.white};
 
     &:hover {
-      background: ${theme.colors.red500Hover};
+      background: ${theme.colors.dangerHover};
     }
 
     &:disabled {

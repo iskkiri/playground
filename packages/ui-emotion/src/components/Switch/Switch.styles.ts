@@ -4,7 +4,7 @@ import theme from '#src/theme/index';
 export const switchCss = {
   label: css`
     --switch-background: ${theme.colors.coolGray200};
-    --switch-active-background: ${theme.colors.main500};
+    --switch-active-background: ${theme.colors.primary};
     --switch-width: 36px;
     --switch-height: 20px;
     --circle-size: 16px;

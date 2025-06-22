@@ -13,7 +13,7 @@ export const radioCss = {
 
     input[type='radio'] {
       --radio-border: ${theme.colors.coolGray200};
-      --radio-checked: ${theme.colors.main500};
+      --radio-checked: ${theme.colors.primary};
       --radio-disabled: ${theme.colors.coolGray100};
 
       position: relative;

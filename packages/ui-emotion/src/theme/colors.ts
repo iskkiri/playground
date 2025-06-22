@@ -1,16 +1,16 @@
 const colors = {
   /** #2563eb */
-  main500: '#2563eb',
+  primary: '#2563eb',
   /** #3b82f6 */
-  mainHover: '#3b82f6',
+  primaryHover: '#3b82f6',
   /** #ef4444 */
-  red500: '#ef4444',
+  danger: '#ef4444',
   /** #f87171 */
-  red500Hover: '#f87171',
-  /** #fde047 */
-  yellow500: '#fde047',
+  dangerHover: '#f87171',
+  /** #fdbd47 */
+  warning: '#fdbd47',
   /** #14b8a6 */
-  teal500: '#14b8a6',
+  success: '#14b8a6',
 
   /** #ffffff */
   white: '#ffffff',
