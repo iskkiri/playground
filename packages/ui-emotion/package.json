@@ -22,8 +22,9 @@
   },
   "dependencies": {
     "@repo/eslint-config": "workspace:*",
-    "@repo/theme": "workspace:*",
     "@repo/typescript-config": "workspace:*",
+    "@repo/vitest-config": "workspace:*",
+    "@repo/theme": "workspace:*",
     "@repo/hooks": "workspace:*",
     "@repo/utils": "workspace:*",
     "@emotion/react": "^11.14.0",

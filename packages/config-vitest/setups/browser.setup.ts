@@ -16,7 +16,6 @@ afterAll(() => {
 });
 
 let mockUrlCounter = 0;
-
 global.URL = global.URL || {};
 global.URL.createObjectURL = vi.fn((_blob) => {
   mockUrlCounter++;

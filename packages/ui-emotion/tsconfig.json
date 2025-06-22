@@ -7,7 +7,7 @@
     "paths": {
       "#src/*": ["./src/*"]
     },
-    "types": ["@emotion/react/types/css-prop"]
+    "types": ["@emotion/react/types/css-prop", "@testing-library/jest-dom"]
   },
   "include": ["svgr.d.ts", "src"],
   "exclude": ["node_modules"]
