@@ -10,26 +10,46 @@
   },
   "exports": {
     "./components/*": "./src/components/*.tsx",
-    "./theme/*": "./src/theme/*.ts"
+    "./theme/*": "./src/theme/*.ts",
+    "./styles/*": "./src/styles/*.ts"
   },
   "scripts": {
     "lint": "eslint . --max-warnings 0",
-    "generate:component": "turbo gen react-component",
-    "check-types": "tsc --noEmit"
-  },
-  "devDependencies": {
-    "@repo/eslint-config": "workspace:*",
-    "@repo/typescript-config": "workspace:*",
-    "@types/node": "^22.15.3",
-    "@types/react": "19.1.0",
-    "@types/react-dom": "19.1.1",
-    "eslint": "^9.29.0",
-    "typescript": "5.8.2"
+    "check-types": "tsc --noEmit",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build",
+    "test": "vitest"
   },
   "dependencies": {
+    "@repo/eslint-config": "workspace:*",
+    "@repo/typescript-config": "workspace:*",
+    "@repo/vitest-config": "workspace:*",
+    "@repo/theme": "workspace:*",
+    "@repo/hooks": "workspace:*",
+    "@repo/utils": "workspace:*",
     "@emotion/react": "^11.14.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
-    "react-feather": "^2.0.10"
+    "react-feather": "^2.0.10",
+    "react-hook-form": "^7.58.1"
+  },
+  "devDependencies": {
+    "@storybook/addon-docs": "^9.0.12",
+    "@storybook/react-vite": "^9.0.12",
+    "@testing-library/jest-dom": "^6.6.3",
+    "@testing-library/react": "^16.3.0",
+    "@testing-library/user-event": "^14.6.1",
+    "@types/node": "^22.15.3",
+    "@types/react": "19.1.0",
+    "@types/react-dom": "19.1.1",
+    "@vitejs/plugin-react": "^4.4.1",
+    "eslint": "^9.29.0",
+    "eslint-plugin-storybook": "^9.0.12",
+    "jsdom": "^26.1.0",
+    "storybook": "^9.0.12",
+    "typescript": "5.8.2",
+    "vite": "^6.3.5",
+    "vite-plugin-svgr": "^4.3.0",
+    "vitest": "^3.2.4"
   }
 }

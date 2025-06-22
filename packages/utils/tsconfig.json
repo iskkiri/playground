@@ -1,14 +1,13 @@
 {
-  "extends": "@repo/typescript-config/react-library.json",
+  "extends": "@repo/typescript-config/base.json",
   "compilerOptions": {
     "baseUrl": ".",
     "module": "ESNext",
     "moduleResolution": "bundler",
     "paths": {
       "#src/*": ["./src/*"]
-    },
-    "types": ["@emotion/react/types/css-prop", "@testing-library/jest-dom"]
+    }
   },
-  "include": ["svgr.d.ts", "src"],
+  "include": ["src"],
   "exclude": ["node_modules"]
 }
