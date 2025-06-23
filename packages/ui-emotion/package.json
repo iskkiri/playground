@@ -27,6 +27,7 @@
     "@hookform/resolvers": "^5.1.1",
     "@repo/eslint-config": "workspace:*",
     "@repo/hooks": "workspace:*",
+    "@repo/prettier-config": "workspace:*",
     "@repo/theme": "workspace:*",
     "@repo/typescript-config": "workspace:*",
     "@repo/utils": "workspace:*",
