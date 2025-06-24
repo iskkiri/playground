@@ -1,4 +1,5 @@
 @import 'tailwindcss';
+@import './src/Button/button.css';
 @plugin 'tailwind-scrollbar';
 @config './tailwind.config.ts';
 
