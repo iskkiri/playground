@@ -11,11 +11,20 @@ export interface CheckBoxProps extends InputHTMLAttributes<HTMLInputElement> {
 
 export default function CheckBox({ children, cssStyle, ...restProps }: CheckBoxProps) {
   return (
-    <label css={[checkBoxCss.label, cssStyle]}>
+    <label
+      css={[
+        checkBoxCss.label,
+        restProps.checked && checkBoxCss.checked,
+        restProps.disabled && checkBoxCss.disabled,
+        cssStyle,
+      ]}
+    >
       <input type="checkbox" {...restProps} css={commonCss.srOnly} />
       <FeatherIcons.CheckSquare
-        color={restProps.checked ? '#4E86FF' : '#C1C7CD'}
-        css={checkBoxCss.icon}
+        css={[
+          checkBoxCss.icon,
+          !restProps.disabled && restProps.checked && checkBoxCss.iconChecked,
+        ]}
         aria-hidden="true"
       />
       {children && children}

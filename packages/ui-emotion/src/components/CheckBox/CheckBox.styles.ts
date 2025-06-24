@@ -1,3 +1,4 @@
+import theme from '#src/theme/index';
 import { css } from '@emotion/react';
 
 export const checkBoxCss = {
@@ -8,12 +9,17 @@ export const checkBoxCss = {
     cursor: pointer;
     width: fit-content;
 
-    color: #21272a;
-    font-size: 16px;
-    font-style: normal;
-    line-height: 22px; /* 137.5% */
-    letter-spacing: -0.3px;
-    font-weight: 400;
+    ${theme.typography['P3/16r']}
+    color: ${theme.colors.gray400};
+  `,
+
+  checked: css`
+    color: ${theme.colors.gray900};
+  `,
+
+  disabled: css`
+    cursor: not-allowed;
+    color: ${theme.colors.gray300};
   `,
 
   icon: css`
@@ -22,5 +28,9 @@ export const checkBoxCss = {
       outline-offset: 2px;
       border-radius: 4px;
     }
+  `,
+
+  iconChecked: css`
+    color: ${theme.colors.primary};
   `,
 };
