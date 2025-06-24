@@ -1,17 +1,14 @@
 {
-  "name": "@repo/ui-emotion",
+  "name": "@repo/ui-tailwind",
   "version": "0.0.0",
   "private": true,
   "imports": {
     "#src/*": [
-      "./src/*.ts",
       "./src/*.tsx"
     ]
   },
   "exports": {
-    "./components/*": "./src/components/*.tsx",
-    "./theme/*": "./src/theme/*.ts",
-    "./styles/*": "./src/styles/*.ts"
+    "./*": "./src/*.tsx"
   },
   "scripts": {
     "lint": "eslint . --max-warnings 0",
@@ -21,34 +18,14 @@
     "test": "vitest"
   },
   "dependencies": {
-    "@ckeditor/ckeditor5-react": "^9.4.0",
-    "@emotion/react": "^11.14.0",
-    "@floating-ui/react": "^0.27.12",
-    "@hookform/resolvers": "^5.1.1",
     "@repo/eslint-config": "workspace:*",
-    "@repo/hooks": "workspace:*",
     "@repo/prettier-config": "workspace:*",
-    "@repo/theme": "workspace:*",
     "@repo/typescript-config": "workspace:*",
     "@repo/utils": "workspace:*",
     "@repo/vitest-config": "workspace:*",
-    "ckeditor5": "^43.3.1",
     "clsx": "^2.1.1",
-    "dayjs": "^1.11.13",
-    "isomorphic-dompurify": "^2.25.0",
-    "rc-collapse": "^4.0.0",
-    "rc-motion": "^2.9.5",
     "react": "^19.1.0",
-    "react-datepicker": "^8.4.0",
-    "react-dom": "^19.1.0",
-    "react-hook-form": "^7.58.1",
-    "react-modal": "^3.16.1",
-    "react-paginate": "^8.3.0",
-    "react-select": "^5.10.1",
-    "react-toastify": "^11.0.5",
-    "react-use-hook-modal": "^1.6.1",
-    "sonner": "^2.0.5",
-    "zod": "^3.25.67"
+    "react-dom": "^19.1.0"
   },
   "devDependencies": {
     "@storybook/addon-docs": "^9.0.12",
@@ -59,7 +36,6 @@
     "@types/node": "^22.15.3",
     "@types/react": "19.1.0",
     "@types/react-dom": "19.1.1",
-    "@types/react-modal": "^3.16.3",
     "@vitejs/plugin-react": "^4.4.1",
     "eslint": "^9.29.0",
     "eslint-plugin-storybook": "^9.0.12",

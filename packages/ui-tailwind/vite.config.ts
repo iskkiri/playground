@@ -11,12 +11,7 @@ export default defineConfig({
     },
   },
   plugins: [
-    react({
-      jsxImportSource: '@emotion/react',
-      babel: {
-        plugins: ['@emotion/babel-plugin'],
-      },
-    }),
+    react(),
     svgr({
       include: '**/*.svg', // 모든 SVG 파일을 컴포넌트로 변환
       exclude: '**/*.svg?url', // ?url 접미사가 있는 경우는 URL로 처리
