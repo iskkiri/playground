@@ -627,6 +627,9 @@ importers:
       '@repo/prettier-config':
         specifier: workspace:*
         version: link:../config-prettier
+      '@repo/theme':
+        specifier: workspace:*
+        version: link:../theme
       '@repo/typescript-config':
         specifier: workspace:*
         version: link:../config-typescript

@@ -27,21 +27,21 @@ CSS에서 수백 줄로 정의하는 대신 JavaScript로 동적 생성:
 
 ### 헤딩
 
-- typography-heading1-regular, typography-heading1-bold (52px/64px)
-- typography-heading2-regular, typography-heading2-bold (48px/56px)
-- typography-heading3-regular, typography-heading3-bold (40px/48px)
-- typography-heading4-regular, typography-heading4-bold (36px/44px)
-- typography-heading5-regular, typography-heading5-bold (32px/40px)
-- typography-heading6-regular, typography-heading6-bold (28px/36px)
-- typography-heading7-regular, typography-heading7-bold (24px/32px)
+- typography-h1-52r, typography-h1-52b (52px/64px)
+- typography-h1-48r, typography-h1-48b (48px/56px)
+- typography-h1-40r, typography-h1-40b (40px/48px)
+- typography-h1-36r, typography-h1-36b (36px/44px)
+- typography-h1-32r, typography-h1-32b (32px/40px)
+- typography-h1-28r, typography-h1-28b (28px/36px)
+- typography-h1-24r, typography-h1-24b (24px/32px)
 
 ### 본문
 
-- typography-paragraph1-bold, typography-paragraph1-regular (20px/28px)
-- typography-paragraph2-bold, typography-paragraph2-regular (18px/26px)
-- typography-paragraph3-bold, typography-paragraph3-regular (16px/24px)
-- typography-paragraph4-bold, typography-paragraph4-regular (14px/22px)
-- typography-paragraph5-bold, typography-paragraph5-regular (12px/18px)
+- typography-p1-20r, typography-p1-20b (20px/28px)
+- typography-p1-18r, typography-p1-18b (18px/26px)
+- typography-p1-16r, typography-p1-16b (16px/24px)
+- typography-p1-14r, typography-p1-14b (14px/22px)
+- typography-p1-12r, typography-p1-12b (12px/18px)
 
 ## 브레이크포인트
 

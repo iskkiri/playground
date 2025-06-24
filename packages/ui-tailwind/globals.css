@@ -54,144 +54,144 @@
   --line-height-paragraph5: 18px;
 }
 
-@utility typography-heading1-regular {
+@utility typography-h1-52r {
   font-size: var(--font-size-heading1);
   line-height: var(--line-height-heading1);
   font-weight: 400;
 }
 
-@utility typography-heading1-bold {
+@utility typography-h1-52b {
   font-size: var(--font-size-heading1);
   line-height: var(--line-height-heading1);
   font-weight: 700;
 }
 
-@utility typography-heading2-regular {
+@utility typography-h2-48r {
   font-size: var(--font-size-heading2);
   line-height: var(--line-height-heading2);
   font-weight: 400;
 }
 
-@utility typography-heading2-bold {
+@utility typography-h2-48b {
   font-size: var(--font-size-heading2);
   line-height: var(--line-height-heading2);
   font-weight: 700;
 }
 
-@utility typography-heading3-regular {
+@utility typography-h3-40r {
   font-size: var(--font-size-heading3);
   line-height: var(--line-height-heading3);
   font-weight: 400;
 }
 
-@utility typography-heading3-bold {
+@utility typography-h3-40b {
   font-size: var(--font-size-heading3);
   line-height: var(--line-height-heading3);
   font-weight: 700;
 }
 
-@utility typography-heading4-regular {
+@utility typography-h4-36r {
   font-size: var(--font-size-heading4);
   line-height: var(--line-height-heading4);
   font-weight: 400;
 }
 
-@utility typography-heading4-bold {
+@utility typography-h4-36b {
   font-size: var(--font-size-heading4);
   line-height: var(--line-height-heading4);
   font-weight: 700;
 }
 
-@utility typography-heading5-regular {
+@utility typography-h5-32r {
   font-size: var(--font-size-heading5);
   line-height: var(--line-height-heading5);
   font-weight: 400;
 }
 
-@utility typography-heading5-bold {
+@utility typography-h5-32b {
   font-size: var(--font-size-heading5);
   line-height: var(--line-height-heading5);
   font-weight: 700;
 }
 
-@utility typography-heading6-regular {
+@utility typography-h6-28r {
   font-size: var(--font-size-heading6);
   line-height: var(--line-height-heading6);
   font-weight: 400;
 }
 
-@utility typography-heading6-bold {
+@utility typography-h6-28b {
   font-size: var(--font-size-heading6);
   line-height: var(--line-height-heading6);
   font-weight: 700;
 }
 
-@utility typography-heading7-regular {
+@utility typography-h7-24r {
   font-size: var(--font-size-heading7);
   line-height: var(--line-height-heading7);
   font-weight: 400;
 }
 
-@utility typography-heading7-bold {
+@utility typography-h7-24b {
   font-size: var(--font-size-heading7);
   line-height: var(--line-height-heading7);
   font-weight: 700;
 }
 
-@utility typography-paragraph1-regular {
+@utility typography-p1-20r {
   font-size: var(--font-size-paragraph1);
   line-height: var(--line-height-paragraph1);
   font-weight: 400;
 }
 
-@utility typography-paragraph1-bold {
+@utility typography-p1-20b {
   font-size: var(--font-size-paragraph1);
   line-height: var(--line-height-paragraph1);
   font-weight: 700;
 }
 
-@utility typography-paragraph2-regular {
+@utility typography-p2-18r {
   font-size: var(--font-size-paragraph2);
   line-height: var(--line-height-paragraph2);
   font-weight: 400;
 }
 
-@utility typography-paragraph2-bold {
+@utility typography-p2-18b {
   font-size: var(--font-size-paragraph2);
   line-height: var(--line-height-paragraph2);
   font-weight: 700;
 }
 
-@utility typography-paragraph3-regular {
+@utility typography-p3-16r {
   font-size: var(--font-size-paragraph3);
   line-height: var(--line-height-paragraph3);
   font-weight: 400;
 }
 
-@utility typography-paragraph3-bold {
+@utility typography-p3-16b {
   font-size: var(--font-size-paragraph3);
   line-height: var(--line-height-paragraph3);
   font-weight: 700;
 }
 
-@utility typography-paragraph4-regular {
+@utility typography-p4-14r {
   font-size: var(--font-size-paragraph4);
   line-height: var(--line-height-paragraph4);
 }
 
-@utility typography-paragraph4-bold {
+@utility typography-p4-14b {
   font-size: var(--font-size-paragraph4);
   line-height: var(--line-height-paragraph4);
   font-weight: 700;
 }
 
-@utility typography-paragraph5-regular {
+@utility typography-p5-12r {
   font-size: var(--font-size-paragraph5);
   line-height: var(--line-height-paragraph5);
   font-weight: 400;
 }
 
-@utility typography-paragraph5-bold {
+@utility typography-p5-12b {
   font-size: var(--font-size-paragraph5);
   line-height: var(--line-height-paragraph5);
   font-weight: 700;

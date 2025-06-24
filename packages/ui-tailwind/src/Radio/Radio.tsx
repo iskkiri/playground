@@ -5,7 +5,7 @@ import type { InputHTMLAttributes } from 'react';
 export type RadioProps = InputHTMLAttributes<HTMLInputElement>;
 
 const radioLabelVariants = cva(
-  'flex cursor-pointer items-center gap-6 typography-paragraph3-regular text-gray-800',
+  'flex cursor-pointer items-center gap-6 typography-p3-16r text-gray-800',
   {
     variants: {
       disabled: {
