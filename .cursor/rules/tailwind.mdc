@@ -1,0 +1,81 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# Tailwind CSS v4 Configuration Reference for Block Module Project
+
+이 프로젝트는 Tailwind CSS v4와 커스텀 CSS 변수를 사용합니다. 항상 다음 설정을 참조하세요:
+
+## 동적 spacing (packages/ui-tailwind/globals.css 참고)
+
+- **동적 spacing**: 0-600px (w-1 = 1px, w-24 = 24px, w-600 = 600px)
+
+## 동적 생성 클래스 (tailwind.config.ts에서 정의)
+
+CSS에서 수백 줄로 정의하는 대신 JavaScript로 동적 생성:
+
+- **spacing**: 0-600px (w-1=1px, w-24=24px, w-600=600px, p-16=16px, m-32=32px 등)
+- **borderWidth**: 0-10px (border-1=1px, border-5=5px, border-10=10px)
+- **borderRadius**: 0-100px (rounded-4=4px, rounded-16=16px, rounded-50=50px)
+- **fontSize**: 0-100px (text-14=14px, text-18=18px, text-24=24px)
+- **lineHeight**: 0-100px + normal (leading-20=20px, leading-28=28px)
+- **minWidth/maxWidth**: 0-600px (min-w-200=200px, max-w-400=400px)
+- **minHeight/maxHeight**: 0-600px (min-h-300=300px, max-h-500=500px)
+
+## Typography 유틸리티 클래스 (항상 이것들을 사용!)
+
+### 헤딩
+
+- typography-heading1-regular, typography-heading1-bold (52px/64px)
+- typography-heading2-regular, typography-heading2-bold (48px/56px)
+- typography-heading3-regular, typography-heading3-bold (40px/48px)
+- typography-heading4-regular, typography-heading4-bold (36px/44px)
+- typography-heading5-regular, typography-heading5-bold (32px/40px)
+- typography-heading6-regular, typography-heading6-bold (28px/36px)
+- typography-heading7-regular, typography-heading7-bold (24px/32px)
+
+### 본문
+
+- typography-paragraph1-bold, typography-paragraph1-regular (20px/28px)
+- typography-paragraph2-bold, typography-paragraph2-regular (18px/26px)
+- typography-paragraph3-bold, typography-paragraph3-regular (16px/24px)
+- typography-paragraph4-bold, typography-paragraph4-regular (14px/22px)
+- typography-paragraph5-bold, typography-paragraph5-regular (12px/18px)
+
+## 브레이크포인트
+
+- xl: 1280px
+
+## 컴포넌트 스타일링 방법론
+
+**필수 유틸리티 함수들:**
+- `cn()`: clsx + tailwind-merge 조합으로 클래스 병합 (`@repo/utils/cn`)
+- `cva()`: class-variance-authority로 variant 기반 스타일링
+
+## 코딩 규칙
+
+1. text-* 클래스 대신 typography-* 유틸리티 사용
+2. px 기반 spacing 사용 (w-24, h-48, p-16 등)
+3. 색상은 CSS 변수명 기반 클래스 사용
+4. 컴포넌트 스타일링 시 cva + cn 패턴 필수 사용
+5. 반응형 디자인에서 xl 브레이크포인트 활용
+6. 모든 컴포넌트에서 className prop으로 외부 스타일 확장 가능하게 구현
+
+## 예시 사용법
+
+```tsx
+// ❌ 일반 Tailwind 클래스
+<h1 className="text-5xl font-bold leading-tight">제목</h1>
+
+// ✅ 커스텀 유틸리티 사용
+<h1 className="typography-heading1-regular">제목</h1>
+
+// ❌ 일반 색상
+<button className="bg-blue-500 text-white">버튼</button>
+
+// ✅ 커스텀 색상 시스템
+<button className="bg-primary text-white">버튼</button>
+```
+
+항상 이 규칙들을 우선시하고, 코드 제안 시 커스텀 유틸리티와 색상 시스템을 사용하세요.

@@ -1,55 +1,55 @@
 import { css } from '@emotion/react';
 
 const heading1Style = css`
-  font-size: 54px;
+  font-size: 52px;
   font-style: normal;
-  line-height: 68px;
+  line-height: 64px;
 `;
 
 const heading2Style = css`
-  font-size: 46px;
+  font-size: 48px;
   font-style: normal;
-  line-height: 58px;
+  line-height: 56px;
 `;
 
 const heading3Style = css`
-  font-size: 38px;
+  font-size: 40px;
   font-style: normal;
   line-height: 48px;
 `;
 
 const heading4Style = css`
-  font-size: 34px;
+  font-size: 36px;
   font-style: normal;
   line-height: 44px;
 `;
 
 const heading5Style = css`
-  font-size: 30px;
+  font-size: 32px;
   font-style: normal;
   line-height: 40px;
 `;
 
 const heading6Style = css`
-  font-size: 26px;
+  font-size: 28px;
   font-style: normal;
   line-height: 36px;
 `;
 
 const heading7Style = css`
-  font-size: 22px;
+  font-size: 24px;
   font-style: normal;
   line-height: 32px;
 `;
 
 const paragraph1Style = css`
-  font-size: 18px;
+  font-size: 20px;
   font-style: normal;
   line-height: 28px;
 `;
 
 const paragraph2Style = css`
-  font-size: 16px;
+  font-size: 18px;
   font-style: normal;
   line-height: 26px;
 `;
