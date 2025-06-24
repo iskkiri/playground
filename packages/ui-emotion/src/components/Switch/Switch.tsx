@@ -1,3 +1,4 @@
+import { commonCss } from '#src/styles/common.styles';
 import { switchCss } from './Switch.styles';
 
 type SwitchProps = React.InputHTMLAttributes<HTMLInputElement>;
@@ -5,7 +6,7 @@ type SwitchProps = React.InputHTMLAttributes<HTMLInputElement>;
 export default function Switch(props: SwitchProps) {
   return (
     <label css={switchCss.label}>
-      <input {...props} type="checkbox" css={switchCss.checkbox} />
+      <input {...props} type="checkbox" css={commonCss.srOnly} />
       <div css={[switchCss.switch, props.checked && switchCss.active]} />
     </label>
   );

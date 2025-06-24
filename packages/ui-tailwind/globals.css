@@ -1,0 +1,199 @@
+@import 'tailwindcss';
+@import './src/Button/button.css';
+@plugin 'tailwind-scrollbar';
+@config './tailwind.config.ts';
+
+@layer base {
+  input,
+  textarea {
+    outline: none;
+    border: none;
+  }
+
+  button {
+    cursor: pointer;
+  }
+}
+
+@theme {
+  --color-primary: #2563eb;
+  --color-primary-hover: #3b82f6;
+  --color-danger: #ef4444;
+  --color-danger-hover: #f87171;
+  --color-warning: #fdbd47;
+  --color-success: #14b8a6;
+
+  /* gray50 ~ gray900 => netural */
+  /* coolor-gray50 ~ color-gray900 => gray */
+
+  /* Typography - Font Sizes */
+  --font-size-heading1: 52px;
+  --font-size-heading2: 48px;
+  --font-size-heading3: 40px;
+  --font-size-heading4: 36px;
+  --font-size-heading5: 32px;
+  --font-size-heading6: 28px;
+  --font-size-heading7: 24px;
+  --font-size-paragraph1: 20px;
+  --font-size-paragraph2: 18px;
+  --font-size-paragraph3: 16px;
+  --font-size-paragraph4: 14px;
+  --font-size-paragraph5: 12px;
+
+  /* Typography - Line Heights */
+  --line-height-heading1: 64px;
+  --line-height-heading2: 56px;
+  --line-height-heading3: 48px;
+  --line-height-heading4: 44px;
+  --line-height-heading5: 40px;
+  --line-height-heading6: 36px;
+  --line-height-heading7: 32px;
+  --line-height-paragraph1: 28px;
+  --line-height-paragraph2: 26px;
+  --line-height-paragraph3: 24px;
+  --line-height-paragraph4: 22px;
+  --line-height-paragraph5: 18px;
+}
+
+@utility typography-h1-52r {
+  font-size: var(--font-size-heading1);
+  line-height: var(--line-height-heading1);
+  font-weight: 400;
+}
+
+@utility typography-h1-52b {
+  font-size: var(--font-size-heading1);
+  line-height: var(--line-height-heading1);
+  font-weight: 700;
+}
+
+@utility typography-h2-48r {
+  font-size: var(--font-size-heading2);
+  line-height: var(--line-height-heading2);
+  font-weight: 400;
+}
+
+@utility typography-h2-48b {
+  font-size: var(--font-size-heading2);
+  line-height: var(--line-height-heading2);
+  font-weight: 700;
+}
+
+@utility typography-h3-40r {
+  font-size: var(--font-size-heading3);
+  line-height: var(--line-height-heading3);
+  font-weight: 400;
+}
+
+@utility typography-h3-40b {
+  font-size: var(--font-size-heading3);
+  line-height: var(--line-height-heading3);
+  font-weight: 700;
+}
+
+@utility typography-h4-36r {
+  font-size: var(--font-size-heading4);
+  line-height: var(--line-height-heading4);
+  font-weight: 400;
+}
+
+@utility typography-h4-36b {
+  font-size: var(--font-size-heading4);
+  line-height: var(--line-height-heading4);
+  font-weight: 700;
+}
+
+@utility typography-h5-32r {
+  font-size: var(--font-size-heading5);
+  line-height: var(--line-height-heading5);
+  font-weight: 400;
+}
+
+@utility typography-h5-32b {
+  font-size: var(--font-size-heading5);
+  line-height: var(--line-height-heading5);
+  font-weight: 700;
+}
+
+@utility typography-h6-28r {
+  font-size: var(--font-size-heading6);
+  line-height: var(--line-height-heading6);
+  font-weight: 400;
+}
+
+@utility typography-h6-28b {
+  font-size: var(--font-size-heading6);
+  line-height: var(--line-height-heading6);
+  font-weight: 700;
+}
+
+@utility typography-h7-24r {
+  font-size: var(--font-size-heading7);
+  line-height: var(--line-height-heading7);
+  font-weight: 400;
+}
+
+@utility typography-h7-24b {
+  font-size: var(--font-size-heading7);
+  line-height: var(--line-height-heading7);
+  font-weight: 700;
+}
+
+@utility typography-p1-20r {
+  font-size: var(--font-size-paragraph1);
+  line-height: var(--line-height-paragraph1);
+  font-weight: 400;
+}
+
+@utility typography-p1-20b {
+  font-size: var(--font-size-paragraph1);
+  line-height: var(--line-height-paragraph1);
+  font-weight: 700;
+}
+
+@utility typography-p2-18r {
+  font-size: var(--font-size-paragraph2);
+  line-height: var(--line-height-paragraph2);
+  font-weight: 400;
+}
+
+@utility typography-p2-18b {
+  font-size: var(--font-size-paragraph2);
+  line-height: var(--line-height-paragraph2);
+  font-weight: 700;
+}
+
+@utility typography-p3-16r {
+  font-size: var(--font-size-paragraph3);
+  line-height: var(--line-height-paragraph3);
+  font-weight: 400;
+}
+
+@utility typography-p3-16b {
+  font-size: var(--font-size-paragraph3);
+  line-height: var(--line-height-paragraph3);
+  font-weight: 700;
+}
+
+@utility typography-p4-14r {
+  font-size: var(--font-size-paragraph4);
+  line-height: var(--line-height-paragraph4);
+}
+
+@utility typography-p4-14b {
+  font-size: var(--font-size-paragraph4);
+  line-height: var(--line-height-paragraph4);
+  font-weight: 700;
+}
+
+@utility typography-p5-12r {
+  font-size: var(--font-size-paragraph5);
+  line-height: var(--line-height-paragraph5);
+  font-weight: 400;
+}
+
+@utility typography-p5-12b {
+  font-size: var(--font-size-paragraph5);
+  line-height: var(--line-height-paragraph5);
+  font-weight: 700;
+}

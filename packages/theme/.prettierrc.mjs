@@ -1,4 +1,4 @@
-import { config as baseConfig } from "@repo/prettier-config";
+import { config as baseConfig } from '@repo/prettier-config/base';
 
 /**
  * @see https://prettier.io/docs/configuration

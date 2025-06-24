@@ -44,6 +44,7 @@ const meta = {
   args: {
     children: '전체 동의',
     checked: false,
+    disabled: false,
   },
 } satisfies Meta<typeof CheckBox>;
 

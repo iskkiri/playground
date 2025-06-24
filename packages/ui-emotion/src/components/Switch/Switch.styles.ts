@@ -14,14 +14,6 @@ export const switchCss = {
     cursor: pointer;
   `,
 
-  checkbox: css`
-    visibility: hidden;
-    position: absolute;
-    width: 0;
-    height: 0;
-    opacity: 0;
-  `,
-
   switch: css`
     position: relative;
     display: inline-block;
