@@ -1,16 +1,15 @@
 import Modal from '@repo/ui-third-party/Modal/Modal';
 import type { BaseModalProps } from '@repo/ui-third-party/Modal/types/modal.types';
-import Button, { type ButtonType } from '#src/components/Button/Button';
-import { commonCss } from '#src/styles/common.styles';
-import { dialogModalCss } from '../styles/DialogModal.styles';
+import Button, { type ButtonProps } from '#src/Button/Button';
 
 export interface ConfirmModalProps extends BaseModalProps {
   title: string;
   content: React.ReactNode;
   closeButtonText?: string;
   confirmButtonText?: string;
-  confirmButtonType?: ButtonType;
+  confirmButtonType?: ButtonProps['variant'];
   onConfirm: () => void;
+  className?: string;
 }
 
 export default function ConfirmModal({
@@ -23,23 +22,24 @@ export default function ConfirmModal({
   confirmButtonType = 'primary',
   onClose,
   onConfirm,
+  className,
 }: ConfirmModalProps) {
   return (
-    <Modal isOpen={isOpen} onClose={onClose} onRequestClose={onClose}>
+    <Modal isOpen={isOpen} onClose={onClose} onRequestClose={onClose} className={className}>
       <Modal.Header>
         <Modal.Title>{title}</Modal.Title>
       </Modal.Header>
 
       <Modal.Body>
-        <p css={dialogModalCss.content}>{content}</p>
+        <p className="typography-p3-16r whitespace-pre-wrap text-gray-700">{content}</p>
       </Modal.Body>
 
       <Modal.Footer>
-        <Button buttonType="gray" onClick={onClose} cssStyle={commonCss.flexGrow}>
+        <Button variant="gray" onClick={onClose} className="flex-1">
           {closeButtonText}
         </Button>
 
-        <Button buttonType={confirmButtonType} onClick={onConfirm} cssStyle={commonCss.flexGrow}>
+        <Button variant={confirmButtonType} onClick={onConfirm} className="flex-1">
           {confirmButtonText}
         </Button>
       </Modal.Footer>
