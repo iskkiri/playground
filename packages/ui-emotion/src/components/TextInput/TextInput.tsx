@@ -1,8 +1,9 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useRef, useState } from 'react';
 import type { RefCallBack } from 'react-hook-form';
 import type { Interpolation, Theme } from '@emotion/react';
 import { textInputWrapperCss } from './TextInput.styles';
 import FeatherIcons from '@repo/theme/featherIcons';
+import { useMergeRefs } from 'react-merge-refs';
 
 export interface TextInputProps
   extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'prefix'> {
@@ -17,7 +18,7 @@ export interface TextInputProps
 
 export default function TextInput({
   isDirty,
-  onClear,
+  onClear: clear,
   isError,
   prefix,
   suffix,
@@ -26,6 +27,16 @@ export default function TextInput({
 }: TextInputProps) {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const onTogglePasswordVisibility = useCallback(() => setIsPasswordVisible((prev) => !prev), []);
+
+  const inputRef = useRef<HTMLInputElement>(null);
+  const mergeRefs = useMergeRefs([restProps.ref, inputRef]);
+
+  const onClear = useCallback(() => {
+    if (!clear || !inputRef.current) return;
+
+    clear();
+    inputRef.current.focus();
+  }, [clear]);
 
   return (
     <div
@@ -42,6 +53,7 @@ export default function TextInput({
 
       <input
         {...restProps}
+        ref={mergeRefs}
         type={
           restProps.type === 'password' ? (isPasswordVisible ? 'text' : 'password') : restProps.type
         }

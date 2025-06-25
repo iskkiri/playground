@@ -20,14 +20,15 @@
   "dependencies": {
     "@repo/eslint-config": "workspace:*",
     "@repo/prettier-config": "workspace:*",
-    "@repo/typescript-config": "workspace:*",
     "@repo/theme": "workspace:*",
+    "@repo/typescript-config": "workspace:*",
     "@repo/utils": "workspace:*",
     "@repo/vitest-config": "workspace:*",
     "@tailwindcss/vite": "^4.1.10",
     "class-variance-authority": "^0.7.1",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
+    "react-merge-refs": "^3.0.2",
     "tailwindcss": "^4.1.10"
   },
   "devDependencies": {
@@ -46,7 +47,6 @@
     "prettier": "^3.5.3",
     "prettier-plugin-tailwindcss": "^0.6.13",
     "storybook": "^9.0.12",
-    "tailwind-scrollbar": "^4.0.2",
     "typescript": "5.8.2",
     "vite": "^6.3.5",
     "vite-plugin-svgr": "^4.3.0",

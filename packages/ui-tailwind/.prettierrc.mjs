@@ -7,7 +7,7 @@ import { config as baseConfig } from '@repo/prettier-config/base';
 const config = {
   ...baseConfig,
   plugins: ['prettier-plugin-tailwindcss'],
-  tailwindStylesheet: './globals.css',
+  tailwindStylesheet: './styles/globals.css',
   tailwindFunctions: ['clsx', 'cn', 'cva'],
 };
 
