@@ -76,6 +76,7 @@ export const textInputWrapperCss = {
     border: none;
     outline: none;
     cursor: pointer;
+    padding: 0;
 
     &:focus-visible {
       outline: 1px solid ${theme.colors.primary};

@@ -1,10 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import TextInput from './TextInput';
-import { css } from '@emotion/react';
 import { useCallback, useMemo, useState } from 'react';
 import FeatherIcons from '@repo/theme/featherIcons';
-import { useForm } from 'react-hook-form';
-import useClearField from '@repo/hooks/useClearField';
 
 const meta = {
   title: 'components/TextInput',
@@ -15,13 +12,10 @@ const meta = {
   tags: ['autodocs'],
   args: {
     placeholder: 'Placeholder',
-    value: '',
     disabled: false,
     isError: false,
     isDirty: false,
-    cssStyle: css`
-      width: 400px;
-    `,
+    className: 'w-400',
   },
 } satisfies Meta<typeof TextInput>;
 
@@ -84,28 +78,6 @@ export const Example: Story = {
         onChange={onChange}
         value={text}
         suffix={<FeatherIcons.Search size={20} color={'#A2A9B0'} />}
-      />
-    );
-  },
-};
-
-export const FormExample: Story = {
-  render: function Render(props) {
-    const {
-      register,
-      resetField,
-      formState: { dirtyFields, errors },
-    } = useForm<{ text: string }>({ defaultValues: { text: '' } });
-
-    const { onClearField } = useClearField({ resetField });
-
-    return (
-      <TextInput
-        {...props}
-        {...register('text')}
-        isDirty={dirtyFields.text}
-        isError={!!errors.text}
-        onClear={onClearField('text')}
       />
     );
   },
