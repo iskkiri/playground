@@ -1,11 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { lazy, useCallback } from 'react';
 import { ModalProvider, useModal } from 'react-use-hook-modal';
-import Button from '#src/components/Button/Button';
+import Button from '#src/Button/Button';
 
-const ConfirmModalComponent = lazy(
-  () => import('#src/components/DialogModals/ConfirmModal/ConfirmModal')
-);
+const ConfirmModalComponent = lazy(() => import('#src/DialogModals/ConfirmModal/ConfirmModal'));
 
 const meta = {
   title: 'components/DialogModals/ConfirmModal',
@@ -43,7 +41,7 @@ export const ConfirmModal: Story = {
     }, [closeConfirmModal, openConfirmModal]);
 
     return (
-      <Button buttonType="primary" onClick={onOpenConfirmModal}>
+      <Button variant="primary" onClick={onOpenConfirmModal}>
         Open Confirm Modal
       </Button>
     );

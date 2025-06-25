@@ -1,14 +1,13 @@
 import Modal from '@repo/ui-third-party/Modal/Modal';
 import type { BaseModalProps } from '@repo/ui-third-party/Modal/types/modal.types';
-import { dialogModalCss } from '../styles/DialogModal.styles';
-import Button, { type ButtonType } from '#src/components/Button/Button';
-import { commonCss } from '#src/styles/common.styles';
+import Button, { type ButtonProps } from '#src/Button/Button';
 
 export interface AlertModalProps extends BaseModalProps {
   title: string;
   content: React.ReactNode;
   closeButtonText?: string;
-  closeButtonType?: ButtonType;
+  closeButtonType?: ButtonProps['variant'];
+  className?: string;
 }
 
 export default function AlertModal({
@@ -19,19 +18,20 @@ export default function AlertModal({
   closeButtonText = '확인',
   closeButtonType = 'primary',
   onClose,
+  className,
 }: AlertModalProps) {
   return (
-    <Modal isOpen={isOpen} onClose={onClose} onRequestClose={onClose}>
+    <Modal isOpen={isOpen} onClose={onClose} onRequestClose={onClose} className={className}>
       <Modal.Header>
         <Modal.Title>{title}</Modal.Title>
       </Modal.Header>
 
       <Modal.Body>
-        <p css={dialogModalCss.content}>{content}</p>
+        <p className="typography-p3-16r whitespace-pre-wrap text-gray-700">{content}</p>
       </Modal.Body>
 
       <Modal.Footer>
-        <Button buttonType={closeButtonType} onClick={onClose} cssStyle={commonCss.flexGrow}>
+        <Button variant={closeButtonType} onClick={onClose} className="flex-1">
           {closeButtonText}
         </Button>
       </Modal.Footer>
