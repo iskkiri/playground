@@ -63,8 +63,8 @@ export const Example: Story = {
     const [text, setText] = useState('');
 
     const isDirty = useMemo(() => !!text, [text]);
-
     const onClear = useCallback(() => setText(''), []);
+
     const onChange = useCallback(
       (e: React.ChangeEvent<HTMLInputElement>) => setText(e.target.value),
       []
