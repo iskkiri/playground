@@ -1,0 +1,7 @@
+.dropdown-indicator__icon {
+  transition: transform 0.3s;
+}
+
+.dropdown-indicator__icon--rotate {
+  transform: rotate(180deg);
+}

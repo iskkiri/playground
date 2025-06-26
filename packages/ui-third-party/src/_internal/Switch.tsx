@@ -1,11 +1,11 @@
-import switchCss from './styles/switch.module.scss';
 import { cn } from '@repo/utils/cn';
+import styles from './styles/switch.module.scss';
 
 export default function Switch(props: React.ComponentProps<'input'>) {
   return (
-    <label className={switchCss.label}>
+    <label className={styles.label}>
       <input {...props} type="checkbox" />
-      <div className={cn(switchCss.switch, props.checked && switchCss.active)} />
+      <div className={cn(styles.switch, props.checked && styles.active)} />
     </label>
   );
 }

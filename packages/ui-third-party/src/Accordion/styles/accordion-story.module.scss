@@ -1,0 +1,30 @@
+.container {
+  width: 600px;
+}
+
+.label {
+  padding: 16px 20px;
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.content {
+  padding: 16px 24px;
+  background: #fafafa;
+
+  display: flex;
+  align-items: center;
+}
+
+.customDropdown {
+  transform: rotate(0deg);
+  transition: transform 0.3s;
+}
+
+.customDropdownActive {
+  transform: rotate(90deg);
+}

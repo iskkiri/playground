@@ -1,0 +1,40 @@
+/* 값을 수정하면 애니메이션 동작하지 않으므로 수정 X */
+/* https://github.com/react-component/collapse/blob/master/assets/motion.less */
+.rc-collapse-content {
+  overflow: hidden;
+}
+
+.rc-collapse-motion {
+  transition:
+    height 0.3s,
+    opacity 0.3s;
+}
+
+.rc-collapse-content-hidden {
+  display: none;
+}
+/* 값을 수정하면 애니메이션 동작하지 않으므로 수정 X */
+
+.accordion {
+  .rc-collapse-header {
+    cursor: pointer;
+
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: start;
+    align-items: center;
+  }
+
+  .rc-collapse-title {
+    flex: 1;
+  }
+}
+
+.accordion__dropdown {
+  transform: rotate(0deg);
+  transition: transform 0.3s;
+}
+
+.accordion__dropdown--active {
+  transform: rotate(180deg);
+}
