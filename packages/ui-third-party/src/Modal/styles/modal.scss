@@ -2,34 +2,27 @@
  * BEM naming convention (Block Element Modifier)
  *
  * 1. 언더바 2개 (__): Block과 Element를 구분
- * .block__element
- *
- * 2. 하이픈 2개 (--): Modifier를 나타냄
- * .block--modifier
- * .block__element--modifier
- * BEM에서 Modifier는 Block이나 Element의 상태, 외관, 동작의 변형을 나타냅니다.
- * .button { }                 // 기본 버튼
- * .button--disabled { }       // 비활성화된 버튼
- * .button--active { }         // 활성화된 버튼
- * .button--loading { }        // 로딩 중인 버튼
- *
- * .modal { }                  // 기본 모달
- * .modal--open { }            // 열린 모달
- * .modal--hidden { }          // 숨겨진 모달
- * 
- * 구체적인 예시
- * Block: 독립적인 컴포넌트
- * .card { }
  *
  * Element: Block 안의 구성 요소
  * .card__title { }             // card 안의 title
  * .card__content { }           // card 안의 content
  * .card__button { }            // card 안의 button
  *
+ * 2. 하이픈 2개 (--): Modifier를 나타냄
+ *
  * Modifier: 상태나 변형
+ * .button { }                 // 기본 버튼
+ * .button--disabled { }       // 비활성화된 버튼
+ * .button--active { }         // 활성화된 버튼
+ * .button--loading { }        // 로딩 중인 버튼
+ *
  * .card--featured { }          // 특별한 카드
  * .card__title--large { }      // 큰 제목
  * .card__button--primary { }   // 주요 버튼
+ *
+ * .block--modifier
+ * .block__element--modifier
+ *
  */
 
 // _mixins/_index.scss

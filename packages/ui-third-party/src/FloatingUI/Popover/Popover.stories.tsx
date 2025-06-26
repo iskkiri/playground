@@ -6,7 +6,7 @@ import PopoverTrigger from './PopoverTrigger';
 import PopoverContent from './PopoverContent';
 import Button from '#src/_internal/Button';
 import Switch from '#src/_internal/Switch';
-import floatingUiStyles from '#src/_internal/styles/floating-ui.module.scss';
+import styles from '#src/_internal/styles/floating-ui-story.module.scss';
 
 const meta = {
   title: 'components/FloatingUI/Popover',
@@ -33,7 +33,7 @@ export const UncontrolledExample: Story = {
         </PopoverTrigger>
 
         <PopoverContent>
-          <div className={floatingUiStyles['floating-ui-story__box']}>Hello</div>
+          <div className={styles['floating-ui-story__box']}>Hello</div>
         </PopoverContent>
       </Popover>
     );
@@ -56,7 +56,7 @@ export const ControlledExample: Story = {
         </PopoverTrigger>
 
         <PopoverContent>
-          <div className={floatingUiStyles['floating-ui-story__box']}>
+          <div className={styles['floating-ui-story__box']}>
             Hello
             <Button variant="primary" onClick={() => setIsOpen(false)} size="md">
               Close
@@ -93,7 +93,7 @@ export const PositionExample: Story = {
           </PopoverTrigger>
 
           <PopoverContent>
-            <div className={floatingUiStyles['floating-ui-story__box']}>Hello</div>
+            <div className={styles['floating-ui-story__box']}>Hello</div>
           </PopoverContent>
         </Popover>
 

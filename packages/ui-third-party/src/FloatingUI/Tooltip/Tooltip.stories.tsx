@@ -6,7 +6,7 @@ import TooltipTrigger from './TooltipTrigger';
 import TooltipContent from './TooltipContent';
 import Button from '#src/_internal/Button';
 import Switch from '#src/_internal/Switch';
-import floatingUiStyles from '#src/_internal/styles/floating-ui.module.scss';
+import styles from '#src/_internal/styles/floating-ui-story.module.scss';
 
 const meta = {
   title: 'components/FloatingUI/Tooltip',
@@ -34,7 +34,7 @@ export const UncontrolledExample: Story = {
           </TooltipTrigger>
 
           <TooltipContent>
-            <div className={floatingUiStyles['floating-ui-story__box']}>Hello</div>
+            <div className={styles['floating-ui-story__box']}>Hello</div>
           </TooltipContent>
         </Tooltip>
       </>
@@ -59,7 +59,7 @@ export const ControlledExample: Story = {
           </TooltipTrigger>
 
           <TooltipContent>
-            <div className={floatingUiStyles['floating-ui-story__box']}>Hello</div>
+            <div className={styles['floating-ui-story__box']}>Hello</div>
           </TooltipContent>
         </Tooltip>
       </>
@@ -92,7 +92,7 @@ export const PositionExample: Story = {
           </TooltipTrigger>
 
           <TooltipContent>
-            <div className={floatingUiStyles['floating-ui-story__box']}>Hello</div>
+            <div className={styles['floating-ui-story__box']}>Hello</div>
           </TooltipContent>
         </Tooltip>
 
