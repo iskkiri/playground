@@ -1,16 +1,19 @@
+import './styles/pagination.scss';
+
 import ReactPaginate, { type ReactPaginateProps } from 'react-paginate';
-import { paginationCss } from './Pagination.styles';
-import type { Interpolation, Theme } from '@emotion/react';
 import FeatherIcons from '@repo/theme/featherIcons';
+import { cn } from '@repo/utils/cn';
 
 export interface PaginationProps extends ReactPaginateProps {
   page: number;
-  cssStyle?: Interpolation<Theme>;
 }
 
-export default function Pagination({ page, cssStyle, ...restProps }: PaginationProps) {
+export default function Pagination({ page, className, ...restProps }: PaginationProps) {
   return (
-    <div css={[paginationCss.wrapper, cssStyle]}>
+    <div
+      className={cn('pagination__wrapper', className)}
+      // css={[paginationCss.wrapper, cssStyle]}
+    >
       <ReactPaginate
         {...restProps}
         breakLabel="···"

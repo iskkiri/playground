@@ -24,6 +24,7 @@
   "dependencies": {
     "@floating-ui/react": "^0.27.12",
     "@repo/eslint-config": "workspace:*",
+    "@repo/hooks": "workspace:*",
     "@repo/prettier-config": "workspace:*",
     "@repo/theme": "workspace:*",
     "@repo/typescript-config": "workspace:*",
@@ -34,7 +35,8 @@
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-merge-refs": "^3.0.2",
-    "react-modal": "^3.16.1"
+    "react-modal": "^3.16.1",
+    "react-paginate": "^8.3.0"
   },
   "devDependencies": {
     "@storybook/addon-docs": "^9.0.12",
