@@ -8,8 +8,8 @@
     ]
   },
   "exports": {
-    "./*": "./src/*.tsx",
-    "./styles/*": "./styles/*"
+    "./components/*": "./src/components/*.tsx",
+    "./styles/*": "./src/styles/*"
   },
   "scripts": {
     "lint": "eslint . --max-warnings 0",

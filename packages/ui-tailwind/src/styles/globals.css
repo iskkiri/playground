@@ -1,10 +1,9 @@
 @import 'tailwindcss';
-@config '../tailwind.config.ts';
+@config '../../tailwind.config.ts';
 
 @import './typography.css';
 @import './scrollbar.css';
-
-@import '../src/Button/button.css';
+@import '../components/Button/button.css';
 
 @layer base {
   input,

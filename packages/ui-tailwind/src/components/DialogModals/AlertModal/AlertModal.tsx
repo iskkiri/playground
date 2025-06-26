@@ -1,29 +1,25 @@
 import Modal from '@repo/ui-third-party/Modal/Modal';
 import type { BaseModalProps } from '@repo/ui-third-party/Modal/types/modal.types';
-import Button, { type ButtonProps } from '#src/Button/Button';
+import Button, { type ButtonProps } from '#src/components/Button/Button';
 
-export interface ConfirmModalProps extends BaseModalProps {
+export interface AlertModalProps extends BaseModalProps {
   title: string;
   content: React.ReactNode;
   closeButtonText?: string;
-  confirmButtonText?: string;
-  confirmButtonType?: ButtonProps['variant'];
-  onConfirm: () => void;
+  closeButtonType?: ButtonProps['variant'];
   className?: string;
 }
 
-export default function ConfirmModal({
+export default function AlertModal({
   //
   isOpen,
   title,
   content,
-  closeButtonText = '닫기',
-  confirmButtonText = '확인',
-  confirmButtonType = 'primary',
+  closeButtonText = '확인',
+  closeButtonType = 'primary',
   onClose,
-  onConfirm,
   className,
-}: ConfirmModalProps) {
+}: AlertModalProps) {
   return (
     <Modal isOpen={isOpen} onClose={onClose} onRequestClose={onClose} className={className}>
       <Modal.Header>
@@ -35,12 +31,8 @@ export default function ConfirmModal({
       </Modal.Body>
 
       <Modal.Footer>
-        <Button variant="gray" onClick={onClose} className="flex-1">
+        <Button variant={closeButtonType} onClick={onClose} className="flex-1">
           {closeButtonText}
-        </Button>
-
-        <Button variant={confirmButtonType} onClick={onConfirm} className="flex-1">
-          {confirmButtonText}
         </Button>
       </Modal.Footer>
     </Modal>
