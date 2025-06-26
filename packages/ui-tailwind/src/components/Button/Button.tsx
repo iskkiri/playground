@@ -7,12 +7,12 @@ export const buttonVariants = cva(
     variants: {
       variant: {
         primary:
-          'border border-primary bg-primary text-white hover:bg-primary-hover disabled:border-gray-100 disabled:bg-gray-100 disabled:text-gray-300',
+          'border-primary bg-primary hover:bg-primary-hover border text-white disabled:border-gray-100 disabled:bg-gray-100 disabled:text-gray-300',
         linePrimary:
-          'border border-primary bg-transparent text-primary hover:border-primary-hover hover:text-primary-hover disabled:border-gray-100 disabled:bg-gray-50 disabled:text-gray-200',
+          'border-primary text-primary hover:border-primary-hover hover:text-primary-hover border bg-transparent disabled:border-gray-100 disabled:bg-gray-50 disabled:text-gray-200',
         gray: 'border border-gray-50 bg-gray-50 text-gray-500 hover:bg-gray-100 disabled:bg-gray-100 disabled:text-gray-300',
         danger:
-          'border border-danger bg-danger text-white hover:bg-danger-hover disabled:border-gray-100 disabled:bg-gray-100 disabled:text-gray-300',
+          'border-danger bg-danger hover:bg-danger-hover border text-white disabled:border-gray-100 disabled:bg-gray-100 disabled:text-gray-300',
         none: '',
       },
       size: {

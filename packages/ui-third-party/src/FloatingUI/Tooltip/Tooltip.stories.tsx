@@ -3,10 +3,10 @@ import { useState } from 'react';
 import type { Placement } from '@floating-ui/react';
 import Tooltip from './Tooltip';
 import TooltipTrigger from './TooltipTrigger';
-import Button from '#src/components/Button/Button';
-import { floatingCss } from '../_styles/floating.styles';
 import TooltipContent from './TooltipContent';
-import Switch from '#src/components/Switch/Switch';
+import Button from '#src/_internal/Button';
+import Switch from '#src/_internal/Switch';
+import floatingUiStyles from '#src/_internal/styles/floating-ui.module.scss';
 
 const meta = {
   title: 'components/FloatingUI/Tooltip',
@@ -30,11 +30,11 @@ export const UncontrolledExample: Story = {
       <>
         <Tooltip offsetOptions={{ mainAxis: 12 }}>
           <TooltipTrigger>
-            <Button buttonType="primary">Hover Me</Button>
+            <Button variant="primary">Hover Me</Button>
           </TooltipTrigger>
 
           <TooltipContent>
-            <div css={floatingCss.box}>Hello</div>
+            <div className={floatingUiStyles['floating-ui-story__box']}>Hello</div>
           </TooltipContent>
         </Tooltip>
       </>
@@ -55,11 +55,11 @@ export const ControlledExample: Story = {
           offsetOptions={{ mainAxis: 12 }}
         >
           <TooltipTrigger>
-            <Button buttonType="primary">Hover Me</Button>
+            <Button variant="primary">Hover Me</Button>
           </TooltipTrigger>
 
           <TooltipContent>
-            <div css={floatingCss.box}>Hello</div>
+            <div className={floatingUiStyles['floating-ui-story__box']}>Hello</div>
           </TooltipContent>
         </Tooltip>
       </>
@@ -88,11 +88,11 @@ export const PositionExample: Story = {
           offsetOptions={{ mainAxis: 12 }}
         >
           <TooltipTrigger style={{ alignSelf: 'center' }}>
-            <Button buttonType="primary">Hover Me</Button>
+            <Button variant="primary">Hover Me</Button>
           </TooltipTrigger>
 
           <TooltipContent>
-            <div css={floatingCss.box}>Hello</div>
+            <div className={floatingUiStyles['floating-ui-story__box']}>Hello</div>
           </TooltipContent>
         </Tooltip>
 
@@ -107,7 +107,7 @@ export const PositionExample: Story = {
             {placement2DList.map((placementList, i) => (
               <div key={i} style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
                 {placementList.map((item, j) => (
-                  <Button key={j} onClick={() => setPlacement(item)} buttonType="gray">
+                  <Button key={j} onClick={() => setPlacement(item)} variant="ghost">
                     {item}
                   </Button>
                 ))}

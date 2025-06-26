@@ -1,16 +1,17 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { lazy, useCallback } from 'react';
 import { ModalProvider, useModal } from 'react-use-hook-modal';
-import Button from '#src/Button/Button';
+import Button from '#src/components/Button/Button';
 
-const AlertModalComponent = lazy(() => import('#src/DialogModals/AlertModal/AlertModal'));
+const ConfirmModalComponent = lazy(
+  () => import('#src/components/DialogModals/ConfirmModal/ConfirmModal')
+);
 
 const meta = {
-  title: 'components/DialogModals/AlertModal',
+  title: 'components/DialogModals/ConfirmModal',
   parameters: {
     layout: 'centered',
   },
-
   decorators: [
     (Story) => {
       return (
@@ -25,22 +26,25 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const AlertModal: Story = {
+export const ConfirmModal: Story = {
   render: function Render() {
-    const { open: openAlertModal, close: closeAlertModal } = useModal(AlertModalComponent);
+    const { open: openConfirmModal, close: closeConfirmModal } = useModal(ConfirmModalComponent);
 
-    const onOpenAlertModal = useCallback(() => {
-      openAlertModal({
+    const onOpenConfirmModal = useCallback(() => {
+      openConfirmModal({
         title: '모달 제목입니다.',
         content:
           '모달 내용입니다. 모달 내용입니다. 모달 내용입니다. 모달 내용입니다. 모달 내용입니다. 모달 내용입니다. 모달 내용입니다. 모달 내용입니다.',
-        onClose: closeAlertModal,
+        onClose: closeConfirmModal,
+        onConfirm: () => {
+          closeConfirmModal();
+        },
       });
-    }, [closeAlertModal, openAlertModal]);
+    }, [closeConfirmModal, openConfirmModal]);
 
     return (
-      <Button variant="primary" onClick={onOpenAlertModal}>
-        Open Alert Modal
+      <Button variant="primary" onClick={onOpenConfirmModal}>
+        Open Confirm Modal
       </Button>
     );
   },
