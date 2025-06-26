@@ -4,9 +4,9 @@ import ToastifyComponent from './Toastify';
 import { useCallback } from 'react';
 import { toast } from 'react-toastify';
 import FeatherIcons from '@repo/theme/featherIcons';
-import Button from '#src/components/Button/Button';
+import Button from '#src/_internal/Button';
 
-const meta = {
+const meta: Meta = {
   title: 'components/Toast/Toastify',
   parameters: {
     layout: 'centered',
@@ -21,7 +21,7 @@ const meta = {
       );
     },
   ],
-} satisfies Meta;
+};
 
 export default meta;
 type Story = StoryObj<typeof meta>;
@@ -36,7 +36,7 @@ export const ToastifySuccess: Story = {
     }, []);
 
     return (
-      <Button buttonType="primary" onClick={onOpenToast}>
+      <Button variant="primary" onClick={onOpenToast}>
         Open Success Toast
       </Button>
     );
@@ -53,7 +53,7 @@ export const ToastifyError: Story = {
     }, []);
 
     return (
-      <Button buttonType="primary" onClick={onOpenToast}>
+      <Button variant="primary" onClick={onOpenToast}>
         Open Error Toast
       </Button>
     );
@@ -70,7 +70,7 @@ export const ToastifyWarning: Story = {
     }, []);
 
     return (
-      <Button buttonType="primary" onClick={onOpenToast}>
+      <Button variant="primary" onClick={onOpenToast}>
         Open Warning Toast
       </Button>
     );
