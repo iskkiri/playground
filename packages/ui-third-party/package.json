@@ -22,7 +22,9 @@
     "test": "vitest"
   },
   "dependencies": {
+    "@ckeditor/ckeditor5-react": "^9.4.0",
     "@floating-ui/react": "^0.27.12",
+    "@hookform/resolvers": "^5.1.1",
     "@repo/eslint-config": "workspace:*",
     "@repo/hooks": "workspace:*",
     "@repo/prettier-config": "workspace:*",
@@ -30,16 +32,19 @@
     "@repo/typescript-config": "workspace:*",
     "@repo/utils": "workspace:*",
     "@repo/vitest-config": "workspace:*",
+    "ckeditor5": "^43.3.1",
     "isomorphic-dompurify": "^2.25.0",
     "rc-collapse": "^4.0.0",
     "rc-motion": "^2.9.5",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
+    "react-hook-form": "^7.58.1",
     "react-merge-refs": "^3.0.2",
     "react-modal": "^3.16.1",
     "react-paginate": "^8.3.0",
     "react-toastify": "^11.0.5",
-    "sonner": "^2.0.5"
+    "sonner": "^2.0.5",
+    "zod": "^3.25.67"
   },
   "devDependencies": {
     "@storybook/addon-docs": "^9.0.12",

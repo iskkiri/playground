@@ -418,9 +418,6 @@ importers:
 
   packages/ui-emotion:
     dependencies:
-      '@ckeditor/ckeditor5-react':
-        specifier: ^9.4.0
-        version: 9.5.0(ckeditor5@43.3.1)(react@19.1.0)
       '@emotion/react':
         specifier: ^11.14.0
         version: 11.14.0(@types/react@19.1.0)(react@19.1.0)
@@ -451,18 +448,12 @@ importers:
       '@repo/vitest-config':
         specifier: workspace:*
         version: link:../config-vitest
-      ckeditor5:
-        specifier: ^43.3.1
-        version: 43.3.1
       clsx:
         specifier: ^2.1.1
         version: 2.1.1
       dayjs:
         specifier: ^1.11.13
         version: 1.11.13
-      isomorphic-dompurify:
-        specifier: ^2.25.0
-        version: 2.25.0
       react:
         specifier: ^19.1.0
         version: 19.1.0
@@ -709,9 +700,15 @@ importers:
 
   packages/ui-third-party:
     dependencies:
+      '@ckeditor/ckeditor5-react':
+        specifier: ^9.4.0
+        version: 9.5.0(ckeditor5@43.3.1)(react@19.1.0)
       '@floating-ui/react':
         specifier: ^0.27.12
         version: 0.27.12(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@hookform/resolvers':
+        specifier: ^5.1.1
+        version: 5.1.1(react-hook-form@7.58.1(react@19.1.0))
       '@repo/eslint-config':
         specifier: workspace:*
         version: link:../config-eslint
@@ -733,6 +730,9 @@ importers:
       '@repo/vitest-config':
         specifier: workspace:*
         version: link:../config-vitest
+      ckeditor5:
+        specifier: ^43.3.1
+        version: 43.3.1
       isomorphic-dompurify:
         specifier: ^2.25.0
         version: 2.25.0
@@ -748,6 +748,9 @@ importers:
       react-dom:
         specifier: ^19.1.0
         version: 19.1.0(react@19.1.0)
+      react-hook-form:
+        specifier: ^7.58.1
+        version: 7.58.1(react@19.1.0)
       react-merge-refs:
         specifier: ^3.0.2
         version: 3.0.2(react@19.1.0)
@@ -763,6 +766,9 @@ importers:
       sonner:
         specifier: ^2.0.5
         version: 2.0.5(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      zod:
+        specifier: ^3.25.67
+        version: 3.25.67
     devDependencies:
       '@storybook/addon-docs':
         specifier: ^9.0.12

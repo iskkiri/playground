@@ -3,11 +3,11 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import type { CKEditor } from '@ckeditor/ckeditor5-react';
 import type { ClassicEditor, Editor, EventInfo } from 'ckeditor5';
 import { Controller, useForm, type SubmitHandler } from 'react-hook-form';
-import Button from '../Button/Button';
-import { mockFormSchema, type MockFormSchema } from './_schemas/mockForm.schema';
+import { mockFormSchema, type MockFormSchema } from './schemas/mockForm.schema';
 import { zodResolver } from '@hookform/resolvers/zod';
 import CkEditorComponent from './CkEditor';
-import { mockEditorData } from '../EditorViewer/_data/editor.data';
+import { mockEditorData } from '../EditorViewer/data/editor.data';
+import Button from '../_internal/Button';
 
 const meta = {
   title: 'components/Editor',
@@ -46,7 +46,10 @@ export const Basic: Story = {
           data={value}
           height={800}
         />
-        <Button buttonType="primary" cssStyle={{ width: 100, marginLeft: 'auto', marginTop: 32 }}>
+        <Button
+          variant="primary"
+          style={{ display: 'block', width: 100, marginLeft: 'auto', marginTop: 32 }}
+        >
           작성
         </Button>
       </form>
@@ -88,7 +91,10 @@ export const FormExampleWithReactHookForm: Story = {
           )}
         />
 
-        <Button buttonType="primary" cssStyle={{ marginLeft: 'auto', marginTop: 32, width: 100 }}>
+        <Button
+          variant="primary"
+          style={{ display: 'block', marginLeft: 'auto', marginTop: 32, width: 100 }}
+        >
           작성
         </Button>
       </form>
@@ -139,8 +145,8 @@ export const FormInitializationExampleWithReactHookForm: Story = {
         />
 
         <Button
-          buttonType="primary"
-          cssStyle={{ marginLeft: 'auto', marginTop: '32px', width: 100 }}
+          variant="primary"
+          style={{ display: 'block', marginLeft: 'auto', marginTop: 32, width: 100 }}
         >
           작성
         </Button>

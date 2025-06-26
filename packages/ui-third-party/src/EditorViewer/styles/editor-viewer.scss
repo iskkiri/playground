@@ -1,4 +1,4 @@
-.editor-viewer {
+@mixin editor-viewer-tags {
   /* headings */
   h1,
   h2,
@@ -164,4 +164,8 @@
   span.ck-widget.html-object-embed {
     display: block;
   }
+}
+
+.editor-viewer {
+  @include editor-viewer-tags;
 }
