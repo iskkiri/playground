@@ -3,11 +3,12 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 import Select from './Select';
 import { Controller, useForm } from 'react-hook-form';
 import { SingleValue } from 'react-select';
-import { controlWithLabelCss } from './ControlWithLabel/ControlWithLabel.styles';
 import type { SelectOption } from './types/select.types';
-import MultiSelectOption from './MultiSelectOption/MultiSelectOption';
-import MultiValue from './MultiValue/MultiValue';
-import { default as SelectOptionWithCheckIcon } from './SelectOption/SelectOption';
+import { default as SelectOptionWithCheckIcon } from './customs/SelectOption';
+
+import './styles/story.scss';
+import MultiValue from './customs/MultiValue';
+import MultiSelectOption from './customs/MultiSelectOption';
 
 const mockOptions = [
   { label: 'Select List1', value: 'Select List1' },
@@ -159,7 +160,10 @@ export const SelectWithLabel: Story = {
             }
           }}
           value={mockOptions.find((option) => option.value === value) ?? null}
-          cssStyle={controlWithLabelCss.select}
+          classNames={{
+            container: (_props) => 'select-with-label__container',
+            control: (_props) => 'select-with-label__control',
+          }}
         />
       </div>
     );
@@ -218,7 +222,7 @@ export const MultiSelectExample: Story = {
           }}
           isClearable={false}
           components={{
-            MultiValue,
+            MultiValue: MultiValue,
             Option: MultiSelectOption,
           }}
         />

@@ -1,5 +1,6 @@
+import '../styles/contorl-with-label.scss';
+
 import { components, type ControlProps, type GroupBase } from 'react-select';
-import { controlWithLabelCss } from './ControlWithLabel.styles';
 
 interface ControlWithLabelProps<
   Option = unknown,
@@ -16,8 +17,8 @@ export default function ControlWithLabel<
 >({ label, ...restProps }: ControlWithLabelProps<Option, IsMulti, Group>) {
   return (
     <components.Control {...restProps}>
-      <label css={controlWithLabelCss.label}>{label}</label>
-      <div css={controlWithLabelCss.valueIndicator}>{restProps.children}</div>
+      <label className="control-with-label__label">{label}</label>
+      <div className="control-with-label__value-indicator">{restProps.children}</div>
     </components.Control>
   );
 }

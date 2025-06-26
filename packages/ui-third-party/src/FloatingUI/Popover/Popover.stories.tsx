@@ -33,7 +33,7 @@ export const UncontrolledExample: Story = {
         </PopoverTrigger>
 
         <PopoverContent>
-          <div className={styles['floating-ui-story__box']}>Hello</div>
+          <div className={styles.box}>Hello</div>
         </PopoverContent>
       </Popover>
     );
@@ -56,7 +56,7 @@ export const ControlledExample: Story = {
         </PopoverTrigger>
 
         <PopoverContent>
-          <div className={styles['floating-ui-story__box']}>
+          <div className={styles.box}>
             Hello
             <Button variant="primary" onClick={() => setIsOpen(false)} size="md">
               Close
@@ -93,7 +93,7 @@ export const PositionExample: Story = {
           </PopoverTrigger>
 
           <PopoverContent>
-            <div className={styles['floating-ui-story__box']}>Hello</div>
+            <div className={styles.box}>Hello</div>
           </PopoverContent>
         </Popover>
 

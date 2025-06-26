@@ -1,0 +1,16 @@
+// css 우선순위 문제 해결을 위해
+// 'select-with-label__container' 클래스로 한 번 더 감싸서 우선순위 문제 해결
+.select-with-label__container {
+  .select-with-label__control {
+    padding: 14px 20px;
+    background-color: transparent;
+    min-height: 60px;
+
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 4px;
+  }
+}

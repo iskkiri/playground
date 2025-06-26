@@ -34,7 +34,7 @@ export const UncontrolledExample: Story = {
           </TooltipTrigger>
 
           <TooltipContent>
-            <div className={styles['floating-ui-story__box']}>Hello</div>
+            <div className={styles.box}>Hello</div>
           </TooltipContent>
         </Tooltip>
       </>
@@ -59,7 +59,7 @@ export const ControlledExample: Story = {
           </TooltipTrigger>
 
           <TooltipContent>
-            <div className={styles['floating-ui-story__box']}>Hello</div>
+            <div className={styles.box}>Hello</div>
           </TooltipContent>
         </Tooltip>
       </>
@@ -92,7 +92,7 @@ export const PositionExample: Story = {
           </TooltipTrigger>
 
           <TooltipContent>
-            <div className={styles['floating-ui-story__box']}>Hello</div>
+            <div className={styles.box}>Hello</div>
           </TooltipContent>
         </Tooltip>
 

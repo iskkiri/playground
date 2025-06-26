@@ -1,6 +1,7 @@
+import '../styles/multi-value.scss';
+
 import type { SelectOption } from '../types/select.types';
 import { type GroupBase, type MultiValueProps } from 'react-select';
-import { multiValueCss } from './MultiValue.styles';
 
 export default function MultiValue<
   Option extends SelectOption,
@@ -14,8 +15,8 @@ export default function MultiValue<
   }
 
   if (index === 2) {
-    return <span css={multiValueCss.moreCount}>+{selectedOptions.length - 2}</span>;
+    return <span className="multi-value__more-count">+{selectedOptions.length - 2}</span>;
   }
 
-  return <div css={multiValueCss.selectedItem}>{data.label}</div>;
+  return <div className="multi-value__selected-item">{data.label}</div>;
 }
