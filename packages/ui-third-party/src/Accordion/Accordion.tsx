@@ -1,18 +1,12 @@
-import './styles/accordion.css';
+import './styles/accordion.scss';
 
 import Collapse, { type CollapseProps } from 'rc-collapse';
 import { accordionMotion } from './styles/accordionMotion.styles';
-import { accordionCss } from './Accordion.styles';
 import FeatherIcons from '@repo/theme/featherIcons';
-import theme from '#src/theme';
-import type { Interpolation, Theme } from '@emotion/react';
-import { isActiveTypeGuard } from './utils/accordion.util';
+import { isActiveTypeGuard } from '@repo/utils/activeTypeGuard';
+import { cn } from '@repo/utils/cn';
 
-interface AccordionProps extends CollapseProps {
-  cssStyle?: Interpolation<Theme>;
-}
-
-export default function Accordion({ cssStyle, ...props }: AccordionProps) {
+export default function Accordion({ className, ...props }: CollapseProps) {
   return (
     <Collapse
       {...props}
@@ -29,13 +23,13 @@ export default function Accordion({ cssStyle, ...props }: AccordionProps) {
 
           return (
             <FeatherIcons.ChevronDown
-              color={theme.colors.coolGray500}
-              css={[accordionCss.dropdown, isActive && accordionCss.dropdownActive]}
+              color="#737373"
+              className={cn('accordion__dropdown', isActive && 'accordion__dropdown--active')}
             />
           );
         })
       }
-      css={[accordionCss.collapse, cssStyle]}
+      className={cn('accordion', className)}
     />
   );
 }

@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import Accordion from './Accordion';
-import { accordionBasicExampleCss } from './AccordionExample.styles';
 import type { CollapsibleType } from 'rc-collapse/es/interface';
-import { isActiveTypeGuard } from './utils/accordion.util';
 import FeatherIcons from '@repo/theme/featherIcons';
-import theme from '#src/theme/index';
+import { isActiveTypeGuard } from '@repo/utils/activeTypeGuard';
+import styles from './styles/accordion-story.module.scss';
+import { cn } from '@repo/utils/cn';
 
 const meta = {
   title: 'components/Accordion',
@@ -24,18 +24,18 @@ const meta = {
     items: [
       {
         key: '1',
-        label: <div css={accordionBasicExampleCss.label}>Title1</div>,
-        children: <div css={accordionBasicExampleCss.content}>Content1</div>,
+        label: <div className={styles.label}>Title1</div>,
+        children: <div className={styles.content}>Content1</div>,
       },
       {
         key: '2',
-        label: <div css={accordionBasicExampleCss.label}>Title2</div>,
-        children: <div css={accordionBasicExampleCss.content}>Content2</div>,
+        label: <div className={styles.label}>Title2</div>,
+        children: <div className={styles.content}>Content2</div>,
       },
       {
         key: '3',
-        label: <div css={accordionBasicExampleCss.label}>Title3</div>,
-        children: <div css={accordionBasicExampleCss.content}>Content3</div>,
+        label: <div className={styles.label}>Title3</div>,
+        children: <div className={styles.content}>Content3</div>,
       },
     ],
   },
@@ -55,7 +55,7 @@ export const Basic: Story = {
     const [activeKey, setActiveKey] = useState<React.Key[]>([]);
 
     return (
-      <div css={accordionBasicExampleCss.container}>
+      <div className={styles.container}>
         <Accordion
           {...props}
           // 토글 시 호출되는 콜백 함수
@@ -72,18 +72,15 @@ export const Basic: Story = {
 export const CustomExpandIcon: Story = {
   render: function Render(props) {
     return (
-      <div css={accordionBasicExampleCss.container}>
+      <div className={styles.container}>
         <Accordion
           {...props}
           expandIcon={(props) => {
             const isActive = isActiveTypeGuard(props) ? props.isActive : false;
             return (
               <FeatherIcons.ChevronRight
-                color={theme.colors.coolGray500}
-                css={[
-                  accordionBasicExampleCss.customDropdown,
-                  isActive && accordionBasicExampleCss.customDropdownActive,
-                ]}
+                color="#737373"
+                className={cn(styles.customDropdown, isActive && styles.customDropdownActive)}
               />
             );
           }}
@@ -101,7 +98,7 @@ export const CollapsibleHeader: Story = {
     const [activeKey, setActiveKey] = useState<React.Key[]>([]);
 
     return (
-      <div css={accordionBasicExampleCss.container}>
+      <div className={styles.container}>
         <Accordion
           {...props}
           collapsible="header"
@@ -124,7 +121,7 @@ export const CollapsibleIcon: Story = {
     const [activeKey, setActiveKey] = useState<React.Key[]>([]);
 
     return (
-      <div css={accordionBasicExampleCss.container}>
+      <div className={styles.container}>
         <Accordion
           {...props}
           collapsible="icon"
@@ -147,7 +144,7 @@ export const CollapsibleDisabled: Story = {
     const [activeKey, setActiveKey] = useState<React.Key[]>([]);
 
     return (
-      <div css={accordionBasicExampleCss.container}>
+      <div className={styles.container}>
         <Accordion
           {...props}
           collapsible="disabled"

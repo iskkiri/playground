@@ -29,6 +29,8 @@
     "@repo/typescript-config": "workspace:*",
     "@repo/utils": "workspace:*",
     "@repo/vitest-config": "workspace:*",
+    "rc-collapse": "^4.0.0",
+    "rc-motion": "^2.9.5",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-merge-refs": "^3.0.2",

@@ -36,8 +36,6 @@
     "clsx": "^2.1.1",
     "dayjs": "^1.11.13",
     "isomorphic-dompurify": "^2.25.0",
-    "rc-collapse": "^4.0.0",
-    "rc-motion": "^2.9.5",
     "react": "^19.1.0",
     "react-datepicker": "^8.4.0",
     "react-dom": "^19.1.0",
