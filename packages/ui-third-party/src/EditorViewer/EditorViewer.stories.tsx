@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import EditorViewer from './EditorViewer';
-import { mockEditorData } from './_data/editor.data';
+import { mockEditorData } from './data/editor.data';
 
 const meta = {
   title: 'components/EditorViewer',

@@ -1,6 +1,7 @@
-import { useRef } from 'react';
+import './styles/editor-viewer.scss';
+
 import DOMPurify from 'isomorphic-dompurify';
-import { editorViewerCss } from './EditorViewer.styles';
+import { cn } from '@repo/utils/cn';
 
 if (typeof window !== 'undefined') {
   DOMPurify.addHook('afterSanitizeAttributes', function (node) {
@@ -13,15 +14,13 @@ if (typeof window !== 'undefined') {
 
 interface EditorViewerProps {
   content: string;
+  className?: string;
 }
 
-export default function EditorViewer({ content }: EditorViewerProps) {
-  const editorViewerRef = useRef<HTMLDivElement | null>(null);
-
+export default function EditorViewer({ content, className }: EditorViewerProps) {
   return (
     <div
-      ref={editorViewerRef}
-      css={editorViewerCss.tags}
+      className={cn('editor-viewer', className)}
       dangerouslySetInnerHTML={{
         __html: DOMPurify.sanitize(content),
       }}
