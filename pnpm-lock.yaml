@@ -621,6 +621,9 @@ importers:
       '@repo/eslint-config':
         specifier: workspace:*
         version: link:../config-eslint
+      '@repo/hooks':
+        specifier: workspace:*
+        version: link:../hooks
       '@repo/prettier-config':
         specifier: workspace:*
         version: link:../config-prettier
