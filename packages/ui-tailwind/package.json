@@ -20,6 +20,7 @@
   },
   "dependencies": {
     "@repo/eslint-config": "workspace:*",
+    "@repo/hooks": "workspace:*",
     "@repo/prettier-config": "workspace:*",
     "@repo/theme": "workspace:*",
     "@repo/typescript-config": "workspace:*",
