@@ -9,6 +9,6 @@
     },
     "types": ["@testing-library/jest-dom"]
   },
-  "include": ["svgr.d.ts", "src"],
+  "include": ["**/*.d.ts", "src"],
   "exclude": ["node_modules"]
 }

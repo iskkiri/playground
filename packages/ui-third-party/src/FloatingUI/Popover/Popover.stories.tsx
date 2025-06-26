@@ -3,11 +3,10 @@ import { useState } from 'react';
 import type { Placement } from '@floating-ui/react';
 import Popover from './Popover';
 import PopoverTrigger from './PopoverTrigger';
-import Button from '#src/components/Button/Button';
 import PopoverContent from './PopoverContent';
-import { floatingCss } from '../_styles/floating.styles';
-import { buttonSize } from '#src/components/Button/Button.styles';
-import Switch from '#src/components/Switch/Switch';
+import Button from '#src/_internal/Button';
+import Switch from '#src/_internal/Switch';
+import floatingUiStyles from '#src/_internal/styles/floating-ui.module.scss';
 
 const meta = {
   title: 'components/FloatingUI/Popover',
@@ -30,13 +29,11 @@ export const UncontrolledExample: Story = {
     return (
       <Popover offsetOptions={{ mainAxis: 12 }}>
         <PopoverTrigger>
-          <Button buttonType="primary">Click Me</Button>
+          <Button variant="primary">Click Me</Button>
         </PopoverTrigger>
 
         <PopoverContent>
-          <div css={floatingCss.box}>
-            <p>Hello</p>
-          </div>
+          <div className={floatingUiStyles['floating-ui-story__box']}>Hello</div>
         </PopoverContent>
       </Popover>
     );
@@ -55,14 +52,13 @@ export const ControlledExample: Story = {
         offsetOptions={{ mainAxis: 12 }}
       >
         <PopoverTrigger>
-          <Button buttonType="primary">Click Me</Button>
+          <Button variant="primary">Click Me</Button>
         </PopoverTrigger>
 
         <PopoverContent>
-          <div css={floatingCss.box}>
-            <p>Hello</p>
-
-            <Button buttonType="primary" onClick={() => setIsOpen(false)} cssStyle={buttonSize[32]}>
+          <div className={floatingUiStyles['floating-ui-story__box']}>
+            Hello
+            <Button variant="primary" onClick={() => setIsOpen(false)} size="md">
               Close
             </Button>
           </div>
@@ -93,18 +89,17 @@ export const PositionExample: Story = {
           offsetOptions={{ mainAxis: 12 }}
         >
           <PopoverTrigger style={{ alignSelf: 'center' }}>
-            <Button buttonType="primary">Click Me</Button>
+            <Button variant="primary">Click Me</Button>
           </PopoverTrigger>
 
           <PopoverContent>
-            <div css={floatingCss.box}>
-              <p>Hello</p>
-            </div>
+            <div className={floatingUiStyles['floating-ui-story__box']}>Hello</div>
           </PopoverContent>
         </Popover>
 
         <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
           <b>Always Open: {isAlwaysOpen ? 'ON' : 'OFF'}</b>
+
           <Switch checked={isAlwaysOpen} onChange={(e) => setIsAlwaysOpen(e.target.checked)} />
         </div>
 
@@ -114,7 +109,7 @@ export const PositionExample: Story = {
             {placement2DList.map((placementList, i) => (
               <div key={i} style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
                 {placementList.map((item, j) => (
-                  <Button key={j} onClick={() => setPlacement(item)} buttonType="gray">
+                  <Button key={j} onClick={() => setPlacement(item)} variant="ghost">
                     {item}
                   </Button>
                 ))}

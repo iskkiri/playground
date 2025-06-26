@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 import Modal from './Modal';
 import { useState } from 'react';
 import FeatherIcons from '@repo/theme/featherIcons';
+import Button from '../_internal/Button';
 
 const meta = {
   title: 'components/Modal',
@@ -12,30 +13,6 @@ const meta = {
 
 export default meta;
 type Story = StoryObj<typeof meta>;
-
-const ghostButtonStyle = {
-  height: '50px',
-  padding: '10px 20px',
-  borderRadius: '8px',
-  backgroundColor: 'transparent',
-  border: '1px solid #666',
-  cursor: 'pointer',
-  fontSize: '16px',
-  fontWeight: 'bold',
-  color: '#666',
-} satisfies React.CSSProperties;
-
-const primaryButtonStyle = {
-  height: '50px',
-  padding: '10px 20px',
-  borderRadius: '8px',
-  backgroundColor: 'blue',
-  color: 'white',
-  border: 'none',
-  cursor: 'pointer',
-  fontSize: '16px',
-  fontWeight: 'bold',
-} satisfies React.CSSProperties;
 
 export const Basic: Story = {
   render: function Render() {
@@ -51,9 +28,9 @@ export const Basic: Story = {
 
     return (
       <>
-        <button onClick={onOpenModal} style={primaryButtonStyle}>
+        <Button onClick={onOpenModal} variant="primary">
           Open Modal
-        </button>
+        </Button>
 
         <Modal isOpen={isOpen} onClose={onCloseModal}>
           <Modal.Header>
@@ -69,12 +46,12 @@ export const Basic: Story = {
           </Modal.Body>
 
           <Modal.Footer style={{ display: 'grid', gridTemplateColumns: '1fr 1fr' }}>
-            <button style={ghostButtonStyle} onClick={onCloseModal}>
+            <Button onClick={onCloseModal} variant="ghost">
               취소
-            </button>
-            <button style={primaryButtonStyle} onClick={onCloseModal}>
+            </Button>
+            <Button onClick={onCloseModal} variant="primary">
               확인
-            </button>
+            </Button>
           </Modal.Footer>
         </Modal>
       </>

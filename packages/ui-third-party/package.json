@@ -11,7 +11,8 @@
     "./*": [
       "./src/*.tsx",
       "./src/*.ts"
-    ]
+    ],
+    "./_internal/*": null
   },
   "scripts": {
     "lint": "eslint . --max-warnings 0",
@@ -21,6 +22,7 @@
     "test": "vitest"
   },
   "dependencies": {
+    "@floating-ui/react": "^0.27.12",
     "@repo/eslint-config": "workspace:*",
     "@repo/prettier-config": "workspace:*",
     "@repo/theme": "workspace:*",

@@ -1,9 +1,7 @@
 import { commonCss } from '#src/styles/common.styles';
 import { switchCss } from './Switch.styles';
 
-type SwitchProps = React.InputHTMLAttributes<HTMLInputElement>;
-
-export default function Switch(props: SwitchProps) {
+export default function Switch(props: React.ComponentProps<'input'>) {
   return (
     <label css={switchCss.label}>
       <input {...props} type="checkbox" css={commonCss.srOnly} />
