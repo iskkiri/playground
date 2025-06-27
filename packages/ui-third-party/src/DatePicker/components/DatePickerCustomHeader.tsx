@@ -1,9 +1,9 @@
 import dayjs from 'dayjs';
 import type { ReactDatePickerCustomHeaderProps } from 'react-datepicker';
 import FeatherIcons from '@repo/theme/featherIcons';
-import Select from '#src/components/Select/Select';
+import Select from '#src/Select/Select';
 import type { SingleValue } from 'react-select';
-import type { SelectOption } from '#src/components/Select/types/select.types';
+import type { SelectOption } from '#src/Select/types/select.types';
 import { yearsOptions, monthsOptions } from '../data/datepicker.data';
 
 export default function DatePickerCustomHeader({
@@ -29,29 +29,39 @@ export default function DatePickerCustomHeader({
     changeMonth(option.value - 1);
   };
 
-  return (
-    <div className="custom-header">
-      <button type="button" onClick={decreaseMonth}>
-        <FeatherIcons.ChevronLeft />
-      </button>
+  const selectClassNames = ({ containerClassName }: { containerClassName: string }) => ({
+    container: () => containerClassName,
+    control: () => 'date-picker__custom-select-control',
+    menuList: () => 'date-picker__custom-select-menu-list',
+    option: () => 'date-picker__custom-select-option',
+  });
 
-      <div className="custom-header-select-wrapper">
+  return (
+    <div className="date-picker__custom-header">
+      <button type="button" onClick={decreaseMonth}>
+        <FeatherIcons.ChevronLeft color="#a3a3a3" />
+      </button>
+      <div className="date-picker__custom-header-select-wrapper">
         <Select
           options={yearsOptions}
           value={yearsOptions.find((option) => option.value === selectedYear)}
           onChange={onChangeYear}
-          styles={{ container: (base) => ({ ...base, width: 110 }) }}
+          classNames={selectClassNames({
+            containerClassName: 'date-picker__custom-year-select-container',
+          })}
         />
         <Select
           options={monthsOptions}
           value={monthsOptions.find((option) => option.value === selectedMonth)}
           onChange={onChangeMonth}
-          styles={{ container: (base) => ({ ...base, width: 100 }) }}
+          classNames={selectClassNames({
+            containerClassName: 'date-picker__custom-month-select-container',
+          })}
         />
       </div>
 
       <button type="button" onClick={increaseMonth}>
-        <FeatherIcons.ChevronRight />
+        <FeatherIcons.ChevronRight color="#a3a3a3" />
       </button>
     </div>
   );
