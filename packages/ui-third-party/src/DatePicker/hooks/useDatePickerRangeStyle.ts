@@ -20,7 +20,7 @@ export default function useDatePickerRangeStyle({
   startDate,
   endDate,
 }: UseDatePickerRangeStyleParams) {
-  // Datepicker를 2개 사용하고, range를 표기하려는 경우 커스텀 클래스 설정하여 스타일 조정
+  // Datepicker를 2개 사용하고, range를 표기하려는 경우 클래스 설정하여 스타일 조정
   const getCustomRangeClass = useCallback(
     (date: Date) => {
       // Range : 시작 Datepicker (props.selectsStart = true)
@@ -34,18 +34,15 @@ export default function useDatePickerRangeStyle({
         if (dayjs(date).isSame(startDate, 'day')) {
           // 시작 날짜와 종료 날짜가 같은 경우
           if (dayjs(date).isSame(endDate, 'day')) {
-            return 'custom-range-start custom-range-end';
+            return 'date-picker__custom-two-range-start date-picker__custom-two-range-end';
           }
 
-          return 'custom-range-start';
+          return 'date-picker__custom-two-range-start';
         }
 
         // 중간 날짜
-        if (
-          dayjs(date).isAfter(startDate, 'day') &&
-          dayjs(date).isBefore(endDate, 'day')
-        ) {
-          return 'custom-range-middle';
+        if (dayjs(date).isAfter(startDate, 'day') && dayjs(date).isBefore(endDate, 'day')) {
+          return 'date-picker__custom-two-range-middle';
         }
 
         // 종료 날짜
@@ -55,7 +52,7 @@ export default function useDatePickerRangeStyle({
             return 'react-datepicker__day--selected';
           }
 
-          return 'custom-range-end';
+          return 'date-picker__custom-two-range-end';
         }
       }
 
@@ -73,25 +70,22 @@ export default function useDatePickerRangeStyle({
             return 'react-datepicker__day--selected';
           }
 
-          return 'custom-range-start';
+          return 'date-picker__custom-two-range-start';
         }
 
         // 중간 날짜
-        if (
-          dayjs(date).isAfter(startDate, 'day') &&
-          dayjs(date).isBefore(endDate, 'day')
-        ) {
-          return 'custom-range-middle';
+        if (dayjs(date).isAfter(startDate, 'day') && dayjs(date).isBefore(endDate, 'day')) {
+          return 'date-picker__custom-two-range-middle';
         }
 
         // 종료 날짜
         if (dayjs(date).isSame(endDate, 'day')) {
           // 시작 날짜와 종료 날짜가 같은 경우
           if (dayjs(date).isSame(startDate, 'day')) {
-            return 'custom-range-start custom-range-end';
+            return 'date-picker__custom-two-range-start date-picker__custom-two-range-end';
           }
 
-          return 'custom-range-end';
+          return 'date-picker__custom-two-range-end';
         }
       }
 

@@ -1,4 +1,4 @@
-import type { SelectOption } from '#src/components/Select/types/select.types';
+import type { SelectOption } from '#src/Select/types/select.types';
 
 /**
  * 생년월일 선택을 위한 연도 옵션

@@ -2,6 +2,7 @@ import { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import DatePicker from './DatePicker';
 import { Controller, useForm } from 'react-hook-form';
+import Button from '#src/_internal/Button';
 
 const meta = {
   title: 'components/DatePicker',
@@ -24,13 +25,41 @@ export const Basic: Story = {
     const [date, setDate] = useState<Date | null>(null);
 
     return (
-      <DatePicker
-        selected={date}
-        onChange={(date) => setDate(date)}
-        placeholderText={'날짜를 선택해주세요.'}
-        cssStyle={{ width: 300 }}
-        portalId="root-portal"
-      />
+      <div style={{ width: 300 }}>
+        <DatePicker
+          selected={date}
+          onChange={(date) => setDate(date)}
+          placeholderText={'날짜를 선택해주세요.'}
+          portalId="root-portal"
+        />
+      </div>
+    );
+  },
+};
+
+export const DatePickerWithCustomButton: Story = {
+  render: function Render() {
+    const [date, setDate] = useState<Date | null>(null);
+
+    return (
+      <div style={{ width: 300 }}>
+        <DatePicker
+          selected={date}
+          onChange={(date) => setDate(date)}
+          placeholderText={'날짜를 선택해주세요.'}
+          portalId="root-portal"
+          cancelButton={({ onCancel }) => (
+            <Button variant="secondary" onClick={onCancel}>
+              취소
+            </Button>
+          )}
+          completeButton={({ onComplete }) => (
+            <Button variant="danger" onClick={onComplete}>
+              완료
+            </Button>
+          )}
+        />
+      </div>
     );
   },
 };
@@ -42,19 +71,20 @@ export const ControllerExample: Story = {
     });
 
     return (
-      <Controller
-        control={control}
-        name="date"
-        render={({ field: { value, onChange } }) => (
-          <DatePicker
-            selected={value}
-            onChange={(date) => onChange(date)}
-            placeholderText={'날짜를 선택해주세요.'}
-            cssStyle={{ width: 300 }}
-            portalId="root-portal"
-          />
-        )}
-      />
+      <div style={{ width: 300 }}>
+        <Controller
+          control={control}
+          name="date"
+          render={({ field: { value, onChange } }) => (
+            <DatePicker
+              selected={value}
+              onChange={(date) => onChange(date)}
+              placeholderText={'날짜를 선택해주세요.'}
+              portalId="root-portal"
+            />
+          )}
+        />
+      </div>
     );
   },
 };
@@ -110,16 +140,17 @@ export const RangeForOneDatepicker: Story = {
     };
 
     return (
-      <DatePicker
-        selectsRange
-        selected={startDate}
-        onChange={onChange}
-        startDate={startDate ?? undefined}
-        endDate={endDate ?? undefined}
-        placeholderText={'기간을 선택해주세요.'}
-        cssStyle={{ width: 300 }}
-        portalId="root-portal"
-      />
+      <div style={{ width: 300 }}>
+        <DatePicker
+          selectsRange
+          selected={startDate}
+          onChange={onChange}
+          startDate={startDate ?? undefined}
+          endDate={endDate ?? undefined}
+          placeholderText={'기간을 선택해주세요.'}
+          portalId="root-portal"
+        />
+      </div>
     );
   },
 };
