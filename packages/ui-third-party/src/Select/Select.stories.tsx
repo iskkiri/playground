@@ -1,14 +1,14 @@
 import { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import Select from './Select';
 import { Controller, useForm } from 'react-hook-form';
-import { SingleValue } from 'react-select';
-import type { SelectOption } from './types/select.types';
-import { default as SelectOptionWithCheckIcon } from './customs/SelectOption';
 
 import './styles/story.scss';
-import MultiValue from './customs/MultiValue';
-import MultiSelectOption from './customs/MultiSelectOption';
+import { SingleValue } from 'react-select';
+import Select from './Select';
+import SelectCustomMultiValue from './components/SelectCustomMultiValue';
+import SelectCustomMultiSelectOption from './components/SelectCustomMultiSelectOption';
+import SelectCustomOption from './components/SelectCustomOption';
+import type { SelectOption } from './types/select.types';
 
 const mockOptions = [
   { label: 'Select List1', value: 'Select List1' },
@@ -131,7 +131,7 @@ export const SelectWithCustomOption: Story = {
             }
           }}
           value={mockOptions.find((option) => option.value === value) ?? null}
-          components={{ Option: SelectOptionWithCheckIcon }}
+          components={{ Option: SelectCustomOption }}
         />
       </div>
     );
@@ -222,8 +222,8 @@ export const MultiSelectExample: Story = {
           }}
           isClearable={false}
           components={{
-            MultiValue: MultiValue,
-            Option: MultiSelectOption,
+            MultiValue: SelectCustomMultiValue,
+            Option: SelectCustomMultiSelectOption,
           }}
         />
       </div>

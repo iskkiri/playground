@@ -1,12 +1,12 @@
-.control-with-label__label {
-  color: var(--CoolGray-50, #70737c);
-  font-size: 10px;
+.select__control-with-label__label {
+  color: #70737c;
+  font-size: 14px;
   font-style: normal;
   font-weight: 600;
   line-height: normal;
 }
 
-.control-with-label__value-indicator {
+.select__control-with-label__value-indicator {
   .react-select__dropdown-indicator {
     position: absolute;
     right: 20px;

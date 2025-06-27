@@ -28,6 +28,7 @@
 
     /* ********************** 월, 년 선택 컨트롤 **********************  */
     .react-select__control.date-picker__custom-select-control {
+      min-height: 40px;
       padding: 0 16px;
     }
 

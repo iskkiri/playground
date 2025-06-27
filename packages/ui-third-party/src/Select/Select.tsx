@@ -1,9 +1,9 @@
-import './styles/react-select.scss';
+import './styles/select.scss';
 
 import { useEffect, useId, useMemo, useState } from 'react';
 import ReactSelect, { GroupBase, Props, type ControlProps } from 'react-select';
-import DropdownIndicator from './customs/DropdownIndicator';
-import ControlWithLabel from './customs/ControlWithLabel';
+import SelectCustomDropdownIndicator from './components/SelectCustomDropdownIndicator';
+import SelectCusomControlWithLabel from './components/SelectCusomControlWithLabel';
 import { cn } from '@repo/utils/cn';
 
 export interface SelectProps {
@@ -27,7 +27,7 @@ export default function Select<
   // label이 있을 경우 ControlWithLabel 컴포넌트를 메모이제이션하여 사용
   const MemoizedControlWithLabel = useMemo(() => {
     return function ControlWithLabelComponent(props: ControlProps<Option, IsMulti, Group>) {
-      return <ControlWithLabel label={label} {...props} />;
+      return <SelectCusomControlWithLabel label={label} {...props} />;
     };
   }, [label]);
 
@@ -54,7 +54,7 @@ export default function Select<
       classNamePrefix="react-select"
       components={{
         ...(label && { Control: MemoizedControlWithLabel }),
-        DropdownIndicator,
+        DropdownIndicator: SelectCustomDropdownIndicator,
         ...components,
       }}
       {...props}

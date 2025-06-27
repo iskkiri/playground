@@ -1,10 +1,10 @@
-import '../styles/dropdown-indicator.scss';
+import '../styles/select-dropdown-indicator.scss';
 
 import { components, DropdownIndicatorProps, type GroupBase } from 'react-select';
 import FeatherIcons from '@repo/theme/featherIcons';
 import { cn } from '@repo/utils/cn';
 
-export default function DropdownIndicator<
+export default function SelectCustomDropdownIndicator<
   Option = unknown,
   IsMulti extends boolean = false,
   Group extends GroupBase<Option> = GroupBase<Option>,
@@ -15,8 +15,8 @@ export default function DropdownIndicator<
         color={'#A2A9B0'}
         size={20}
         className={cn(
-          'dropdown-indicator__icon',
-          props.selectProps.menuIsOpen && 'dropdown-indicator__icon--rotate'
+          'select__dropdown-indicator__icon',
+          props.selectProps.menuIsOpen && 'select__dropdown-indicator__icon--rotate'
         )}
         // css={[
         //   dropdownIndicatorCss.icon,
