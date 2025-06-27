@@ -58,39 +58,59 @@ const nextConfig: NextConfig = {
     },
   },
 
+  // https://react-svgr.com/docs/next/
   webpack(config) {
-    config.module.rules.push({
-      test: /\.svg$/,
-      use: [
-        {
-          loader: '@svgr/webpack',
-          options: {
-            prettier: false,
-            svgo: true,
-            titleProp: true,
-            svgoConfig: {
-              plugins: [
-                {
-                  name: 'preset-default',
-                  params: {
-                    overrides: {
-                      cleanupIds: false,
-                      removeViewBox: false,
+    // Grab the existing rule that handles SVG imports
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    const fileLoaderRule = config.module.rules.find((rule) => rule.test?.test?.('.svg'));
+
+    config.module.rules.push(
+      // Reapply the existing rule, but only for svg imports ending in ?url
+      {
+        ...fileLoaderRule,
+        test: /\.svg$/i,
+        resourceQuery: /url/, // *.svg?url
+      },
+      // Convert all other *.svg imports to React components
+      {
+        test: /\.svg$/i,
+        issuer: fileLoaderRule.issuer,
+        resourceQuery: { not: [...fileLoaderRule.resourceQuery.not, /url/] }, // exclude if *.svg?url
+        use: [
+          {
+            loader: '@svgr/webpack',
+            options: {
+              prettier: false,
+              svgo: true,
+              titleProp: true,
+              svgoConfig: {
+                plugins: [
+                  {
+                    name: 'preset-default',
+                    params: {
+                      overrides: {
+                        cleanupIds: false,
+                        removeViewBox: false,
+                      },
                     },
+                    // Enable figma's wrong mask-type attribute work
+                    removeRasterImages: false,
+                    removeStyleElement: false,
+                    removeUnknownsAndDefaults: false,
+                    // Enable svgr's svg to fill the size
+                    removeViewBox: false,
                   },
-                  // Enable figma's wrong mask-type attribute work
-                  removeRasterImages: false,
-                  removeStyleElement: false,
-                  removeUnknownsAndDefaults: false,
-                  // Enable svgr's svg to fill the size
-                  removeViewBox: false,
-                },
-              ],
+                ],
+              },
             },
           },
-        },
-      ],
-    });
+        ],
+      }
+    );
+
+    // Modify the file loader rule to ignore *.svg, since we have it handled now.
+    fileLoaderRule.exclude = /\.svg$/i;
 
     return config;
   },
