@@ -1,10 +1,11 @@
+import { RouterProvider } from 'react-router';
 import Providers from './components/Providers';
+import { router } from './routes/router';
 
 function App() {
   return (
     <Providers>
-      <div></div>
-      <h1>Vite + React</h1>
+      <RouterProvider router={router} />
     </Providers>
   );
 }

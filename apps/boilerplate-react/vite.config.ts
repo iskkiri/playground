@@ -15,7 +15,8 @@ export default defineConfig({
       },
     }),
     svgr({
-      include: '**/*.svg', // 접미사 ?react 없이 svg컴포넌트를 임포트 할 수 있도록 합니다.
+      include: '**/*.svg', // 모든 SVG 파일을 컴포넌트로 변환
+      exclude: '**/*.svg?url', // ?url 접미사가 있는 경우는 URL로 처리
       svgrOptions: {
         prettier: false,
         titleProp: true,
@@ -23,11 +24,11 @@ export default defineConfig({
         svgoConfig: {
           plugins: [
             {
-              name: 'preset-default', // SVGO의 기본 프리셋을 사용합니다.
+              name: 'preset-default',
               params: {
                 overrides: {
-                  removeViewBox: false, // removeViewBox를 false로 설정하여 viewBox 속성을 제거하지 않도록 합니다. 이는 SVG가 크기에 맞게 잘 작동하도록 합니다.
-                  removeUnknownsAndDefaults: false, // 알 수 없는 요소와 기본 속성을 제거하지 않습니다.
+                  removeViewBox: false,
+                  removeUnknownsAndDefaults: false,
                 },
               },
             },
