@@ -1,14 +1,7 @@
 import usePopoverContext from './hooks/usePopoverContext';
-import {
-  FloatingFocusManager,
-  FloatingPortal,
-  useMergeRefs,
-} from '@floating-ui/react';
+import { FloatingFocusManager, FloatingPortal, useMergeRefs } from '@floating-ui/react';
 
-export default function PopoverContent({
-  style,
-  ...props
-}: React.HTMLProps<HTMLDivElement>) {
+export default function PopoverContent({ style, ...props }: React.HTMLProps<HTMLDivElement>) {
   const { context: floatingContext, ...context } = usePopoverContext();
   const ref = useMergeRefs([context.refs.setFloating, props.ref]);
 

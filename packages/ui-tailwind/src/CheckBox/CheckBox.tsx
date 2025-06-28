@@ -6,8 +6,8 @@ export type CheckBoxProps = React.ComponentProps<'input'>;
 
 const checkBoxVariants = cva(
   cn(
-    'typography-p3-16r flex w-fit cursor-pointer items-center gap-6 text-neutral-400',
-    'focus-visible:[&>svg]:outline-primary focus-visible:[&>svg]:rounded-4 focus-visible:[&>svg]:outline-2 focus-visible:[&>svg]:outline-offset-2'
+    'flex w-fit cursor-pointer items-center gap-6 typography-p3-16r text-neutral-400',
+    'focus-visible:[&>svg]:rounded-4 focus-visible:[&>svg]:outline-2 focus-visible:[&>svg]:outline-offset-2 focus-visible:[&>svg]:outline-primary'
   ),
   {
     variants: {

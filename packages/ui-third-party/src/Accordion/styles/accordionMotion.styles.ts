@@ -1,10 +1,6 @@
 // https://github.com/react-component/collapse/blob/master/docs/examples/_util/motionUtil.ts
 
-import type {
-  CSSMotionProps,
-  MotionEndEventHandler,
-  MotionEventHandler,
-} from 'rc-motion';
+import type { CSSMotionProps, MotionEndEventHandler, MotionEventHandler } from 'rc-motion';
 
 const getCollapsedHeight: MotionEventHandler = () => ({
   height: 0,

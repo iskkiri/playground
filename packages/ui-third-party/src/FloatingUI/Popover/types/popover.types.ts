@@ -1,8 +1,4 @@
-import type {
-  OffsetOptions,
-  OpenChangeReason,
-  Placement,
-} from '@floating-ui/react';
+import type { OffsetOptions, OpenChangeReason, Placement } from '@floating-ui/react';
 
 export interface PopoverOptions {
   initialOpen?: boolean;

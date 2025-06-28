@@ -1,11 +1,6 @@
 // import { client } from '@/api/client';
 // import axios from 'axios';
-import type {
-  Editor,
-  FileLoader,
-  UploadAdapter,
-  UploadResponse,
-} from 'ckeditor5';
+import type { Editor, FileLoader, UploadAdapter, UploadResponse } from 'ckeditor5';
 
 export function CustomUploadAdapterPlugin(editor: Editor) {
   editor.plugins.get('FileRepository').createUploadAdapter = (loader) => {

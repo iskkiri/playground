@@ -16,9 +16,7 @@ export function useDatePickerState({
 }: UseDatePickerStateParams) {
   // 완료 이전까지 내부에서 관리하는 상태값
   const [innerDate, setInnerDate] = useState<Date | null>(null);
-  const [innerDateRange, setInnerDateRange] = useState<
-    [Date | null, Date | null]
-  >([null, null]);
+  const [innerDateRange, setInnerDateRange] = useState<[Date | null, Date | null]>([null, null]);
 
   // 초기값 설정
   useEffect(() => {

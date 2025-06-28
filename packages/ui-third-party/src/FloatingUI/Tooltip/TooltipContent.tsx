@@ -1,10 +1,7 @@
 import { FloatingPortal, useMergeRefs } from '@floating-ui/react';
 import useTooltipContext from './hooks/useTooltipContext';
 
-export default function TooltipContent({
-  style,
-  ...props
-}: React.HTMLProps<HTMLDivElement>) {
+export default function TooltipContent({ style, ...props }: React.HTMLProps<HTMLDivElement>) {
   const context = useTooltipContext();
   const mergeRefs = useMergeRefs([context.refs.setFloating, props.ref]);
 

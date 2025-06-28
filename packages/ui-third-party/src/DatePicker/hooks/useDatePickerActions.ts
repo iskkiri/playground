@@ -10,9 +10,7 @@ interface UseDatePickerActionsParams {
   selected: Date | null;
   innerDate: Date | null;
   innerDateRange: [Date | null, Date | null];
-  onChangeInnerDate: (
-    date: Date | null | [Date | null, Date | null] | Date[]
-  ) => void;
+  onChangeInnerDate: (date: Date | null | [Date | null, Date | null] | Date[]) => void;
   onChange?:
     | ((date: Date | null) => void)
     | ((date: [Date | null, Date | null]) => void)
