@@ -1,4 +1,4 @@
-import { commonCss } from '#src/styles/common.styles';
+import { commonCss } from '#src/_internal/common.styles';
 import { css } from '@emotion/react';
 
 export const textareaCss = {

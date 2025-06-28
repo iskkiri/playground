@@ -1,7 +1,7 @@
 'use client';
 
 import styles from './page.module.css';
-import Button from '@repo/ui-emotion/components/Button/Button';
+import Button from '@repo/ui-emotion/Button/Button';
 import FeatherIcons from '@repo/icons/featherIcons';
 
 export default function Home() {

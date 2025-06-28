@@ -9,9 +9,11 @@
     ]
   },
   "exports": {
-    "./components/*": "./src/components/*.tsx",
-    "./theme/*": "./src/theme/*.ts",
-    "./styles/*": "./src/styles/*.ts"
+    "./*": [
+      "./src/*.tsx",
+      "./src/*.ts"
+    ],
+    "./_internal/*": null
   },
   "scripts": {
     "lint": "eslint . --max-warnings 0",
