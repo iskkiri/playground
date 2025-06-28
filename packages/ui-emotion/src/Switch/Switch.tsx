@@ -1,4 +1,4 @@
-import { commonCss } from '#src/styles/common.styles';
+import { commonCss } from '#src/_internal/common.styles';
 import { switchCss } from './Switch.styles';
 
 export default function Switch(props: React.ComponentProps<'input'>) {

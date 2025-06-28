@@ -1,11 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { lazy, useCallback } from 'react';
 import { ModalProvider, useModal } from 'react-use-hook-modal';
-import Button from '#src/components/Button/Button';
+import Button from '#src/Button/Button.js';
 
-const ConfirmModalComponent = lazy(
-  () => import('#src/components/DialogModals/ConfirmModal/ConfirmModal')
-);
+const ConfirmModalComponent = lazy(() => import('#src/DialogModals/ConfirmModal/ConfirmModal.js'));
 
 const meta = {
   title: 'components/DialogModals/ConfirmModal',

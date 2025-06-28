@@ -2,7 +2,7 @@ import { type InputHTMLAttributes } from 'react';
 import type { Interpolation, Theme } from '@emotion/react';
 import { checkBoxCss } from './CheckBox.styles';
 import FeatherIcons from '@repo/icons/featherIcons';
-import { commonCss } from '#src/styles/common.styles';
+import { commonCss } from '#src/_internal/common.styles';
 
 export interface CheckBoxProps extends InputHTMLAttributes<HTMLInputElement> {
   ref?: React.Ref<HTMLInputElement>;

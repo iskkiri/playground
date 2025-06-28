@@ -1,11 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { lazy, useCallback } from 'react';
 import { ModalProvider, useModal } from 'react-use-hook-modal';
-import Button from '#src/components/Button/Button';
+import Button from '#src/Button/Button.js';
 
-const AlertModalComponent = lazy(
-  () => import('#src/components/DialogModals/AlertModal/AlertModal')
-);
+const AlertModalComponent = lazy(() => import('#src/DialogModals/AlertModal/AlertModal.js'));
 
 const meta = {
   title: 'components/DialogModals/AlertModal',
@@ -41,7 +39,7 @@ export const AlertModal: Story = {
     }, [closeAlertModal, openAlertModal]);
 
     return (
-      <Button variant="primary" onClick={onOpenAlertModal}>
+      <Button buttonType="primary" onClick={onOpenAlertModal}>
         Open Alert Modal
       </Button>
     );
