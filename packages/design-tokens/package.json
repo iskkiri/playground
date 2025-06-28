@@ -8,6 +8,8 @@
     "./colors/index.ts": "./colors/index.ts",
     "./typography/index.css": "./typography/index.css",
     "./typography/index.ts": "./typography/index.ts",
-    "./fonts/index.css": "./fonts/index.css"
+    "./fonts/index.css": "./fonts/index.css",
+    "./breakpoints/index.css": "./breakpoints/index.css",
+    "./breakpoints/index.ts": "./breakpoints/index.ts"
   }
 }
