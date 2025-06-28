@@ -2,7 +2,7 @@ import './styles/accordion.scss';
 
 import Collapse, { type CollapseProps } from 'rc-collapse';
 import { accordionMotion } from './styles/accordionMotion.styles';
-import FeatherIcons from '@repo/theme/featherIcons';
+import FeatherIcons from '@repo/icons/featherIcons';
 import { isActiveTypeGuard } from '@repo/utils/activeTypeGuard';
 import { cn } from '@repo/utils/cn';
 

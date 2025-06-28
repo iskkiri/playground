@@ -1,7 +1,7 @@
 import './styles/pagination.scss';
 
 import ReactPaginate, { type ReactPaginateProps } from 'react-paginate';
-import FeatherIcons from '@repo/theme/featherIcons';
+import FeatherIcons from '@repo/icons/featherIcons';
 import { cn } from '@repo/utils/cn';
 
 export interface PaginationProps extends ReactPaginateProps {

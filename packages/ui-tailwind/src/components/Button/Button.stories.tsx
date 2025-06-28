@@ -1,6 +1,6 @@
 import { Meta, StoryObj } from '@storybook/react-vite';
 import Button from './Button';
-import FeatherIcons from '@repo/theme/featherIcons';
+import FeatherIcons from '@repo/icons/featherIcons';
 
 const meta = {
   title: 'components/Button',
@@ -81,7 +81,7 @@ export const DangerButton: Story = {
 export const CustomButton: Story = {
   render: function Render(props) {
     return (
-      <Button {...props} variant="none" className="border border-danger bg-transparent text-danger">
+      <Button {...props} variant="none" className="border-danger text-danger border bg-transparent">
         Custom Button
       </Button>
     );

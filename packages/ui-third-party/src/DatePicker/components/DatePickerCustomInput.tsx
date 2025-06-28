@@ -1,5 +1,5 @@
 import type { DatePickerProps } from 'react-datepicker';
-import FeatherIcons from '@repo/theme/featherIcons';
+import FeatherIcons from '@repo/icons/featherIcons';
 import { cn } from '@repo/utils/cn';
 
 interface CustomInputProps {

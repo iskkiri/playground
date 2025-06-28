@@ -1,6 +1,6 @@
 import dayjs from 'dayjs';
 import type { ReactDatePickerCustomHeaderProps } from 'react-datepicker';
-import FeatherIcons from '@repo/theme/featherIcons';
+import FeatherIcons from '@repo/icons/featherIcons';
 import Select from '#src/Select/Select';
 import type { SingleValue } from 'react-select';
 import type { SelectOption } from '#src/Select/types/select.types';

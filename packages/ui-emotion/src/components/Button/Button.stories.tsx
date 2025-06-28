@@ -1,7 +1,7 @@
 import { Meta, StoryObj } from '@storybook/react-vite';
 import { css } from '@emotion/react';
 import Button from './Button';
-import FeatherIcons from '@repo/theme/featherIcons';
+import FeatherIcons from '@repo/icons/featherIcons';
 import { buttonSize } from './Button.styles';
 
 const meta = {

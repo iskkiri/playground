@@ -1,5 +1,5 @@
 import { useCallback, useMemo, useState, useRef } from 'react';
-import FeatherIcons from '@repo/theme/featherIcons';
+import FeatherIcons from '@repo/icons/featherIcons';
 import { cn } from '@repo/utils/cn';
 import { cva, type VariantProps } from 'class-variance-authority';
 import { useMergeRefs } from 'react-merge-refs';
@@ -75,7 +75,7 @@ export default function TextInput({
         ref={mergeRefs}
         type={inputType}
         className={cn(
-          'h-full w-full min-w-0 flex-1 shrink-0 border-none bg-transparent typography-p3-16r text-gray-900 outline-none',
+          'typography-p3-16r h-full w-full min-w-0 flex-1 shrink-0 border-none bg-transparent text-gray-900 outline-none',
           'placeholder:text-gray-300',
           'disabled:cursor-not-allowed disabled:text-gray-400'
         )}
@@ -88,7 +88,7 @@ export default function TextInput({
         className={cn(
           'input-clear-button',
           'hidden',
-          'outline-none focus-visible:rounded-4 focus-visible:outline-1 focus-visible:outline-offset-2 focus-visible:outline-primary focus-visible:outline-solid'
+          'focus-visible:outline-primary focus-visible:outline-solid outline-none focus-visible:rounded-4 focus-visible:outline-1 focus-visible:outline-offset-2'
         )}
       >
         <FeatherIcons.XCircle aria-hidden="true" className="shrink-0 text-gray-300" />
@@ -102,7 +102,7 @@ export default function TextInput({
           onClick={onTogglePasswordVisibility}
           aria-label={isPasswordVisible ? '비밀번호 숨기기' : '비밀번호 보이기'}
           className={
-            'outline-none focus-visible:rounded-4 focus-visible:outline-1 focus-visible:outline-offset-2 focus-visible:outline-primary focus-visible:outline-solid'
+            'focus-visible:outline-primary focus-visible:outline-solid outline-none focus-visible:rounded-4 focus-visible:outline-1 focus-visible:outline-offset-2'
           }
         >
           {isPasswordVisible ? (

@@ -3,7 +3,7 @@ import ToastifyComponent from './Toastify';
 
 import { useCallback } from 'react';
 import { toast } from 'react-toastify';
-import FeatherIcons from '@repo/theme/featherIcons';
+import FeatherIcons from '@repo/icons/featherIcons';
 import Button from '#src/_internal/Button';
 
 const meta: Meta = {

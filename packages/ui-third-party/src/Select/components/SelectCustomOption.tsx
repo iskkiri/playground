@@ -1,7 +1,7 @@
 import '../styles/select-option.scss';
 
 import { GroupBase, OptionProps, components } from 'react-select';
-import FeatherIcons from '@repo/theme/featherIcons';
+import FeatherIcons from '@repo/icons/featherIcons';
 import { cn } from '@repo/utils/cn';
 
 export default function SelectCustomOption<

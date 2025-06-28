@@ -2,7 +2,7 @@ import './styles/toast-sonner.scss';
 
 import { useCallback } from 'react';
 import { toast as sonnerToast } from 'sonner';
-import FeatherIcons from '@repo/theme/featherIcons';
+import FeatherIcons from '@repo/icons/featherIcons';
 import SuccessIcon from './assets/success_icon.svg';
 import ErrorIcon from './assets/error_icon.svg';
 import WraningIcon from './assets/warning_icon.svg';

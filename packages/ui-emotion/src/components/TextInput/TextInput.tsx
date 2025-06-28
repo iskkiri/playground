@@ -2,7 +2,7 @@ import { useCallback, useRef, useState } from 'react';
 import type { RefCallBack } from 'react-hook-form';
 import type { Interpolation, Theme } from '@emotion/react';
 import { textInputWrapperCss } from './TextInput.styles';
-import FeatherIcons from '@repo/theme/featherIcons';
+import FeatherIcons from '@repo/icons/featherIcons';
 import { useMergeRefs } from 'react-merge-refs';
 
 export interface TextInputProps

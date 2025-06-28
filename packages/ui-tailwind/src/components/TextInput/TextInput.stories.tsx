@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import TextInput from './TextInput';
 import { useCallback, useMemo, useState } from 'react';
-import FeatherIcons from '@repo/theme/featherIcons';
+import FeatherIcons from '@repo/icons/featherIcons';
 
 const meta = {
   title: 'components/TextInput',

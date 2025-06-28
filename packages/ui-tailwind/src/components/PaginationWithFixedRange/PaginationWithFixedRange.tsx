@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import FeatherIcons from '@repo/theme/featherIcons';
+import FeatherIcons from '@repo/icons/featherIcons';
 import { cva } from 'class-variance-authority';
 import { cn } from '@repo/utils/cn';
 

@@ -2,7 +2,7 @@ import { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import Accordion from './Accordion';
 import type { CollapsibleType } from 'rc-collapse/es/interface';
-import FeatherIcons from '@repo/theme/featherIcons';
+import FeatherIcons from '@repo/icons/featherIcons';
 import { isActiveTypeGuard } from '@repo/utils/activeTypeGuard';
 import styles from './styles/accordion-story.module.scss';
 import { cn } from '@repo/utils/cn';

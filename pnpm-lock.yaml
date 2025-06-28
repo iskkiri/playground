@@ -220,9 +220,9 @@ importers:
       '@emotion/react':
         specifier: ^11.14.0
         version: 11.14.0(@types/react@19.1.0)(react@19.1.0)
-      '@repo/theme':
+      '@repo/icons':
         specifier: workspace:*
-        version: link:../../packages/theme
+        version: link:../../packages/icons
       '@repo/ui-emotion':
         specifier: workspace:*
         version: link:../../packages/ui-emotion
@@ -376,7 +376,7 @@ importers:
         specifier: 5.8.2
         version: 5.8.2
 
-  packages/theme:
+  packages/icons:
     dependencies:
       react-feather:
         specifier: ^2.0.10
@@ -424,12 +424,12 @@ importers:
       '@repo/hooks':
         specifier: workspace:*
         version: link:../hooks
+      '@repo/icons':
+        specifier: workspace:*
+        version: link:../icons
       '@repo/prettier-config':
         specifier: workspace:*
         version: link:../config-prettier
-      '@repo/theme':
-        specifier: workspace:*
-        version: link:../theme
       '@repo/typescript-config':
         specifier: workspace:*
         version: link:../config-typescript
@@ -588,12 +588,12 @@ importers:
       '@repo/hooks':
         specifier: workspace:*
         version: link:../hooks
+      '@repo/icons':
+        specifier: workspace:*
+        version: link:../icons
       '@repo/prettier-config':
         specifier: workspace:*
         version: link:../config-prettier
-      '@repo/theme':
-        specifier: workspace:*
-        version: link:../theme
       '@repo/typescript-config':
         specifier: workspace:*
         version: link:../config-typescript
@@ -703,12 +703,12 @@ importers:
       '@repo/hooks':
         specifier: workspace:*
         version: link:../hooks
+      '@repo/icons':
+        specifier: workspace:*
+        version: link:../icons
       '@repo/prettier-config':
         specifier: workspace:*
         version: link:../config-prettier
-      '@repo/theme':
-        specifier: workspace:*
-        version: link:../theme
       '@repo/typescript-config':
         specifier: workspace:*
         version: link:../config-typescript

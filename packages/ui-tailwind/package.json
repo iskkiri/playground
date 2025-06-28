@@ -22,7 +22,7 @@
     "@repo/eslint-config": "workspace:*",
     "@repo/hooks": "workspace:*",
     "@repo/prettier-config": "workspace:*",
-    "@repo/theme": "workspace:*",
+    "@repo/icons": "workspace:*",
     "@repo/typescript-config": "workspace:*",
     "@repo/ui-third-party": "workspace:*",
     "@repo/utils": "workspace:*",

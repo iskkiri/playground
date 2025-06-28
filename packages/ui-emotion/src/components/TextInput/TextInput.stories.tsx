@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 import TextInput from './TextInput';
 import { css } from '@emotion/react';
 import { useCallback, useMemo, useState } from 'react';
-import FeatherIcons from '@repo/theme/featherIcons';
+import FeatherIcons from '@repo/icons/featherIcons';
 import { useForm } from 'react-hook-form';
 import useClearField from '@repo/hooks/useClearField';
 
