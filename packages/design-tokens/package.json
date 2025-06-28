@@ -5,6 +5,8 @@
   "private": true,
   "exports": {
     "./colors/index.css": "./src/colors/index.css",
-    "./colors/index.ts": "./src/colors/index.ts"
+    "./colors/index.ts": "./src/colors/index.ts",
+    "./typography/index.css": "./src/typography/index.css",
+    "./typography/index.ts": "./src/typography/index.ts"
   }
 }
