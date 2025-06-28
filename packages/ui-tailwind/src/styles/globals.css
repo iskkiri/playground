@@ -1,5 +1,6 @@
 @import '@repo/design-tokens/colors/index.css';
 @import '@repo/design-tokens/typography/index.css';
+@import '@repo/design-tokens/breakpoints/index.css';
 
 @import 'tailwindcss';
 @config '../../tailwind.config.ts';
