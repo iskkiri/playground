@@ -1,13 +1,20 @@
+@import '@repo/design-tokens/colors/index.css';
+
 :root {
-  --rs-background: #fff;
-  --rs-border: #c2c4c8;
-  --rs-placeholder: #70737c;
-  --rs-text: #70737c;
-  --rs-active: #f4f4f5;
-  --rs-active-text: #1b1c1e;
-  --rs-active-border: #0f0f10;
-  --rs-scroll-thumb: #c2c4c8;
-  --rs-disabled: #c2c4c8;
+  --rs-background: var(--color-white);
+  --rs-border: var(--color-gray-300);
+  --rs-placeholder: var(--color-gray-500);
+  --rs-text: var(--color-gray-500);
+  --rs-active: var(--color-gray-100);
+  --rs-active-text: var(--color-gray-700);
+  --rs-active-border: var(--color-gray-300);
+  --rs-scroll-thumb: var(--color-gray-300);
+  --rs-disabled: var(--color-gray-300);
+  --rs-disabled-text: var(--color-gray-300);
+  --rs-disabled-background: var(--color-white);
+
+  --rs-multi-value-background: var(--color-gray-100);
+  --rs-control-with-label-label-color: var(--color-gray-400);
 }
 
 /* Nesting을 해야 기본 스타일을 overriding 할 수 있으니 nesting을 제거하지 말 것 */
@@ -62,7 +69,7 @@
       .react-select__clear-indicator {
         svg {
           path {
-            fill: #aaa;
+            fill: var(--color-gray-400);
           }
         }
       }
@@ -159,12 +166,12 @@
   // 선택불가로 설정된 리스트 아이템
   .react-select__option--is-disabled {
     cursor: not-allowed;
-    color: var(--rs-disabled);
-    background: #fff;
+    color: var(--rs-disabled-text);
+    background: var(--rs-disabled-background);
 
     // hacky code
     &:hover {
-      background: #fff;
+      background: var(--rs-disabled-background);
     }
   }
 }

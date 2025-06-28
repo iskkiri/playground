@@ -1,10 +1,12 @@
+@import '@repo/design-tokens/colors/index.css';
+
 .label {
-  --switch-background: #e5e7eb;
-  --switch-active-background: #3b82f6;
+  --switch-background: var(--color-gray-200);
+  --switch-active-background: var(--color-primary);
   --switch-width: 36px;
   --switch-height: 20px;
   --circle-size: 16px;
-  --circle-background: #ffffff;
+  --circle-background: var(--color-white);
 
   display: block;
   cursor: pointer;

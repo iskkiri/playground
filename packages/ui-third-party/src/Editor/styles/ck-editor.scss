@@ -1,6 +1,8 @@
 @use '../../EditorViewer/styles/editor-viewer.scss' as *;
 @use '../../_internal/styles/_mixins/scrollbar.scss' as *;
 
+@import '@repo/design-tokens/colors/index.css';
+
 .ck-editor {
   @include editor-viewer-tags;
   height: 100% !important;
@@ -39,11 +41,11 @@
 }
 
 .ck.ck-editor__top .ck-sticky-panel .ck-sticky-panel__content .ck-menu-bar {
-  border-color: var(--CoolGray-15);
+  border-color: var(--color-gray-200);
 }
 
 .ck.ck-editor__top .ck-sticky-panel .ck-sticky-panel__content .ck-toolbar {
-  border-bottom: 1px solid var(--CoolGray-15);
+  border-bottom: 1px solid var(--color-gray-200);
 }
 
 .ck.ck-editor__main > .ck-editor__editable:not(.ck-focused) {

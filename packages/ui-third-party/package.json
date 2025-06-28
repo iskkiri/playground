@@ -25,6 +25,7 @@
     "@ckeditor/ckeditor5-react": "^9.4.0",
     "@floating-ui/react": "^0.27.12",
     "@hookform/resolvers": "^5.1.1",
+    "@repo/design-tokens": "workspace:*",
     "@repo/eslint-config": "workspace:*",
     "@repo/hooks": "workspace:*",
     "@repo/prettier-config": "workspace:*",

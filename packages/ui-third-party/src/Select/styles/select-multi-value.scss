@@ -1,7 +1,7 @@
 .select__multi-value__selected-item {
   padding: 4px 8px;
   border-radius: 100px;
-  background-color: #ececec;
+  background-color: var(--rs-multi-value-background);
 
   font-size: 14px;
   font-style: normal;
@@ -11,7 +11,7 @@
 .select__multi-value__more-count {
   padding: 4px 8px;
   border-radius: 100px;
-  background-color: #ececec;
+  background-color: var(--rs-multi-value-background);
 
   font-size: 14px;
   font-style: normal;

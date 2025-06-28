@@ -3,8 +3,8 @@
   cursor: pointer;
   height: 50px;
   border-radius: 8px;
-  border: 1px solid #ddd;
-  background: #fff;
+  border: 1px solid var(--dp-input-container-border-color);
+  background: var(--dp-input-container-background-color);
 
   .date-picker__custom-input-container {
     /* --------- */
@@ -24,18 +24,18 @@
       border: none;
       outline: none;
 
-      color: #333;
+      color: var(--dp-input-color);
       font-size: 16px;
       line-height: normal;
 
       &::placeholder {
-        color: #bbb;
+        color: var(--dp-input-placeholder-color);
       }
     }
 
     /* 키보드 포커스일 때만 outline */
     &:has(input:focus-visible) {
-      outline: 2px solid #4e86ff;
+      outline: 2px solid var(--dp-input-focus-outline-color);
       outline-offset: 2px;
       border-radius: 4px;
     }

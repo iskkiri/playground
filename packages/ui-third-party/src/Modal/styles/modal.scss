@@ -28,6 +28,8 @@
 // _mixins/_index.scss
 @use './_mixins/modal-animations' as *;
 
+@import '@repo/design-tokens/colors/index.css';
+
 .modal {
   position: relative;
   left: 50%;
@@ -40,7 +42,7 @@
   max-width: 480px;
 
   border-radius: 16px;
-  background: white;
+  background: var(--color-white);
   box-shadow: 0px 0px 40px 0px rgba(0, 0, 0, 0.1);
 }
 
