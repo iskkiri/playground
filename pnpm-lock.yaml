@@ -272,6 +272,9 @@ importers:
 
   apps/web-examples:
     dependencies:
+      '@repo/design-tokens':
+        specifier: workspace:*
+        version: link:../../packages/design-tokens
       next:
         specifier: 15.3.4
         version: 15.3.4(@babel/core@7.27.4)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(sass@1.89.2)
@@ -294,6 +297,9 @@ importers:
       '@repo/prettier-config':
         specifier: workspace:*
         version: link:../../packages/config-prettier
+      '@repo/tailwind-config':
+        specifier: workspace:*
+        version: link:../../packages/config-tailwind
       '@svgr/webpack':
         specifier: ^8.1.0
         version: 8.1.0(typescript@5.8.3)
