@@ -4,13 +4,21 @@
 @use './date-picker-day.scss';
 @use './date-picker-two-range.scss';
 
+@import '@repo/design-tokens/colors/index.css';
+
 :root {
-  --dp-day-color: var(--Black, #000);
-  --dp-day-outside-color: #ccc;
-  --dp-accent-color: #4e86ff;
-  --dp-selected-color: #fff;
-  --dp-background-color: #dce6fd;
-  --dp-disabled-color: #ccc;
+  --dp-input-container-border-color: var(--color-gray-300);
+  --dp-input-container-background-color: var(--color-white);
+  --dp-input-color: var(--color-gray-700);
+  --dp-input-placeholder-color: var(--color-gray-400);
+  --dp-input-focus-outline-color: var(--color-primary);
+  --dp-calendar-container-background-color: var(--color-white);
+  --dp-day-color: var(--color-black);
+  --dp-day-outside-color: var(--color-gray-300);
+  --dp-accent-color: var(--color-primary);
+  --dp-selected-color: var(--color-white);
+  --dp-background-color: var(--color-primary);
+  --dp-disabled-color: var(--color-gray-300);
   --dp-cell-size: 40px;
   --dp-caption-height: 20px;
   --dp-outline: 2px solid var(--rdp-accent-color);
@@ -68,7 +76,7 @@
     width: var(--dp-cell-size);
     height: 20px;
 
-    color: #70737c;
+    color: var(--color-gray-500);
     font-size: 14px;
     font-style: normal;
   }

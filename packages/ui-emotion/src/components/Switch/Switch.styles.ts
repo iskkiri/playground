@@ -1,14 +1,14 @@
 import { css } from '@emotion/react';
-import theme from '#src/theme/index';
+import { colors } from '@repo/design-tokens/colors/index.ts';
 
 export const switchCss = {
   label: css`
-    --switch-background: ${theme.colors.coolGray200};
-    --switch-active-background: ${theme.colors.primary};
+    --switch-background: ${colors.gray200};
+    --switch-active-background: ${colors.primary};
     --switch-width: 36px;
     --switch-height: 20px;
     --circle-size: 16px;
-    --circle-background: ${theme.colors.white};
+    --circle-background: ${colors.white};
 
     display: block;
     cursor: pointer;

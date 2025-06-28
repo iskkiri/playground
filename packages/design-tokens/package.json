@@ -1,0 +1,10 @@
+{
+  "name": "@repo/design-tokens",
+  "version": "0.0.0",
+  "type": "module",
+  "private": true,
+  "exports": {
+    "./colors/index.css": "./src/colors/index.css",
+    "./colors/index.ts": "./src/colors/index.ts"
+  }
+}
