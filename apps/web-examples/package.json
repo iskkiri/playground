@@ -6,7 +6,9 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
   },
   "dependencies": {
     "@repo/design-tokens": "workspace:*",
@@ -20,6 +22,8 @@
     "@repo/eslint-config": "workspace:*",
     "@repo/prettier-config": "workspace:*",
     "@repo/tailwind-config": "workspace:*",
+    "@storybook/addon-docs": "^9.0.12",
+    "@storybook/nextjs": "^9.0.14",
     "@svgr/webpack": "^8.1.0",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
@@ -27,8 +31,10 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "15.3.4",
+    "eslint-plugin-storybook": "^9.0.14",
     "prettier": "^3.5.3",
     "prettier-plugin-tailwindcss": "^0.6.13",
+    "storybook": "^9.0.14",
     "tailwindcss": "^4",
     "typescript": "^5"
   }
