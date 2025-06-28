@@ -19,6 +19,7 @@
     "test": "vitest"
   },
   "dependencies": {
+    "@repo/design-tokens": "workspace:*",
     "@repo/eslint-config": "workspace:*",
     "@repo/hooks": "workspace:*",
     "@repo/prettier-config": "workspace:*",
