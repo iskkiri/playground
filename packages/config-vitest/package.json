@@ -6,6 +6,9 @@
   "exports": {
     "./browser": "./browser.ts"
   },
+  "scripts": {
+    "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json,md}\""
+  },
   "devDependencies": {
     "@repo/eslint-config": "workspace:*",
     "@repo/prettier-config": "workspace:*",

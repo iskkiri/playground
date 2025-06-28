@@ -17,8 +17,8 @@ interface PaginationWithFixedRangeProps {
 
 const buttonVariants = cva(
   cn(
-    'typography-p3-16r flex h-32 w-32 items-center justify-center rounded-4 border border-gray-300 p-4 text-gray-400',
-    'hover:bg-primary-hover hover:border-primary-hover hover:text-white hover:[&_svg]:stroke-white',
+    'flex h-32 w-32 items-center justify-center rounded-4 border border-gray-300 p-4 typography-p3-16r text-gray-400',
+    'hover:border-primary-hover hover:bg-primary-hover hover:text-white hover:[&_svg]:stroke-white',
     'disabled:cursor-not-allowed disabled:border-gray-100 disabled:bg-gray-50 disabled:text-gray-200',
     'disabled:[&_svg]:stroke-gray-300'
   ),

@@ -14,7 +14,7 @@ vi.mock('next/link', () => ({
   }: LinkProps & { children: React.ReactNode; className?: string }) => (
     <a
       {...props}
-      href={typeof href === 'string' ? href : href.pathname ?? ''}
+      href={typeof href === 'string' ? href : (href.pathname ?? '')}
       className={className}
     >
       {children}

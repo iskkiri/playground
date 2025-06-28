@@ -15,10 +15,7 @@ export default function usePagination() {
   );
 
   // 페이지 변경 (fixed range 사용)
-  const onChangePageWithFixedRange = useCallback(
-    (page: number) => () => setPage(page),
-    []
-  );
+  const onChangePageWithFixedRange = useCallback((page: number) => () => setPage(page), []);
 
   // 페이지 사이즈 변경
   const onChangePageSize = useCallback((pageSize: number) => {

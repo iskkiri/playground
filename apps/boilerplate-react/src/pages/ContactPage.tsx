@@ -183,8 +183,8 @@ export default function ContactPage() {
                 isSubscribing
                   ? 'bg-gray-400 cursor-not-allowed'
                   : isSubscribed
-                  ? 'bg-green-600 hover:bg-green-700'
-                  : 'bg-blue-600 hover:bg-blue-700'
+                    ? 'bg-green-600 hover:bg-green-700'
+                    : 'bg-blue-600 hover:bg-blue-700'
               } text-white disabled:bg-gray-400 disabled:cursor-not-allowed`}
             >
               {isSubscribing ? '구독 중...' : isSubscribed ? '구독 완료!' : '구독하기'}

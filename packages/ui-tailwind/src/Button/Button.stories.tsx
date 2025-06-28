@@ -81,7 +81,7 @@ export const DangerButton: Story = {
 export const CustomButton: Story = {
   render: function Render(props) {
     return (
-      <Button {...props} variant="none" className="border-danger text-danger border bg-transparent">
+      <Button {...props} variant="none" className="border border-danger bg-transparent text-danger">
         Custom Button
       </Button>
     );

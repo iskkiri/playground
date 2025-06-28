@@ -16,17 +16,9 @@ export default function useDatePickerRangeValues({
   innerDateRange,
 }: UseDatePickerRangeValuesParams) {
   return useMemo(() => {
-    const startDate = selectsRange
-      ? innerDateRange[0]
-      : selectsStart
-        ? innerDate
-        : undefined;
+    const startDate = selectsRange ? innerDateRange[0] : selectsStart ? innerDate : undefined;
 
-    const endDate = selectsRange
-      ? innerDateRange[1]
-      : selectsEnd
-        ? innerDate
-        : undefined;
+    const endDate = selectsRange ? innerDateRange[1] : selectsEnd ? innerDate : undefined;
 
     return { startDate, endDate };
   }, [innerDate, innerDateRange, selectsEnd, selectsRange, selectsStart]);

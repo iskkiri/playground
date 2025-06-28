@@ -14,21 +14,11 @@ export default function PopoverTrigger({
   const context = usePopoverContext();
 
   // ref를 가진 ReactElement인지 확인하는 타입 가드 함수
-  const hasRef = useCallback(
-    (child: unknown): child is { ref: React.Ref<HTMLElement> } => {
-      return child !== null && typeof child === 'object' && 'ref' in child;
-    },
-    []
-  );
-  const childrenRef = useMemo(
-    () => (hasRef(children) ? children.ref : null),
-    [children, hasRef]
-  );
-  const ref = useMergeRefs([
-    context.refs.setReference,
-    restProps.ref,
-    childrenRef,
-  ]);
+  const hasRef = useCallback((child: unknown): child is { ref: React.Ref<HTMLElement> } => {
+    return child !== null && typeof child === 'object' && 'ref' in child;
+  }, []);
+  const childrenRef = useMemo(() => (hasRef(children) ? children.ref : null), [children, hasRef]);
+  const ref = useMergeRefs([context.refs.setReference, restProps.ref, childrenRef]);
 
   if (asChild && isValidElement(children)) {
     return cloneElement(

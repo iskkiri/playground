@@ -7,6 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json,md}\"",
     "check-types": "tsc --noEmit",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
@@ -40,6 +41,7 @@
     "eslint-config-next": "15.3.4",
     "eslint-plugin-storybook": "^9.0.12",
     "jotai-devtools": "^0.12.0",
+    "prettier": "^3.5.3",
     "storybook": "^9.0.12",
     "tailwindcss": "^4",
     "tsconfig-paths-webpack-plugin": "^4.2.0",
