@@ -1,25 +1,6 @@
 import { css } from '@emotion/react';
-import theme from '../theme';
-
-// 프로젝트의 헤더 높이, 푸터 높이에 따라 변경
-const MOBILE_HEADER_HEIGHT = 60;
-const MOBILE_FOOTER_HEIGHT = 320;
-const PC_HEADER_HEIGHT = 160;
-const PC_FOOTER_HEIGHT = 300;
 
 export const commonCss = {
-  fullPage: css`
-    min-height: ${`calc(100dvh - ${MOBILE_HEADER_HEIGHT}px - ${MOBILE_FOOTER_HEIGHT}px)`};
-
-    ${theme.media.pc} {
-      min-height: ${`calc(100dvh - ${PC_HEADER_HEIGHT}px - ${PC_FOOTER_HEIGHT}px)`};
-    }
-  `,
-
-  opacityZero: css`
-    opacity: 0;
-  `,
-
   scrollbar: css`
     /* 스크롤바 색상 변수 정의 */
     --scrollbar-thumb: #cecece; /* 스크롤바 핸들(드래그하는 부분) 색상 */
@@ -54,34 +35,6 @@ export const commonCss = {
     }
   `,
 
-  observer: css`
-    width: 0;
-    height: 0;
-    opacity: 0;
-  `,
-
-  onlyMobileVisible: css`
-    ${theme.media.pc} {
-      display: none;
-    }
-  `,
-
-  onlyPcVisibleBlock: css`
-    display: none;
-
-    ${theme.media.pc} {
-      display: block;
-    }
-  `,
-
-  onlyPcVisibleFlex: css`
-    display: none;
-
-    ${theme.media.pc} {
-      display: flex;
-    }
-  `,
-
   lineClamp: (lines: number) => {
     if (lines === 1) {
       return css`
@@ -100,36 +53,6 @@ export const commonCss = {
       `;
     }
   },
-
-  wfull: css`
-    width: 100%;
-  `,
-
-  hfull: css`
-    height: 100%;
-  `,
-
-  flexGrow: css`
-    flex: 1;
-  `,
-
-  noScroll: css`
-    ::-webkit-scrollbar {
-      display: none;
-    }
-  `,
-
-  imageScaleUpOnHover: css`
-    img {
-      transition: transform 0.5s;
-    }
-
-    &:hover {
-      img {
-        transform: scale(1.1);
-      }
-    }
-  `,
 
   srOnly: css`
     position: absolute;

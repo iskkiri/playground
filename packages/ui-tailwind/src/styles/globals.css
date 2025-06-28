@@ -1,10 +1,13 @@
+@import '@repo/design-tokens/colors/index.css';
+@import '@repo/design-tokens/typography/index.css';
+@import '@repo/design-tokens/breakpoints/index.css';
+
 @import 'tailwindcss';
 @config '../../tailwind.config.ts';
 
 @import './typography.css';
 @import './scrollbar.css';
 @import '../components/Button/button.css';
-@import '@repo/design-tokens/colors/index.css';
 
 @layer base {
   input,
@@ -52,32 +55,4 @@
   --color-gray-800: var(--color-gray-800, #1f2937);
   --color-gray-900: var(--color-gray-900, #111827);
   --color-gray-950: var(--color-gray-950, #030712);
-
-  /* Typography - Font Sizes */
-  --font-size-heading1: 52px;
-  --font-size-heading2: 48px;
-  --font-size-heading3: 40px;
-  --font-size-heading4: 36px;
-  --font-size-heading5: 32px;
-  --font-size-heading6: 28px;
-  --font-size-heading7: 24px;
-  --font-size-paragraph1: 20px;
-  --font-size-paragraph2: 18px;
-  --font-size-paragraph3: 16px;
-  --font-size-paragraph4: 14px;
-  --font-size-paragraph5: 12px;
-
-  /* Typography - Line Heights */
-  --line-height-heading1: 64px;
-  --line-height-heading2: 56px;
-  --line-height-heading3: 48px;
-  --line-height-heading4: 44px;
-  --line-height-heading5: 40px;
-  --line-height-heading6: 36px;
-  --line-height-heading7: 32px;
-  --line-height-paragraph1: 28px;
-  --line-height-paragraph2: 26px;
-  --line-height-paragraph3: 24px;
-  --line-height-paragraph4: 22px;
-  --line-height-paragraph5: 18px;
 }

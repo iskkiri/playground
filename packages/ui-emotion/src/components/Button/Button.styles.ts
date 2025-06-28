@@ -1,6 +1,6 @@
-import theme from '#src/theme/index';
 import { css } from '@emotion/react';
 import { colors } from '@repo/design-tokens/colors/index.ts';
+import { typography } from '@repo/design-tokens/typography/index.ts';
 
 export const buttonSize = {
   32: css`
@@ -8,35 +8,35 @@ export const buttonSize = {
     padding: 0px 12px;
     gap: 2px;
     border-radius: 8px;
-    ${theme.typography['P5/12b']};
+    ${typography['P5/12b']};
   `,
   40: css`
     height: 40px;
     padding: 0px 16px;
     gap: 4px;
     border-radius: 10px;
-    ${theme.typography['P4/14b']};
+    ${typography['P4/14b']};
   `,
   48: css`
     height: 48px;
     padding: 0px 20px;
     gap: 6px;
     border-radius: 12px;
-    ${theme.typography['P3/16b']};
+    ${typography['P3/16b']};
   `,
   56: css`
     height: 56px;
     padding: 0px 22px;
     gap: 8px;
     border-radius: 13px;
-    ${theme.typography['P2/18b']};
+    ${typography['P2/18b']};
   `,
   64: css`
     height: 64px;
     padding: 0px 24px;
     gap: 12px;
     border-radius: 14px;
-    ${theme.typography['P1/20b']};
+    ${typography['P1/20b']};
   `,
 };
 

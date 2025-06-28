@@ -2,7 +2,6 @@ import Modal from '@repo/ui-third-party/Modal/Modal';
 import type { BaseModalProps } from '@repo/ui-third-party/Modal/types/modal.types';
 import { dialogModalCss } from '../styles/DialogModal.styles';
 import Button, { type ButtonType } from '#src/components/Button/Button';
-import { commonCss } from '#src/styles/common.styles';
 
 export interface AlertModalProps extends BaseModalProps {
   title: string;
@@ -31,7 +30,7 @@ export default function AlertModal({
       </Modal.Body>
 
       <Modal.Footer>
-        <Button buttonType={closeButtonType} onClick={onClose} cssStyle={commonCss.flexGrow}>
+        <Button buttonType={closeButtonType} onClick={onClose} cssStyle={{ flex: 1 }}>
           {closeButtonText}
         </Button>
       </Modal.Footer>

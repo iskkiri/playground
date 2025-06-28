@@ -1,6 +1,6 @@
-import theme from '#src/theme/index';
 import { css } from '@emotion/react';
 import { colors } from '@repo/design-tokens/colors/index.ts';
+import { typography } from '@repo/design-tokens/typography/index.ts';
 
 export const radioCss = {
   label: css`
@@ -10,7 +10,7 @@ export const radioCss = {
     cursor: pointer;
 
     color: ${colors.gray800};
-    ${theme.typography['P3/16r']}
+    ${typography['P3/16r']}
 
     input[type='radio'] {
       --radio-border: ${colors.gray200};
