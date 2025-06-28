@@ -1,6 +1,6 @@
 import Modal from '@repo/ui-third-party/Modal/Modal';
 import type { BaseModalProps } from '@repo/ui-third-party/Modal/types/modal.types';
-import Button, { type ButtonProps } from '#src/components/Button/Button';
+import Button, { type ButtonProps } from '../../Button/Button';
 
 export interface ConfirmModalProps extends BaseModalProps {
   title: string;
