@@ -7,6 +7,7 @@
     "./colors/index.css": "./src/colors/index.css",
     "./colors/index.ts": "./src/colors/index.ts",
     "./typography/index.css": "./src/typography/index.css",
-    "./typography/index.ts": "./src/typography/index.ts"
+    "./typography/index.ts": "./src/typography/index.ts",
+    "./fonts/index.css": "./src/fonts/index.css"
   }
 }
