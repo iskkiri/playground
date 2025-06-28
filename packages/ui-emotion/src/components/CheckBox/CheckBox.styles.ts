@@ -1,5 +1,6 @@
 import theme from '#src/theme/index';
 import { css } from '@emotion/react';
+import { colors } from '@repo/design-tokens/colors/index.ts';
 
 export const checkBoxCss = {
   label: css`
@@ -10,27 +11,27 @@ export const checkBoxCss = {
     width: fit-content;
 
     ${theme.typography['P3/16r']}
-    color: ${theme.colors.gray400};
+    color: ${colors.gray400};
   `,
 
   checked: css`
-    color: ${theme.colors.gray900};
+    color: ${colors.gray900};
   `,
 
   disabled: css`
     cursor: not-allowed;
-    color: ${theme.colors.gray300};
+    color: ${colors.gray300};
   `,
 
   icon: css`
     input:focus-visible + & {
-      outline: 2px solid #4e86ff;
+      outline: 2px solid ${colors.primary};
       outline-offset: 2px;
       border-radius: 4px;
     }
   `,
 
   iconChecked: css`
-    color: ${theme.colors.primary};
+    color: ${colors.primary};
   `,
 };

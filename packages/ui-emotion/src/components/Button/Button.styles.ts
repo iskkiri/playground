@@ -1,5 +1,6 @@
 import theme from '#src/theme/index';
 import { css } from '@emotion/react';
+import { colors } from '@repo/design-tokens/colors/index.ts';
 
 export const buttonSize = {
   32: css`
@@ -41,66 +42,65 @@ export const buttonSize = {
 
 export const buttonTypeCss = {
   primary: css`
-    background: ${theme.colors.primary};
-    border: 1px solid ${theme.colors.primary};
-    color: ${theme.colors.white};
+    background: ${colors.primary};
+    border: 1px solid ${colors.primary};
+    color: ${colors.white};
 
     &:hover {
       background:
-        linear-gradient(0deg, rgba(0, 0, 0, 0.12) 0%, rgba(0, 0, 0, 0.12) 100%),
-        ${theme.colors.primary};
+        linear-gradient(0deg, rgba(0, 0, 0, 0.12) 0%, rgba(0, 0, 0, 0.12) 100%), ${colors.primary};
     }
 
     &:disabled {
-      background: ${theme.colors.coolGray100};
-      color: ${theme.colors.coolGray300};
+      background: ${colors.gray100};
+      color: ${colors.gray300};
     }
   `,
 
   linePrimary: css`
-    border: 1px solid ${theme.colors.primary};
+    border: 1px solid ${colors.primary};
     background: transparent;
-    color: ${theme.colors.primary};
+    color: ${colors.primary};
 
     &:hover {
-      border: 1px solid ${theme.colors.primaryHover};
-      color: ${theme.colors.primaryHover};
+      border: 1px solid ${colors.primaryHover};
+      color: ${colors.primaryHover};
     }
 
     &:disabled {
-      border-color: ${theme.colors.coolGray100};
-      background: ${theme.colors.coolGray50};
-      color: ${theme.colors.coolGray200};
+      border-color: ${colors.gray100};
+      background: ${colors.gray50};
+      color: ${colors.gray200};
     }
   `,
 
   gray: css`
-    background: ${theme.colors.coolGray50};
-    border: 1px solid ${theme.colors.coolGray50};
-    color: ${theme.colors.coolGray500};
+    background: ${colors.gray50};
+    border: 1px solid ${colors.gray50};
+    color: ${colors.gray500};
 
     &:hover {
-      background: ${theme.colors.coolGray100};
+      background: ${colors.gray100};
     }
 
     &:disabled {
-      background: ${theme.colors.coolGray100};
-      color: ${theme.colors.coolGray300};
+      background: ${colors.gray100};
+      color: ${colors.gray300};
     }
   `,
 
   danger: css`
-    background: ${theme.colors.danger};
-    border: 1px solid ${theme.colors.danger};
-    color: ${theme.colors.white};
+    background: ${colors.danger};
+    border: 1px solid ${colors.danger};
+    color: ${colors.white};
 
     &:hover {
-      background: ${theme.colors.dangerHover};
+      background: ${colors.dangerHover};
     }
 
     &:disabled {
-      background: ${theme.colors.coolGray100};
-      color: ${theme.colors.coolGray300};
+      background: ${colors.gray100};
+      color: ${colors.gray300};
     }
   `,
 
@@ -115,7 +115,7 @@ export const buttonCss = {
     justify-content: center;
     align-items: center;
     flex-shrink: 0;
-    color: ${theme.colors.coolGray800};
+    color: ${colors.gray800};
     cursor: pointer;
 
     &:disabled {

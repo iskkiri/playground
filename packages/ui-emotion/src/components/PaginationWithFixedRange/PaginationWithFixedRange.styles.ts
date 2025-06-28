@@ -1,10 +1,10 @@
-import theme from '#src/theme/index';
 import { css } from '@emotion/react';
+import { colors } from '@repo/design-tokens/colors/index.ts';
 
 export const paginationWithFixedRangeCss = {
   block: css`
-    --pagination-selected-background: ${theme.colors.primary};
-    --pagination-selected-color: ${theme.colors.white};
+    --pagination-selected-background: ${colors.primary};
+    --pagination-selected-color: ${colors.white};
 
     display: flex;
     gap: 6px;

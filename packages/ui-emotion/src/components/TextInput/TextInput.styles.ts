@@ -1,5 +1,5 @@
-import theme from '#src/theme/index';
 import { css } from '@emotion/react';
+import { colors } from '@repo/design-tokens/colors/index.ts';
 
 export const textInputWrapperCss = {
   wrapper: css`
@@ -79,7 +79,7 @@ export const textInputWrapperCss = {
     padding: 0;
 
     &:focus-visible {
-      outline: 1px solid ${theme.colors.primary};
+      outline: 1px solid ${colors.primary};
       outline-offset: 2px;
       border-radius: 4px;
     }
