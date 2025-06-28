@@ -1,0 +1,16 @@
+{
+  "name": "@repo/tailwind-config",
+  "version": "0.0.0",
+  "type": "module",
+  "private": true,
+  "exports": {
+    "./index.css": "./styles/index.css",
+    "./config": "./tailwind.config.ts"
+  },
+  "devDependencies": {
+    "tailwindcss": "^4.1.11"
+  },
+  "dependencies": {
+    "@repo/design-tokens": "workspace:*"
+  }
+}
