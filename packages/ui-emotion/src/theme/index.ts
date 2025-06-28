@@ -1,8 +1,6 @@
-import typography from './typography';
 import media from './media';
 
 const theme = {
-  typography,
   media,
 };
 

@@ -4,7 +4,7 @@ import CheckBox from './CheckBox';
 import { useArgs } from 'storybook/preview-api';
 import { Controller, useController, useForm } from 'react-hook-form';
 import { css } from '@emotion/react';
-import theme from '#src/theme/index';
+import { typography } from '@repo/design-tokens/typography/index.ts';
 
 const signUpFormCss = {
   divider: css`
@@ -16,13 +16,13 @@ const signUpFormCss = {
   `,
 
   listItem: css`
-    ${theme.typography['P3/16r']};
+    ${typography['P3/16r']};
     display: flex;
     align-items: center;
   `,
 
   consentButton: css`
-    ${theme.typography['P3/16r']};
+    ${typography['P3/16r']};
     cursor: pointer;
     border: none;
     color: var(--CoolGray-500, #6b727a);
