@@ -320,6 +320,9 @@ importers:
       react-dropzone:
         specifier: ^14.3.8
         version: 14.3.8(react@19.1.0)
+      sass:
+        specifier: ^1.89.2
+        version: 1.89.2
       zod:
         specifier: ^3.25.67
         version: 3.25.67
