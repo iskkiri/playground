@@ -11,8 +11,11 @@
     "build-storybook": "storybook build"
   },
   "dependencies": {
+    "@googlemaps/markerclusterer": "^2.5.3",
     "@repo/design-tokens": "workspace:*",
     "@repo/ui-tailwind": "workspace:*",
+    "@repo/utils": "workspace:*",
+    "@vis.gl/react-google-maps": "^1.5.3",
     "next": "15.3.4",
     "react": "^19.0.0",
     "react-daum-postcode": "^3.2.0",
