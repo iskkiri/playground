@@ -9,7 +9,10 @@
     ]
   },
   "exports": {
-    "./*": "./src/*.tsx"
+    "./*": {
+      "types": "./src/*.ts",
+      "import": "./src/*.tsx"
+    }
   },
   "scripts": {
     "lint": "eslint . --max-warnings 0",
