@@ -1,3 +1,5 @@
+'use client';
+
 import { type InputHTMLAttributes } from 'react';
 import { radioCss } from './Radio.styles';
 import type { Interpolation, Theme } from '@emotion/react';

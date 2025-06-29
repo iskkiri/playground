@@ -1,3 +1,5 @@
+'use client';
+
 import { toast as sonnerToast, type ExternalToast } from 'sonner';
 import Toast, { type ToastProps } from './ToastSonner';
 

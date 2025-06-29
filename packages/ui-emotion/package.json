@@ -9,10 +9,10 @@
     ]
   },
   "exports": {
-    "./*": [
-      "./src/*.tsx",
-      "./src/*.ts"
-    ],
+    "./*": {
+      "types": "./src/*.ts",
+      "import": "./src/*.tsx"
+    },
     "./_internal/*": null
   },
   "scripts": {

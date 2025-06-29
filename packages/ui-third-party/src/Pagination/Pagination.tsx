@@ -1,3 +1,5 @@
+'use client';
+
 import './styles/pagination.scss';
 
 import ReactPaginate, { type ReactPaginateProps } from 'react-paginate';

@@ -8,10 +8,11 @@
     ]
   },
   "exports": {
-    "./*": [
-      "./src/*.tsx",
-      "./src/*.ts"
-    ]
+    "./*": {
+      "types": "./src/*.ts",
+      "import": "./src/*.tsx"
+    },
+    "./styles.css": "./styles.css"
   },
   "scripts": {
     "lint": "eslint . --max-warnings 0",

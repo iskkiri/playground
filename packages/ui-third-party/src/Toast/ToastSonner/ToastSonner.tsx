@@ -1,3 +1,5 @@
+'use client';
+
 import './styles/toast-sonner.scss';
 
 import { useCallback } from 'react';

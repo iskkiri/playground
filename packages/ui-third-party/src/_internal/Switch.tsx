@@ -1,3 +1,5 @@
+'use client';
+
 import { cn } from '@repo/utils/cn';
 import styles from './styles/switch.module.scss';
 

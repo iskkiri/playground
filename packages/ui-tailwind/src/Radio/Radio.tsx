@@ -1,3 +1,5 @@
+'use client';
+
 import { cn } from '@repo/utils/cn';
 import { cva } from 'class-variance-authority';
 import type { InputHTMLAttributes } from 'react';
@@ -5,7 +7,7 @@ import type { InputHTMLAttributes } from 'react';
 export type RadioProps = InputHTMLAttributes<HTMLInputElement>;
 
 const radioLabelVariants = cva(
-  'flex cursor-pointer items-center gap-6 typography-p3-16r text-gray-800',
+  'typography-p3-16r flex cursor-pointer items-center gap-6 text-gray-800',
   {
     variants: {
       disabled: {
@@ -22,12 +24,12 @@ const radioVariants = cva(
   cn(
     'relative m-1 h-24 w-24 cursor-pointer appearance-none rounded-full border-2 border-gray-300 align-middle',
     // Focus visible
-    'focus-visible:rounded-full focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary'
+    'focus-visible:outline-primary focus-visible:rounded-full focus-visible:outline-2 focus-visible:outline-offset-2'
   ),
   {
     variants: {
       checked: {
-        true: 'border-primary after:absolute after:top-1/2 after:left-1/2 after:h-10 after:w-10 after:-translate-x-1/2 after:-translate-y-1/2 after:transform after:rounded-full after:bg-primary after:content-[""]',
+        true: 'border-primary after:bg-primary after:absolute after:left-1/2 after:top-1/2 after:h-10 after:w-10 after:-translate-x-1/2 after:-translate-y-1/2 after:transform after:rounded-full after:content-[""]',
         false: '',
       },
       disabled: {

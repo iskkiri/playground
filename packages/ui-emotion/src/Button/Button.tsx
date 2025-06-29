@@ -1,3 +1,5 @@
+'use client';
+
 import { useMemo } from 'react';
 import type { Interpolation, Theme } from '@emotion/react';
 import { buttonCss, buttonTypeCss } from './Button.styles';
