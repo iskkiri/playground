@@ -1,6 +1,6 @@
-import '../styles/globals.css';
+import '../_styles/globals.css';
 import type { Metadata } from 'next';
-import FontPreloader from '@/components/FontPreloader';
+import FontPreloader from '@/_components/FontPreloader';
 
 export const metadata: Metadata = {
   title: 'Web Examples',

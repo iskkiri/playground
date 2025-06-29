@@ -1,5 +1,5 @@
 import type { NextConfig } from 'next';
-import { validateEnv } from '@/utils/validateEnv';
+import { validateEnv } from '@/_utils/validateEnv';
 
 // 환경변수 검증
 validateEnv();

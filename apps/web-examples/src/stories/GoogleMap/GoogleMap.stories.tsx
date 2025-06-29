@@ -7,7 +7,7 @@ import useGoogleMapDefaultCenter from './hooks/useGoogleMapDefaultCenter';
 import useMarkerClusterer from './hooks/useMarkerCluster';
 import useMarkerSelection from './hooks/useMarkerSelection';
 import HouseMarker from './components/HouseMarker';
-import { appEnv } from '@/schemas/env.schema';
+import { appEnv } from '@/_schemas/env.schema';
 
 const meta = {
   title: 'components/GoogleMap',
