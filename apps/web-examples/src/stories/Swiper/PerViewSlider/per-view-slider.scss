@@ -1,0 +1,50 @@
+@media (min-width: 1280px) {
+  #storybook-root {
+    width: 100%;
+  }
+}
+
+.per-view-slider {
+  width: 100%;
+}
+
+.per-view-slider__container {
+  @media (min-width: 1280px) {
+    width: 1200px;
+    margin: 0 auto;
+  }
+}
+
+.per-view-slider__slide {
+  @media (max-width: 1279px) {
+    width: fit-content !important;
+  }
+}
+
+.per-view-slider__image {
+  width: 300px;
+  aspect-ratio: 1;
+  object-fit: cover;
+
+  @media (min-width: 1280px) {
+    width: 100%;
+  }
+}
+
+.per-view-slider__navigation {
+  margin: 0 auto;
+  margin-bottom: 24px;
+  width: fit-content;
+  display: flex;
+  gap: 30px;
+}
+
+.per-view-slider__button {
+  width: 24px;
+  height: 24px;
+  border: 1px solid #000;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
