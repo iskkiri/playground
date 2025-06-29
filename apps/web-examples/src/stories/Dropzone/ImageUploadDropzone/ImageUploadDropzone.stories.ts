@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/nextjs';
 import ImageUploadDropzoneComponent from './ImageUploadDropzone';
 
 const meta = {
-  title: 'components/Dropzone/ImageUploadDropzone',
+  title: 'examples/Dropzone/ImageUploadDropzone',
   component: ImageUploadDropzoneComponent,
   parameters: {
     layout: 'centered',

@@ -8,7 +8,7 @@ import type { ICoordinates } from './types/coordinates.types';
 import useCoordinates from './hooks/useCoordinates';
 
 const meta = {
-  title: 'components/DaumPostCode',
+  title: 'examples/DaumPostCode',
   parameters: {
     layout: 'centered',
   },

@@ -10,7 +10,7 @@ import HouseMarker from './components/HouseMarker';
 import { appEnv } from '@/_schemas/env.schema';
 
 const meta = {
-  title: 'components/GoogleMap',
+  title: 'examples/GoogleMap',
   parameters: {
     layout: 'centered',
   },
