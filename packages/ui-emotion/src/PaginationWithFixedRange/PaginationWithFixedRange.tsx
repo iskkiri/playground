@@ -1,3 +1,5 @@
+'use client';
+
 import { useEffect, useState } from 'react';
 import { paginationWithFixedRangeCss } from './PaginationWithFixedRange.styles';
 import FeatherIcons from '@repo/icons/featherIcons';

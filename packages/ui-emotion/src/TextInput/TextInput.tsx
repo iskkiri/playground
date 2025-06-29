@@ -1,3 +1,5 @@
+'use client';
+
 import { useCallback, useRef, useState } from 'react';
 import type { RefCallBack } from 'react-hook-form';
 import type { Interpolation, Theme } from '@emotion/react';

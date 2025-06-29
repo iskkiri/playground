@@ -1,3 +1,5 @@
+'use client';
+
 import Modal from '@repo/ui-third-party/Modal/Modal';
 import type { BaseModalProps } from '@repo/ui-third-party/Modal/types/modal.types';
 import { dialogModalCss } from '../styles/DialogModal.styles';

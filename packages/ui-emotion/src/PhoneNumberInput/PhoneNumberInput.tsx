@@ -1,3 +1,5 @@
+'use client';
+
 import { useCallback, useMemo, useRef } from 'react';
 import TextInput, { type TextInputProps } from '../TextInput/TextInput';
 import { formatPhoneNumber } from '@repo/utils/formatPhoneNumber';

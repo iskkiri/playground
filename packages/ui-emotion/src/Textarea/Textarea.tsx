@@ -1,3 +1,5 @@
+'use client';
+
 import { type TextareaHTMLAttributes } from 'react';
 import type { Interpolation, Theme } from '@emotion/react';
 import { textareaCss } from './Textarea.styles';

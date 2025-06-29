@@ -1,3 +1,5 @@
+'use client';
+
 import { cn } from '@repo/utils/cn';
 import { cva } from 'class-variance-authority';
 import FeatherIcons from '@repo/icons/featherIcons';
@@ -6,8 +8,8 @@ export type CheckBoxProps = React.ComponentProps<'input'>;
 
 const checkBoxVariants = cva(
   cn(
-    'flex w-fit cursor-pointer items-center gap-6 typography-p3-16r text-neutral-400',
-    'focus-visible:[&>svg]:rounded-4 focus-visible:[&>svg]:outline-2 focus-visible:[&>svg]:outline-offset-2 focus-visible:[&>svg]:outline-primary'
+    'typography-p3-16r flex w-fit cursor-pointer items-center gap-6 text-neutral-400',
+    'focus-visible:[&>svg]:rounded-4 focus-visible:[&>svg]:outline-primary focus-visible:[&>svg]:outline-2 focus-visible:[&>svg]:outline-offset-2'
   ),
   {
     variants: {

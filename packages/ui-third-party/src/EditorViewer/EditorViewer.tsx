@@ -1,3 +1,5 @@
+'use client';
+
 import './styles/editor-viewer.scss';
 
 import DOMPurify from 'isomorphic-dompurify';

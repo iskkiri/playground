@@ -1,3 +1,5 @@
+'use client';
+
 import './styles/accordion.scss';
 
 import Collapse, { type CollapseProps } from 'rc-collapse';

@@ -1,3 +1,5 @@
+'use client';
+
 import './styles/date-picker.scss';
 
 import { useRef } from 'react';

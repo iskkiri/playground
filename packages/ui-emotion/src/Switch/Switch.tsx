@@ -1,3 +1,5 @@
+'use client';
+
 import { commonCss } from '#src/_internal/common.styles';
 import { switchCss } from './Switch.styles';
 

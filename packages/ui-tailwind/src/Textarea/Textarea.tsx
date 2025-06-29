@@ -1,10 +1,12 @@
+'use client';
+
 import { cva } from 'class-variance-authority';
 import { useMemo } from 'react';
 import { cn } from '@repo/utils/cn';
 
 const textareaVariants = cva(
   cn(
-    'block h-full w-full resize-none rounded-8 border border-gray-300 bg-white px-14 py-20 typography-p3-16r text-gray-900 outline-none placeholder:text-gray-300',
+    'rounded-8 typography-p3-16r block h-full w-full resize-none border border-gray-300 bg-white px-14 py-20 text-gray-900 outline-none placeholder:text-gray-300',
     'custom-scrollbar'
   ),
   {

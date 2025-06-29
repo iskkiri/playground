@@ -1,3 +1,5 @@
+'use client';
+
 import 'ckeditor5/ckeditor5.css';
 import './styles/ck-editor.scss';
 

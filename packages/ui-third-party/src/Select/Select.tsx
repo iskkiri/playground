@@ -1,3 +1,5 @@
+'use client';
+
 import './styles/select.scss';
 
 import { useEffect, useId, useMemo, useState } from 'react';

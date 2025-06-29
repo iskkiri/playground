@@ -1,3 +1,5 @@
+'use client';
+
 import { type InputHTMLAttributes } from 'react';
 import type { Interpolation, Theme } from '@emotion/react';
 import { checkBoxCss } from './CheckBox.styles';
