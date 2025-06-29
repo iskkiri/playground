@@ -1,0 +1,32 @@
+.horizontal-slider {
+  position: relative;
+  width: 500px;
+  height: 500px;
+}
+
+.horizontal-slider__image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+}
+
+.horizontal-slider__pagination {
+  position: absolute;
+  bottom: 12px;
+  left: initial;
+  right: 12px;
+  z-index: 10;
+  height: 32px;
+  width: 64px;
+  border-radius: 14px;
+  background: rgba(0, 0, 0, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 600;
+  color: #fff;
+  white-space: pre;
+}

@@ -23,6 +23,10 @@ CSS에서 수백 줄로 정의하는 대신 JavaScript로 동적 생성:
 - **minWidth/maxWidth**: 0-600px (min-w-200=200px, max-w-400=400px)
 - **minHeight/maxHeight**: 0-600px (min-h-300=300px, max-h-500=500px)
 
+## 디자인 토큰
+
+- `packages/config-tailwind/styles` 의 디자인 토큰 값을 사용
+
 ## Typography 유틸리티 클래스 (항상 이것들을 사용!)
 
 ### 헤딩
@@ -38,10 +42,10 @@ CSS에서 수백 줄로 정의하는 대신 JavaScript로 동적 생성:
 ### 본문
 
 - typography-p1-20r, typography-p1-20b (20px/28px)
-- typography-p1-18r, typography-p1-18b (18px/26px)
-- typography-p1-16r, typography-p1-16b (16px/24px)
-- typography-p1-14r, typography-p1-14b (14px/22px)
-- typography-p1-12r, typography-p1-12b (12px/18px)
+- typography-p2-18r, typography-p2-18b (18px/26px)
+- typography-p3-16r, typography-p3-16b (16px/24px)
+- typography-p4-14r, typography-p4-14b (14px/22px)
+- typography-p5-12r, typography-p5-12b (12px/18px)
 
 ## 브레이크포인트
 

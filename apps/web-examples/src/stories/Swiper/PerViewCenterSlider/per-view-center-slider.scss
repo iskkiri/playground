@@ -1,0 +1,36 @@
+.per-view-center-slider {
+  position: relative;
+
+  .swiper-slide {
+    // 기본 설정이 inline 스타일로 정의되어 있으므로 !important로 오버라이딩
+    width: fit-content !important;
+  }
+}
+
+.per-view-center-slider__image {
+  width: 460px;
+  aspect-ratio: 1;
+  object-fit: cover;
+}
+
+.per-view-center-slider__navigation {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  z-index: 20;
+  transform: translateY(-50%);
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.per-view-center-slider__button--prev {
+  position: absolute;
+  left: 64px;
+}
+
+.per-view-center-slider__button--next {
+  position: absolute;
+  right: 64px;
+}

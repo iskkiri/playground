@@ -121,6 +121,7 @@
 @utility typography-p4-14r {
   font-size: var(--font-size-paragraph4);
   line-height: var(--line-height-paragraph4);
+  font-weight: 400;
 }
 
 @utility typography-p4-14b {

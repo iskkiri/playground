@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { envSchema } from '../schemas/env.schema';
+import { envSchema } from '../_schemas/env.schema';
 
 export function validateEnv() {
   try {

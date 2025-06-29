@@ -1,0 +1,52 @@
+// CSS Variables
+:root {
+  --slide-item-width: 240px;
+  --slide-item-gap: 16px;
+  --slide-item-count: 8;
+}
+
+// Keyframes
+@keyframes auto-slide {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+
+  100% {
+    transform: translate3d(
+      calc(
+        var(--slide-item-count) * (-1 * var(--slide-item-width)) + (var(--slide-item-count) + 1) *
+          (-1 * var(--slide-item-gap))
+      ),
+      0,
+      0
+    );
+  }
+}
+
+.slide-auto-play {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  gap: 24px;
+  overflow: hidden;
+}
+
+.slide-auto-play__list {
+  display: flex;
+  gap: var(--slide-item-gap);
+  animation: auto-slide 16s linear infinite;
+}
+
+.slide-auto-play__list--reverse {
+  animation-direction: reverse;
+}
+
+.slide-auto-play__item {
+  display: flex;
+  width: var(--slide-item-width);
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #d1d5db;
+  padding: 8px 0;
+}

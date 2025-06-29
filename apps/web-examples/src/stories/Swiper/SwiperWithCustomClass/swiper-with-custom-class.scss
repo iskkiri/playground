@@ -1,0 +1,46 @@
+.swiper-custom {
+  margin-top: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.swiper-custom__container {
+  width: 400px;
+  height: 400px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+.swiper-custom__slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 32px;
+}
+
+.swiper-custom__controls {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  align-items: center;
+}
+
+.swiper-custom__button {
+  cursor: pointer;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 1px solid #666;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  svg {
+    flex-shrink: 0;
+  }
+}
+
+.swiper-custom__pagination {
+  width: fit-content;
+}

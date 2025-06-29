@@ -6,6 +6,9 @@ export const envSchema = z.object({
 
   // API URL
   NEXT_PUBLIC_API_URL: z.string().url(),
+
+  // Google Maps API Key
+  NEXT_PUBLIC_GOOGLE_MAPS_API_KEY: z.string(),
 });
 
 export type EnvSchema = z.infer<typeof envSchema>;
@@ -21,4 +24,7 @@ export const appEnv: EnvSchema = {
 
   // API URL
   NEXT_PUBLIC_API_URL: process.env.NEXT_PUBLIC_API_URL!,
+
+  // Google Maps API Key
+  NEXT_PUBLIC_GOOGLE_MAPS_API_KEY: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY!,
 };
