@@ -7,7 +7,6 @@ const px0_100 = { ...[...Array(101)].map((_, i) => `${i}px`) } as PixelObj;
 const px0_600 = { ...[...Array(601)].map((_, i) => `${i}px`) } as PixelObj;
 
 const config: Config = {
-  content: ['./src/**/*.{js,ts,jsx,tsx}'],
   theme: {
     extend: {
       borderWidth: px0_10,
