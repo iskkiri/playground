@@ -11,7 +11,7 @@ export default function SelectCustomMultiSelectOption<
 >({ className, ...props }: OptionProps<Option, IsMulti, Group>) {
   return (
     <components.Option {...props} className={cn('select__multi-select-option__option', className)}>
-      <FeatherIcons.CheckSquare size={20} color={props.isSelected ? '#4E86FF' : '#C1C7CD'} />
+      <FeatherIcons.CheckSquare size={20} />
       <span>{props.label}</span>
     </components.Option>
   );

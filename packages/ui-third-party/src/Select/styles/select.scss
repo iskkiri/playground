@@ -1,20 +1,47 @@
 @import '@repo/design-tokens/colors/index.css';
 
 :root {
-  --rs-background: var(--color-white);
-  --rs-border: var(--color-gray-300);
-  --rs-placeholder: var(--color-gray-500);
-  --rs-text: var(--color-gray-500);
-  --rs-active: var(--color-gray-100);
-  --rs-active-text: var(--color-gray-700);
-  --rs-active-border: var(--color-gray-300);
-  --rs-scroll-thumb: var(--color-gray-300);
-  --rs-disabled: var(--color-gray-300);
-  --rs-disabled-text: var(--color-gray-300);
-  --rs-disabled-background: var(--color-white);
+  // 컨트롤
+  --rs-control-background-color: var(--color-white);
+  --rs-control-disabled-background-color: var(--color-gray-100);
+  // 컨트롤 테두리
+  --rs-control-border-color: var(--color-gray-400);
+  --rs-control-active-border-color: var(--color-gray-700);
+  --rs-control-disabled-border-color: var(--color-gray-200);
+  // 컨트롤 텍스트
+  --rs-control-placeholder-color: var(--color-gray-400);
+  --rs-control-text-color: var(--color-gray-700);
+  --rs-control-disabled-text-color: var(--color-gray-300);
+  // 컨트롤 드롭다운 인디케이터
+  --rs-control-dropdown-indicator-color: var(--color-gray-400);
+  --rs-control-dropdown-indicator-disabled-color: var(--color-gray-200);
+  // 메뉴 목록
+  --rs-menu-list-background-color: var(--color-white);
+  --rs-menu-list-scroll-thumb-background-color: var(--color-gray-300);
+  --rs-menu-list-border-color: var(--color-gray-300);
 
-  --rs-multi-value-background: var(--color-gray-100);
-  --rs-control-with-label-label-color: var(--color-gray-400);
+  // 메뉴 옵션 - 기본
+  --rs-menu-option-background-color: var(--color-white);
+  --rs-menu-option-text-color: var(--color-gray-700);
+  // 메뉴 옵션 - 선택 불가
+  --rs-menu-option-disabled-background-color: var(--color-gray-100);
+  --rs-menu-option-disabled-text-color: var(--color-gray-300);
+  // 메뉴 옵션 - 선택
+  --rs-menu-option-selected-background-color: var(--color-primary);
+  --rs-menu-option-selected-text-color: var(--color-white);
+  // 메뉴 옵션 - 포커스
+  --rs-menu-option-focused-background-color: var(--color-primary-hover);
+  --rs-menu-option-focused-text-color: var(--color-white);
+
+  // 다중 선택
+  --rs-multi-value-background-color: var(--color-gray-100);
+  --rs-multi-value-text-color: var(--color-gray-700);
+  // 다중 선택 - 더 보기 카운트
+  --rs-multi-value-more-count-background-color: var(--color-gray-100);
+  --rs-multi-value-more-count-text-color: var(--color-gray-700);
+
+  // 라벨
+  --rs-control-with-label-label-color: var(--color-gray-600);
 }
 
 /* Nesting을 해야 기본 스타일을 overriding 할 수 있으니 nesting을 제거하지 말 것 */
@@ -30,9 +57,9 @@
     // padding-top, padding-bottom을 주게되면 placeholder를 사용할 때 문제가 발생
     // 따라서 위아래 패딩 값은 절대로 주어서는 안되고, 양옆으로만 가능
     padding: 0 20px;
-    background: var(--rs-background);
-    min-height: 45px;
-    border: 1px solid var(--rs-border);
+    background: var(--rs-control-background-color);
+    min-height: 50px;
+    border: 1px solid var(--rs-control-border-color);
     border-radius: 6px;
 
     .react-select__value-container.react-select__value-container--is-multi.react-select__value-container--has-value {
@@ -49,12 +76,12 @@
       line-height: normal;
 
       .react-select__placeholder {
-        color: var(--rs-placeholder);
+        color: var(--rs-control-placeholder-color);
       }
 
       // 텍스트 스타일 설정
       .react-select__single-value {
-        color: var(--rs-active-text);
+        color: var(--rs-control-text-color);
       }
     }
 
@@ -80,17 +107,26 @@
   }
 
   .react-select__control--is-focused {
-    border: 1px solid var(--rs-active-border);
+    border: 1px solid var(--rs-control-active-border-color);
   }
 
   // 메뉴가 열렸을 때, 컨테이너(컨트롤) 스타일
   .react-select__control--menu-is-open {
-    border: 1px solid var(--rs-active-border);
+    border: 1px solid var(--rs-control-active-border-color);
   }
   // 선택 불가일 때, 컨테이너(컨트롤) 스타일
   .react-select__control--is-disabled {
     pointer-events: auto;
     cursor: not-allowed;
+    background: var(--rs-control-disabled-background-color);
+    border: 1px solid var(--rs-control-disabled-border-color);
+
+    .react-select__value-container {
+      .react-select__single-value,
+      .react-select__placeholder {
+        color: var(--rs-control-disabled-text-color);
+      }
+    }
   }
 }
 
@@ -113,9 +149,9 @@
   // 메뉴 리스트(default => position:relative, overflow-y:auto, max-height: 300px)
   .react-select__menu-list {
     padding: 10px;
-    border: 1px solid var(--rs-border);
+    border: 1px solid var(--rs-menu-list-border-color);
     border-radius: 6px;
-    background: var(--rs-background);
+    background: var(--rs-menu-list-background-color);
 
     display: flex;
     flex-direction: column;
@@ -128,7 +164,7 @@
       height: 8px;
     }
     &::-webkit-scrollbar-thumb {
-      background: var(--rs-scroll-thumb);
+      background: var(--rs-menu-list-scroll-thumb-background-color);
       border-radius: 8px;
       background-clip: padding-box;
       border: 2px solid transparent;
@@ -142,8 +178,9 @@
     align-items: center;
     padding: 8px 16px;
     border-radius: 6px;
+    background: var(--rs-menu-option-background-color);
 
-    color: var(--rs-text);
+    color: var(--rs-menu-option-text-color);
     font-size: 14px;
     font-style: normal;
     font-weight: 500;
@@ -151,27 +188,27 @@
   }
 
   // 선택된 리스트 아이템
-  .react-select__option--is-focused.react-select__option--is-selected {
-    background: var(--rs-active);
-    color: var(--rs-active-text);
+  .react-select__option--is-selected.react-select__option--is-focused {
+    background: var(--rs-menu-option-selected-background-color);
+    color: var(--rs-menu-option-selected-text-color);
   }
   // placeholder를 사용하는 경우에는 고려를 해야함
   // placeholder를 사용하고, 디폴트 값이 설정되어 있지 않은 경우에는
   // 첫 번째 아이템이 포커스되어 있는 것이 원치 않는 상황일 수도 있음(이게 디폴트 값 + 설정이 불가능함)
   .react-select__option--is-focused {
-    background: var(--rs-active);
-    color: var(--rs-active-text);
+    background: var(--rs-menu-option-focused-background-color);
+    color: var(--rs-menu-option-focused-text-color);
   }
 
   // 선택불가로 설정된 리스트 아이템
   .react-select__option--is-disabled {
     cursor: not-allowed;
-    color: var(--rs-disabled-text);
-    background: var(--rs-disabled-background);
+    color: var(--rs-menu-option-disabled-text-color);
+    background: var(--rs-menu-option-disabled-background-color);
 
     // hacky code
     &:hover {
-      background: var(--rs-disabled-background);
+      background: var(--rs-menu-option-disabled-background-color);
     }
   }
 }

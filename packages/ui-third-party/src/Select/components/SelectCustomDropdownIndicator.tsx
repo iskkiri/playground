@@ -12,7 +12,11 @@ export default function SelectCustomDropdownIndicator<
   return (
     <components.DropdownIndicator {...props}>
       <FeatherIcons.ChevronDown
-        color={'#A2A9B0'}
+        color={
+          props.isDisabled
+            ? 'var(--rs-control-dropdown-indicator-disabled-color)'
+            : 'var(--rs-control-dropdown-indicator-color)'
+        }
         size={20}
         className={cn(
           'select__dropdown-indicator__icon',
