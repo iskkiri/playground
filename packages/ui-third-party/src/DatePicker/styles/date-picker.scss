@@ -9,19 +9,28 @@
 :root {
   --dp-input-container-border-color: var(--color-gray-300);
   --dp-input-container-background-color: var(--color-white);
-  --dp-input-color: var(--color-gray-700);
+  --dp-input-container-disabled-background-color: var(--color-gray-100);
+  --dp-input-container-disabled-border-color: var(--color-gray-200);
+
   --dp-input-placeholder-color: var(--color-gray-400);
+  --dp-input-text-color: var(--color-gray-700);
+  --dp-input-disabled-text-color: var(--color-gray-300);
   --dp-input-focus-outline-color: var(--color-primary);
+
+  --dp-input-icon-color: var(--color-gray-400);
+  --dp-input-icon-disabled-color: var(--color-gray-300);
+
   --dp-calendar-container-background-color: var(--color-white);
   --dp-day-color: var(--color-black);
   --dp-day-outside-color: var(--color-gray-300);
-  --dp-accent-color: var(--color-primary);
-  --dp-selected-color: var(--color-white);
-  --dp-background-color: var(--color-primary);
-  --dp-disabled-color: var(--color-gray-300);
+
+  --dp-selected-text-color: var(--color-white);
+  --dp-selected-background-color: var(--color-primary);
+  --dp-selected-range-background-color: #dce6fd;
+  --dp-disabled-text-color: var(--color-gray-300);
   --dp-cell-size: 40px;
   --dp-caption-height: 20px;
-  --dp-outline: 2px solid var(--rdp-accent-color);
+  --dp-outline: 2px solid var(--color-primary);
 }
 
 // 기본적으로 연/월을 보여주는 캡션을 숨김
@@ -94,10 +103,18 @@
 /* ********************** Range  **********************  */
 // 시작 날짜 (start)
 .react-datepicker__day--range-start:not(.react-datepicker__day--range-end) {
-  background: linear-gradient(to right, transparent 50%, var(--dp-background-color) 50%);
+  background: linear-gradient(
+    to right,
+    transparent 50%,
+    var(--dp-selected-range-background-color) 50%
+  );
 }
 
 // 종료 날짜 (end)
 .react-datepicker__day--range-end:not(.react-datepicker__day--range-start) {
-  background: linear-gradient(to left, transparent 50%, var(--dp-background-color) 50%);
+  background: linear-gradient(
+    to left,
+    transparent 50%,
+    var(--dp-selected-range-background-color) 50%
+  );
 }

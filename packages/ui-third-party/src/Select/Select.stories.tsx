@@ -50,6 +50,7 @@ const meta = {
     value: null,
     placeholder: 'Select box',
     isClearable: false,
+    isDisabled: false,
   },
 } satisfies Meta<typeof Select>;
 
@@ -64,7 +65,6 @@ export const Basic: Story = {
       <div style={{ width: 240 }}>
         <Select
           {...props}
-          // isDisabled
           options={mockOptions}
           // options의 타입으로부터 SingleValue<SelectOption> 타입이 추론되어야 하는데, 스토리북에서 타입추론이 안되는 이슈가 있음
           // => 실제 사용시에는 타입가드 불필요
@@ -79,6 +79,16 @@ export const Basic: Story = {
           }}
           value={mockOptions.find((option) => option.value === value) ?? null}
         />
+      </div>
+    );
+  },
+};
+
+export const Disabled: Story = {
+  render: function Render(props) {
+    return (
+      <div style={{ width: 240 }}>
+        <Select {...props} isDisabled />
       </div>
     );
   },
