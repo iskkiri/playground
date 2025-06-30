@@ -8,6 +8,10 @@ import { userHandlers } from '@/_features/user/mocks/handlers/userHandlers';
 import useGetUsers from '@/_features/user/hooks/react-query/useGetUsers';
 import useColumnPinningTable from './hooks/column-pinning/useColumnPinningTable';
 import useResizingTable from './hooks/resizing/useResizingTable';
+import usePagination from '@repo/hooks/usePagination';
+import Pagination from '@repo/ui-third-party/Pagination/Pagination';
+import Select from '@repo/ui-third-party/Select/Select';
+import { pageSizeOptions } from '@/_data/pageSizeOptions';
 
 const meta = {
   title: 'examples/Table',
@@ -71,45 +75,43 @@ export const ResizingExample: Story = {
   },
 };
 
-// export const PaginationExample: Story = {
-//   render: function Render(args) {
-//     // 페이지네이션
-//     const { page, pageSize, onChangePage, onChangePageSize } = usePagination();
+export const PaginationExample: Story = {
+  render: function Render(args) {
+    // 페이지네이션
+    const { page, pageSize, onChangePage, onChangePageSize } = usePagination();
 
-//     // 유저 목록 조회
-//     const { data } = useGetUsers({ page, pageSize });
-//     const userList = useMemo(() => data?.data ?? [], [data]);
-//     // 테이블
-//     const { table } = useBasicUserTable({ userList });
-//     const selectedRowIds = table.getSelectedRowModel().rows.map((row) => row.id);
+    // 유저 목록 조회
+    const { data } = useGetUsers({ page, pageSize });
+    const userList = useMemo(() => data?.data ?? [], [data]);
+    // 테이블
+    const { table } = useBasicUserTable({ userList });
+    const selectedRowIds = table.getSelectedRowModel().rows.map((row) => row.id);
 
-//     return (
-//       <div style={{ display: 'flex', flexDirection: 'column', gap: '32px' }}>
-//         <div>
-//           <span>{selectedRowIds.length}개 선택됨</span>
-//         </div>
+    return (
+      <div className="flex flex-col gap-32">
+        <div>
+          <span>{selectedRowIds.length}개 선택됨</span>
+        </div>
 
-//         <AppTable {...args} table={table} />
+        <AppTable {...args} table={table} />
 
-//         <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-//           <div style={{ width: '160px' }} />
+        <div className="flex items-center justify-end gap-16">
+          {data && (
+            <Pagination pageCount={data.meta.totalPages} page={page} onPageChange={onChangePage} />
+          )}
 
-//           {data && (
-//             <Pagination pageCount={data.meta.totalPages} page={page} onPageChange={onChangePage} />
-//           )}
-
-//           <div style={{ width: '160px' }}>
-//             <Select
-//               options={pageSizeOptions}
-//               onChange={(option) => option && onChangePageSize(option.value)}
-//               value={pageSizeOptions.find((option) => option.value === pageSize)}
-//             />
-//           </div>
-//         </div>
-//       </div>
-//     );
-//   },
-// };
+          <div className="w-160">
+            <Select
+              options={pageSizeOptions}
+              onChange={(option) => option && onChangePageSize(option.value)}
+              value={pageSizeOptions.find((option) => option.value === pageSize)}
+            />
+          </div>
+        </div>
+      </div>
+    );
+  },
+};
 
 // export const ManualSelectionExample: Story = {
 //   render: function Render(args) {
