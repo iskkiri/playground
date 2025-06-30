@@ -18,6 +18,8 @@ import Button from '@repo/ui-tailwind/Button/Button';
 import useUserListExcelDownload from './hooks/excel-download/useUserListExcelDownload';
 import useEditUsers from '@/_features/user/hooks/useEditUsers';
 import useEitableUserTable from './hooks/multiple-update/useEditableUserTable';
+import useRowPropsTable from './hooks/set-row-props/useRowPropsTable';
+import useCellPropsTable from './hooks/set-cell-props/useCellPropsTable';
 
 const meta = {
   title: 'examples/Table',
@@ -196,114 +198,28 @@ export const MultipleUpdateExample: Story = {
   },
 };
 
-// export const ComprehensiveExample: Story = {
-//   render: function Render(args) {
-//     // 유저 목록 조회
-//     const { data } = useGetUsers({ page: 1, pageSize: 50 });
-//     const userList = useMemo(() => data?.data ?? [], [data]);
-//     // 유저 삭제
-//     const { onDeleteUser } = useDeleteUser();
-//     // 편집
-//     const { isEditMode, onEditModeOn, control, handleSubmit, onSubmit } = useEditUsers({
-//       userList,
-//     });
+// tr(table row)에 props를 설정하는 예제
+export const RowPropsExample: Story = {
+  render: function Render(args) {
+    const { data } = useGetUsers({ page: 1, pageSize: 50 });
+    const userList = useMemo(() => data?.data ?? [], [data]);
 
-//     // 테이블
-//     const { table } = useUserTable({
-//       userList,
-//       isEditMode,
-//       control,
-//       onDeleteUser,
-//     });
-//     const selectedRowIds = table.getSelectedRowModel().rows.map((row) => +row.id);
-//     const isSelected = useMemo(() => selectedRowIds.length > 0, [selectedRowIds]);
-//     // 유저 다중 삭제
-//     const { onDeleteUsers } = useDeleteUsers({ selectedRowIds });
+    // 테이블
+    const { table } = useRowPropsTable({ userList });
 
-//     return (
-//       <div style={{ display: 'flex', flexDirection: 'column', gap: '32px' }}>
-//         <div
-//           style={{
-//             display: 'flex',
-//             height: '32px',
-//             alignItems: 'center',
-//             justifyContent: 'space-between',
-//           }}
-//         >
-//           <span>{selectedRowIds.length}개 선택됨</span>
+    return <AppTable {...args} table={table} />;
+  },
+};
 
-//           <div style={{ display: 'flex', gap: '8px' }}>
-//             {isSelected && (
-//               <button
-//                 onClick={onDeleteUsers}
-//                 style={{
-//                   border: '1px solid #f00',
-//                   padding: '8px',
-//                   color: 'red',
-//                   fontSize: 14,
-//                 }}
-//               >
-//                 삭제
-//               </button>
-//             )}
+// td(table data cell)에 props를 설정하는 예제
+export const CellPropsExample: Story = {
+  render: function Render(args) {
+    const { data } = useGetUsers({ page: 1, pageSize: 50 });
+    const userList = useMemo(() => data?.data ?? [], [data]);
 
-//             {isEditMode ? (
-//               <button
-//                 onClick={handleSubmit(onSubmit)}
-//                 style={{
-//                   border: '1px solid #3182ce',
-//                   backgroundColor: '#3182ce',
-//                   padding: '8px',
-//                   color: 'white',
-//                   fontSize: '14px',
-//                 }}
-//               >
-//                 편집완료
-//               </button>
-//             ) : (
-//               <button
-//                 onClick={onEditModeOn}
-//                 style={{
-//                   border: '1px solid #3182ce',
-//                   padding: '8px',
-//                   color: '#3182ce',
-//                   fontSize: '14px',
-//                 }}
-//               >
-//                 편집모드
-//               </button>
-//             )}
-//           </div>
-//         </div>
+    // 테이블
+    const { table } = useCellPropsTable({ userList });
 
-//         <AppTable {...args} table={table} />
-//       </div>
-//     );
-//   },
-// };
-
-// // tr(table row)에 props를 설정하는 예제
-// export const RowPropsExample: Story = {
-//   render: function Render(args) {
-//     const { data } = useGetUsers({ page: 1, pageSize: 50 });
-//     const userList = useMemo(() => data?.data ?? [], [data]);
-
-//     // 테이블
-//     const { table } = useRowPropsTable({ userList });
-
-//     return <AppTable {...args} table={table} />;
-//   },
-// };
-
-// // td(table data cell)에 props를 설정하는 예제
-// export const CellPropsExample: Story = {
-//   render: function Render(args) {
-//     const { data } = useGetUsers({ page: 1, pageSize: 50 });
-//     const userList = useMemo(() => data?.data ?? [], [data]);
-
-//     // 테이블
-//     const { table } = useCellPropsTable({ userList });
-
-//     return <AppTable {...args} table={table} />;
-//   },
-// };
+    return <AppTable {...args} table={table} />;
+  },
+};
