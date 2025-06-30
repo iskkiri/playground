@@ -1,5 +1,5 @@
 import { useCallback } from 'react';
-import { CLOSE_TIMEOUT_MS } from '@/_constants';
+import { CLOSE_TIMEOUT_MS } from '@/_shared/constants';
 import { updateScrollbarWidth } from '@repo/utils/scrollbar';
 
 export default function useModalLifeCycle() {
