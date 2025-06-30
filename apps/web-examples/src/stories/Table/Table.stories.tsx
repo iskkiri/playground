@@ -7,6 +7,7 @@ import Providers from '@/_components/Providers';
 import { userHandlers } from '@/_features/user/mocks/handlers/userHandlers';
 import useGetUsers from '@/_features/user/hooks/react-query/useGetUsers';
 import useColumnPinningTable from './hooks/column-pinning/useColumnPinningTable';
+import useResizingTable from './hooks/resizing/useResizingTable';
 
 const meta = {
   title: 'examples/Table',
@@ -59,16 +60,16 @@ export const ColumnPinningExample: Story = {
   },
 };
 
-// export const ResizingExample: Story = {
-//   render: function Render(args) {
-//     const { data } = useGetUsers({ page: 1, pageSize: 50 });
-//     const userList = useMemo(() => data?.data ?? [], [data]);
+export const ResizingExample: Story = {
+  render: function Render(args) {
+    const { data } = useGetUsers({ page: 1, pageSize: 50 });
+    const userList = useMemo(() => data?.data ?? [], [data]);
 
-//     const { table } = useResizingTable({ userList });
+    const { table } = useResizingTable({ userList });
 
-//     return <AppTable {...args} table={table} />;
-//   },
-// };
+    return <AppTable {...args} table={table} />;
+  },
+};
 
 // export const PaginationExample: Story = {
 //   render: function Render(args) {
