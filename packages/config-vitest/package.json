@@ -4,7 +4,7 @@
   "type": "module",
   "private": true,
   "exports": {
-    "./browser": "./browser.ts"
+    "./browser": "./browser.config.ts"
   },
   "scripts": {
     "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json,md}\""
