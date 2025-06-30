@@ -1,7 +1,15 @@
 {
   "$schema": "https://turborepo.com/schema.json",
   "globalDependencies": ["**/.env.*local"],
-  "globalEnv": ["NODE_ENV", "VITEST"],
+  "globalEnv": [
+    "NODE_ENV",
+    "VITEST",
+    "AWS_REGION",
+    "AWS_BUCKET_NAME",
+    "AWS_ACCESS_KEY_ID",
+    "AWS_SECRET_ACCESS_KEY",
+    "CLOUDFRONT_URL"
+  ],
   "ui": "tui",
   "tasks": {
     "build": {
