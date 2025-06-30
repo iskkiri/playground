@@ -14,6 +14,8 @@ import Select from '@repo/ui-third-party/Select/Select';
 import { pageSizeOptions } from '@/_data/pageSizeOptions';
 import useRowSelectionChange from './hooks/useRowSelectionChange';
 import useManualRowSelectionTable from './hooks/manual-row-selection/useManualRowSelectionTable';
+import Button from '@repo/ui-tailwind/Button/Button';
+import useUserListExcelDownload from './hooks/excel-download/useUserListExcelDownload';
 
 const meta = {
   title: 'examples/Table',
@@ -166,31 +168,27 @@ export const ManualSelectionExample: Story = {
   },
 };
 
-// export const DownloadExcelExample: Story = {
-//   render: function Render(args) {
-//     const { data } = useGetUsers({ page: 1, pageSize: 50 });
-//     const userList = useMemo(() => data?.data ?? [], [data]);
+export const DownloadExcelExample: Story = {
+  render: function Render(args) {
+    const { data } = useGetUsers({ page: 1, pageSize: 50 });
+    const userList = useMemo(() => data?.data ?? [], [data]);
 
-//     // 테이블
-//     const { table } = useBasicUserTable({ userList });
-//     // 엑셀 다운로드
-//     const { onDownloadExcel } = useUserListExcelDownload({ table });
+    // 테이블
+    const { table } = useBasicUserTable({ userList });
+    // 엑셀 다운로드
+    const { onDownloadExcel } = useUserListExcelDownload({ table });
 
-//     return (
-//       <Stack gap={32}>
-//         <Button
-//           onClick={onDownloadExcel}
-//           buttonType="primary"
-//           cssStyle={{ width: 'fit-content', marginLeft: 'auto' }}
-//         >
-//           엑셀 다운로드
-//         </Button>
+    return (
+      <div className="flex flex-col gap-32">
+        <Button onClick={onDownloadExcel} variant="primary" className="ml-auto w-fit">
+          엑셀 다운로드
+        </Button>
 
-//         <AppTable {...args} table={table} />
-//       </Stack>
-//     );
-//   },
-// };
+        <AppTable {...args} table={table} />
+      </div>
+    );
+  },
+};
 
 // export const DeleteExample: Story = {
 //   render: function Render(args) {
