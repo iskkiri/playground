@@ -28,7 +28,7 @@
       .react-datepicker__day--range-end
     ) {
     .date-picker__custom-day {
-      background-color: var(--dp-accent-color);
+      background-color: var(--dp-selected-background-color);
       border: var(--dp-outline);
     }
   }
@@ -48,8 +48,8 @@
 /* ********************** 선택된 날짜 **********************  */
 .react-datepicker__day--selected {
   .date-picker__custom-day {
-    color: var(--dp-selected-color);
-    background-color: var(--dp-accent-color);
+    color: var(--dp-selected-text-color);
+    background-color: var(--dp-selected-background-color);
     font-size: 14px;
     font-style: normal;
     font-weight: 600;
@@ -60,7 +60,7 @@
 /* ********************** 선택 불가능한 날짜 **********************  */
 .react-datepicker__day--disabled {
   .date-picker__custom-day {
-    color: var(--dp-disabled-color);
+    color: var(--dp-disabled-text-color);
     cursor: not-allowed;
   }
 }
@@ -70,14 +70,14 @@
 .react-datepicker__day--range-start:not(.react-datepicker__day--range-end) {
   .date-picker__custom-day {
     border-radius: 50%;
-    background-color: var(--dp-accent-color);
-    color: var(--dp-selected-color);
+    background-color: var(--dp-selected-background-color);
+    color: var(--dp-selected-text-color);
   }
 }
 .react-datepicker__day--in-selecting-range.react-datepicker__day--selecting-range-start {
   .date-picker__custom-day {
-    background-color: var(--dp-accent-color);
-    color: var(--dp-selected-color);
+    background-color: var(--dp-selected-background-color);
+    color: var(--dp-selected-text-color);
   }
 }
 
@@ -88,7 +88,7 @@
   ) {
   .date-picker__custom-day {
     border-radius: 0;
-    background-color: var(--dp-background-color);
+    background-color: var(--dp-selected-range-background-color);
     color: var(--dp-day-color);
   }
 }
@@ -97,15 +97,15 @@
 .react-datepicker__day--range-end:not(.react-datepicker__day--range-start) {
   .date-picker__custom-day {
     border-radius: 50%;
-    background-color: var(--dp-accent-color);
-    color: var(--dp-selected-color);
+    background-color: var(--dp-selected-background-color);
+    color: var(--dp-selected-text-color);
   }
 }
 
 // range를 2개의 datepicker로 이용 시 시작 날짜가 먼저 선택되었을 경우, 이를 표시하기 위함
 .react-datepicker__day--selecting-range-start.react-datepicker__day--in-selecting-range.react-datepicker__day--selecting-range-end {
   .date-picker__custom-day {
-    background-color: var(--dp-accent-color);
-    color: var(--dp-selected-color);
+    background-color: var(--dp-selected-background-color);
+    color: var(--dp-selected-text-color);
   }
 }
