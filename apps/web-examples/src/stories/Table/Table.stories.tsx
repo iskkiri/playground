@@ -12,6 +12,8 @@ import usePagination from '@repo/hooks/usePagination';
 import Pagination from '@repo/ui-third-party/Pagination/Pagination';
 import Select from '@repo/ui-third-party/Select/Select';
 import { pageSizeOptions } from '@/_data/pageSizeOptions';
+import useRowSelectionChange from './hooks/useRowSelectionChange';
+import useManualRowSelectionTable from './hooks/manual-row-selection/useManualRowSelectionTable';
 
 const meta = {
   title: 'examples/Table',
@@ -113,56 +115,56 @@ export const PaginationExample: Story = {
   },
 };
 
-// export const ManualSelectionExample: Story = {
-//   render: function Render(args) {
-//     // 페이지네이션
-//     const { page, pageSize, onChangePage, onChangePageSize } = usePagination();
+export const ManualSelectionExample: Story = {
+  render: function Render(args) {
+    // 페이지네이션
+    const { page, pageSize, onChangePage, onChangePageSize } = usePagination();
 
-//     const { data } = useGetUsers({ page, pageSize });
-//     const userList = useMemo(() => data?.data ?? [], [data]);
+    const { data } = useGetUsers({ page, pageSize });
+    const userList = useMemo(() => data?.data ?? [], [data]);
 
-//     const { rowSelection, selectedRows, onRowSelectionChange } = useRowSelectionChange();
+    const { rowSelection, selectedRows, onRowSelectionChange } = useRowSelectionChange();
 
-//     // 테이블
-//     const { table } = useManualRowSelectionTable({
-//       userList,
-//       rowSelection,
-//       // table을 즉시 평가(immediate evaluation)하려고 시도하기 때문에 순환 참조 발생
-//       // => 테이블을 만들기도 전에 테이블을 사용하려고 시도
-//       // onRowSelectionChange: onRowSelectionChange(table),
+    // 테이블
+    const { table } = useManualRowSelectionTable({
+      userList,
+      rowSelection,
+      // table을 즉시 평가(immediate evaluation)하려고 시도하기 때문에 순환 참조 발생
+      // => 테이블을 만들기도 전에 테이블을 사용하려고 시도
+      // onRowSelectionChange: onRowSelectionChange(table),
 
-//       // 함수가 실제로 호출될 때까지 table의 평가를 지연(lazy evaluation)
-//       // => 테이블을 만들어 놓고, 나중에 실제로 필요할 때 그 테이블을 사용하는 상황
-//       onRowSelectionChange: (updater) => onRowSelectionChange({ table, updater }),
-//     });
+      // 함수가 실제로 호출될 때까지 table의 평가를 지연(lazy evaluation)
+      // => 테이블을 만들어 놓고, 나중에 실제로 필요할 때 그 테이블을 사용하는 상황
+      onRowSelectionChange: (updater) => onRowSelectionChange({ table, updater }),
+    });
 
-//     return (
-//       <div style={{ display: 'flex', flexDirection: 'column', gap: '32px' }}>
-//         <div>
-//           <span>{selectedRows.length}개 선택됨</span>
-//         </div>
+    return (
+      <div className="flex flex-col gap-32">
+        <div>
+          <span>{selectedRows.length}개 선택됨</span>
+        </div>
 
-//         <AppTable {...args} table={table} />
+        <AppTable {...args} table={table} />
 
-//         <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-//           <div style={{ width: '160px' }} />
+        <div className="flex items-center justify-end gap-16">
+          <div className="w-160" />
 
-//           {data && (
-//             <Pagination pageCount={data.meta.totalPages} page={page} onPageChange={onChangePage} />
-//           )}
+          {data && (
+            <Pagination pageCount={data.meta.totalPages} page={page} onPageChange={onChangePage} />
+          )}
 
-//           <div style={{ width: '160px' }}>
-//             <Select
-//               options={pageSizeOptions}
-//               onChange={(option) => option && onChangePageSize(option.value)}
-//               value={pageSizeOptions.find((option) => option.value === pageSize)}
-//             />
-//           </div>
-//         </div>
-//       </div>
-//     );
-//   },
-// };
+          <div className="w-160">
+            <Select
+              options={pageSizeOptions}
+              onChange={(option) => option && onChangePageSize(option.value)}
+              value={pageSizeOptions.find((option) => option.value === pageSize)}
+            />
+          </div>
+        </div>
+      </div>
+    );
+  },
+};
 
 // export const DownloadExcelExample: Story = {
 //   render: function Render(args) {
