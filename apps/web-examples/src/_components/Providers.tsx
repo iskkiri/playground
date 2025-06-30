@@ -1,4 +1,5 @@
 'use client';
+import 'jotai-devtools/styles.css';
 
 import { type PropsWithChildren } from 'react';
 import { QueryClientProvider } from '@tanstack/react-query';
