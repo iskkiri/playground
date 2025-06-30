@@ -1,6 +1,6 @@
 import { factory } from '@mswjs/data';
 import { initializeMockUsers, userEntity } from '@/_features/user/mocks/user.db';
-// import { fileEntity } from '@/_features/file/mocks/file.db';
+import { fileEntity } from '@/_features/file/mocks/file.db';
 // import { initializeMockNotice, noticeEntity } from '@/app/(admin)/_features/notice/mocks/notice.db';
 // import {
 //   initializeMockClientPopUp,
@@ -17,8 +17,8 @@ import { initializeMockUsers, userEntity } from '@/_features/user/mocks/user.db'
 
 const db = factory({
   user: userEntity,
+  file: fileEntity,
   // notice: noticeEntity,
-  // file: fileEntity,
   // banner: bannerEntity,
   // adminPopup: adminPopupEntity,
   // clientPopup: clientPopupEntity,
