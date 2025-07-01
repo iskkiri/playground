@@ -12,7 +12,8 @@
     "build-storybook": "storybook build",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json}\"",
     "test": "vitest",
-    "test:e2e": "playwright test"
+    "test:e2e": "playwright test",
+    "seed": "pnpm tsx --env-file=.env.local src/_scripts/seed.ts"
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.839.0",
@@ -54,7 +55,6 @@
     "react-modal": "^3.16.1",
     "react-responsive": "^10.0.1",
     "react-use-hook-modal": "^1.6.1",
-    "sass": "^1.89.2",
     "swiper": "^11.2.10",
     "zod": "^3.25.67"
   },
@@ -62,6 +62,7 @@
     "@eslint/eslintrc": "^3",
     "@faker-js/faker": "^9.8.0",
     "@mswjs/data": "^0.16.2",
+    "@playwright/test": "^1.53.2",
     "@repo/eslint-config": "workspace:*",
     "@repo/prettier-config": "workspace:*",
     "@repo/tailwind-config": "workspace:*",
@@ -81,6 +82,7 @@
     "@types/react-dom": "^19",
     "@types/react-modal": "^3.16.3",
     "@vitejs/plugin-react": "^4.5.2",
+    "dotenv": "^17.0.1",
     "eslint": "^9",
     "eslint-config-next": "15.3.4",
     "eslint-plugin-storybook": "^9.0.14",
@@ -91,8 +93,11 @@
     "msw-storybook-addon": "^2.0.5",
     "prettier": "^3.5.3",
     "prettier-plugin-tailwindcss": "^0.6.13",
+    "react-select-event": "^5.5.1",
+    "sass": "^1.89.2",
     "storybook": "^9.0.14",
     "tailwindcss": "^4",
+    "tsx": "^4.20.3",
     "typescript": "^5",
     "vite-plugin-svgr": "^4.3.0",
     "vite-tsconfig-paths": "^5.1.4",

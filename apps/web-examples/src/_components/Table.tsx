@@ -1,6 +1,6 @@
 import { flexRender, type Table } from '@tanstack/react-table';
 import { cn } from '@repo/utils/cn';
-import useGetColumnPinningStyles from './hooks/useGetColumnPinningStyles';
+import useGetColumnPinningStyles from '../_hooks/useGetColumnPinningStyles';
 import { cva } from 'class-variance-authority';
 import UnsortedIcon from '@/assets/icons/unsorted.svg';
 import AscIcon from '@/assets/icons/asc.svg';

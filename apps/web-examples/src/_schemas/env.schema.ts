@@ -4,11 +4,11 @@ export const envSchema = z.object({
   // Environment
   NODE_ENV: z.enum(['development', 'production', 'test']),
 
-  // API URL
+  // Backend URL
   NEXT_PUBLIC_API_URL: z.string().url(),
 
   // Google Maps API Key
-  NEXT_PUBLIC_GOOGLE_MAPS_API_KEY: z.string(),
+  NEXT_PUBLIC_GOOGLE_MAPS_API_KEY: z.string().min(1),
 
   // S3 Bucket
   AWS_REGION: z.string(),
@@ -18,6 +18,22 @@ export const envSchema = z.object({
 
   // CloudFront URL
   CLOUDFRONT_URL: z.string().url(),
+
+  // Naver Login
+  NEXT_PUBLIC_NAVER_CLIENT_ID: z.string().min(1),
+  // Kakao Login
+  NEXT_PUBLIC_KAKAO_CLIENT_ID: z.string().min(1),
+  // Google Login
+  NEXT_PUBLIC_GOOGLE_CLIENT_ID: z.string().min(1),
+  // Payco Login
+  NEXT_PUBLIC_PAYCO_CLIENT_ID: z.string().min(1),
+
+  // PortOne
+  NEXT_PUBLIC_PORTONE_STORE_ID: z.string().min(1),
+  NEXT_PUBLIC_PORTONE_CHANNEL_KEY: z.string().min(1),
+
+  // MONGO DB
+  MONGODB_URI: z.string().min(1),
 });
 
 export type EnvSchema = z.infer<typeof envSchema>;
@@ -31,7 +47,7 @@ export const appEnv: EnvSchema = {
   // Environment Variables
   NODE_ENV: process.env.NODE_ENV!,
 
-  // API URL
+  // Backend URL
   NEXT_PUBLIC_API_URL: process.env.NEXT_PUBLIC_API_URL!,
 
   // Google Maps API Key
@@ -45,4 +61,23 @@ export const appEnv: EnvSchema = {
 
   // CloudFront URL
   CLOUDFRONT_URL: process.env.CLOUDFRONT_URL!,
+
+  // Naver Login
+  NEXT_PUBLIC_NAVER_CLIENT_ID: process.env.NEXT_PUBLIC_NAVER_CLIENT_ID!,
+
+  // Kakao Login
+  NEXT_PUBLIC_KAKAO_CLIENT_ID: process.env.NEXT_PUBLIC_KAKAO_CLIENT_ID!,
+
+  // Google Login
+  NEXT_PUBLIC_GOOGLE_CLIENT_ID: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID!,
+
+  // Payco Login
+  NEXT_PUBLIC_PAYCO_CLIENT_ID: process.env.NEXT_PUBLIC_PAYCO_CLIENT_ID!,
+
+  // PortOne
+  NEXT_PUBLIC_PORTONE_STORE_ID: process.env.NEXT_PUBLIC_PORTONE_STORE_ID!,
+  NEXT_PUBLIC_PORTONE_CHANNEL_KEY: process.env.NEXT_PUBLIC_PORTONE_CHANNEL_KEY!,
+
+  // MONGO DB
+  MONGODB_URI: process.env.MONGODB_URI!,
 };

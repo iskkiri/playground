@@ -4,8 +4,8 @@
   "private": true,
   "imports": {
     "#src/*": [
-      "./src/*.ts",
-      "./src/*.tsx"
+      "./src/*.tsx",
+      "./src/*.ts"
     ]
   },
   "exports": {

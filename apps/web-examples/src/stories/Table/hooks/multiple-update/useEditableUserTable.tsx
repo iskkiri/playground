@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
 import { createColumnHelper, type ColumnDef } from '@tanstack/react-table';
 import CheckBox from '@repo/ui-tailwind/CheckBox/CheckBox';
-import useTable from '../useTable';
+import useTable from '../../../../_hooks/useTable';
 import { Controller, type UseFormReturn } from 'react-hook-form';
 import type { MockUser } from '@/_features/user/api/dtos/getUser.dto';
 import type { UserUpdateSchema } from '@/_features/user/schema/userUpdate.schema';

@@ -7,6 +7,11 @@ import path from 'path';
 export default mergeConfig(
   vitestBrowserConfig,
   defineConfig({
+    css: {
+      postcss: {
+        plugins: [],
+      },
+    },
     plugins: [
       tsconfigPaths(),
       svgr({
@@ -30,6 +35,9 @@ export default mergeConfig(
         },
       }),
     ],
+    test: {
+      setupFiles: ['./src/__tests__/setup.ts'],
+    },
     resolve: {
       alias: {
         '@/assets': path.resolve(__dirname, './public/assets'),

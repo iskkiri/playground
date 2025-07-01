@@ -36,6 +36,7 @@ export default function Modal({ isOpen, onClose, children, className, ...props }
         style={{ overlay: overlayDimStyle, ...props.style }}
         closeTimeoutMS={CLOSE_TIMEOUT_MS}
         className={cn('modal', className)}
+        ariaHideApp={process.env.NODE_ENV === 'production'}
       >
         {children}
       </ReactModal>
