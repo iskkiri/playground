@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
 import type { Meta, StoryObj } from '@storybook/nextjs';
 import type { Table } from '@tanstack/react-table';
-import AppTable from './Table';
+import AppTable from '@/_components/Table';
 import useBasicUserTable from './hooks/basic/useBasicUserTable';
 import Providers from '@/_components/Providers';
 import { userHandlers } from '@/_features/user/mocks/handlers/userHandlers';
@@ -12,7 +12,7 @@ import usePagination from '@repo/hooks/usePagination';
 import Pagination from '@repo/ui-third-party/Pagination/Pagination';
 import Select from '@repo/ui-third-party/Select/Select';
 import { pageSizeOptions } from '@/_data/pageSizeOptions';
-import useRowSelectionChange from './hooks/useRowSelectionChange';
+import useRowSelectionChange from '../../_hooks/useRowSelectionChange';
 import useManualRowSelectionTable from './hooks/manual-row-selection/useManualRowSelectionTable';
 import Button from '@repo/ui-tailwind/Button/Button';
 import useUserListExcelDownload from './hooks/excel-download/useUserListExcelDownload';

@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 import { createColumnHelper, type ColumnDef } from '@tanstack/react-table';
-import useTable from '../useTable';
+import useTable from '../../../../_hooks/useTable';
 import CheckBox from '@repo/ui-tailwind/CheckBox/CheckBox';
 import FeatherIcons from '@repo/icons/featherIcons';
 import { formatDateTime } from '@repo/utils/formatDate';
