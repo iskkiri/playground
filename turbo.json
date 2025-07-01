@@ -8,7 +8,10 @@
     "AWS_BUCKET_NAME",
     "AWS_ACCESS_KEY_ID",
     "AWS_SECRET_ACCESS_KEY",
-    "CLOUDFRONT_URL"
+    "CLOUDFRONT_URL",
+    "MONGODB_URI",
+    "CI",
+    "PROJECT_PATH"
   ],
   "ui": "tui",
   "tasks": {

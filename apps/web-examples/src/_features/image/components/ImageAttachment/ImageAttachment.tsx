@@ -68,7 +68,7 @@ export default function ImageAttachment({
               className="flex items-center justify-center"
               aria-label="이미지 제거"
             >
-              <FeatherIcons.X size={14} color="var(--primary-hover)" aria-hidden="true" />
+              <FeatherIcons.X size={14} color="var(--color-primary-hover)" aria-hidden="true" />
             </button>
           </div>
         )}
