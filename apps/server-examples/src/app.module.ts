@@ -2,20 +2,20 @@ import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { configModuleOptions } from './common/options/config.options';
 import { LoggerMiddleware } from './common/middlewares/logger.middleware';
+import { JwtModule } from '@nestjs/jwt';
+import { AuthModule } from './auth/auth.module';
+import { OAuthModule } from './oauth/oauth.module';
 // import { FirebaseModule } from './firebase/firebase.module';
 // import { FcmModule } from './firebase/fcm/fcm.module';
-// import { OAuthModule } from './oauth/oauth.module';
-// import { JwtModule } from '@nestjs/jwt';
-import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
     ConfigModule.forRoot(configModuleOptions),
-    // JwtModule.register({ global: true }),
-    // OAuthModule,
+    JwtModule.register({ global: true }),
+    AuthModule,
+    OAuthModule,
     // FirebaseModule,
     // FcmModule,
-    AuthModule,
   ],
   controllers: [],
   providers: [],
