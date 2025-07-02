@@ -6,7 +6,7 @@ import { LoggerMiddleware } from './common/middlewares/logger.middleware';
 // import { FcmModule } from './firebase/fcm/fcm.module';
 // import { OAuthModule } from './oauth/oauth.module';
 // import { JwtModule } from '@nestjs/jwt';
-// import { AuthModule } from './auth/auth.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -15,7 +15,7 @@ import { LoggerMiddleware } from './common/middlewares/logger.middleware';
     // OAuthModule,
     // FirebaseModule,
     // FcmModule,
-    // AuthModule,
+    AuthModule,
   ],
   controllers: [],
   providers: [],
