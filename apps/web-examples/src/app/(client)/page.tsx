@@ -88,6 +88,24 @@ export default function Home() {
               </ul>
             ),
           },
+          {
+            key: 4,
+            label: <div className="typography-h7-24b">Canvas</div>,
+            children: (
+              <ul className="flex flex-col gap-8 px-16 py-8">
+                <li>
+                  <Link href={'/canvas/favicon/text'} className="typography-p1-20b text-gray-500">
+                    Favicon Generator (Text)
+                  </Link>
+                </li>
+                <li>
+                  <Link href={'/canvas/favicon/svg'} className="typography-p1-20b text-gray-500">
+                    Favicon Generator (SVG)
+                  </Link>
+                </li>
+              </ul>
+            ),
+          },
         ]}
       />
     </div>
