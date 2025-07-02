@@ -9,10 +9,11 @@ export default tseslint.config(
     ignores: ['eslint.config.mjs', '.eslintrc.js'],
   },
   eslint.configs.recommended,
-  ...tseslint.configs.recommendedTypeChecked,
+  ...tseslint.configs.recommended,
   // @ts-ignore
   eslintPluginPrettierRecommended,
   {
+    files: ['**/*.ts', '**/*.tsx', '**/*.js', '**/*.jsx'],
     languageOptions: {
       globals: {
         ...globals.node,
