@@ -40,7 +40,7 @@ export async function GET(request: NextRequest) {
 
     return NextResponse.json(result);
   } catch (err) {
-    return HttpException.handler(err);
+    return HttpException.apiHandler(err);
   }
 }
 
@@ -57,7 +57,7 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json(result);
   } catch (err) {
-    return HttpException.handler(err);
+    return HttpException.apiHandler(err);
   }
 }
 
@@ -70,7 +70,7 @@ export async function DELETE(request: NextRequest) {
   const { idList } = await request.json();
 
   if (!idList || idList.length === 0) {
-    return HttpException.handler(new BadRequestException('idList is required'));
+    return HttpException.apiHandler(new BadRequestException('idList is required'));
   }
 
   try {
@@ -78,7 +78,7 @@ export async function DELETE(request: NextRequest) {
 
     return NextResponse.json(result);
   } catch (err) {
-    return HttpException.handler(err);
+    return HttpException.apiHandler(err);
   }
 }
 
@@ -91,7 +91,7 @@ export async function PUT(request: NextRequest) {
   const { idList } = await request.json();
 
   if (!idList || idList.length === 0) {
-    return HttpException.handler(new BadRequestException('idList is required'));
+    return HttpException.apiHandler(new BadRequestException('idList is required'));
   }
 
   try {
@@ -99,6 +99,6 @@ export async function PUT(request: NextRequest) {
 
     return NextResponse.json(result);
   } catch (err) {
-    HttpException.handler(err);
+    HttpException.apiHandler(err);
   }
 }
