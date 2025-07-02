@@ -1,16 +1,13 @@
-// @ts-check
-import eslint from '@eslint/js';
+import { config } from '@repo/eslint-config/base';
 import eslintPluginPrettierRecommended from 'eslint-plugin-prettier/recommended';
 import globals from 'globals';
-import tseslint from 'typescript-eslint';
 
-export default tseslint.config(
+/** @type {import("eslint").Linter.Config} */
+export default [
   {
     ignores: ['eslint.config.mjs', '.eslintrc.js'],
   },
-  eslint.configs.recommended,
-  ...tseslint.configs.recommended,
-  // @ts-ignore
+  ...config,
   eslintPluginPrettierRecommended,
   {
     files: ['**/*.ts', '**/*.tsx', '**/*.js', '**/*.jsx'],
@@ -46,5 +43,5 @@ export default tseslint.config(
       ],
       'prettier/prettier': 'off',
     },
-  }
-);
+  },
+];
