@@ -21,12 +21,19 @@ export const envSchema = z.object({
 
   // Naver Login
   NEXT_PUBLIC_NAVER_CLIENT_ID: z.string().min(1),
+  NAVER_CLIENT_SECRET: z.string().min(1),
+
   // Kakao Login
   NEXT_PUBLIC_KAKAO_CLIENT_ID: z.string().min(1),
+  KAKAO_CLIENT_SECRET: z.string().min(1),
+
   // Google Login
   NEXT_PUBLIC_GOOGLE_CLIENT_ID: z.string().min(1),
+  GOOGLE_CLIENT_SECRET: z.string().min(1),
+
   // Payco Login
   NEXT_PUBLIC_PAYCO_CLIENT_ID: z.string().min(1),
+  PAYCO_CLIENT_SECRET: z.string().min(1),
 
   // PortOne
   PORTONE_SECRET_KEY: z.string().min(1),
@@ -65,15 +72,19 @@ export const appEnv: EnvSchema = {
 
   // Naver Login
   NEXT_PUBLIC_NAVER_CLIENT_ID: process.env.NEXT_PUBLIC_NAVER_CLIENT_ID!,
+  NAVER_CLIENT_SECRET: process.env.NAVER_CLIENT_SECRET!,
 
   // Kakao Login
   NEXT_PUBLIC_KAKAO_CLIENT_ID: process.env.NEXT_PUBLIC_KAKAO_CLIENT_ID!,
+  KAKAO_CLIENT_SECRET: process.env.KAKAO_CLIENT_SECRET!,
 
   // Google Login
   NEXT_PUBLIC_GOOGLE_CLIENT_ID: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID!,
+  GOOGLE_CLIENT_SECRET: process.env.GOOGLE_CLIENT_SECRET!,
 
   // Payco Login
   NEXT_PUBLIC_PAYCO_CLIENT_ID: process.env.NEXT_PUBLIC_PAYCO_CLIENT_ID!,
+  PAYCO_CLIENT_SECRET: process.env.PAYCO_CLIENT_SECRET!,
 
   // PortOne
   PORTONE_SECRET_KEY: process.env.PORTONE_SECRET_KEY!,
