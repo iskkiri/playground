@@ -11,7 +11,8 @@
     "CLOUDFRONT_URL",
     "MONGODB_URI",
     "CI",
-    "PROJECT_PATH"
+    "PROJECT_PATH",
+    "PORTONE_SECRET_KEY"
   ],
   "ui": "tui",
   "tasks": {

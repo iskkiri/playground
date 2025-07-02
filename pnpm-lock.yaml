@@ -296,6 +296,12 @@ importers:
       '@hookform/resolvers':
         specifier: ^5.1.1
         version: 5.1.1(react-hook-form@7.58.1(react@19.1.0))
+      '@portone/browser-sdk':
+        specifier: ^0.0.23
+        version: 0.0.23
+      '@portone/server-sdk':
+        specifier: ^0.15.0
+        version: 0.15.0
       '@repo/design-tokens':
         specifier: workspace:*
         version: link:../../packages/design-tokens
@@ -2926,6 +2932,12 @@ packages:
         optional: true
       webpack-plugin-serve:
         optional: true
+
+  '@portone/browser-sdk@0.0.23':
+    resolution: {integrity: sha512-fgUkPdNjvBArrcuBCtbGGhkHDhrR39WBFmXa3XNWjpYYbIS2ltOpw5R8Eu5SzSR9e/r8GSMmCuOhYr0f2j2Kng==}
+
+  '@portone/server-sdk@0.15.0':
+    resolution: {integrity: sha512-eLRkC/BBoQ6yqi2iSAVwGWL6lYyXXXkYlwXnvTU6cqsWGy+k1jBp8Xmpl1sw7qJwrn4i9QQj/PWMavkgMiLSrg==}
 
   '@redux-devtools/extension@3.3.0':
     resolution: {integrity: sha512-X34S/rC8S/M1BIrkYD1mJ5f8vlH0BDqxXrs96cvxSBo4FhMdbhU+GUGsmNYov1xjSyLMHgo8NYrUG8bNX7525g==}
@@ -10764,6 +10776,10 @@ snapshots:
     optionalDependencies:
       type-fest: 4.41.0
       webpack-hot-middleware: 2.26.1
+
+  '@portone/browser-sdk@0.0.23': {}
+
+  '@portone/server-sdk@0.15.0': {}
 
   '@redux-devtools/extension@3.3.0(redux@5.0.1)':
     dependencies:

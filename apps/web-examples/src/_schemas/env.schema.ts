@@ -29,6 +29,7 @@ export const envSchema = z.object({
   NEXT_PUBLIC_PAYCO_CLIENT_ID: z.string().min(1),
 
   // PortOne
+  PORTONE_SECRET_KEY: z.string().min(1),
   NEXT_PUBLIC_PORTONE_STORE_ID: z.string().min(1),
   NEXT_PUBLIC_PORTONE_CHANNEL_KEY: z.string().min(1),
 
@@ -75,6 +76,7 @@ export const appEnv: EnvSchema = {
   NEXT_PUBLIC_PAYCO_CLIENT_ID: process.env.NEXT_PUBLIC_PAYCO_CLIENT_ID!,
 
   // PortOne
+  PORTONE_SECRET_KEY: process.env.PORTONE_SECRET_KEY!,
   NEXT_PUBLIC_PORTONE_STORE_ID: process.env.NEXT_PUBLIC_PORTONE_STORE_ID!,
   NEXT_PUBLIC_PORTONE_CHANNEL_KEY: process.env.NEXT_PUBLIC_PORTONE_CHANNEL_KEY!,
 
