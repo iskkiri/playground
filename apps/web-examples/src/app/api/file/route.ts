@@ -6,7 +6,7 @@ export async function DELETE(request: NextRequest) {
   const { filenames } = await request.json();
 
   if (!filenames || !Array.isArray(filenames) || filenames.length === 0) {
-    return BadRequestException.handler('삭제할 파일명이 제공되지 않았습니다.');
+    return BadRequestException.apiHandler('삭제할 파일명이 제공되지 않았습니다.');
   }
 
   try {
@@ -14,6 +14,6 @@ export async function DELETE(request: NextRequest) {
 
     return NextResponse.json(result);
   } catch (err) {
-    return HttpException.handler(err);
+    return HttpException.apiHandler(err);
   }
 }

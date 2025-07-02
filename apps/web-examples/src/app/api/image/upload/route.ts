@@ -44,6 +44,6 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json({ imageUrl });
   } catch (err) {
-    return HttpException.handler(err);
+    return HttpException.apiHandler(err);
   }
 }

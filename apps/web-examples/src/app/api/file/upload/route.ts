@@ -20,6 +20,6 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json({ fileUrl });
   } catch (err) {
-    return HttpException.handler(err);
+    return HttpException.apiHandler(err);
   }
 }

@@ -12,7 +12,7 @@ export async function GET(_request: NextRequest, props: { params: Promise<{ id: 
   const { id } = await props.params;
 
   if (!id) {
-    return HttpException.handler(new BadRequestException('id is required'));
+    return HttpException.apiHandler(new BadRequestException('id is required'));
   }
 
   try {
@@ -20,7 +20,7 @@ export async function GET(_request: NextRequest, props: { params: Promise<{ id: 
 
     return NextResponse.json(result);
   } catch (err) {
-    HttpException.handler(err);
+    HttpException.apiHandler(err);
   }
 }
 
@@ -33,7 +33,7 @@ export async function PUT(request: NextRequest, props: { params: Promise<{ id: s
   const { id } = await props.params;
 
   if (!id) {
-    return HttpException.handler(new BadRequestException('id is required'));
+    return HttpException.apiHandler(new BadRequestException('id is required'));
   }
 
   try {
@@ -43,6 +43,6 @@ export async function PUT(request: NextRequest, props: { params: Promise<{ id: s
 
     return NextResponse.json(result);
   } catch (err) {
-    return HttpException.handler(err);
+    return HttpException.apiHandler(err);
   }
 }

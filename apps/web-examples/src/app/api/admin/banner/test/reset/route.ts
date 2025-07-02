@@ -7,6 +7,6 @@ export async function POST() {
     await bannerService.resetForTest();
     return NextResponse.json({ message: '배너 초기화 완료' });
   } catch (err) {
-    return HttpException.handler(err);
+    return HttpException.apiHandler(err);
   }
 }
