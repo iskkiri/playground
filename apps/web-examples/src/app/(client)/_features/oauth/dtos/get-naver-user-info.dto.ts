@@ -31,7 +31,7 @@ export interface NaverUserInfo {
    * 네이버 사용자 성별 (M, F)
    * @example M
    */
-  gender: string;
+  gender: 'M' | 'F' | 'U';
 
   /**
    * 네이버 사용자 이메일

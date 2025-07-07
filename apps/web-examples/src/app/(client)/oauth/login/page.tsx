@@ -1,6 +1,6 @@
 'use client';
 
-import useSocialLogin from '../_features/oauth/hooks/useSocialLogin';
+import useSocialLogin from '../../_features/oauth/hooks/useSocialLogin';
 import NaverLogoIcon from '@/assets/icons/naver-logo.svg';
 import KakaoLogoIcon from '@/assets/icons/kakao-talk-logo.svg';
 import GoogleLogoIcon from '@/assets/icons/google-logo.svg';

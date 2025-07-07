@@ -45,8 +45,13 @@ export default function Home() {
             children: (
               <ul className="flex flex-col gap-8 px-16 py-8">
                 <li>
-                  <Link href={'/login'} className="typography-p1-20b text-gray-500">
-                    Social Login
+                  <Link href={'/auth/sign-in'} className="typography-p1-20b text-gray-500">
+                    Auth.js
+                  </Link>
+                </li>
+                <li>
+                  <Link href={'/oauth/login'} className="typography-p1-20b text-gray-500">
+                    OAuth Login (Authorization Code Flow)
                   </Link>
                 </li>
                 <li>

@@ -19,17 +19,29 @@ export const envSchema = z.object({
   // CloudFront URL
   CLOUDFRONT_URL: z.string().url(),
 
+  // Auth.js
+  AUTH_SECRET: z.string().min(1),
+
   // Naver Login
   NEXT_PUBLIC_NAVER_CLIENT_ID: z.string().min(1),
   NAVER_CLIENT_SECRET: z.string().min(1),
+  // NextAuth Naver Login
+  AUTH_NAVER_ID: z.string().min(1),
+  AUTH_NAVER_SECRET: z.string().min(1),
 
   // Kakao Login
   NEXT_PUBLIC_KAKAO_CLIENT_ID: z.string().min(1),
   KAKAO_CLIENT_SECRET: z.string().min(1),
+  // NextAuth Kakao Login
+  AUTH_KAKAO_ID: z.string().min(1),
+  AUTH_KAKAO_SECRET: z.string().min(1),
 
   // Google Login
   NEXT_PUBLIC_GOOGLE_CLIENT_ID: z.string().min(1),
   GOOGLE_CLIENT_SECRET: z.string().min(1),
+  // NextAuth Google Login
+  AUTH_GOOGLE_ID: z.string().min(1),
+  AUTH_GOOGLE_SECRET: z.string().min(1),
 
   // Payco Login
   NEXT_PUBLIC_PAYCO_CLIENT_ID: z.string().min(1),
@@ -70,17 +82,29 @@ export const appEnv: EnvSchema = {
   // CloudFront URL
   CLOUDFRONT_URL: process.env.CLOUDFRONT_URL!,
 
+  // Auth.js
+  AUTH_SECRET: process.env.AUTH_SECRET!,
+
   // Naver Login
   NEXT_PUBLIC_NAVER_CLIENT_ID: process.env.NEXT_PUBLIC_NAVER_CLIENT_ID!,
   NAVER_CLIENT_SECRET: process.env.NAVER_CLIENT_SECRET!,
+  // NextAuth Naver Login
+  AUTH_NAVER_ID: process.env.AUTH_NAVER_ID!,
+  AUTH_NAVER_SECRET: process.env.AUTH_NAVER_SECRET!,
 
   // Kakao Login
   NEXT_PUBLIC_KAKAO_CLIENT_ID: process.env.NEXT_PUBLIC_KAKAO_CLIENT_ID!,
   KAKAO_CLIENT_SECRET: process.env.KAKAO_CLIENT_SECRET!,
+  // NextAuth Kakao Login
+  AUTH_KAKAO_ID: process.env.AUTH_KAKAO_ID!,
+  AUTH_KAKAO_SECRET: process.env.AUTH_KAKAO_SECRET!,
 
   // Google Login
   NEXT_PUBLIC_GOOGLE_CLIENT_ID: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID!,
   GOOGLE_CLIENT_SECRET: process.env.GOOGLE_CLIENT_SECRET!,
+  // Auth.js Google Login
+  AUTH_GOOGLE_ID: process.env.AUTH_GOOGLE_ID!,
+  AUTH_GOOGLE_SECRET: process.env.AUTH_GOOGLE_SECRET!,
 
   // Payco Login
   NEXT_PUBLIC_PAYCO_CLIENT_ID: process.env.NEXT_PUBLIC_PAYCO_CLIENT_ID!,
