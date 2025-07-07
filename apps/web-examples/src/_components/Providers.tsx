@@ -11,6 +11,7 @@ import GlobalInitialization from './GlobalInitialization';
 import { ModalProvider } from 'react-use-hook-modal';
 import useModalLifeCycle from '@/_hooks/useModalLifeCycle';
 import { NuqsAdapter } from 'nuqs/adapters/next/app';
+import { SessionProvider } from 'next-auth/react';
 
 export default function Providers({ children }: PropsWithChildren) {
   // NOTE: Avoid useState when initializing the query client if you don't
@@ -22,19 +23,21 @@ export default function Providers({ children }: PropsWithChildren) {
   const { onAfterOpen, onAfterClose } = useModalLifeCycle();
 
   return (
-    <QueryClientProvider client={queryClient}>
-      <Provider>
-        <ModalProvider onAfterOpen={onAfterOpen} onAfterClose={onAfterClose} clearTime={300}>
-          <NuqsAdapter>
-            <GlobalInitialization />
+    <SessionProvider>
+      <QueryClientProvider client={queryClient}>
+        <Provider>
+          <ModalProvider onAfterOpen={onAfterOpen} onAfterClose={onAfterClose} clearTime={300}>
+            <NuqsAdapter>
+              <GlobalInitialization />
 
-            {children}
-          </NuqsAdapter>
-        </ModalProvider>
+              {children}
+            </NuqsAdapter>
+          </ModalProvider>
 
-        <JotaiDevTools isInitialOpen={false} position="bottom-left" />
-        <ReactQueryDevtools initialIsOpen={false} position="bottom" />
-      </Provider>
-    </QueryClientProvider>
+          <JotaiDevTools isInitialOpen={false} position="bottom-left" />
+          <ReactQueryDevtools initialIsOpen={false} position="bottom" />
+        </Provider>
+      </QueryClientProvider>
+    </SessionProvider>
   );
 }

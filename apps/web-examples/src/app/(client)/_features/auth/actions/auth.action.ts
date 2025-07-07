@@ -1,5 +1,6 @@
 'use server';
 
+import { signIn } from '@/_lib/auth';
 import { appEnv } from '@/_schemas/env.schema';
 import { IdentityVerificationClient } from '@portone/server-sdk';
 
@@ -25,4 +26,34 @@ export async function verifyIdentityAction(identityVerificationId: string) {
   }
 
   return response.verifiedCustomer;
+}
+
+/**
+ * 네이버 로그인
+ * @description 네이버 로그인을 수행합니다.
+ * @returns 네이버 로그인 결과
+ * @throws 네이버 로그인 실패 시 예외 발생
+ */
+export async function naverLoginAction() {
+  await signIn('naver', { redirectTo: '/' });
+}
+
+/**
+ * 카카오 로그인
+ * @description 카카오 로그인을 수행합니다.
+ * @returns 카카오 로그인 결과
+ * @throws 카카오 로그인 실패 시 예외 발생
+ */
+export async function kakaoLoginAction() {
+  await signIn('kakao', { redirectTo: '/' });
+}
+
+/**
+ * 구글 로그인
+ * @description 구글 로그인을 수행합니다.
+ * @returns 구글 로그인 결과
+ * @throws 구글 로그인 실패 시 예외 발생
+ */
+export async function googleLoginAction() {
+  await signIn('google', { redirectTo: '/' });
 }
