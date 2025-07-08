@@ -1,5 +1,6 @@
 // The `JWT` interface can be found in the `next-auth/jwt` submodule
 import { JWT as _JWT } from 'next-auth/jwt';
+import type { UserResponseDto } from '@/app/(client)/_features/user/dtos/user.dto';
 
 declare module 'next-auth' {
   /**
@@ -8,7 +9,7 @@ declare module 'next-auth' {
    */
   interface User {
     id: string;
-    name: string | undefined;
+    nickname: string | undefined;
     email: string | undefined;
     profileImage: string | undefined;
     gender: string | undefined;
@@ -24,20 +25,14 @@ declare module 'next-auth' {
   /**
    * Returned by `auth`, `useSession`, `getSession` and received as a prop on the `SessionProvider` React Context
    */
-  // interface Session {}
+  interface Session {
+    user: UserResponseDto;
+  }
 }
 
 declare module 'next-auth/jwt' {
   /** Returned by the `jwt` callback and `auth`, when using JWT sessions */
   interface JWT {
-    user: {
-      id: string;
-      socialProvider: string;
-      socialId: string;
-      email: string;
-      gender: string;
-      birthDate: string;
-      createdAt: string;
-    };
+    user: UserResponseDto;
   }
 }
