@@ -1,8 +1,9 @@
+import { appEnv } from '@/_schemas/env.schema';
 import axios from 'axios';
 import queryString from 'query-string';
 
-export const client = axios.create({
-  baseURL: '/api',
+export const nextClient = axios.create({
+  baseURL: `${appEnv.NEXT_PUBLIC_API_URL}/api`,
   paramsSerializer: (params) => {
     return queryString.stringify(params);
   },
