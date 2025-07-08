@@ -1,5 +1,6 @@
-import type { ErrorServerActionResponseDto } from '@/_dtos/server-action.dto';
 import { NextResponse } from 'next/server';
+import type { ErrorServerActionResponseDto } from '@/_dtos/server-action.dto';
+import { Error as MongooseError } from 'mongoose';
 
 export class HttpException extends Error {
   statusCode: number;
@@ -11,6 +12,19 @@ export class HttpException extends Error {
 
   static isHttpException(error: unknown): error is HttpException {
     return error instanceof HttpException;
+  }
+
+  static handler(error: unknown) {
+    if (error instanceof MongooseError.ValidationError) {
+      const firstMessage = Object.values(error.errors)[0].message;
+      throw new BadRequestException(firstMessage);
+    }
+
+    if (HttpException.isHttpException(error)) {
+      return error;
+    }
+
+    return new InternalServerException('서버에 문제가 발생했습니다. 잠시 후 다시 시도해주세요.');
   }
 
   static apiHandler(err: unknown) {

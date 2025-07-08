@@ -15,6 +15,14 @@ export default function useOnErrorAlert() {
           onClose: closeAlertModal,
         });
       }
+
+      if (error instanceof Error) {
+        openAlertModal({
+          title: '안내',
+          content: error.message,
+          onClose: closeAlertModal,
+        });
+      }
     },
     [closeAlertModal, openAlertModal]
   );
