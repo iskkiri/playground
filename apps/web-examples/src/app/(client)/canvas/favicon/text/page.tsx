@@ -1,89 +1,55 @@
 'use client';
 
-import Image from 'next/image';
-import React, { useState, useRef, ChangeEvent } from 'react';
+import React, { useCallback } from 'react';
+import { useForm, type SubmitHandler } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import TextFaviconForm from '@/app/(client)/_features/favicon/components/TextFaviconForm';
+import TextFaviconPreview from '@/app/(client)/_features/favicon/components/TextFaviconPreview';
+import useDownloadFavicon from '@/app/(client)/_features/favicon/hooks/useDownloadFavicon';
+import useGenerateTextFavicon from '@/app/(client)/_features/favicon/hooks/useGenerateTextFavicon';
+import {
+  textFaviconSchema,
+  type TextFaviconSchema,
+} from '@/app/(client)/_features/favicon/schemas/textFavicon.schema';
+import GeneratedFavicons from '@/app/(client)/_features/favicon/components/GeneratedFavicons';
 
-interface FormData {
-  text: string;
-  backgroundColor: string;
-  textColor: string;
-}
-
-interface GeneratedFavicon {
-  size: string;
-  dataUrl: string;
-}
-
-const ClientFaviconGenerator: React.FC = () => {
-  const [formData, setFormData] = useState<FormData>({
-    text: '',
-    backgroundColor: '#ffffff',
-    textColor: '#000000',
+export default function ClientFaviconGenerator() {
+  const { register, watch, handleSubmit, setValue } = useForm<TextFaviconSchema>({
+    resolver: zodResolver(textFaviconSchema),
+    defaultValues: {
+      text: '',
+      backgroundColor: '#ffffff', // 기본 배경색 (흰색)
+      textColor: '#000000', // 기본 텍스트 색상 (검정색)
+    },
   });
-  const [generatedFavicons, setGeneratedFavicons] = useState<GeneratedFavicon[]>([]);
-  const canvasRef = useRef<HTMLCanvasElement>(null);
 
-  const handleInputChange = (e: ChangeEvent<HTMLInputElement>): void => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-  };
+  // 파비콘 생성
+  const { generateTextFavicon, generatedFavicons, setGeneratedFavicons } = useGenerateTextFavicon();
 
-  const generateFavicon = (
-    text: string,
-    backgroundColor: string,
-    textColor: string,
-    size: number
-  ): string => {
-    const canvas = document.createElement('canvas');
-    canvas.width = size;
-    canvas.height = size;
-    const ctx = canvas.getContext('2d');
+  const onSubmit: SubmitHandler<TextFaviconSchema> = useCallback(
+    (data: TextFaviconSchema): void => {
+      // 생성할 파비콘 크기들 정의 (일반적인 파비콘 크기들)
+      const sizes: number[] = [16, 32, 48, 64];
 
-    if (!ctx) {
-      throw new Error('Canvas context를 가져올 수 없습니다.');
-    }
+      // 각 크기별로 파비콘 생성
+      const favicons = sizes.map((size) => ({
+        size,
+        dataUrl: generateTextFavicon({
+          text: data.text,
+          backgroundColor: data.backgroundColor,
+          textColor: data.textColor,
+          size,
+        }),
+      }));
 
-    // 배경색 설정
-    ctx.fillStyle = backgroundColor;
-    ctx.fillRect(0, 0, size, size);
+      // 생성된 파비콘들을 상태에 저장
+      setGeneratedFavicons(favicons);
+    },
+    [generateTextFavicon, setGeneratedFavicons]
+  );
 
-    // 텍스트 설정
-    ctx.fillStyle = textColor;
-    ctx.font = `bold ${Math.floor(size * 0.6)}px Arial`;
-    ctx.textAlign = 'center';
-    ctx.textBaseline = 'middle';
-
-    // 텍스트 그리기 (첫 번째 문자만 사용)
-    const displayText = text.charAt(0).toUpperCase();
-    ctx.fillText(displayText, size / 2, size / 2);
-
-    return canvas.toDataURL('image/png');
-  };
-
-  const handleGenerate = (): void => {
-    if (!formData.text.trim()) {
-      alert('텍스트를 입력해주세요!');
-      return;
-    }
-
-    const sizes: number[] = [16, 32, 48, 64];
-    const favicons: GeneratedFavicon[] = sizes.map((size) => ({
-      size: `${size}x${size}`,
-      dataUrl: generateFavicon(formData.text, formData.backgroundColor, formData.textColor, size),
-    }));
-
-    setGeneratedFavicons(favicons);
-  };
-
-  const downloadFavicon = (dataUrl: string, filename: string): void => {
-    const link = document.createElement('a');
-    link.download = filename;
-    link.href = dataUrl;
-    link.click();
-  };
+  // 파비콘 다운로드
+  const { onDownloadFavicon } = useDownloadFavicon();
 
   return (
     <div className="rounded-8 mx-auto max-w-2xl bg-white p-24 shadow-md">
@@ -92,150 +58,32 @@ const ClientFaviconGenerator: React.FC = () => {
       </h2>
 
       <div className="flex flex-col gap-24">
-        {/* 입력 폼 */}
+        {/* 사용자 입력 폼 섹션 */}
+        <TextFaviconForm
+          register={register}
+          watch={watch}
+          setValue={setValue}
+          onSubmit={handleSubmit(onSubmit)}
+        />
+
+        {/* 미리보기 및 결과 표시 섹션 */}
         <div className="space-y-16">
-          <div>
-            <label className="typography-p4-14r mb-8 block font-medium text-gray-700">
-              텍스트 (첫 글자만 사용됩니다)
-            </label>
-            <input
-              type="text"
-              name="text"
-              value={formData.text}
-              onChange={handleInputChange}
-              className="rounded-8 focus:ring-primary w-full border border-gray-300 px-12 py-8 focus:outline-none focus:ring-2"
-              placeholder="예: A, 홈, 회사"
-              maxLength={10}
-            />
-          </div>
+          {/* 실시간 미리보기 - 사용자가 입력하는 동안 실시간으로 보여주는 미리보기 */}
+          <TextFaviconPreview
+            backgroundColor={watch('backgroundColor')}
+            textColor={watch('textColor')}
+            faviconText={watch('text')}
+          />
 
-          <div>
-            <label className="typography-p4-14r mb-8 block font-medium text-gray-700">배경색</label>
-            <div className="flex items-center space-x-8">
-              <input
-                type="color"
-                name="backgroundColor"
-                value={formData.backgroundColor}
-                onChange={handleInputChange}
-                className="rounded-4 h-40 w-48 cursor-pointer border border-gray-300"
-              />
-              <input
-                type="text"
-                value={formData.backgroundColor}
-                onChange={handleInputChange}
-                name="backgroundColor"
-                className="rounded-8 focus:ring-primary flex-1 border border-gray-300 px-12 py-8 focus:outline-none focus:ring-2"
-                placeholder="#000000"
-              />
-            </div>
-          </div>
-
-          <div>
-            <label className="typography-p4-14r mb-8 block font-medium text-gray-700">
-              텍스트 색상
-            </label>
-            <div className="flex items-center space-x-8">
-              <input
-                type="color"
-                name="textColor"
-                value={formData.textColor}
-                onChange={handleInputChange}
-                className="rounded-4 h-40 w-48 cursor-pointer border border-gray-300"
-              />
-              <input
-                type="text"
-                value={formData.textColor}
-                onChange={handleInputChange}
-                name="textColor"
-                className="rounded-8 focus:ring-primary flex-1 border border-gray-300 px-12 py-8 focus:outline-none focus:ring-2"
-                placeholder="#ffffff"
-              />
-            </div>
-          </div>
-
-          <button
-            onClick={handleGenerate}
-            className="rounded-8 bg-primary hover:bg-primary-dark focus:ring-primary w-full px-16 py-8 text-white focus:outline-none focus:ring-2"
-          >
-            파비콘 생성
-          </button>
-        </div>
-
-        {/* 미리보기 및 결과 */}
-        <div className="space-y-16">
-          {/* 실시간 미리보기 */}
-          <div className="rounded-8 border border-gray-200 p-16">
-            <h3 className="typography-p4-14r mb-8 font-medium text-gray-700">
-              실시간 미리보기 (32x32)
-            </h3>
-            <div className="flex justify-center">
-              <div
-                className="rounded-4 flex h-32 w-32 items-center justify-center border border-gray-300 font-bold text-white"
-                style={{
-                  backgroundColor: formData.backgroundColor,
-                  color: formData.textColor,
-                  fontSize: '20px',
-                }}
-              >
-                {formData.text.charAt(0).toUpperCase()}
-              </div>
-            </div>
-          </div>
-
-          {/* 생성된 파비콘들 */}
+          {/* 생성된 파비콘들 표시 - 생성 버튼을 눌렀을 때만 표시 */}
           {generatedFavicons.length > 0 && (
-            <div className="rounded-8 border-success-200 bg-success-50 border p-16">
-              <h3 className="typography-p4-14r text-success-800 mb-12 font-medium">
-                생성된 파비콘들
-              </h3>
-
-              <div className="mb-16 grid grid-cols-2 gap-12">
-                {generatedFavicons.map((favicon, index) => (
-                  <div key={index} className="text-center">
-                    <Image
-                      src={favicon.dataUrl}
-                      alt={`Favicon ${favicon.size}`}
-                      className="rounded-4 mx-auto mb-4 border border-gray-300"
-                      style={{
-                        width: favicon.size.split('x')[0] + 'px',
-                        height: favicon.size.split('x')[1] + 'px',
-                      }}
-                    />
-                    <p className="typography-p5-12r text-gray-600">{favicon.size}</p>
-                  </div>
-                ))}
-              </div>
-
-              <div className="space-y-8">
-                <p className="typography-p4-14r font-medium text-gray-700">다운로드:</p>
-                {generatedFavicons.map((favicon, index) => (
-                  <div key={index} className="flex items-center justify-between">
-                    <span className="typography-p4-14r text-gray-600">{favicon.size}</span>
-                    <button
-                      onClick={() =>
-                        downloadFavicon(favicon.dataUrl, `favicon-${favicon.size}.png`)
-                      }
-                      className="typography-p4-14r text-primary hover:text-primary-dark underline"
-                    >
-                      다운로드
-                    </button>
-                  </div>
-                ))}
-              </div>
-
-              <div className="rounded-4 border-info-200 bg-info-50 mt-12 border p-8">
-                <p className="typography-p5-12r text-info-800">
-                  💡 이미지를 우클릭하여 &quot;다른 이름으로 저장&quot;을 선택해도 됩니다.
-                </p>
-              </div>
-            </div>
+            <GeneratedFavicons
+              generatedFavicons={generatedFavicons}
+              onDownloadFavicon={onDownloadFavicon}
+            />
           )}
         </div>
       </div>
-
-      <canvas ref={canvasRef} style={{ display: 'none' }} />
     </div>
   );
-};
-
-export default ClientFaviconGenerator;
+}

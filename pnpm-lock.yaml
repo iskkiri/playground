@@ -458,6 +458,9 @@ importers:
       immer:
         specifier: ^10.1.1
         version: 10.1.1
+      isomorphic-dompurify:
+        specifier: ^2.25.0
+        version: 2.25.0
       jotai:
         specifier: ^2.12.5
         version: 2.12.5(@types/react@19.1.0)(react@19.1.0)
