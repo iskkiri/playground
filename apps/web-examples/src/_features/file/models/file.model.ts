@@ -1,7 +1,7 @@
 import { model, models, Schema } from 'mongoose';
-import type { AttachedFile } from '../api/dtos/attachedFile.dto';
+import type { AttachedFile as AttachedFileType } from '../api/dtos/attachedFile.dto';
 
-export const attachedFileSchema = new Schema<AttachedFile>(
+export const attachedFileSchema = new Schema<AttachedFileType>(
   {
     fileName: {
       type: String,
@@ -18,6 +18,7 @@ export const attachedFileSchema = new Schema<AttachedFile>(
   }
 );
 
-const AttachedFile = models.AttachedFile || model<AttachedFile>('AttachedFile', attachedFileSchema);
+const AttachedFile =
+  models.AttachedFile || model<AttachedFileType>('AttachedFile', attachedFileSchema);
 
 export default AttachedFile;

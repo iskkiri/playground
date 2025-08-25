@@ -42,7 +42,7 @@ export default function SvgFaviconGeneratorPage() {
   const { generateSvgFavicon, generatedFavicons, setGeneratedFavicons } = useGenerateSvgFavicon();
 
   const onSubmit: SubmitHandler<SvgFaviconSchema> = useCallback(
-    async ({ svgContent, backgroundColor, iconColor }: SvgFaviconSchema) => {
+    async ({ svgContent, backgroundColor, iconColor }) => {
       try {
         const sizes: number[] = [16, 32, 48, 64];
         const favicons: GeneratedFavicon[] = [];
