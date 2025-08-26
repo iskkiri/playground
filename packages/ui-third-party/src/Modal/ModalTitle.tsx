@@ -1,3 +1,5 @@
+'use client';
+
 import { cn } from '@repo/utils/cn';
 
 export default function ModalTitle({ children, className, ...props }: React.ComponentProps<'h2'>) {

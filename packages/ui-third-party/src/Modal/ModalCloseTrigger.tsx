@@ -1,4 +1,4 @@
-import { cloneElement, isValidElement } from 'react';
+import { cloneElement, isValidElement, useCallback } from 'react';
 import useModalContext from './hooks/useModalContext';
 import { cn } from '@repo/utils/cn';
 
@@ -10,17 +10,23 @@ export default function ModalCloseTrigger({
   children,
   asChild,
   className,
+  onClick,
   ...props
 }: ModalCloseTriggerProps) {
   const { onClose } = useModalContext();
 
+  const handleClick = useCallback(
+    (e: React.MouseEvent<HTMLButtonElement>) => {
+      onClose();
+      onClick?.(e);
+    },
+    [onClose, onClick]
+  );
+
   if (asChild && isValidElement(children)) {
     const buttonProps: React.ComponentProps<'button'> = {
       ...props,
-      onClick: (e: React.MouseEvent<HTMLButtonElement>) => {
-        onClose();
-        props.onClick?.(e);
-      },
+      onClick: handleClick,
     };
 
     return cloneElement(children, buttonProps);
@@ -28,7 +34,7 @@ export default function ModalCloseTrigger({
 
   return (
     <button
-      onClick={onClose}
+      onClick={handleClick}
       type="button"
       className={cn('modal__close-trigger', className)}
       {...props}

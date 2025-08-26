@@ -1,49 +1,32 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { lazy, useCallback } from 'react';
-import { ModalProvider, useModal } from 'react-use-hook-modal';
 import Button from '#src/Button/Button.js';
-
-const ConfirmModalComponent = lazy(() => import('#src/DialogModals/ConfirmModal/ConfirmModal.js'));
+import Modal from '@repo/ui-third-party/Modal/Modal';
+import ConfirmModal from './ConfirmModal';
 
 const meta = {
   title: 'components/DialogModals/ConfirmModal',
   parameters: {
     layout: 'centered',
   },
-  decorators: [
-    (Story) => {
-      return (
-        <ModalProvider>
-          <Story />
-        </ModalProvider>
-      );
-    },
-  ],
-} satisfies Meta;
+} satisfies Meta<typeof ConfirmModal>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const ConfirmModal: Story = {
+export const Basic: Story = {
   render: function Render() {
-    const { open: openConfirmModal, close: closeConfirmModal } = useModal(ConfirmModalComponent);
-
-    const onOpenConfirmModal = useCallback(() => {
-      openConfirmModal({
-        title: '모달 제목입니다.',
-        content:
-          '모달 내용입니다. 모달 내용입니다. 모달 내용입니다. 모달 내용입니다. 모달 내용입니다. 모달 내용입니다. 모달 내용입니다. 모달 내용입니다.',
-        onClose: closeConfirmModal,
-        onConfirm: () => {
-          closeConfirmModal();
-        },
-      });
-    }, [closeConfirmModal, openConfirmModal]);
-
     return (
-      <Button buttonType="primary" onClick={onOpenConfirmModal}>
-        Open Confirm Modal
-      </Button>
+      <Modal>
+        <Modal.Trigger asChild>
+          <Button buttonType="primary">Open Confirm Modal</Button>
+        </Modal.Trigger>
+
+        <ConfirmModal
+          title="모달 제목입니다."
+          content="모달 내용입니다. 모달 내용입니다. 모달 내용입니다. 모달 내용입니다. 모달 내용입니다. 모달 내용입니다. 모달 내용입니다. 모달 내용입니다."
+          onConfirm={() => {}}
+        />
+      </Modal>
     );
   },
 };

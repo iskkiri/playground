@@ -1,11 +1,10 @@
 'use client';
 
 import Modal from '@repo/ui-third-party/Modal/Modal';
-import type { BaseModalProps } from '@repo/ui-third-party/Modal/types/modal.types';
 import { dialogModalCss } from '../styles/DialogModal.styles';
 import Button, { type ButtonType } from '#src/Button/Button.js';
 
-export interface AlertModalProps extends BaseModalProps {
+export interface AlertModalProps {
   title: string;
   content: React.ReactNode;
   closeButtonText?: string;
@@ -14,15 +13,13 @@ export interface AlertModalProps extends BaseModalProps {
 
 export default function AlertModal({
   //
-  isOpen,
   title,
   content,
   closeButtonText = '확인',
   closeButtonType = 'primary',
-  onClose,
 }: AlertModalProps) {
   return (
-    <Modal isOpen={isOpen} onClose={onClose} onRequestClose={onClose}>
+    <Modal.Content>
       <Modal.Header>
         <Modal.Title>{title}</Modal.Title>
       </Modal.Header>
@@ -32,10 +29,12 @@ export default function AlertModal({
       </Modal.Body>
 
       <Modal.Footer>
-        <Button buttonType={closeButtonType} onClick={onClose} cssStyle={{ flex: 1 }}>
-          {closeButtonText}
-        </Button>
+        <Modal.CloseTrigger asChild>
+          <Button buttonType={closeButtonType} cssStyle={{ flex: 1 }}>
+            {closeButtonText}
+          </Button>
+        </Modal.CloseTrigger>
       </Modal.Footer>
-    </Modal>
+    </Modal.Content>
   );
 }

@@ -1,11 +1,12 @@
 'use client';
 
+import { useCallback } from 'react';
 import Modal from '@repo/ui-third-party/Modal/Modal';
-import type { BaseModalProps } from '@repo/ui-third-party/Modal/types/modal.types';
+import useModalContext from '@repo/ui-third-party/Modal/hooks/useModalContext';
 import Button, { type ButtonType } from '#src/Button/Button.js';
 import { dialogModalCss } from '../styles/DialogModal.styles';
 
-export interface ConfirmModalProps extends BaseModalProps {
+export interface ConfirmModalProps {
   title: string;
   content: React.ReactNode;
   closeButtonText?: string;
@@ -16,17 +17,22 @@ export interface ConfirmModalProps extends BaseModalProps {
 
 export default function ConfirmModal({
   //
-  isOpen,
   title,
   content,
   closeButtonText = '닫기',
   confirmButtonText = '확인',
   confirmButtonType = 'primary',
-  onClose,
   onConfirm,
 }: ConfirmModalProps) {
+  const { onClose } = useModalContext();
+
+  const handleConfirm = useCallback(() => {
+    onConfirm();
+    onClose();
+  }, [onConfirm, onClose]);
+
   return (
-    <Modal isOpen={isOpen} onClose={onClose} onRequestClose={onClose}>
+    <Modal.Content>
       <Modal.Header>
         <Modal.Title>{title}</Modal.Title>
       </Modal.Header>
@@ -36,14 +42,16 @@ export default function ConfirmModal({
       </Modal.Body>
 
       <Modal.Footer>
-        <Button buttonType="gray" onClick={onClose} cssStyle={{ flex: 1 }}>
-          {closeButtonText}
-        </Button>
+        <Modal.CloseTrigger asChild>
+          <Button buttonType="gray" cssStyle={{ flex: 1 }}>
+            {closeButtonText}
+          </Button>
+        </Modal.CloseTrigger>
 
-        <Button buttonType={confirmButtonType} onClick={onConfirm} cssStyle={{ flex: 1 }}>
+        <Button buttonType={confirmButtonType} onClick={handleConfirm} cssStyle={{ flex: 1 }}>
           {confirmButtonText}
         </Button>
       </Modal.Footer>
-    </Modal>
+    </Modal.Content>
   );
 }

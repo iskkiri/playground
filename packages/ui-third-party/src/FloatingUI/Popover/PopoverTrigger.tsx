@@ -26,20 +26,21 @@ export default function PopoverTrigger({
       context.getReferenceProps({
         ref,
         ...restProps,
-        ...(children.props as Record<string, unknown>),
-        // 'data-state': context.isOpen ? 'open' : 'closed',
-      })
+        ...(typeof children.props === 'object' ? children.props : {}),
+        'data-state': context.isOpen ? 'open' : 'closed',
+      } as React.HTMLAttributes<HTMLElement>)
     );
   }
 
   return (
-    <div
+    <button
       ref={ref}
+      type="button"
       // The user can style the trigger based on the state
       data-state={context.isOpen ? 'open' : 'closed'}
       {...context.getReferenceProps(restProps)}
     >
       {children}
-    </div>
+    </button>
   );
 }

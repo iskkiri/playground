@@ -13,6 +13,7 @@
       "types": "./src/*.ts",
       "import": "./src/*.tsx"
     },
+    "./Modal/hooks/useModalContext": "./src/Modal/hooks/useModalContext.ts",
     "./_internal/*": null
   },
   "scripts": {

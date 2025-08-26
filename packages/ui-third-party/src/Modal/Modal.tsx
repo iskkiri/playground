@@ -2,48 +2,46 @@
 
 import './styles/modal.scss';
 
-import ReactModal from 'react-modal';
+import { useState, useCallback, useMemo } from 'react';
+import { ModalContext } from './context/ModalContext';
+import ModalTrigger from './ModalTrigger';
+import ModalCloseTrigger from './ModalCloseTrigger';
+import ModalHeader from './ModalHeader';
+import ModalTitle from './ModalTitle';
 import ModalBody from './ModalBody';
 import ModalFooter from './ModalFooter';
-import ModalHeader from './ModalHeader';
-import type { BaseModalProps } from './types/modal.types';
-import ModalTitle from './ModalTitle';
-import ModalCloseTrigger from './ModalCloseTrigger';
-import { ModalContext } from './context/ModalContext';
-import { cn } from '@repo/utils/cn';
+import ModalContent from './ModalContent';
 
-export const CLOSE_TIMEOUT_MS = 150;
-export const overlayStyle: ReactModal.Styles['overlay'] = {
-  backgroundColor: 'transparent',
-  zIndex: 1000,
-};
-
-export const overlayDimStyle: ReactModal.Styles['overlay'] = {
-  backgroundColor: 'rgba(0, 0, 0, 0.2)',
-  zIndex: 1000,
-};
-
-export interface ModalProps extends BaseModalProps, React.ComponentProps<typeof ReactModal> {
+export interface ModalProps {
   children: React.ReactNode;
+  isOpen?: boolean; // Controlled
+  onOpenChange?(open: boolean): void; // Controlled
+  initialOpen?: boolean; // Uncontrolled
 }
 
-export default function Modal({ isOpen, onClose, children, className, ...props }: ModalProps) {
-  return (
-    <ModalContext.Provider value={{ isOpen, onClose, ...props }}>
-      <ReactModal
-        {...props}
-        isOpen={isOpen}
-        style={{ overlay: overlayDimStyle, ...props.style }}
-        closeTimeoutMS={CLOSE_TIMEOUT_MS}
-        className={cn('modal', className)}
-        ariaHideApp={process.env.NODE_ENV === 'production'}
-      >
-        {children}
-      </ReactModal>
-    </ModalContext.Provider>
+export default function Modal({ children, isOpen, onOpenChange, initialOpen = false }: ModalProps) {
+  const [uncontrolledOpen, setUncontrolledOpen] = useState(initialOpen);
+
+  const actualOpen = isOpen ?? uncontrolledOpen;
+  const setIsOpen = onOpenChange ?? setUncontrolledOpen;
+
+  const onClose = useCallback(() => setIsOpen(false), [setIsOpen]);
+  const onOpen = useCallback(() => setIsOpen(true), [setIsOpen]);
+
+  const contextValue = useMemo(
+    () => ({
+      isOpen: actualOpen,
+      onOpen,
+      onClose,
+    }),
+    [actualOpen, onClose, onOpen]
   );
+
+  return <ModalContext.Provider value={contextValue}>{children}</ModalContext.Provider>;
 }
 
+Modal.Trigger = ModalTrigger;
+Modal.Content = ModalContent;
 Modal.Header = ModalHeader;
 Modal.Title = ModalTitle;
 Modal.Body = ModalBody;
