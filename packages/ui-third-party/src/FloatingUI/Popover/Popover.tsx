@@ -57,10 +57,11 @@ export default function Popover({ children, ...options }: PopoverProps) {
     () => ({
       isOpen,
       setIsOpen,
+      dismissOnContentClick: options.dismissOnContentClick,
       ...interactions,
       ...data,
     }),
-    [isOpen, setIsOpen, interactions, data]
+    [isOpen, setIsOpen, options.dismissOnContentClick, interactions, data]
   );
 
   return <PopoverContext.Provider value={values}>{children}</PopoverContext.Provider>;

@@ -12,4 +12,9 @@ export interface PopoverOptions {
    * 스토리북 Controlled 예제 참고
    * */
   isInteractionEnabled?: boolean;
+  /**
+   * PopoverContent 내부의 요소를 클릭했을 때 팝오버를 닫을지 여부를 결정합니다.
+   * 기본값은 false입니다.
+   */
+  dismissOnContentClick?: boolean;
 }
