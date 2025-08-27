@@ -1,10 +1,17 @@
 import { createContext } from 'react';
-import type { ModalProps } from '../Modal';
+import type { ModalDispatchContextType, ModalStateContextType } from '../types/modal.types';
 
-type ModalContextType = {
-  isOpen: boolean;
-  onOpen: () => void;
-  onClose: () => void;
-} & Omit<ModalProps, 'children' | 'isOpen' | 'onOpenChange'>;
+export const ModalStateContext = createContext<ModalStateContextType | null>(null);
 
-export const ModalContext = createContext<ModalContextType | null>(null);
+export const ModalDispatchContext = createContext<ModalDispatchContextType>({
+  onOpen: () => {
+    throw new Error(
+      'ModalProvider is missing or useModal must be called within a ModalProvider. Please ensure that your component is wrapped within <ModalProvider>.'
+    );
+  },
+  onClose: () => {
+    throw new Error(
+      'ModalProvider is missing or useModal must be called within a ModalProvider. Please ensure that your component is wrapped within <ModalProvider>.'
+    );
+  },
+});

@@ -1,6 +1,7 @@
 import { cloneElement, isValidElement, useCallback, useMemo } from 'react';
 import { useMergeRefs } from 'react-merge-refs';
-import useModalContext from './hooks/useModalContext';
+import { useModalDispatchContext, useModalStateContext } from './hooks/useModalContext';
+import { cn } from '@repo/utils/cn';
 
 interface ModalTriggerProps extends React.ComponentProps<'button'> {
   asChild?: boolean;
@@ -11,9 +12,11 @@ export default function ModalTrigger({
   children,
   asChild = false,
   onClick,
+  className,
   ...restProps
 }: ModalTriggerProps) {
-  const context = useModalContext();
+  const { isOpen } = useModalStateContext();
+  const { onOpen } = useModalDispatchContext();
 
   // ref를 가진 ReactElement인지 확인하는 타입 가드 함수
   const hasRef = useCallback((child: unknown): child is { ref: React.Ref<HTMLButtonElement> } => {
@@ -24,10 +27,10 @@ export default function ModalTrigger({
 
   const handleClick = useCallback(
     (e: React.MouseEvent<HTMLButtonElement>) => {
-      context.onOpen();
+      onOpen();
       onClick?.(e);
     },
-    [context, onClick]
+    [onOpen, onClick]
   );
 
   if (asChild && isValidElement(children)) {
@@ -36,7 +39,7 @@ export default function ModalTrigger({
       ...(typeof children.props === 'object' ? children.props : {}),
       onClick: handleClick,
       ref,
-      'data-state': context.isOpen ? 'open' : 'closed',
+      'data-state': isOpen ? 'open' : 'closed',
     } as React.HTMLAttributes<HTMLElement>);
   }
 
@@ -46,7 +49,8 @@ export default function ModalTrigger({
       type="button"
       onClick={handleClick}
       // The user can style the trigger based on the state
-      data-state={context.isOpen ? 'open' : 'closed'}
+      data-state={isOpen ? 'open' : 'closed'}
+      className={cn('modal__trigger', className)}
       {...restProps}
     >
       {children}

@@ -1,5 +1,5 @@
 import { cloneElement, isValidElement, useCallback } from 'react';
-import useModalContext from './hooks/useModalContext';
+import { useModalDispatchContext } from './hooks/useModalContext';
 import { cn } from '@repo/utils/cn';
 
 interface ModalCloseTriggerProps extends React.ComponentProps<'button'> {
@@ -13,7 +13,7 @@ export default function ModalCloseTrigger({
   onClick,
   ...props
 }: ModalCloseTriggerProps) {
-  const { onClose } = useModalContext();
+  const { onClose } = useModalDispatchContext();
 
   const handleClick = useCallback(
     (e: React.MouseEvent<HTMLButtonElement>) => {

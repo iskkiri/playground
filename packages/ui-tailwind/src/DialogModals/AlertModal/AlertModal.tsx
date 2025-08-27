@@ -3,7 +3,7 @@
 import { useCallback } from 'react';
 import Modal from '@repo/ui-third-party/Modal/Modal';
 import Button, { type ButtonProps } from '../../Button/Button';
-import useModalContext from '@repo/ui-third-party/Modal/hooks/useModalContext';
+import { useModalDispatchContext } from '@repo/ui-third-party/Modal/hooks/useModalContext';
 
 export interface AlertModalProps {
   title: string;
@@ -22,7 +22,7 @@ export default function AlertModal({
   onClose,
   className,
 }: AlertModalProps) {
-  const { onClose: closeModal } = useModalContext();
+  const { onClose: closeModal } = useModalDispatchContext();
 
   const handleClose = useCallback(() => {
     onClose?.();

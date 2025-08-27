@@ -2,7 +2,7 @@
 
 import { useCallback } from 'react';
 import Modal from '@repo/ui-third-party/Modal/Modal';
-import useModalContext from '@repo/ui-third-party/Modal/hooks/useModalContext';
+import { useModalDispatchContext } from '@repo/ui-third-party/Modal/hooks/useModalContext';
 import Button, { type ButtonProps } from '../../Button/Button';
 
 export interface ConfirmModalProps {
@@ -25,7 +25,7 @@ export default function ConfirmModal({
   onConfirm,
   className,
 }: ConfirmModalProps) {
-  const { onClose } = useModalContext();
+  const { onClose } = useModalDispatchContext();
 
   const handleConfirm = useCallback(() => {
     onConfirm();

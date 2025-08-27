@@ -3,7 +3,7 @@
 import './styles/modal.scss';
 
 import { useState, useCallback, useMemo } from 'react';
-import { ModalContext } from './context/ModalContext';
+import { ModalDispatchContext, ModalStateContext } from './context/ModalContext';
 import ModalTrigger from './ModalTrigger';
 import ModalCloseTrigger from './ModalCloseTrigger';
 import ModalHeader from './ModalHeader';
@@ -28,16 +28,17 @@ export default function Modal({ children, isOpen, onOpenChange, initialOpen = fa
   const onClose = useCallback(() => setIsOpen(false), [setIsOpen]);
   const onOpen = useCallback(() => setIsOpen(true), [setIsOpen]);
 
-  const contextValue = useMemo(
-    () => ({
-      isOpen: actualOpen,
-      onOpen,
-      onClose,
-    }),
-    [actualOpen, onClose, onOpen]
-  );
+  const stateContextValue = useMemo(() => ({ isOpen: actualOpen }), [actualOpen]);
 
-  return <ModalContext.Provider value={contextValue}>{children}</ModalContext.Provider>;
+  const dispatchContextValue = useMemo(() => ({ onOpen, onClose }), [onClose, onOpen]);
+
+  return (
+    <ModalStateContext.Provider value={stateContextValue}>
+      <ModalDispatchContext.Provider value={dispatchContextValue}>
+        {children}
+      </ModalDispatchContext.Provider>
+    </ModalStateContext.Provider>
+  );
 }
 
 Modal.Trigger = ModalTrigger;

@@ -1,7 +1,7 @@
 import ReactModal from 'react-modal';
-import useModalContext from './hooks/useModalContext';
 import { overlayDimStyle } from './styles/overlay.styles';
 import { cn } from '@repo/utils/cn';
+import { useModalDispatchContext, useModalStateContext } from './hooks/useModalContext';
 
 const CLOSE_TIMEOUT_MS = 150;
 
@@ -10,7 +10,8 @@ interface ModalContentProps extends Omit<React.ComponentProps<typeof ReactModal>
 }
 
 export default function ModalContent({ className, style, ...props }: ModalContentProps) {
-  const { isOpen, onClose } = useModalContext();
+  const { isOpen } = useModalStateContext();
+  const { onClose } = useModalDispatchContext();
 
   return (
     <ReactModal
