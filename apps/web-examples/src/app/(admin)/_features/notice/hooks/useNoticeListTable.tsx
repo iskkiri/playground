@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 import Link from 'next/link';
-import { createColumnHelper } from '@tanstack/react-table';
+import { createColumnHelper, type OnChangeFn, type RowSelectionState } from '@tanstack/react-table';
 import FeatherIcons from '@repo/icons/featherIcons';
 import CheckBox from '@repo/ui-tailwind/CheckBox/CheckBox';
 import { formatDateTime } from '@repo/utils/formatDate';
@@ -9,9 +9,15 @@ import useTable from '@/_hooks/useTable';
 
 interface UseNoticeListTableParams {
   noticeList: NoticeListItemData[];
+  rowSelection: RowSelectionState;
+  onRowSelectionChange: OnChangeFn<RowSelectionState>;
 }
 
-export default function useNoticeListTable({ noticeList }: UseNoticeListTableParams) {
+export default function useNoticeListTable({
+  noticeList,
+  rowSelection,
+  onRowSelectionChange,
+}: UseNoticeListTableParams) {
   const data = useMemo(() => noticeList, [noticeList]);
   const columnHelper = createColumnHelper<NoticeListItemData>();
   const columns = useMemo(
@@ -81,6 +87,10 @@ export default function useNoticeListTable({ noticeList }: UseNoticeListTablePar
         right: ['management'],
       },
     },
+    state: {
+      rowSelection,
+    },
+    onRowSelectionChange,
     meta: {
       setRowProps: (row) => ({
         style: {

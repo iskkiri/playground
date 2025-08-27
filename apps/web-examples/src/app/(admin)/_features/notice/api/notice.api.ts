@@ -35,8 +35,8 @@ export async function updateNoticeApi({ id, ...payload }: UpdateNoticeRequestDto
 }
 
 // 공지사항 삭제
-export async function deleteNoticeApi(idList: number[]) {
-  const { data } = await nextClient.delete<number[]>('/admin/notice', {
+export async function deleteNoticeApi(idList: string[]) {
+  const { data } = await nextClient.delete<string[]>('/admin/notice', {
     data: { idList },
   });
   return data;

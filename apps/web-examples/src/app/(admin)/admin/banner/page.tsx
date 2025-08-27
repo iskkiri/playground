@@ -1,6 +1,6 @@
 'use client';
 
-import { useMemo } from 'react';
+import { useCallback, useMemo } from 'react';
 import RadioTab from '@/_components/RadioTab';
 import TextInput from '@repo/ui-tailwind/TextInput/TextInput';
 import FeatherIcons from '@repo/icons/featherIcons';
@@ -12,15 +12,19 @@ import Link from 'next/link';
 import AppTable from '@/_components/Table';
 import usePaginationQuery from '@/_hooks/usePaginationQuery';
 import { pageSizeOptions } from '@/_data/pageSizeOptions';
-import { useGetBannerList } from '../../_features/banner/hooks/react-query/useBanner';
+import {
+  useDeleteBannersMutation,
+  useGetBannerList,
+} from '../../_features/banner/hooks/react-query/useBanner';
 import useAdminShowFilter from '../../_hooks/useAdminShowFilter';
 import useAdminSearch from '../../_hooks/useAdminSearch';
 import useBannerTable from '../../_features/banner/hooks/useBannerTable';
-import useDeleteBanners from '../../_features/banner/hooks/useDeleteBanners';
 import { Controller } from 'react-hook-form';
 import useRowSelectionChange from '@/_hooks/useRowSelectionChange';
 import type { BannerListItemData } from '../../_features/banner/api/dtos/getBannerList.dto';
 import PaginationWithPageSize from '../../_components/PaginationWithPageSize';
+import Modal from '@repo/ui-third-party/Modal/Modal';
+import ConfirmModal from '@repo/ui-tailwind/DialogModals/ConfirmModal/ConfirmModal';
 
 export default function AdminBannerListPage() {
   // 페이지네이션
@@ -57,10 +61,16 @@ export default function AdminBannerListPage() {
   });
 
   // 배너 삭제
-  const { onDeleteBanners } = useDeleteBanners({
-    selectedRowIdList: selectedRowIdList as string[],
-    resetRowSelection,
-  });
+  const { mutate: deleteBanners } = useDeleteBannersMutation();
+  const onDeleteBanners = useCallback(() => {
+    const ids = selectedRowIdList.map((rowId) => rowId.toString());
+
+    deleteBanners(ids, {
+      onSuccess: () => {
+        resetRowSelection();
+      },
+    });
+  }, [deleteBanners, resetRowSelection, selectedRowIdList]);
 
   return (
     <div className="flex flex-col gap-32 px-20 py-40">
@@ -138,9 +148,21 @@ export default function AdminBannerListPage() {
           </div>
 
           <div className="flex gap-16">
-            <Button variant="danger" onClick={onDeleteBanners} disabled={!isSelected}>
-              선택 삭제
-            </Button>
+            <Modal>
+              <Modal.Trigger asChild>
+                <Button variant="danger" onClick={onDeleteBanners} disabled={!isSelected}>
+                  선택 삭제
+                </Button>
+              </Modal.Trigger>
+
+              <ConfirmModal
+                title="삭제"
+                content="선택된 배너를 삭제하시겠습니까?"
+                confirmButtonText="삭제"
+                confirmButtonType="danger"
+                onConfirm={onDeleteBanners}
+              />
+            </Modal>
 
             <Link href={'/admin/banner/change-order'}>
               <Button variant="linePrimary">노출 및 순서 변경</Button>

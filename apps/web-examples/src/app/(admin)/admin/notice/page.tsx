@@ -1,6 +1,6 @@
 'use client';
 
-import { useMemo } from 'react';
+import { useCallback, useMemo } from 'react';
 import Link from 'next/link';
 import usePaginationQuery from '@/_hooks/usePaginationQuery';
 import useResetSearchFilter from '@/_hooks/useResetSearchFilter';
@@ -9,11 +9,15 @@ import useAdminShowFilter from '../../_hooks/useAdminShowFilter';
 import useAdminSearch from '../../_hooks/useAdminSearch';
 import { useGetNoticeList } from '../../_features/notice/hooks/react-query/useNotice';
 import useNoticeListTable from '../../_features/notice/hooks/useNoticeListTable';
-import useDeleteNotices from '../../_features/notice/hooks/useDeleteNotices';
+import { useDeleteNotices } from '../../_features/notice/hooks/react-query/useNotice';
 import NoticeSearchFilter from '../../_features/notice/components/NoticeSearchFilter';
 import Button from '@repo/ui-tailwind/Button/Button';
 import AppTable from '@/_components/Table';
 import PaginationWithPageSize from '../../_components/PaginationWithPageSize';
+import Modal from '@repo/ui-third-party/Modal/Modal';
+import ConfirmModal from '@repo/ui-tailwind/DialogModals/ConfirmModal/ConfirmModal';
+import type { NoticeListItemData } from '../../_features/notice/api/dtos/getNoticeList.dto';
+import useRowSelectionChange from '@/_hooks/useRowSelectionChange';
 
 export default function NoticeListPage() {
   // 페이지네이션
@@ -38,14 +42,28 @@ export default function NoticeListPage() {
   });
   const noticeList = useMemo(() => noticeListResponse?.content ?? [], [noticeListResponse]);
 
+  // 테이블 행 선택
+  const { rowSelection, isSelected, selectedRowIdList, onRowSelectionChange, resetRowSelection } =
+    useRowSelectionChange<NoticeListItemData>();
+
   // 공지사항 테이블
-  const { table } = useNoticeListTable({ noticeList });
-  // 테이블 행 선택 여부
-  const isSelected = Object.keys(table.getState().rowSelection).length > 0;
-  const selectedRowIdList = table.getSelectedRowModel().rows.map((row) => row.original.id);
+  const { table } = useNoticeListTable({
+    noticeList,
+    rowSelection,
+    onRowSelectionChange: (updater) => onRowSelectionChange({ table, updater }),
+  });
 
   // 공지사항 삭제
-  const { onDeleteNotices } = useDeleteNotices({ selectedRowIdList });
+  const { mutate: deleteNotice } = useDeleteNotices();
+  const onDeleteNotices = useCallback(() => {
+    const ids = selectedRowIdList.map((rowId) => rowId.toString());
+
+    deleteNotice(ids, {
+      onSuccess: () => {
+        resetRowSelection();
+      },
+    });
+  }, [deleteNotice, resetRowSelection, selectedRowIdList]);
 
   return (
     <div className="flex flex-col gap-32 px-20 py-40">
@@ -76,9 +94,21 @@ export default function NoticeListPage() {
           </div>
 
           <div className="flex gap-16">
-            <Button onClick={onDeleteNotices} disabled={!isSelected} variant="danger">
-              선택 삭제
-            </Button>
+            <Modal>
+              <Modal.Trigger asChild>
+                <Button onClick={onDeleteNotices} disabled={!isSelected} variant="danger">
+                  선택 삭제
+                </Button>
+              </Modal.Trigger>
+
+              <ConfirmModal
+                title="삭제"
+                content="선택된 공지사항을 삭제하시겠습니까?"
+                confirmButtonText="삭제"
+                confirmButtonType="danger"
+                onConfirm={onDeleteNotices}
+              />
+            </Modal>
 
             <Link href={'/admin/notice/create'}>
               <Button variant="primary">추가하기</Button>

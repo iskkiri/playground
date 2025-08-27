@@ -8,10 +8,12 @@ import usePaginationQuery from '@/_hooks/usePaginationQuery';
 import useAdminShowFilter from '../../_hooks/useAdminShowFilter';
 import useAdminSearch from '../../_hooks/useAdminSearch';
 import useResetSearchFilter from '@/_hooks/useResetSearchFilter';
-import { useGetPopupList } from '../../_features/popup/hooks/react-query/useAdminPopup';
-import { useMemo } from 'react';
+import {
+  useDeletePopupsMutation,
+  useGetPopupList,
+} from '../../_features/popup/hooks/react-query/useAdminPopup';
+import { useCallback, useMemo } from 'react';
 import usePopupTable from '../../_features/popup/hooks/usePopupTable';
-import useDeletePopups from '../../_features/popup/hooks/useDeletePopups';
 import type { PopupListItemData } from '../../_features/popup/api/dtos/getPopupList.dto';
 import PaginationWithPageSize from '../../_components/PaginationWithPageSize';
 import useRowSelectionChange from '@/_hooks/useRowSelectionChange';
@@ -21,6 +23,8 @@ import TextInput from '@repo/ui-tailwind/TextInput/TextInput';
 import FeatherIcons from '@repo/icons/featherIcons';
 import Button from '@repo/ui-tailwind/Button/Button';
 import AppTable from '@/_components/Table';
+import Modal from '@repo/ui-third-party/Modal/Modal';
+import ConfirmModal from '@repo/ui-tailwind/DialogModals/ConfirmModal/ConfirmModal';
 
 export default function AdminPopupListPage() {
   // 페이지네이션
@@ -58,10 +62,16 @@ export default function AdminPopupListPage() {
   });
 
   // 팝업 삭제
-  const { onDeletePopups } = useDeletePopups({
-    selectedRowIdList: selectedRowIdList as string[],
-    resetRowSelection,
-  });
+  const { mutate: deletePopups } = useDeletePopupsMutation();
+  const onDeletePopups = useCallback(() => {
+    const ids = selectedRowIdList.map((rowId) => rowId.toString());
+
+    deletePopups(ids, {
+      onSuccess: () => {
+        resetRowSelection();
+      },
+    });
+  }, [deletePopups, resetRowSelection, selectedRowIdList]);
 
   return (
     <div className="flex flex-col gap-32 px-20 py-40">
@@ -139,9 +149,21 @@ export default function AdminPopupListPage() {
           </div>
 
           <div className="flex gap-16">
-            <Button variant="danger" onClick={onDeletePopups} disabled={!isSelected}>
-              선택 삭제
-            </Button>
+            <Modal>
+              <Modal.Trigger asChild>
+                <Button variant="danger" onClick={onDeletePopups} disabled={!isSelected}>
+                  선택 삭제
+                </Button>
+              </Modal.Trigger>
+
+              <ConfirmModal
+                title="삭제"
+                content="선택된 팝업을 삭제하시겠습니까?"
+                confirmButtonText="삭제"
+                confirmButtonType="danger"
+                onConfirm={onDeletePopups}
+              />
+            </Modal>
 
             <Link href={'/admin/popup/change-order'}>
               <Button variant="linePrimary">노출 및 순서 변경</Button>
