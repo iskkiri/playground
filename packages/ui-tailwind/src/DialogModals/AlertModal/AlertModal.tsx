@@ -1,24 +1,34 @@
 'use client';
 
+import { useCallback } from 'react';
 import Modal from '@repo/ui-third-party/Modal/Modal';
 import Button, { type ButtonProps } from '../../Button/Button';
+import useModalContext from '@repo/ui-third-party/Modal/hooks/useModalContext';
 
 export interface AlertModalProps {
   title: string;
   content: React.ReactNode;
   closeButtonText?: string;
   closeButtonType?: ButtonProps['variant'];
+  onClose?: () => void;
   className?: string;
 }
 
 export default function AlertModal({
-  //
   title,
   content,
   closeButtonText = '확인',
   closeButtonType = 'primary',
+  onClose,
   className,
 }: AlertModalProps) {
+  const { onClose: closeModal } = useModalContext();
+
+  const handleClose = useCallback(() => {
+    onClose?.();
+    closeModal();
+  }, [onClose, closeModal]);
+
   return (
     <Modal.Content className={className}>
       <Modal.Header>
@@ -30,11 +40,9 @@ export default function AlertModal({
       </Modal.Body>
 
       <Modal.Footer>
-        <Modal.CloseTrigger asChild>
-          <Button variant={closeButtonType} className="flex-1">
-            {closeButtonText}
-          </Button>
-        </Modal.CloseTrigger>
+        <Button onClick={handleClose} variant={closeButtonType} className="flex-1">
+          {closeButtonText}
+        </Button>
       </Modal.Footer>
     </Modal.Content>
   );

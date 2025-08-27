@@ -31,15 +31,8 @@ export default function useSignUp() {
         return;
       }
 
-      try {
-        // 회원가입 성공 시 해당 소셜 공급자로 자동 로그인 처리
-        await signIn(socialProvider, {
-          redirectTo: '/',
-        });
-      } catch (_error) {
-        // 로그인 실패 시 로그인 페이지로 리다이렉트
-        redirectToLoginPage();
-      }
+      // 회원가입 성공 시 해당 소셜 공급자로 자동 로그인 처리
+      await signIn(socialProvider, { redirectTo: '/' });
     },
     onError,
   });
