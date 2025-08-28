@@ -1,12 +1,19 @@
-import { cloneElement, isValidElement } from 'react';
+import { cloneElement, isValidElement, ElementType } from 'react';
 import { FloatingPortal, useMergeRefs } from '@floating-ui/react';
 import useTooltipContext from './hooks/useTooltipContext';
+import { AsProp } from '@repo/types/react';
 
-interface TooltipContentProps extends React.HTMLProps<HTMLDivElement> {
+type TooltipContentProps<T extends ElementType = 'div'> = AsProp<T> & {
   asChild?: boolean;
-}
+};
 
-export default function TooltipContent({ style, asChild = false, children, ...props }: TooltipContentProps) {
+export default function TooltipContent<T extends ElementType = 'div'>({ 
+  style, 
+  asChild = false, 
+  children, 
+  as, 
+  ...props 
+}: TooltipContentProps<T>) {
   const context = useTooltipContext();
   const mergeRefs = useMergeRefs([context.refs.setFloating, props.ref]);
 
@@ -28,9 +35,11 @@ export default function TooltipContent({ style, asChild = false, children, ...pr
     );
   }
 
+  const Component = as || 'div';
+
   return (
     <FloatingPortal>
-      <div
+      <Component
         ref={mergeRefs}
         style={{
           ...context.floatingStyles,
@@ -39,7 +48,7 @@ export default function TooltipContent({ style, asChild = false, children, ...pr
         {...context.getFloatingProps(props)}
       >
         {children}
-      </div>
+      </Component>
     </FloatingPortal>
   );
 }

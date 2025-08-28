@@ -1,18 +1,20 @@
 'use client';
 
-import { cloneElement, isValidElement } from 'react';
+import { cloneElement, isValidElement, ElementType } from 'react';
 import { cn } from '@repo/utils/cn';
+import { AsProp } from '@repo/types/react';
 
-interface ModalBodyProps extends React.ComponentProps<'div'> {
+type ModalBodyProps<T extends ElementType = 'div'> = AsProp<T> & {
   asChild?: boolean;
-}
+};
 
-export default function ModalBody({
+export default function ModalBody<T extends ElementType = 'div'>({
   children,
   className,
   asChild = false,
+  as,
   ...props
-}: ModalBodyProps) {
+}: ModalBodyProps<T>) {
   if (asChild && isValidElement(children)) {
     return cloneElement(children, {
       ...props,
@@ -20,9 +22,11 @@ export default function ModalBody({
     } as React.HTMLAttributes<HTMLElement>);
   }
 
+  const Component = as || 'div';
+
   return (
-    <div className={cn('modal__body', className)} {...props}>
+    <Component className={cn('modal__body', className)} {...props}>
       {children}
-    </div>
+    </Component>
   );
 }

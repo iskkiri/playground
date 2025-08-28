@@ -1,18 +1,20 @@
 'use client';
 
-import { cloneElement, isValidElement } from 'react';
+import { cloneElement, isValidElement, ElementType } from 'react';
 import { cn } from '@repo/utils/cn';
+import { AsProp } from '@repo/types/react';
 
-interface ModalFooterProps extends React.ComponentProps<'div'> {
+type ModalFooterProps<T extends ElementType = 'div'> = AsProp<T> & {
   asChild?: boolean;
-}
+};
 
-export default function ModalFooter({
+export default function ModalFooter<T extends ElementType = 'div'>({
   children,
   className,
   asChild = false,
+  as,
   ...props
-}: ModalFooterProps) {
+}: ModalFooterProps<T>) {
   if (asChild && isValidElement(children)) {
     return cloneElement(children, {
       ...props,
@@ -20,9 +22,11 @@ export default function ModalFooter({
     } as React.HTMLAttributes<HTMLElement>);
   }
 
+  const Component = as || 'div';
+
   return (
-    <div className={cn('modal__footer', className)} {...props}>
+    <Component className={cn('modal__footer', className)} {...props}>
       {children}
-    </div>
+    </Component>
   );
 }

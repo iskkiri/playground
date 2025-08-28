@@ -1,16 +1,18 @@
-import { cloneElement, isValidElement, useCallback, useMemo } from 'react';
+import { cloneElement, isValidElement, useCallback, useMemo, ElementType } from 'react';
 import { useMergeRefs } from '@floating-ui/react';
 import useTooltipContext from './hooks/useTooltipContext';
+import { AsProp } from '@repo/types/react';
 
-interface TooltipTriggerProps extends React.HTMLProps<HTMLElement> {
+type TooltipTriggerProps<T extends ElementType = 'button'> = AsProp<T> & {
   asChild?: boolean;
-}
+};
 
-export default function TooltipTrigger({
+export default function TooltipTrigger<T extends ElementType = 'button'>({
   children,
   asChild = false,
+  as,
   ...props
-}: TooltipTriggerProps) {
+}: TooltipTriggerProps<T>) {
   const context = useTooltipContext();
 
   // ref를 가진 ReactElement인지 확인하는 타입 가드 함수
@@ -33,14 +35,17 @@ export default function TooltipTrigger({
     );
   }
 
+  const Component = as || 'button';
+
   return (
-    <div
+    <Component
       ref={ref}
+      type={Component === 'button' ? 'button' : undefined}
       // The user can style the trigger based on the state
       data-state={context.isOpen ? 'open' : 'closed'}
       {...context.getReferenceProps(props)}
     >
       {children}
-    </div>
+    </Component>
   );
 }

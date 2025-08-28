@@ -1,18 +1,20 @@
-import { cloneElement, isValidElement, useCallback } from 'react';
+import { cloneElement, isValidElement, useCallback, ElementType } from 'react';
 import { useModalDispatchContext } from './hooks/useModalContext';
 import { cn } from '@repo/utils/cn';
+import { AsProp } from '@repo/types/react';
 
-interface ModalCloseTriggerProps extends React.ComponentProps<'button'> {
+type ModalCloseTriggerProps<T extends ElementType = 'button'> = AsProp<T> & {
   asChild?: boolean;
-}
+};
 
-export default function ModalCloseTrigger({
+export default function ModalCloseTrigger<T extends ElementType = 'button'>({
   children,
   asChild,
   className,
   onClick,
+  as,
   ...props
-}: ModalCloseTriggerProps) {
+}: ModalCloseTriggerProps<T>) {
   const { onClose } = useModalDispatchContext();
 
   const handleClick = useCallback(
@@ -24,22 +26,23 @@ export default function ModalCloseTrigger({
   );
 
   if (asChild && isValidElement(children)) {
-    const buttonProps: React.ComponentProps<'button'> = {
+    return cloneElement(children, {
       ...props,
+      ...(typeof children.props === 'object' ? children.props : {}),
       onClick: handleClick,
-    };
-
-    return cloneElement(children, buttonProps);
+    } as React.HTMLAttributes<HTMLElement>);
   }
 
+  const Component = as || 'button';
+
   return (
-    <button
+    <Component
       onClick={handleClick}
-      type="button"
+      type={Component === 'button' ? 'button' : undefined}
       className={cn('modal__close-trigger', className)}
       {...props}
     >
       {children}
-    </button>
+    </Component>
   );
 }

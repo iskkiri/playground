@@ -1,16 +1,18 @@
-import { useCallback, isValidElement, cloneElement, useMemo } from 'react';
+import { useCallback, isValidElement, cloneElement, useMemo, ElementType } from 'react';
 import { useMergeRefs } from '@floating-ui/react';
 import usePopoverContext from './hooks/usePopoverContext';
+import { AsProp } from '@repo/types/react';
 
-interface PopoverTriggerProps extends React.HTMLProps<HTMLElement> {
+type PopoverTriggerProps<T extends ElementType = 'button'> = AsProp<T> & {
   asChild?: boolean;
-}
+};
 
-export default function PopoverTrigger({
+export default function PopoverTrigger<T extends ElementType = 'button'>({
   children,
   asChild = false,
+  as,
   ...props
-}: PopoverTriggerProps) {
+}: PopoverTriggerProps<T>) {
   const context = usePopoverContext();
 
   // ref를 가진 ReactElement인지 확인하는 타입 가드 함수
@@ -32,15 +34,17 @@ export default function PopoverTrigger({
     );
   }
 
+  const Component = as || 'button';
+
   return (
-    <button
+    <Component
       ref={ref}
-      type="button"
+      type={Component === 'button' ? 'button' : undefined}
       // The user can style the trigger based on the state
       data-state={context.isOpen ? 'open' : 'closed'}
       {...context.getReferenceProps(props)}
     >
       {children}
-    </button>
+    </Component>
   );
 }

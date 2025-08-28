@@ -1,18 +1,20 @@
-import { cloneElement, isValidElement } from 'react';
+import { cloneElement, isValidElement, ElementType } from 'react';
 import usePopoverContext from './hooks/usePopoverContext';
 import { FloatingFocusManager, FloatingPortal, useMergeRefs } from '@floating-ui/react';
+import { AsProp } from '@repo/types/react';
 
-interface PopoverContentProps extends React.HTMLProps<HTMLDivElement> {
+type PopoverContentProps<T extends ElementType = 'div'> = AsProp<T> & {
   asChild?: boolean;
-}
+};
 
-export default function PopoverContent({
+export default function PopoverContent<T extends ElementType = 'div'>({
   style,
   onClick,
   asChild = false,
   children,
+  as,
   ...props
-}: PopoverContentProps) {
+}: PopoverContentProps<T>) {
   const { context: floatingContext, ...context } = usePopoverContext();
   const ref = useMergeRefs([context.refs.setFloating, props.ref]);
 
@@ -43,16 +45,18 @@ export default function PopoverContent({
     );
   }
 
+  const Component = as || 'div';
+
   return (
     <FloatingPortal>
       <FloatingFocusManager context={floatingContext}>
-        <div
+        <Component
           ref={ref}
           style={{ ...context.floatingStyles, ...style }}
           {...context.getFloatingProps({ ...props, onClick: handleClick })}
         >
           {children}
-        </div>
+        </Component>
       </FloatingFocusManager>
     </FloatingPortal>
   );

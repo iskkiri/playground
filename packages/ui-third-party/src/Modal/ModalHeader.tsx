@@ -1,18 +1,20 @@
 'use client';
 
-import { cloneElement, isValidElement } from 'react';
+import { cloneElement, isValidElement, ElementType } from 'react';
 import { cn } from '@repo/utils/cn';
+import { AsProp } from '@repo/types/react';
 
-interface ModalHeaderProps extends React.ComponentProps<'div'> {
+type ModalHeaderProps<T extends ElementType = 'div'> = AsProp<T> & {
   asChild?: boolean;
-}
+};
 
-export default function ModalHeader({
+export default function ModalHeader<T extends ElementType = 'div'>({
   children,
   className,
   asChild = false,
+  as,
   ...props
-}: ModalHeaderProps) {
+}: ModalHeaderProps<T>) {
   if (asChild && isValidElement(children)) {
     return cloneElement(children, {
       ...props,
@@ -20,9 +22,11 @@ export default function ModalHeader({
     } as React.HTMLAttributes<HTMLElement>);
   }
 
+  const Component = as || 'div';
+
   return (
-    <div className={cn('modal__header', className)} {...props}>
+    <Component className={cn('modal__header', className)} {...props}>
       {children}
-    </div>
+    </Component>
   );
 }

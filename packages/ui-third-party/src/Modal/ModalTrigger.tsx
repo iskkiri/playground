@@ -1,20 +1,22 @@
-import { cloneElement, isValidElement, useCallback, useMemo } from 'react';
+import { cloneElement, isValidElement, useCallback, useMemo, ElementType } from 'react';
 import { useMergeRefs } from 'react-merge-refs';
 import { useModalDispatchContext, useModalStateContext } from './hooks/useModalContext';
 import { cn } from '@repo/utils/cn';
+import { AsProp } from '@repo/types/react';
 
-interface ModalTriggerProps extends React.ComponentProps<'button'> {
+type ModalTriggerProps<T extends ElementType = 'button'> = AsProp<T> & {
   asChild?: boolean;
   children: React.ReactNode;
-}
+};
 
-export default function ModalTrigger({
+export default function ModalTrigger<T extends ElementType = 'button'>({
   children,
   asChild = false,
   onClick,
   className,
+  as,
   ...restProps
-}: ModalTriggerProps) {
+}: ModalTriggerProps<T>) {
   const { isOpen } = useModalStateContext();
   const { onOpen } = useModalDispatchContext();
 
@@ -43,17 +45,17 @@ export default function ModalTrigger({
     } as React.HTMLAttributes<HTMLElement>);
   }
 
+  const Component = as || 'button';
+
   return (
-    <button
-      ref={ref}
-      type="button"
+    <Component
       onClick={handleClick}
-      // The user can style the trigger based on the state
+      type={Component === 'button' ? 'button' : undefined}
       data-state={isOpen ? 'open' : 'closed'}
       className={cn('modal__trigger', className)}
       {...restProps}
     >
       {children}
-    </button>
+    </Component>
   );
 }
