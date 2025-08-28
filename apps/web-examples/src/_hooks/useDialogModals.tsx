@@ -18,7 +18,7 @@ export function useAlertModal() {
   const { open: openAlertModal, close: closeAlertModal } = useModal<
     AlertModalProps & BaseModalProps
   >(({ isOpen, ...props }) => (
-    <Modal isOpen={isOpen}>
+    <Modal isOpen={isOpen} onOpenChange={() => closeAlertModal()}>
       <AlertModal {...props} />
     </Modal>
   ));
@@ -30,7 +30,7 @@ export function useConfirmModal() {
   const { open: openConfirmModal, close: closeConfirmModal } = useModal<
     ConfirmModalProps & BaseModalProps
   >(({ isOpen, ...props }) => (
-    <Modal isOpen={isOpen}>
+    <Modal isOpen={isOpen} onOpenChange={() => closeConfirmModal()}>
       <ConfirmModal {...props} />
     </Modal>
   ));

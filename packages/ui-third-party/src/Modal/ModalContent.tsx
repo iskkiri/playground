@@ -7,9 +7,15 @@ const CLOSE_TIMEOUT_MS = 150;
 
 interface ModalContentProps extends Omit<React.ComponentProps<typeof ReactModal>, 'isOpen'> {
   children: React.ReactNode;
+  isCentered?: boolean;
 }
 
-export default function ModalContent({ className, style, ...props }: ModalContentProps) {
+export default function ModalContent({
+  className,
+  style,
+  isCentered = true,
+  ...props
+}: ModalContentProps) {
   const { isOpen } = useModalStateContext();
   const { onClose } = useModalDispatchContext();
 
@@ -19,7 +25,7 @@ export default function ModalContent({ className, style, ...props }: ModalConten
       onRequestClose={onClose}
       style={{ overlay: overlayDimStyle, ...style }}
       closeTimeoutMS={CLOSE_TIMEOUT_MS}
-      className={cn('modal', className)}
+      className={cn(isCentered && 'center-modal', className)}
       ariaHideApp={process.env.NODE_ENV === 'production'}
       {...props}
     />
