@@ -29,7 +29,6 @@ export default function Modal({ children, isOpen, onOpenChange, initialOpen = fa
   const onOpen = useCallback(() => setIsOpen(true), [setIsOpen]);
 
   const stateContextValue = useMemo(() => ({ isOpen: actualOpen }), [actualOpen]);
-
   const dispatchContextValue = useMemo(() => ({ onOpen, onClose }), [onClose, onOpen]);
 
   return (

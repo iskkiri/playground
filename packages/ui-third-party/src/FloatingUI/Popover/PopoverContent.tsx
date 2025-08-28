@@ -1,11 +1,18 @@
+import { cloneElement, isValidElement } from 'react';
 import usePopoverContext from './hooks/usePopoverContext';
 import { FloatingFocusManager, FloatingPortal, useMergeRefs } from '@floating-ui/react';
+
+interface PopoverContentProps extends React.HTMLProps<HTMLDivElement> {
+  asChild?: boolean;
+}
 
 export default function PopoverContent({
   style,
   onClick,
+  asChild = false,
+  children,
   ...props
-}: React.HTMLProps<HTMLDivElement>) {
+}: PopoverContentProps) {
   const { context: floatingContext, ...context } = usePopoverContext();
   const ref = useMergeRefs([context.refs.setFloating, props.ref]);
 
@@ -21,6 +28,21 @@ export default function PopoverContent({
 
   if (!context.isOpen) return null;
 
+  if (asChild && isValidElement(children)) {
+    return (
+      <FloatingPortal>
+        <FloatingFocusManager context={floatingContext}>
+          {cloneElement(children, {
+            ref,
+            style: { ...context.floatingStyles, ...style },
+            ...context.getFloatingProps({ ...props, onClick: handleClick }),
+            ...(typeof children.props === 'object' ? children.props : {}),
+          } as React.HTMLAttributes<HTMLElement>)}
+        </FloatingFocusManager>
+      </FloatingPortal>
+    );
+  }
+
   return (
     <FloatingPortal>
       <FloatingFocusManager context={floatingContext}>
@@ -29,7 +51,7 @@ export default function PopoverContent({
           style={{ ...context.floatingStyles, ...style }}
           {...context.getFloatingProps({ ...props, onClick: handleClick })}
         >
-          {props.children}
+          {children}
         </div>
       </FloatingFocusManager>
     </FloatingPortal>

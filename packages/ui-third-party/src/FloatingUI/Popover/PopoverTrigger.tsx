@@ -9,7 +9,7 @@ interface PopoverTriggerProps extends React.HTMLProps<HTMLElement> {
 export default function PopoverTrigger({
   children,
   asChild = false,
-  ...restProps
+  ...props
 }: PopoverTriggerProps) {
   const context = usePopoverContext();
 
@@ -18,14 +18,14 @@ export default function PopoverTrigger({
     return child !== null && typeof child === 'object' && 'ref' in child;
   }, []);
   const childrenRef = useMemo(() => (hasRef(children) ? children.ref : null), [children, hasRef]);
-  const ref = useMergeRefs([context.refs.setReference, restProps.ref, childrenRef]);
+  const ref = useMergeRefs([context.refs.setReference, props.ref, childrenRef]);
 
   if (asChild && isValidElement(children)) {
     return cloneElement(
       children,
       context.getReferenceProps({
         ref,
-        ...restProps,
+        ...props,
         ...(typeof children.props === 'object' ? children.props : {}),
         'data-state': context.isOpen ? 'open' : 'closed',
       } as React.HTMLAttributes<HTMLElement>)
@@ -38,7 +38,7 @@ export default function PopoverTrigger({
       type="button"
       // The user can style the trigger based on the state
       data-state={context.isOpen ? 'open' : 'closed'}
-      {...context.getReferenceProps(restProps)}
+      {...context.getReferenceProps(props)}
     >
       {children}
     </button>

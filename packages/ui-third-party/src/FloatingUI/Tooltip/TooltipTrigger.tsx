@@ -9,7 +9,7 @@ interface TooltipTriggerProps extends React.HTMLProps<HTMLElement> {
 export default function TooltipTrigger({
   children,
   asChild = false,
-  ...restProps
+  ...props
 }: TooltipTriggerProps) {
   const context = useTooltipContext();
 
@@ -18,7 +18,7 @@ export default function TooltipTrigger({
     return child !== null && typeof child === 'object' && 'ref' in child;
   }, []);
   const childrenRef = useMemo(() => (hasRef(children) ? children.ref : null), [children, hasRef]);
-  const ref = useMergeRefs([context.refs.setReference, restProps.ref, childrenRef]);
+  const ref = useMergeRefs([context.refs.setReference, props.ref, childrenRef]);
 
   // `asChild` allows the user to pass any element as the anchor
   if (asChild && isValidElement(children)) {
@@ -26,7 +26,7 @@ export default function TooltipTrigger({
       children,
       context.getReferenceProps({
         ref,
-        ...restProps,
+        ...props,
         ...(children.props as Record<string, unknown>),
         // 'data-state': context.isOpen ? 'open' : 'closed',
       })
@@ -38,7 +38,7 @@ export default function TooltipTrigger({
       ref={ref}
       // The user can style the trigger based on the state
       data-state={context.isOpen ? 'open' : 'closed'}
-      {...context.getReferenceProps(restProps)}
+      {...context.getReferenceProps(props)}
     >
       {children}
     </div>
