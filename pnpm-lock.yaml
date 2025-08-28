@@ -810,6 +810,37 @@ importers:
         specifier: 5.8.2
         version: 5.8.2
 
+  packages/types:
+    dependencies:
+      react:
+        specifier: ^19.1.0
+        version: 19.1.0
+    devDependencies:
+      '@repo/eslint-config':
+        specifier: workspace:*
+        version: link:../config-eslint
+      '@repo/prettier-config':
+        specifier: workspace:*
+        version: link:../config-prettier
+      '@repo/typescript-config':
+        specifier: workspace:*
+        version: link:../config-typescript
+      '@types/node':
+        specifier: ^22.15.3
+        version: 22.15.3
+      '@types/react':
+        specifier: 19.1.0
+        version: 19.1.0
+      eslint:
+        specifier: ^9.29.0
+        version: 9.29.0(jiti@2.4.2)
+      prettier:
+        specifier: ^3.5.3
+        version: 3.5.3
+      typescript:
+        specifier: 5.8.2
+        version: 5.8.2
+
   packages/ui-emotion:
     dependencies:
       '@emotion/react':
@@ -1115,6 +1146,9 @@ importers:
       '@repo/icons':
         specifier: workspace:*
         version: link:../icons
+      '@repo/types':
+        specifier: workspace:*
+        version: link:../types
       '@repo/utils':
         specifier: workspace:*
         version: link:../utils
