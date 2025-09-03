@@ -6,12 +6,12 @@ export const ModalStateContext = createContext<ModalStateContextType | null>(nul
 export const ModalDispatchContext = createContext<ModalDispatchContextType>({
   onOpen: () => {
     throw new Error(
-      'ModalProvider is missing or useModal must be called within a ModalProvider. Please ensure that your component is wrapped within <ModalProvider>.'
+      'ModalDispatchProvider is missing or useModal must be called within a ModalProvider. Please ensure that your component is wrapped within <ModalProvider>.'
     );
   },
   onClose: () => {
     throw new Error(
-      'ModalProvider is missing or useModal must be called within a ModalProvider. Please ensure that your component is wrapped within <ModalProvider>.'
+      'ModalDispatchProvider is missing or useModal must be called within a ModalProvider. Please ensure that your component is wrapped within <ModalProvider>.'
     );
   },
 });
