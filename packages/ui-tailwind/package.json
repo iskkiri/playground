@@ -30,6 +30,7 @@
     "@repo/ui-third-party": "workspace:*",
     "@repo/utils": "workspace:*",
     "class-variance-authority": "^0.7.1",
+    "radix-ui": "^1.4.3",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-merge-refs": "^3.0.2",

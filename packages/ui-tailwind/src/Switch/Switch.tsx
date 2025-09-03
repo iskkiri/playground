@@ -1,33 +1,28 @@
 'use client';
 
+import * as React from 'react';
+import { Switch as SwitchPrimitive } from 'radix-ui';
 import { cn } from '@repo/utils/cn';
-import { cva } from 'class-variance-authority';
 
-type SwitchProps = React.ComponentProps<'input'>;
-
-const switchVariants = cva(
-  cn(
-    'relative block h-20 w-36 rounded-full bg-gray-200 align-middle transition-colors duration-300',
-    'after:absolute after:block after:h-16 after:w-16 after:rounded-full after:bg-white after:shadow-md after:transition-transform after:duration-300 after:content-[""]',
-    'after:translate-x-[calc((20px-16px)/2)] after:translate-y-[calc((20px-16px)/2)]'
-  ),
-  {
-    variants: {
-      checked: {
-        true: 'bg-primary after:translate-x-[calc(100%+2px)]',
-      },
-    },
-    defaultVariants: {
-      checked: false,
-    },
-  }
-);
-
-export default function Switch(props: SwitchProps) {
+export default function Switch({
+  className,
+  ...props
+}: React.ComponentProps<typeof SwitchPrimitive.Root>) {
   return (
-    <label className="block cursor-pointer">
-      <input type="checkbox" className="sr-only" {...props} />
-      <div className={cn(switchVariants({ checked: props.checked }))} />
-    </label>
+    <SwitchPrimitive.Root
+      data-slot="switch"
+      className={cn(
+        'data-[state=checked]:bg-primary data-[state=unchecked]:bg-input focus-visible:border-ring focus-visible:ring-ring/50 shadow-xs h-18 peer inline-flex w-32 shrink-0 items-center rounded-full border border-transparent outline-none transition-all focus-visible:ring-[3px] disabled:cursor-not-allowed disabled:opacity-50 dark:data-[state=unchecked]:bg-gray-300',
+        className
+      )}
+      {...props}
+    >
+      <SwitchPrimitive.Thumb
+        data-slot="switch-thumb"
+        className={cn(
+          'bg-background dark:data-[state=unchecked]:bg-foreground dark:data-[state=checked]:bg-primary-foreground pointer-events-none block size-16 rounded-full bg-white ring-0 transition-transform data-[state=checked]:translate-x-[calc(100%-2px)] data-[state=unchecked]:translate-x-0'
+        )}
+      />
+    </SwitchPrimitive.Root>
   );
 }

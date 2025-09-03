@@ -27,6 +27,6 @@ export const Basic: Story = {
       updateArgs({ checked: !args.checked });
     }, [args.checked, updateArgs]);
 
-    return <Switch {...props} checked={args.checked} onChange={onChange} />;
+    return <Switch {...props} checked={args.checked} onCheckedChange={onChange} />;
   },
 };
