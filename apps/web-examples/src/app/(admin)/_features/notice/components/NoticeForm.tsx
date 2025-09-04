@@ -17,7 +17,7 @@ import type { ImageSchema } from '@/_features/image/schemas/image.schema';
 import { formatDateTime } from '@repo/utils/formatDate';
 import { cn } from '@repo/utils/cn';
 
-const Editor = dynamic(() => import('@repo/ui-third-party/Editor/CkEditor'), {
+const Editor = dynamic(() => import('@repo/ui-third-party/Editor/CkEditor/CkEditor'), {
   ssr: false,
 });
 
