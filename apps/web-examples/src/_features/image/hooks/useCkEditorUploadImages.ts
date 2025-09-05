@@ -30,7 +30,7 @@ export default function useCkEditorUploadImages({ editorRef }: UseQuillEditorPar
         // 첫 번째 인자는 정규표현식과 일치하는 텍스트(html image tag), 두 번째부터는 정규표현식의 capture 그룹과 일치하는 텍스트(base64)
         for (const [htmlImageTag, base64] of matchArray) {
           // 2) file 객체로 변환
-          const file = base64toFile({ base64, filename: nanoid() });
+          const file = await base64toFile({ base64, filename: nanoid() });
 
           try {
             // 3) 이미지 업로드 (formdata에 한 번에 넘기는 방식 X, 업로드된 이미지의 주소를 받아야만 하므로)
