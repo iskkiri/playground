@@ -33,7 +33,7 @@ export default function PopoverContent<T extends ElementType = 'div'>({
   if (asChild && isValidElement(children)) {
     return (
       <FloatingPortal>
-        <FloatingFocusManager context={floatingContext}>
+        <FloatingFocusManager context={floatingContext} disabled={context.isFocusDisabled}>
           {cloneElement(children, {
             ref,
             style: { ...context.floatingStyles, ...style },
@@ -49,7 +49,7 @@ export default function PopoverContent<T extends ElementType = 'div'>({
 
   return (
     <FloatingPortal>
-      <FloatingFocusManager context={floatingContext}>
+      <FloatingFocusManager context={floatingContext} disabled={context.isFocusDisabled}>
         <Component
           ref={ref}
           style={{ ...context.floatingStyles, ...style }}

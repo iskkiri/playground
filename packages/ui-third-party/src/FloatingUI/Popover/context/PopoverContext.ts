@@ -6,6 +6,7 @@ export type PopoverContextType =
       isOpen: boolean;
       setIsOpen: (open: boolean) => void;
       dismissOnContentClick?: boolean;
+      isFocusDisabled?: boolean;
     } & UseInteractionsReturn &
       UseFloatingReturn)
   | null;
