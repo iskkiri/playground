@@ -1,6 +1,6 @@
 @import '@repo/design-tokens/colors/index.css';
 
-@mixin editor-viewer-tags {
+@mixin ck-editor-viewer-tags {
   /* headings */
   h1,
   h2,
@@ -168,6 +168,6 @@
   }
 }
 
-.editor-viewer {
-  @include editor-viewer-tags;
+.ck-editor-viewer {
+  @include ck-editor-viewer-tags;
 }

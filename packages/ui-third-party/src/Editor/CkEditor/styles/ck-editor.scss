@@ -1,10 +1,10 @@
-@use '../../../EditorViewer/styles/editor-viewer.scss' as *;
+@use '../../../EditorViewer/styles/ck-editor-viewer.scss' as *;
 @use '../../../_internal/styles/_mixins/scrollbar.scss' as *;
 
 @import '@repo/design-tokens/colors/index.css';
 
 .ck-editor {
-  @include editor-viewer-tags;
+  @include ck-editor-viewer-tags;
   height: 100% !important;
   display: flex;
   flex-direction: column;
