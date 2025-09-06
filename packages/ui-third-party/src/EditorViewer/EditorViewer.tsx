@@ -1,6 +1,6 @@
 'use client';
 
-import './styles/editor-viewer.scss';
+import './styles/tiptap-editor-viewer.scss';
 
 import DOMPurify from 'isomorphic-dompurify';
 import { cn } from '@repo/utils/cn';
@@ -22,7 +22,7 @@ interface EditorViewerProps {
 export default function EditorViewer({ content, className }: EditorViewerProps) {
   return (
     <div
-      className={cn('editor-viewer', className)}
+      className={cn('tiptap-editor-viewer', className)}
       dangerouslySetInnerHTML={{
         __html: DOMPurify.sanitize(content),
       }}
