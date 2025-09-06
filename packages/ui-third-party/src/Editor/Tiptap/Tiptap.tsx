@@ -1,7 +1,7 @@
 import './styles/tiptap.scss';
 import './styles/tiptap-image-resizer.scss';
 
-import { useEffect } from 'react';
+import { useCallback, useEffect } from 'react';
 import { useEditor, EditorContent, type Editor } from '@tiptap/react';
 import { BubbleMenu } from '@tiptap/react/menus';
 import StarterKit from '@tiptap/starter-kit';
@@ -10,6 +10,7 @@ import Color from '@tiptap/extension-color';
 import { TextStyle } from '@tiptap/extension-text-style';
 import { ResizableImageWithControls } from './ResizableImageWithControls';
 import EditorMenus from './components/EditorMenus';
+import type { TiptapBubbleMenuProps } from './types/tiptap.types';
 
 interface TiptapProps {
   ref?: React.RefObject<Editor | null>;
@@ -64,6 +65,16 @@ export default function Tiptap({ ref, height }: TiptapProps) {
     content: '<p>Hello World!</p>',
   });
 
+  const shouldShowBubbleMenu = useCallback(({ editor, from, to }: TiptapBubbleMenuProps) => {
+    // 이미지가 선택된 경우 버블 메뉴 숨김
+    if (editor.isActive('image')) {
+      return false;
+    }
+
+    // 텍스트가 실제로 선택(드래그해서 하이라이트)되었을 때만 버블 메뉴 표시 (from !== to)
+    return from !== to;
+  }, []);
+
   // 외부에서 에디터 인스턴스를 참조할 수 있도록 초기화
   useEffect(() => {
     // ref가 없다면 초기화하지 않음
@@ -77,20 +88,10 @@ export default function Tiptap({ ref, height }: TiptapProps) {
   return (
     <>
       <EditorMenus editor={editor} />
-      <EditorContent editor={editor} style={{ height }} />
-      {/* <FloatingMenu editor={editor}>This is the floating menu</FloatingMenu> */}
-      <BubbleMenu
-        editor={editor}
-        shouldShow={({ editor, from, to }) => {
-          // 이미지가 선택된 경우 버블 메뉴 숨김
-          if (editor.isActive('image')) {
-            return false;
-          }
 
-          // 텍스트가 실제로 선택(드래그해서 하이라이트)되었을 때만 버블 메뉴 표시 (from !== to)
-          return from !== to;
-        }}
-      >
+      <EditorContent editor={editor} style={{ height }} />
+
+      <BubbleMenu editor={editor} shouldShow={shouldShowBubbleMenu}>
         This is the bubble menu
       </BubbleMenu>
     </>
