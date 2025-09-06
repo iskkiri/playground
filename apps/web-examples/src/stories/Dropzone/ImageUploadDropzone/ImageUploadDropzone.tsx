@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { useDropzone } from 'react-dropzone';
 import { cn } from '@repo/utils/cn';
-import Button from '@repo/ui-tailwind/Button/Button';
+import Button from '@repo/ui/Button/Button';
 
 interface IUploadImage {
   file: File;

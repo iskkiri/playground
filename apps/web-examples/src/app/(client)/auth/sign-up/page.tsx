@@ -4,10 +4,10 @@ import { Controller } from 'react-hook-form';
 import { parseAsString, parseAsStringEnum, useQueryStates } from 'nuqs';
 import { useEffect } from 'react';
 import useSignUpForm from '../../_features/user/hooks/useSignUpForm';
-import TextInput from '@repo/ui-tailwind/TextInput/TextInput';
+import TextInput from '@repo/ui/TextInput/TextInput';
 import RadioTab from '@/_components/RadioTab';
 import DatePicker from '@repo/ui-third-party/DatePicker/DatePicker';
-import Button from '@repo/ui-tailwind/Button/Button';
+import Button from '@repo/ui/Button/Button';
 
 export default function SignUpPage() {
   const [searchParams] = useQueryStates({

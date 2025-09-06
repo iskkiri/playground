@@ -4,11 +4,11 @@ import {
   type FieldArrayWithId,
   type UseFormReturn,
 } from 'react-hook-form';
-import Radio from '@repo/ui-tailwind/Radio/Radio';
-import TextInput from '@repo/ui-tailwind/TextInput/TextInput';
+import Radio from '@repo/ui/Radio/Radio';
+import TextInput from '@repo/ui/TextInput/TextInput';
 import MultipleFileAttachment from '@/_features/file/components/MultipleFileAttachment/MultipleFileAttachment';
 import ImageAttachment from '@/_features/image/components/ImageAttachment/ImageAttachment';
-import Button from '@repo/ui-tailwind/Button/Button';
+import Button from '@repo/ui/Button/Button';
 import dynamic from 'next/dynamic';
 import type { NoticeRegisterSchema } from '../schemas/noticeRegister.schema';
 import type { CKEditor } from '@ckeditor/ckeditor5-react';

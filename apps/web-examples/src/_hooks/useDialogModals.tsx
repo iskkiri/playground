@@ -1,16 +1,16 @@
-import type { AlertModalProps } from '@repo/ui-tailwind/DialogModals/AlertModal/AlertModal';
-import type { ConfirmModalProps } from '@repo/ui-tailwind/DialogModals/ConfirmModal/ConfirmModal';
+import type { AlertModalProps } from '@repo/ui/DialogModals/AlertModal/AlertModal';
+import type { ConfirmModalProps } from '@repo/ui/DialogModals/ConfirmModal/ConfirmModal';
 import Modal from '@repo/ui-third-party/Modal/Modal';
 import type { BaseModalProps } from '@repo/ui-third-party/Modal/types/modal.types';
 import dynamic from 'next/dynamic';
 import { useModal } from 'react-use-hook-modal';
 
-const AlertModal = dynamic(() => import('@repo/ui-tailwind/DialogModals/AlertModal/AlertModal'), {
+const AlertModal = dynamic(() => import('@repo/ui/DialogModals/AlertModal/AlertModal'), {
   ssr: false,
 });
 
 const ConfirmModal = dynamic(
-  () => import('@repo/ui-tailwind/DialogModals/ConfirmModal/ConfirmModal'),
+  () => import('@repo/ui/DialogModals/ConfirmModal/ConfirmModal'),
   { ssr: false }
 );
 

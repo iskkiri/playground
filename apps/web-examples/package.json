@@ -28,7 +28,7 @@
     "@portone/server-sdk": "^0.15.0",
     "@repo/design-tokens": "workspace:*",
     "@repo/hooks": "workspace:*",
-    "@repo/ui-tailwind": "workspace:*",
+    "@repo/ui": "workspace:*",
     "@repo/ui-third-party": "workspace:*",
     "@repo/utils": "workspace:*",
     "@tanstack/react-query": "^5.80.10",

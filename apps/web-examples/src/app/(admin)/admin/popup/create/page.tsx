@@ -9,7 +9,7 @@ import PopupImageFields from '@/app/(admin)/_features/popup/components/PopupImag
 import usePopupForm from '@/app/(admin)/_features/popup/hooks/usePopupForm';
 import usePopupImageUpload from '@/app/(admin)/_features/popup/hooks/usePopupImageUpload';
 import usePopupSubmit from '@/app/(admin)/_features/popup/hooks/usePopupSubmit';
-import Button from '@repo/ui-tailwind/Button/Button';
+import Button from '@repo/ui/Button/Button';
 
 export default function AdminPopupCreatePage() {
   const { onGoBack } = useGoBack();

@@ -2,7 +2,7 @@
 
 import SampleCard from '../../_components/SampleCard';
 import useInfnitieScroll from '../../_hooks/useInfnitieScroll';
-import SpinLoading from '@repo/ui-tailwind/Loading/SpinLoading/SpinLoading';
+import SpinLoading from '@repo/ui/Loading/SpinLoading/SpinLoading';
 import useVirutalGridList from '../../_hooks/useVirutalGridList';
 import { formatDateTime } from '@repo/utils/formatDate';
 import { sampleImageList } from '../../_data/sample.data';

@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { createColumnHelper, type OnChangeFn, type RowSelectionState } from '@tanstack/react-table';
 import FeatherIcons from '@repo/icons/featherIcons';
 import useTable from '@/_hooks/useTable';
-import CheckBox from '@repo/ui-tailwind/CheckBox/CheckBox';
+import CheckBox from '@repo/ui/CheckBox/CheckBox';
 import { formatDateTime } from '@repo/utils/formatDate';
 import type { BannerListItemData } from '../api/dtos/getBannerList.dto';
 

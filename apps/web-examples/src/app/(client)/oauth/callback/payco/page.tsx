@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo } from 'react';
 import { useSearchParams } from 'next/navigation';
-import FullPageLoading from '@repo/ui-tailwind/Loading/FullPageLoading/FullPageLoading';
+import FullPageLoading from '@repo/ui/Loading/FullPageLoading/FullPageLoading';
 
 export default function PaycoCallbackPage() {
   const searchParams = useSearchParams();

@@ -1,7 +1,7 @@
 import { useCallback, useState } from 'react';
 import { useDropzone, FileWithPath } from 'react-dropzone';
 import { cn } from '@repo/utils/cn';
-import Button from '@repo/ui-tailwind/Button/Button';
+import Button from '@repo/ui/Button/Button';
 
 export default function FileUploadDropzone() {
   const [files, setFiles] = useState<FileWithPath[]>([]);

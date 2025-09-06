@@ -2,12 +2,12 @@
 
 import { useCallback, useMemo } from 'react';
 import RadioTab from '@/_components/RadioTab';
-import TextInput from '@repo/ui-tailwind/TextInput/TextInput';
+import TextInput from '@repo/ui/TextInput/TextInput';
 import FeatherIcons from '@repo/icons/featherIcons';
 import Select from '@repo/ui-third-party/Select/Select';
 import { bannerSearchOptions } from '../../_features/banner/data/banner.data';
 import useResetSearchFilter from '@/_hooks/useResetSearchFilter';
-import Button from '@repo/ui-tailwind/Button/Button';
+import Button from '@repo/ui/Button/Button';
 import Link from 'next/link';
 import AppTable from '@/_components/Table';
 import usePaginationQuery from '@/_hooks/usePaginationQuery';
@@ -24,7 +24,7 @@ import useRowSelectionChange from '@/_hooks/useRowSelectionChange';
 import type { BannerListItemData } from '../../_features/banner/api/dtos/getBannerList.dto';
 import PaginationWithPageSize from '../../_components/PaginationWithPageSize';
 import Modal from '@repo/ui-third-party/Modal/Modal';
-import ConfirmModal from '@repo/ui-tailwind/DialogModals/ConfirmModal/ConfirmModal';
+import ConfirmModal from '@repo/ui/DialogModals/ConfirmModal/ConfirmModal';
 
 export default function AdminBannerListPage() {
   // 페이지네이션

@@ -1,7 +1,7 @@
 'use client';
 
 import { useCallback } from 'react';
-import Button from '@repo/ui-tailwind/Button/Button';
+import Button from '@repo/ui/Button/Button';
 import * as PortOne from '@portone/browser-sdk/v2';
 import { appEnv } from '@/_schemas/env.schema';
 import { useRouter } from 'next/navigation';

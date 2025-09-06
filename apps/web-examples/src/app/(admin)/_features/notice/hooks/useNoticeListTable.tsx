@@ -2,7 +2,7 @@ import { useMemo } from 'react';
 import Link from 'next/link';
 import { createColumnHelper, type OnChangeFn, type RowSelectionState } from '@tanstack/react-table';
 import FeatherIcons from '@repo/icons/featherIcons';
-import CheckBox from '@repo/ui-tailwind/CheckBox/CheckBox';
+import CheckBox from '@repo/ui/CheckBox/CheckBox';
 import { formatDateTime } from '@repo/utils/formatDate';
 import type { NoticeListItemData } from '../api/dtos/getNoticeList.dto';
 import useTable from '@/_hooks/useTable';

@@ -15,7 +15,7 @@ import usePagination from '@repo/hooks/usePagination';
 import { useAlertModal } from '@/_hooks/useDialogModals';
 import { useExposureAndOrderDragAndDrop } from '@/app/(admin)/_features/banner/hooks/useExposureAndOrderDragAndDrop';
 import SortableForEmptyList from '@/app/(admin)/_components/SortableForEmptyList';
-import Button from '@repo/ui-tailwind/Button/Button';
+import Button from '@repo/ui/Button/Button';
 import DragHandle from '@/stories/DndKit/components/DragHandle';
 
 export default function AdminBannerChangeOrderPage() {

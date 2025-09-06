@@ -44,7 +44,7 @@
 
 #### UI 컴포넌트 패키지
 
-- **`@repo/ui-tailwind`** - Tailwind CSS + Radix UI 기반 메인 컴포넌트 라이브러리
+- **`@repo/ui`** - Tailwind CSS + Radix UI 기반 메인 컴포넌트 라이브러리
 - **`@repo/ui-third-party`** - 써드파티 라이브러리 통합 컴포넌트
 - **`@repo/ui-emotion`** - Emotion CSS-in-JS 컴포넌트
 - **`@repo/ui-next`** - Next.js 전용 컴포넌트
@@ -192,7 +192,7 @@ pnpm storybook    # Storybook 시작
 
 ### 새 컴포넌트 추가 시
 
-1. **패키지 선택** - ui-tailwind (기본), ui-third-party (써드파티 라이브러리 필요시)
+1. **패키지 선택** - ui (기본), ui-third-party (써드파티 라이브러리 필요시)
 2. **구조 결정** - 단순(단일 파일) vs 복잡(분리된 서브컴포넌트)
 3. **Storybook 스토리 작성** 필수
 4. **기존 패턴 참조** - Modal/Drawer 패턴 또는 Button 같은 단순 패턴

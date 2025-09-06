@@ -1,5 +1,5 @@
 @import '@repo/design-tokens/fonts/index.css';
-@import '@repo/ui-tailwind/styles.css';
+@import '@repo/ui/styles.css';
 
 @theme {
   --font-sans: 'Pretendard', system-ui, sans-serif;

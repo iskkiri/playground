@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo } from 'react';
 import { useSearchParams } from 'next/navigation';
-import FullPageLoading from '@repo/ui-tailwind/Loading/FullPageLoading/FullPageLoading';
+import FullPageLoading from '@repo/ui/Loading/FullPageLoading/FullPageLoading';
 import { googleLoginAction } from '@/app/(client)/_features/oauth/actions/oauth.action';
 
 export default function GoogleLoginCallbackPage() {

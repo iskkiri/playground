@@ -14,7 +14,7 @@ import Select from '@repo/ui-third-party/Select/Select';
 import { pageSizeOptions } from '@/_data/pageSizeOptions';
 import useRowSelectionChange from '../../_hooks/useRowSelectionChange';
 import useManualRowSelectionTable from './hooks/manual-row-selection/useManualRowSelectionTable';
-import Button from '@repo/ui-tailwind/Button/Button';
+import Button from '@repo/ui/Button/Button';
 import useUserListExcelDownload from './hooks/excel-download/useUserListExcelDownload';
 import useEditUsers from '@/_features/user/hooks/useEditUsers';
 import useEitableUserTable from './hooks/multiple-update/useEditableUserTable';

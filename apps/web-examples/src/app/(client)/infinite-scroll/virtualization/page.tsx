@@ -1,7 +1,7 @@
 'use client';
 
 import SampleCard from '../_components/SampleCard';
-import SpinLoading from '@repo/ui-tailwind/Loading/SpinLoading/SpinLoading';
+import SpinLoading from '@repo/ui/Loading/SpinLoading/SpinLoading';
 import useInfnitieScroll from '../_hooks/useInfnitieScroll';
 import useVirtualVerticalList from '../_hooks/useVirtualVerticalList';
 import { formatDateTime } from '@repo/utils/formatDate';

@@ -14,7 +14,7 @@ import {
 } from '@/app/(admin)/_features/popup/hooks/react-query/useAdminPopup';
 import { useAlertModal } from '@/_hooks/useDialogModals';
 import { useExposureAndOrderDragAndDrop } from '@/app/(admin)/_features/banner/hooks/useExposureAndOrderDragAndDrop';
-import Button from '@repo/ui-tailwind/Button/Button';
+import Button from '@repo/ui/Button/Button';
 import DragHandle from '@/stories/DndKit/components/DragHandle';
 
 export default function AdminBannerChangeOrderPage() {

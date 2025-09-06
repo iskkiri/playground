@@ -1,5 +1,5 @@
-import Radio from '@repo/ui-tailwind/Radio/Radio';
-import TextInput from '@repo/ui-tailwind/TextInput/TextInput';
+import Radio from '@repo/ui/Radio/Radio';
+import TextInput from '@repo/ui/TextInput/TextInput';
 import ImageAttachment from '@/_features/image/components/ImageAttachment/ImageAttachment';
 import { Controller, type UseFormReturn } from 'react-hook-form';
 import type { PopupRegisterSchema } from '../schemas/popupRegister.schema';
