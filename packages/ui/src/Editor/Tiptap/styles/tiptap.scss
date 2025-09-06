@@ -8,6 +8,7 @@
 
   height: 100%;
   overflow: auto;
-  border: 1px solid #ccc;
-  border-radius: 8px;
+  outline: none;
+  border: 1px solid var(--color-gray-200);
+  border-top: none;
 }
