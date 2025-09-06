@@ -24,6 +24,8 @@
   --spacing: 1px;
 
   --color-primary: var(--color-primary, #2563eb);
+  --color-primary-light: var(--color-primary-light, #dee8fc);
+  --color-primary-dark: var(--color-primary-dark, #184099);
   --color-primary-hover: var(--color-primary-hover, #3b82f6);
   --color-danger: var(--color-danger, #ef4444);
   --color-danger-hover: var(--color-danger-hover, #f87171);

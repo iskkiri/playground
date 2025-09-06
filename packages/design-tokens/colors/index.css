@@ -1,5 +1,7 @@
 :root {
   --color-primary: #2563eb;
+  --color-primary-light: #dee8fc;
+  --color-primary-dark: #184099;
   --color-primary-hover: #3b82f6;
   --color-danger: #ef4444;
   --color-danger-hover: #f87171;

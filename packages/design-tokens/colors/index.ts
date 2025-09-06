@@ -3,6 +3,10 @@ import './index.css';
 export const colors = {
   /** #2563eb */
   primary: 'var(--color-primary, #2563eb)',
+  /** #dee8fc */
+  primaryLight: 'var(--color-primary-light, #dee8fc)',
+  /** #184099 */
+  primaryDark: 'var(--color-primary-dark, #184099)',
   /** #3b82f6 */
   primaryHover: 'var(--color-primary-hover, #3b82f6)',
   /** #ef4444 */
