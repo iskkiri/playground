@@ -18,7 +18,7 @@ export default function Select<
   IsMulti extends boolean = false,
   Group extends GroupBase<Option> = GroupBase<Option>,
 >({
-  isPortal,
+  isPortal = true,
   label,
   className,
   components,
