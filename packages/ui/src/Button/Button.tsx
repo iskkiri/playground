@@ -18,11 +18,11 @@ export const buttonVariants = cva(
         none: '',
       },
       size: {
-        32: 'button-size-32',
-        40: 'button-size-40',
-        48: 'button-size-48',
-        56: 'button-size-56',
-        64: 'button-size-64',
+        32: 'typography-p5-12b rounded-8 h-32 gap-2 px-12 py-0',
+        40: 'typography-p4-14b rounded-10 h-40 gap-4 px-16 py-0',
+        48: 'typography-p3-16b rounded-12 h-48 gap-6 px-20 py-0',
+        56: 'typography-p2-18b rounded-13 px-22 h-56 gap-8 py-0',
+        64: 'typography-p1-20b rounded-14 h-64 gap-10 px-24 py-0',
       },
     },
     defaultVariants: {
