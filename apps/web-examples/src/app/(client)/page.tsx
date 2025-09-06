@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import Accordion from '@repo/ui-third-party/Accordion/Accordion';
+import Accordion from '@repo/ui/Accordion/Accordion';
 import { parseAsArrayOf, parseAsString, useQueryState } from 'nuqs';
 
 export default function Home() {

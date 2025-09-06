@@ -1,8 +1,8 @@
 'use client';
 
 import { useCallback } from 'react';
-import Modal from '@repo/ui-third-party/Modal/Modal';
-import { useModalDispatchContext } from '@repo/ui-third-party/Modal/hooks/useModalContext';
+import Modal from '@repo/ui/Modal/Modal';
+import { useModalDispatchContext } from '@repo/ui/Modal/hooks/useModalContext';
 import Button, { type ButtonType } from '#src/Button/Button.js';
 import { dialogModalCss } from '../styles/DialogModal.styles';
 

@@ -6,7 +6,7 @@ import { useEffect } from 'react';
 import useSignUpForm from '../../_features/user/hooks/useSignUpForm';
 import TextInput from '@repo/ui/TextInput/TextInput';
 import RadioTab from '@/_components/RadioTab';
-import DatePicker from '@repo/ui-third-party/DatePicker/DatePicker';
+import DatePicker from '@repo/ui/DatePicker/DatePicker';
 import Button from '@repo/ui/Button/Button';
 
 export default function SignUpPage() {

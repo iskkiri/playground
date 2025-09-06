@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import Button from '../../Button/Button';
-import Modal from '@repo/ui-third-party/Modal/Modal';
+import Modal from '../../Modal/Modal';
 import ConfirmModal from './ConfirmModal';
 
 const meta = {

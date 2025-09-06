@@ -1,6 +1,6 @@
-import Pagination from '@repo/ui-third-party/Pagination/Pagination';
-import Select from '@repo/ui-third-party/Select/Select';
-import type { SelectOption } from '@repo/ui-third-party/Select/types/select.types';
+import Pagination from '@repo/ui/Pagination/Pagination';
+import Select from '@repo/ui/Select/Select';
+import type { SelectOption } from '@repo/ui/Select/types/select.types';
 
 interface PaginationWithPageSizeProps {
   pageSizeOptions: SelectOption<number>[];

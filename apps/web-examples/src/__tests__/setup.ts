@@ -81,7 +81,7 @@ vi.mock('@/_hooks/useResetSearchFilter', () => ({
   },
 }));
 
-vi.mock('@repo/ui-third-party/Editor/CkEditor', () => ({
+vi.mock('@repo/ui/Editor/CkEditor', () => ({
   default: ({
     data,
     onChange,

@@ -6,7 +6,7 @@ import { SortableContext, verticalListSortingStrategy } from '@dnd-kit/sortable'
 import GoBack from '@/_components/GoBack';
 import { AdminSortableItem } from '../../../_components/AdminSortableItem';
 import useGoBack from '@/_hooks/useGoBack';
-import Pagination from '@repo/ui-third-party/Pagination/Pagination';
+import Pagination from '@repo/ui/Pagination/Pagination';
 import usePagination from '@repo/hooks/usePagination';
 import {
   useGetPopupList,

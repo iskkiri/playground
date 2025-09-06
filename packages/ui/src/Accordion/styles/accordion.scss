@@ -1,0 +1,96 @@
+@import '@repo/design-tokens/colors/index.css';
+
+/* reset */
+button,
+h3 {
+  all: unset;
+}
+
+.accordion {
+  width: 600px;
+  box-sizing: border-box;
+
+  * {
+    box-sizing: border-box;
+  }
+}
+
+.accordion_item {
+  overflow: hidden;
+}
+
+.accordion_trigger {
+  padding: 16px 20px;
+  width: 100%;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+
+  svg {
+    color: var(--color-gray-400);
+    transition: transform 300ms ease-out;
+  }
+
+  &[data-state='open'] > svg {
+    transform: rotate(180deg);
+  }
+
+  &[data-disabled] {
+    cursor: not-allowed;
+  }
+}
+
+.accordion_collapsible_header {
+  padding: 16px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.accordion_collapsible_trigger {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+
+  svg {
+    color: var(--color-gray-400);
+    transition: transform 300ms ease-out;
+  }
+
+  &[data-state='open'] > svg {
+    transform: rotate(180deg);
+  }
+}
+
+.accordion_content {
+  background: var(--color-neutral-50);
+
+  &[data-state='open'] {
+    animation: slide-down 300ms ease-out;
+  }
+
+  &[data-state='closed'] {
+    animation: slide-up 300ms ease-out;
+  }
+}
+
+@keyframes slide-down {
+  from {
+    height: 0;
+  }
+  to {
+    height: var(--radix-accordion-content-height);
+  }
+}
+
+@keyframes slide-up {
+  from {
+    height: var(--radix-accordion-content-height);
+  }
+  to {
+    height: 0;
+  }
+}

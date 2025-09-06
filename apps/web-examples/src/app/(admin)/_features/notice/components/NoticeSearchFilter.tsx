@@ -1,5 +1,5 @@
 import RadioTab from '@/_components/RadioTab';
-import Select from '@repo/ui-third-party/Select/Select';
+import Select from '@repo/ui/Select/Select';
 import TextInput from '@repo/ui/TextInput/TextInput';
 import FeatherIcons from '@repo/icons/featherIcons';
 import { Controller, type Control, type FieldValues, type UseFormRegister } from 'react-hook-form';

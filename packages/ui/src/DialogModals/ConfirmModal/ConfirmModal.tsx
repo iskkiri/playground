@@ -1,8 +1,8 @@
 'use client';
 
 import { useCallback } from 'react';
-import Modal from '@repo/ui-third-party/Modal/Modal';
-import { useModalDispatchContext } from '@repo/ui-third-party/Modal/hooks/useModalContext';
+import Modal from '../../Modal/Modal';
+import { useModalDispatchContext } from '../../Modal/hooks/useModalContext';
 import Button, { type ButtonProps } from '../../Button/Button';
 
 export interface ConfirmModalProps {

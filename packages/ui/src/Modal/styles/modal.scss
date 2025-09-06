@@ -1,0 +1,95 @@
+/**
+ * BEM naming convention (Block Element Modifier)
+ *
+ * 1. 언더바 2개 (__): Block과 Element를 구분
+ *
+ * Element: Block 안의 구성 요소
+ * .card__title { }             // card 안의 title
+ * .card__content { }           // card 안의 content
+ * .card__button { }            // card 안의 button
+ *
+ * 2. 하이픈 2개 (--): Modifier를 나타냄
+ *
+ * Modifier: 상태나 변형
+ * .button { }                 // 기본 버튼
+ * .button--disabled { }       // 비활성화된 버튼
+ * .button--active { }         // 활성화된 버튼
+ * .button--loading { }        // 로딩 중인 버튼
+ *
+ * .card--featured { }          // 특별한 카드
+ * .card__title--large { }      // 큰 제목
+ * .card__button--primary { }   // 주요 버튼
+ *
+ * .block--modifier
+ * .block__element--modifier
+ *
+ */
+
+// _mixins/_index.scss
+@use './_mixins/modal-animations' as *;
+
+@import '@repo/design-tokens/colors/index.css';
+
+.center-modal {
+  position: relative;
+  left: 50%;
+  top: 50%;
+  transform: translate3d(-50%, -50%, 0);
+
+  @include modal-center-animation;
+
+  width: calc(100% - 40px);
+  max-width: 480px;
+
+  border-radius: 16px;
+  background: var(--color-white);
+  box-shadow: 0px 0px 40px 0px rgba(0, 0, 0, 0.1);
+}
+
+.modal__header {
+  padding: 24px 20px 16px;
+
+  @media (min-width: 1280px) {
+    padding: 24px 24px 16px;
+  }
+}
+
+.modal__title {
+  font-size: 18px;
+  font-style: normal;
+  line-height: 26px;
+  font-weight: 700;
+}
+
+.modal__body {
+  padding: 0 20px;
+
+  @media (min-width: 1280px) {
+    padding: 0 24px;
+  }
+}
+
+.modal__footer {
+  padding: 24px 20px;
+
+  display: flex;
+  gap: 12px;
+
+  @media (min-width: 1280px) {
+    padding: 24px;
+  }
+}
+
+.modal__close-trigger {
+  position: absolute;
+  top: 28px;
+  right: 24px;
+
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

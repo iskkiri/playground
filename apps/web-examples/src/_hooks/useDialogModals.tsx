@@ -1,7 +1,7 @@
 import type { AlertModalProps } from '@repo/ui/DialogModals/AlertModal/AlertModal';
 import type { ConfirmModalProps } from '@repo/ui/DialogModals/ConfirmModal/ConfirmModal';
-import Modal from '@repo/ui-third-party/Modal/Modal';
-import type { BaseModalProps } from '@repo/ui-third-party/Modal/types/modal.types';
+import Modal from '@repo/ui/Modal/Modal';
+import type { BaseModalProps } from '@repo/ui/Modal/types/modal.types';
 import dynamic from 'next/dynamic';
 import { useModal } from 'react-use-hook-modal';
 

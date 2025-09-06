@@ -29,7 +29,7 @@
     "@repo/design-tokens": "workspace:*",
     "@repo/hooks": "workspace:*",
     "@repo/icons": "workspace:*",
-    "@repo/ui-third-party": "workspace:*",
+    "@repo/ui": "workspace:*",
     "@repo/utils": "workspace:*",
     "clsx": "^2.1.1",
     "dayjs": "^1.11.13",

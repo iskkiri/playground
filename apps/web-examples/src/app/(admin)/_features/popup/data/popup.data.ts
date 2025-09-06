@@ -1,4 +1,4 @@
-import type { SelectOption } from '@repo/ui-third-party/Select/types/select.types';
+import type { SelectOption } from '@repo/ui/Select/types/select.types';
 
 export const popupSearchOptions = [
   {

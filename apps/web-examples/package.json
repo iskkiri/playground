@@ -29,7 +29,6 @@
     "@repo/design-tokens": "workspace:*",
     "@repo/hooks": "workspace:*",
     "@repo/ui": "workspace:*",
-    "@repo/ui-third-party": "workspace:*",
     "@repo/utils": "workspace:*",
     "@tanstack/react-query": "^5.80.10",
     "@tanstack/react-table": "^8.21.3",

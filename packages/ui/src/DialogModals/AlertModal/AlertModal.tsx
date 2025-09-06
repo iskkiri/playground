@@ -1,9 +1,9 @@
 'use client';
 
 import { useCallback } from 'react';
-import Modal from '@repo/ui-third-party/Modal/Modal';
+import Modal from '../../Modal/Modal';
 import Button, { type ButtonProps } from '../../Button/Button';
-import { useModalDispatchContext } from '@repo/ui-third-party/Modal/hooks/useModalContext';
+import { useModalDispatchContext } from '../../Modal/hooks/useModalContext';
 
 export interface AlertModalProps {
   title: string;

@@ -410,9 +410,6 @@ importers:
       '@repo/ui':
         specifier: workspace:*
         version: link:../../packages/ui
-      '@repo/ui-third-party':
-        specifier: workspace:*
-        version: link:../../packages/ui-third-party
       '@repo/utils':
         specifier: workspace:*
         version: link:../../packages/utils
@@ -843,6 +840,15 @@ importers:
 
   packages/ui:
     dependencies:
+      '@ckeditor/ckeditor5-react':
+        specifier: ^9.4.0
+        version: 9.5.0(ckeditor5@43.3.1)(react@19.1.0)
+      '@floating-ui/react':
+        specifier: ^0.27.12
+        version: 0.27.12(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@hookform/resolvers':
+        specifier: ^5.1.1
+        version: 5.1.1(react-hook-form@7.58.1(react@19.1.0))
       '@repo/design-tokens':
         specifier: workspace:*
         version: link:../design-tokens
@@ -852,36 +858,96 @@ importers:
       '@repo/icons':
         specifier: workspace:*
         version: link:../icons
-      '@repo/ui-third-party':
+      '@repo/types':
         specifier: workspace:*
-        version: link:../ui-third-party
+        version: link:../types
       '@repo/utils':
         specifier: workspace:*
         version: link:../utils
+      '@tiptap/extension-color':
+        specifier: ^3.4.1
+        version: 3.4.1(@tiptap/extension-text-style@3.4.1(@tiptap/core@3.4.1(@tiptap/pm@3.4.1)))
+      '@tiptap/extension-text-align':
+        specifier: ^3.4.1
+        version: 3.4.1(@tiptap/core@3.4.1(@tiptap/pm@3.4.1))
+      '@tiptap/extension-text-style':
+        specifier: ^3.4.1
+        version: 3.4.1(@tiptap/core@3.4.1(@tiptap/pm@3.4.1))
+      '@tiptap/pm':
+        specifier: ^3.4.1
+        version: 3.4.1
+      '@tiptap/react':
+        specifier: ^3.4.1
+        version: 3.4.1(@floating-ui/dom@1.7.1)(@tiptap/core@3.4.1(@tiptap/pm@3.4.1))(@tiptap/pm@3.4.1)(@types/react-dom@19.1.1(@types/react@19.1.0))(@types/react@19.1.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@tiptap/starter-kit':
+        specifier: ^3.4.1
+        version: 3.4.1
+      ckeditor5:
+        specifier: ^43.3.1
+        version: 43.3.1
       class-variance-authority:
         specifier: ^0.7.1
         version: 0.7.1
+      dayjs:
+        specifier: ^1.11.13
+        version: 1.11.13
+      emoji-picker-react:
+        specifier: ^4.13.2
+        version: 4.13.2(react@19.1.0)
+      isomorphic-dompurify:
+        specifier: ^2.25.0
+        version: 2.25.0
       radix-ui:
         specifier: ^1.4.3
         version: 1.4.3(@types/react-dom@19.1.1(@types/react@19.1.0))(@types/react@19.1.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       react:
         specifier: ^19.1.0
         version: 19.1.0
+      react-color:
+        specifier: ^2.19.3
+        version: 2.19.3(react@19.1.0)
+      react-datepicker:
+        specifier: ^8.4.0
+        version: 8.4.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       react-dom:
         specifier: ^19.1.0
         version: 19.1.0(react@19.1.0)
+      react-hook-form:
+        specifier: ^7.58.1
+        version: 7.58.1(react@19.1.0)
       react-merge-refs:
         specifier: ^3.0.2
         version: 3.0.2(react@19.1.0)
+      react-modal:
+        specifier: ^3.16.1
+        version: 3.16.3(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      react-paginate:
+        specifier: ^8.3.0
+        version: 8.3.0(react@19.1.0)
+      react-select:
+        specifier: ^5.10.1
+        version: 5.10.1(@types/react@19.1.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      react-toastify:
+        specifier: ^11.0.5
+        version: 11.0.5(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       react-use-hook-modal:
         specifier: ^1.6.1
         version: 1.6.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      sonner:
+        specifier: ^2.0.5
+        version: 2.0.5(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       tailwindcss:
         specifier: ^4.1.10
         version: 4.1.11
+      tiptap-extension-resizable-image:
+        specifier: ^2.0.0
+        version: 2.0.0(@tiptap/core@3.4.1(@tiptap/pm@3.4.1))(@tiptap/pm@3.4.1)(@tiptap/react@3.4.1(@floating-ui/dom@1.7.1)(@tiptap/core@3.4.1(@tiptap/pm@3.4.1))(@tiptap/pm@3.4.1)(@types/react-dom@19.1.1(@types/react@19.1.0))(@types/react@19.1.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react@19.1.0)
       vaul:
         specifier: ^1.1.2
         version: 1.1.2(@types/react-dom@19.1.1(@types/react@19.1.0))(@types/react@19.1.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      zod:
+        specifier: ^3.25.67
+        version: 3.25.67
     devDependencies:
       '@repo/eslint-config':
         specifier: workspace:*
@@ -922,9 +988,15 @@ importers:
       '@types/react':
         specifier: 19.1.0
         version: 19.1.0
+      '@types/react-color':
+        specifier: ^3.0.13
+        version: 3.0.13(@types/react@19.1.0)
       '@types/react-dom':
         specifier: 19.1.1
         version: 19.1.1(@types/react@19.1.0)
+      '@types/react-modal':
+        specifier: ^3.16.3
+        version: 3.16.3
       '@vitejs/plugin-react':
         specifier: ^4.4.1
         version: 4.5.2(vite@6.3.5(@types/node@22.15.3)(jiti@2.4.2)(lightningcss@1.30.1)(sass@1.89.2)(terser@5.43.1)(tsx@4.20.3)(yaml@2.8.0))
@@ -943,6 +1015,9 @@ importers:
       prettier-plugin-tailwindcss:
         specifier: ^0.6.13
         version: 0.6.13(prettier@3.5.3)
+      sass:
+        specifier: ^1.89.2
+        version: 1.89.2
       storybook:
         specifier: ^9.0.12
         version: 9.0.14(@testing-library/dom@10.4.0)(prettier@3.5.3)
@@ -976,9 +1051,9 @@ importers:
       '@repo/icons':
         specifier: workspace:*
         version: link:../icons
-      '@repo/ui-third-party':
+      '@repo/ui':
         specifier: workspace:*
-        version: link:../ui-third-party
+        version: link:../ui
       '@repo/utils':
         specifier: workspace:*
         version: link:../utils

@@ -4,7 +4,7 @@ import { useCallback, useMemo } from 'react';
 import RadioTab from '@/_components/RadioTab';
 import TextInput from '@repo/ui/TextInput/TextInput';
 import FeatherIcons from '@repo/icons/featherIcons';
-import Select from '@repo/ui-third-party/Select/Select';
+import Select from '@repo/ui/Select/Select';
 import { bannerSearchOptions } from '../../_features/banner/data/banner.data';
 import useResetSearchFilter from '@/_hooks/useResetSearchFilter';
 import Button from '@repo/ui/Button/Button';
@@ -23,7 +23,7 @@ import { Controller } from 'react-hook-form';
 import useRowSelectionChange from '@/_hooks/useRowSelectionChange';
 import type { BannerListItemData } from '../../_features/banner/api/dtos/getBannerList.dto';
 import PaginationWithPageSize from '../../_components/PaginationWithPageSize';
-import Modal from '@repo/ui-third-party/Modal/Modal';
+import Modal from '@repo/ui/Modal/Modal';
 import ConfirmModal from '@repo/ui/DialogModals/ConfirmModal/ConfirmModal';
 
 export default function AdminBannerListPage() {
