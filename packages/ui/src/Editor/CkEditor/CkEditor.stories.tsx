@@ -7,7 +7,7 @@ import { mockFormSchema, type MockFormSchema } from './schemas/mockForm.schema';
 import { zodResolver } from '@hookform/resolvers/zod';
 import CkEditorComponent from './CkEditor';
 import { mockEditorData } from '../../EditorViewer/data/editor.data';
-import Button from '../../_internal/Button';
+import Button from '#src/Button/Button';
 
 const meta = {
   title: 'components/Editor/CkEditor',

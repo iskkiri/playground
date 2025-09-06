@@ -2,7 +2,7 @@ import { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import DatePicker from './DatePicker';
 import { Controller, useForm } from 'react-hook-form';
-import Button from '#src/_internal/Button';
+import Button from '#src/Button/Button';
 
 const meta = {
   title: 'components/DatePicker',
@@ -68,7 +68,7 @@ export const DatePickerWithCustomButton: Story = {
           placeholderText={'날짜를 선택해주세요.'}
           portalId="root-portal"
           cancelButton={({ onCancel }) => (
-            <Button variant="secondary" onClick={onCancel}>
+            <Button variant="gray" onClick={onCancel}>
               취소
             </Button>
           )}

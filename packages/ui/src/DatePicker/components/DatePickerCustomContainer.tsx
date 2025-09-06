@@ -1,5 +1,5 @@
 import { CalendarContainer } from 'react-datepicker';
-import Button from '../../_internal/Button';
+import Button from '#src/Button/Button';
 
 interface Props extends React.ComponentProps<typeof CalendarContainer> {
   onCancel: () => void;
@@ -23,7 +23,7 @@ export default function DatepickerCustomContainer({
         {cancelButton ? (
           cancelButton({ onCancel })
         ) : (
-          <Button type="button" variant="outline" onClick={onCancel}>
+          <Button type="button" variant="gray" onClick={onCancel}>
             취소
           </Button>
         )}

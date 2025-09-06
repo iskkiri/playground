@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import Modal from './Modal';
 import FeatherIcons from '@repo/icons/featherIcons';
-import Button from '../_internal/Button';
+import Button from '#src/Button/Button';
 
 const meta = {
   title: 'components/Modal',
@@ -37,7 +37,7 @@ export const Basic: Story = {
 
             <Modal.Footer style={{ display: 'grid', gridTemplateColumns: '1fr 1fr' }}>
               <Modal.CloseTrigger asChild>
-                <Button variant="ghost">취소</Button>
+                <Button variant="gray">취소</Button>
               </Modal.CloseTrigger>
 
               <Modal.CloseTrigger asChild>

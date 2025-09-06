@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { useCallback, useRef } from 'react';
-import Button from '../../_internal/Button';
+import Button from '#src/Button/Button';
 import Tiptap from './Tiptap';
 import type { Editor } from '@tiptap/react';
 

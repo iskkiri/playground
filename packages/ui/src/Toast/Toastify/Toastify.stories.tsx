@@ -4,7 +4,7 @@ import ToastifyComponent from './Toastify';
 import { useCallback } from 'react';
 import { toast } from 'react-toastify';
 import FeatherIcons from '@repo/icons/featherIcons';
-import Button from '#src/_internal/Button';
+import Button from '#src/Button/Button';
 
 const meta: Meta = {
   title: 'components/Toast/Toastify',
