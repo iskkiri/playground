@@ -8,7 +8,7 @@ import StarterKit from '@tiptap/starter-kit';
 import TextAlign from '@tiptap/extension-text-align';
 import Color from '@tiptap/extension-color';
 import { TextStyle } from '@tiptap/extension-text-style';
-import { ResizableImageWithControls } from './ResizableImageWithControls';
+import { ImageExtension } from './extensions/ImageExtension';
 import EditorMenus from './components/EditorMenus';
 import type { TiptapBubbleMenuProps } from './types/tiptap.types';
 
@@ -41,7 +41,7 @@ export default function Tiptap({ ref, height }: TiptapProps) {
        * 이미지 리사이즈 (Third Party 라이브러리 사용)
        * https://tiptap-resizable-image.vercel.app/
        */
-      ResizableImageWithControls.configure({
+      ImageExtension.configure({
         defaultWidth: 300,
         withCaption: false,
         /**
