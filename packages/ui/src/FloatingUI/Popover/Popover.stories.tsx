@@ -4,9 +4,8 @@ import type { Placement } from '@floating-ui/react';
 import Popover from './Popover';
 import PopoverTrigger from './PopoverTrigger';
 import PopoverContent from './PopoverContent';
-import Button from '#src/_internal/Button';
-import Switch from '#src/_internal/Switch';
-import styles from '#src/_internal/styles/floating-ui-story.module.scss';
+import Button from '#src/Button/Button';
+import Switch from '#src/Switch/Switch';
 
 const meta = {
   title: 'components/FloatingUI/Popover',
@@ -33,7 +32,9 @@ export const UncontrolledExample: Story = {
         </PopoverTrigger>
 
         <PopoverContent>
-          <div className={styles.box}>Hello</div>
+          <div className="rounded-8 shadow-xs max-w-300 flex flex-col gap-8 border border-gray-200 bg-white p-16">
+            Hello
+          </div>
         </PopoverContent>
       </Popover>
     );
@@ -56,9 +57,9 @@ export const ControlledExample: Story = {
         </PopoverTrigger>
 
         <PopoverContent>
-          <div className={styles.box}>
+          <div className="rounded-8 shadow-xs max-w-300 flex flex-col gap-8 border border-gray-200 bg-white p-16">
             Hello
-            <Button variant="primary" onClick={() => setIsOpen(false)} size="md">
+            <Button variant="primary" onClick={() => setIsOpen(false)} size={48}>
               Close
             </Button>
           </div>
@@ -93,14 +94,16 @@ export const PositionExample: Story = {
           </PopoverTrigger>
 
           <PopoverContent>
-            <div className={styles.box}>Hello</div>
+            <div className="rounded-8 shadow-xs max-w-300 flex flex-col gap-8 border border-gray-200 bg-white p-16">
+              Hello
+            </div>
           </PopoverContent>
         </Popover>
 
         <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
           <b>Always Open: {isAlwaysOpen ? 'ON' : 'OFF'}</b>
 
-          <Switch checked={isAlwaysOpen} onChange={(e) => setIsAlwaysOpen(e.target.checked)} />
+          <Switch checked={isAlwaysOpen} onCheckedChange={setIsAlwaysOpen} />
         </div>
 
         <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
@@ -109,7 +112,7 @@ export const PositionExample: Story = {
             {placement2DList.map((placementList, i) => (
               <div key={i} style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
                 {placementList.map((item, j) => (
-                  <Button key={j} onClick={() => setPlacement(item)} variant="ghost">
+                  <Button key={j} onClick={() => setPlacement(item)} variant="linePrimary">
                     {item}
                   </Button>
                 ))}
