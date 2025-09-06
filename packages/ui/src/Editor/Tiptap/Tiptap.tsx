@@ -7,17 +7,16 @@ import { BubbleMenu } from '@tiptap/react/menus';
 import StarterKit from '@tiptap/starter-kit';
 import TextAlign from '@tiptap/extension-text-align';
 import Color from '@tiptap/extension-color';
-import { TextStyle } from '@tiptap/extension-text-style';
+import { TextStyle, BackgroundColor } from '@tiptap/extension-text-style';
 import { ImageExtension } from './extensions/ImageExtension';
 import EditorMenus from './components/EditorMenus';
 import type { TiptapBubbleMenuProps } from './types/tiptap.types';
 
 interface TiptapProps {
   ref?: React.RefObject<Editor | null>;
-  height?: number;
 }
 
-export default function Tiptap({ ref, height }: TiptapProps) {
+export default function Tiptap({ ref }: TiptapProps) {
   const editor = useEditor({
     extensions: [
       StarterKit,
@@ -30,6 +29,11 @@ export default function Tiptap({ ref, height }: TiptapProps) {
        * https://tiptap.dev/docs/editor/extensions/functionality/color
        */
       Color,
+      /**
+       * 텍스트 배경색
+       * https://tiptap.dev/docs/editor/extensions/functionality/background-color
+       */
+      BackgroundColor,
       /**
        * 텍스트 정렬
        * https://tiptap.dev/docs/editor/extensions/functionality/textalign
@@ -53,7 +57,11 @@ export default function Tiptap({ ref, height }: TiptapProps) {
             const reader = new FileReader();
 
             reader.onload = (e) => {
-              const src = e.target?.result as string;
+              if (!e.target) return;
+              if (typeof e.target.result !== 'string') return;
+
+              const src = e.target.result;
+
               resolve({ src, 'data-keep-ratio': true });
             };
 
@@ -62,9 +70,9 @@ export default function Tiptap({ ref, height }: TiptapProps) {
         },
       }),
     ],
-    content: '<p>Hello World!</p>',
   });
 
+  // 버블 메뉴 표시 여부
   const shouldShowBubbleMenu = useCallback(({ editor, from, to }: TiptapBubbleMenuProps) => {
     // 이미지가 선택된 경우 버블 메뉴 숨김
     if (editor.isActive('image')) {
@@ -89,8 +97,9 @@ export default function Tiptap({ ref, height }: TiptapProps) {
     <>
       <EditorMenus editor={editor} />
 
-      <EditorContent editor={editor} style={{ height }} />
+      <EditorContent editor={editor} />
 
+      {/* TODO: 버블 메뉴 */}
       <BubbleMenu editor={editor} shouldShow={shouldShowBubbleMenu}>
         This is the bubble menu
       </BubbleMenu>

@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { useCallback, useRef } from 'react';
+import { useCallback, useEffect, useRef } from 'react';
 import Button from '#src/Button/Button';
 import Tiptap from './Tiptap';
 import type { Editor } from '@tiptap/react';
@@ -19,6 +19,15 @@ export const Basic: Story = {
   render: function Render() {
     const editorRef = useRef<Editor>(null);
 
+    // 초기화
+    useEffect(() => {
+      if (!editorRef.current) return;
+
+      const editor = editorRef.current;
+      editor.commands.setContent('<p>Hello World!</p>');
+    }, [editorRef]);
+
+    // 제출
     const onSubmit = useCallback(
       (e: React.FormEvent) => {
         e.preventDefault();
@@ -34,21 +43,9 @@ export const Basic: Story = {
 
     return (
       <form onSubmit={onSubmit}>
-        <Tiptap
-          ref={editorRef}
-          // height={500}
-        />
+        <Tiptap ref={editorRef} />
 
-        <Button
-          type="submit"
-          variant="primary"
-          style={{
-            display: 'block',
-            width: 100,
-            marginLeft: 'auto',
-            marginTop: 32,
-          }}
-        >
+        <Button type="submit" variant="primary" className="ml-auto mt-32">
           작성
         </Button>
       </form>

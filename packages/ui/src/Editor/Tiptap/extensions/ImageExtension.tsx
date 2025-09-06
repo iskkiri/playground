@@ -7,8 +7,9 @@ import {
 } from 'tiptap-extension-resizable-image';
 import Popover from '../../../FloatingUI/Popover/Popover';
 import ImageAltIcon from '../assets/image_alt.svg';
-import ImageAltTextForm from '../components/ImageAltTextForm';
-import ImageAlignmentControls from '../components/ImageAlignmentControls';
+import ImageAltTextControl from '../components/controls/ImageAltTextControl';
+import AlignmentControls from '../components/controls/AlignmentControls';
+import EditorMenuButton from '../components/EditorMenuButton';
 
 const NodeView = (props: ResizableImageNodeViewRendererProps) => {
   const { editor, node, selected } = props;
@@ -56,18 +57,14 @@ const NodeView = (props: ResizableImageNodeViewRendererProps) => {
         </Popover.Trigger>
 
         <Popover.Content>
-          <div className="rounded-4 shadow-xs flex gap-8 border border-gray-200 bg-white p-8">
+          <div className="rounded-4 shadow-xs flex gap-8 border border-gray-200 bg-white p-4">
             {/* 대체 문구 폼 열기 버튼 */}
-            <button
-              type="button"
-              onClick={onOpenAltTextInput}
-              className="rounded-4 flex items-center justify-center p-8 hover:bg-gray-100"
-            >
+            <EditorMenuButton onClick={onOpenAltTextInput}>
               <ImageAltIcon />
-            </button>
+            </EditorMenuButton>
 
             {/* 이미지 정렬 */}
-            <ImageAlignmentControls editor={editor} />
+            <AlignmentControls editor={editor} />
           </div>
         </Popover.Content>
       </Popover>
@@ -80,7 +77,11 @@ const NodeView = (props: ResizableImageNodeViewRendererProps) => {
 
         {/* 대체 문구 폼 */}
         <Popover.Content className="rounded-4 shadow-xs min-w-300 flex flex-col gap-8 border border-gray-200 bg-white p-16">
-          <ImageAltTextForm editor={editor} node={node} onCloseAltTextInput={onCloseAltTextInput} />
+          <ImageAltTextControl
+            editor={editor}
+            node={node}
+            onCloseAltTextInput={onCloseAltTextInput}
+          />
         </Popover.Content>
       </Popover>
     </NodeViewWrapper>
