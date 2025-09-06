@@ -9,7 +9,11 @@ interface AltTextFormProps {
   onCloseAltTextInput: () => void;
 }
 
-export default function ImageAltTextForm({ editor, node, onCloseAltTextInput }: AltTextFormProps) {
+export default function ImageAltTextControl({
+  editor,
+  node,
+  onCloseAltTextInput,
+}: AltTextFormProps) {
   // 대체 문구
   const [altText, setAltText] = useState(node.attrs.alt || '');
   const onChangeAltText = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
