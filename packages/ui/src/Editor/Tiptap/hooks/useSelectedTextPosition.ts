@@ -8,19 +8,30 @@ interface SelectedTextPosition {
   height: number;
 }
 
-export function useSelectedTextPosition(editor: Editor): SelectedTextPosition {
-  // 에디터의 선택 상태와 뷰를 구독하여 상태 변경을 감지
+interface UseSelectedTextPositionParams {
+  editor: Editor;
+  shouldCalculate: boolean;
+}
+
+export function useSelectedTextPosition({
+  editor,
+  shouldCalculate,
+}: UseSelectedTextPositionParams): SelectedTextPosition {
+  // 에디터의 선택 상태와 뷰를 구독하여 상태 변경을 감지 (계산이 필요할 때만)
   const editorState = useEditorState({
     editor,
-    selector: ({ editor }) => ({
-      selection: editor.state.selection,
-      view: editor.view,
-    }),
+    selector: ({ editor }) =>
+      shouldCalculate
+        ? {
+            selection: editor.state.selection,
+            view: editor.view,
+          }
+        : null,
   });
 
   // 선택된 텍스트의 위치를 계산하여 Popover Trigger를 배치할 좌표 계산
   const position = useMemo(() => {
-    if (!editorState.selection || !editorState.view) {
+    if (!editorState) {
       return { top: 0, left: 0, bottom: 0, height: 0 };
     }
 
@@ -52,7 +63,7 @@ export function useSelectedTextPosition(editor: Editor): SelectedTextPosition {
       bottom: coordsAtPos.bottom, // 선택된 위치의 정확한 bottom 좌표
       height: rect.height,
     };
-  }, [editorState.selection, editorState.view]);
+  }, [editorState]);
 
   return position;
 }
