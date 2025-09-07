@@ -8,11 +8,11 @@ import TextColorControls from './controls/TextColorControls';
 import ImageUploadControl from './controls/ImageUploadControl';
 import EmojiPickerControl from './controls/EmojiPickerControl';
 
-interface EditorMenusProps {
+interface EditorMenuProps {
   editor: Editor;
 }
 
-export default function EditorMenus({ editor }: EditorMenusProps) {
+export default function EditorMenu({ editor }: EditorMenuProps) {
   return (
     <div className="z-100 sticky top-0 flex items-center gap-4 border border-gray-200 bg-white">
       {/* 블록 타입 컨트롤 (제목1 ~ 제목6, 문단) */}

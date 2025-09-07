@@ -1,16 +1,15 @@
 import './styles/tiptap.scss';
 import './styles/tiptap-image-resizer.scss';
 
-import { useCallback, useEffect } from 'react';
+import { useEffect } from 'react';
 import { useEditor, EditorContent, type Editor } from '@tiptap/react';
-import { BubbleMenu } from '@tiptap/react/menus';
 import StarterKit from '@tiptap/starter-kit';
 import TextAlign from '@tiptap/extension-text-align';
 import Color from '@tiptap/extension-color';
 import { TextStyle, BackgroundColor } from '@tiptap/extension-text-style';
 import { ImageExtension } from './extensions/ImageExtension';
-import EditorMenus from './components/EditorMenus';
-import type { TiptapBubbleMenuProps } from './types/tiptap.types';
+import EditorMenu from './components/EditorMenu';
+import BubbleMenu from './components/BubbleMenu';
 
 interface TiptapProps {
   ref?: React.RefObject<Editor | null>;
@@ -72,17 +71,6 @@ export default function Tiptap({ ref }: TiptapProps) {
     ],
   });
 
-  // 버블 메뉴 표시 여부
-  const shouldShowBubbleMenu = useCallback(({ editor, from, to }: TiptapBubbleMenuProps) => {
-    // 이미지가 선택된 경우 버블 메뉴 숨김
-    if (editor.isActive('image')) {
-      return false;
-    }
-
-    // 텍스트가 실제로 선택(드래그해서 하이라이트)되었을 때만 버블 메뉴 표시 (from !== to)
-    return from !== to;
-  }, []);
-
   // 외부에서 에디터 인스턴스를 참조할 수 있도록 초기화
   useEffect(() => {
     // ref가 없다면 초기화하지 않음
@@ -95,14 +83,12 @@ export default function Tiptap({ ref }: TiptapProps) {
 
   return (
     <>
-      <EditorMenus editor={editor} />
-
+      {/* 에디터 메뉴 */}
+      <EditorMenu editor={editor} />
+      {/* 에디터 컨텐츠 */}
       <EditorContent editor={editor} />
-
-      {/* TODO: 버블 메뉴 */}
-      <BubbleMenu editor={editor} shouldShow={shouldShowBubbleMenu}>
-        This is the bubble menu
-      </BubbleMenu>
+      {/* 버블 메뉴 */}
+      <BubbleMenu editor={editor} />
     </>
   );
 }
