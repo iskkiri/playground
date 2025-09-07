@@ -13,7 +13,7 @@ import BubbleMenu from './components/BubbleMenu';
 import FileHandler from '@tiptap/extension-file-handler';
 import { insertEditorImages } from './utils/image';
 import TiptapProvider from './TiptapProvider';
-import LinkForm from './components/LinkForm';
+import LinkFormPopover from './components/LinkFormPopover';
 
 interface TiptapProps {
   ref?: React.RefObject<Editor | null>;
@@ -83,7 +83,7 @@ export default function Tiptap({ ref }: TiptapProps) {
       {/* 버블 메뉴 */}
       <BubbleMenu editor={editor} />
 
-      <LinkForm editor={editor} />
+      <LinkFormPopover editor={editor} />
     </TiptapProvider>
   );
 }
