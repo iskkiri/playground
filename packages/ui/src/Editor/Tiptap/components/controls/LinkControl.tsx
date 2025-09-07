@@ -2,6 +2,7 @@ import { useEditorState, type Editor } from '@tiptap/react';
 import FeatherIcons from '@repo/icons/featherIcons';
 import EditorMenuButton from '../EditorMenuButton';
 import { useCallback } from 'react';
+import { useTiptapDispatchContext } from '../../hooks/useTiptapContext';
 
 interface LinkControlProps {
   editor: Editor;
@@ -16,25 +17,14 @@ export default function LinkControl({ editor }: LinkControlProps) {
     }),
   });
 
-  const onSetLink = useCallback(() => {
-    const url = window.prompt('URL');
+  const { setIsLinkFormOpen } = useTiptapDispatchContext();
 
-    // cancelled
-    if (url === null) return;
-
-    // empty
-    if (url === '') {
-      editor.chain().focus().extendMarkRange('link').unsetLink().run();
-      return;
-    }
-
-    if (url) {
-      editor.chain().focus().extendMarkRange('link').setLink({ href: url }).run();
-    }
-  }, [editor]);
+  const onOpenLinkForm = useCallback(() => {
+    setIsLinkFormOpen(true);
+  }, [setIsLinkFormOpen]);
 
   return (
-    <EditorMenuButton isActive={isLink} onClick={onSetLink}>
+    <EditorMenuButton isActive={isLink} onClick={onOpenLinkForm}>
       <FeatherIcons.Link size={20} />
     </EditorMenuButton>
   );
