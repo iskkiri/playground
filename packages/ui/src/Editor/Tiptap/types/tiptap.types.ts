@@ -17,3 +17,11 @@ export interface TiptapBubbleMenuProps {
   from: number;
   to: number;
 }
+
+export interface TiptapStateContextType {
+  isLinkFormOpen: boolean;
+}
+
+export interface TiptapDispatchContextType {
+  setIsLinkFormOpen: React.Dispatch<React.SetStateAction<boolean>>;
+}
