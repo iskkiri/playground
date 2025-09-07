@@ -10,6 +10,8 @@ import { TextStyle, BackgroundColor } from '@tiptap/extension-text-style';
 import { ImageExtension } from './extensions/ImageExtension';
 import EditorMenu from './components/EditorMenu';
 import BubbleMenu from './components/BubbleMenu';
+import FileHandler from '@tiptap/extension-file-handler';
+import { insertEditorImages } from './utils/image';
 
 interface TiptapProps {
   ref?: React.RefObject<Editor | null>;
@@ -47,26 +49,15 @@ export default function Tiptap({ ref }: TiptapProps) {
       ImageExtension.configure({
         defaultWidth: 300,
         withCaption: false,
-        /**
-         * 드래그 앤 드롭 또는 파일 붙여넣기 시 이미지 업로드
-         * https://tiptap-resizable-image.vercel.app/guides/pasting-and-dropping
-         */
-        async onUpload(file: File) {
-          return new Promise((resolve) => {
-            const reader = new FileReader();
-
-            reader.onload = (e) => {
-              if (!e.target) return;
-              if (typeof e.target.result !== 'string') return;
-
-              const src = e.target.result;
-
-              resolve({ src, 'data-keep-ratio': true });
-            };
-
-            reader.readAsDataURL(file);
-          });
-        },
+      }),
+      /**
+       * 드래그 앤 드롭 또는 파일 붙여넣기 시 이미지 업로드
+       * https://tiptap.dev/docs/editor/extensions/functionality/filehandler
+       */
+      FileHandler.configure({
+        // allowedMimeTypes: ['image/png', 'image/jpeg', 'image/gif', 'image/webp'],
+        onDrop: insertEditorImages,
+        onPaste: insertEditorImages,
       }),
     ],
   });

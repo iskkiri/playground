@@ -49,7 +49,12 @@ const NodeView = (props: ResizableImageNodeViewRendererProps) => {
 
   return (
     <NodeViewWrapper className="image-component" data-drag-handle>
-      <Popover isOpen={selected} placement="bottom" offsetOptions={{ mainAxis: 12 }}>
+      <Popover
+        isOpen={selected}
+        isFocusDisabled
+        placement="bottom"
+        offsetOptions={{ mainAxis: 12 }}
+      >
         <Popover.Trigger asChild>
           <div style={{ display: 'inline-flex' }}>
             <ResizableImageComponent {...props} />
