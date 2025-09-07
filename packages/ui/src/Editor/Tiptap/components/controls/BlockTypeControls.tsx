@@ -47,6 +47,7 @@ export default function BlockTypeControls({ editor }: BlockTypeControlsProps) {
       classNames={{
         container: (_state) => 'w-120',
         control: (_state) => 'min-h-40! px-12! border-none!',
+        menuList: (_state) => 'max-h-300!',
       }}
       options={blockTypeOptions}
       value={currentBlockType}
