@@ -36,19 +36,17 @@ export const Basic: Story = {
 export const CollapsibleIcon: Story = {
   render: function Render() {
     return (
-      <div className="accordion_container">
-        <Accordion type="multiple">
-          {[...Array(5)].map((_, index) => (
-            <Accordion.Item key={index} value={index.toString()} className="accordion_item">
-              <Accordion.IconTrigger>Title{index + 1}</Accordion.IconTrigger>
+      <Accordion type="multiple">
+        {[...Array(5)].map((_, index) => (
+          <Accordion.Item key={index} value={index.toString()} className="overflow-hidden">
+            <Accordion.IconTrigger>Title{index + 1}</Accordion.IconTrigger>
 
-              <Accordion.Content className="accordion_content">
-                <div style={{ padding: '16px 24px' }}>Content {index + 1}</div>
-              </Accordion.Content>
-            </Accordion.Item>
-          ))}
-        </Accordion>
-      </div>
+            <Accordion.Content className="bg-neutral-50 data-[state=closed]:animate-[slide-up_300ms_ease-out] data-[state=open]:animate-[slide-down_300ms_ease-out]">
+              <div style={{ padding: '16px 24px' }}>Content {index + 1}</div>
+            </Accordion.Content>
+          </Accordion.Item>
+        ))}
+      </Accordion>
     );
   },
 };

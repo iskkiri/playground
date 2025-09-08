@@ -1,4 +1,4 @@
-import './styles/accordion.scss';
+import './styles/accordion.css';
 
 import { Accordion as AccordionPrimitive } from 'radix-ui';
 import FeatherIcons from '@repo/icons/featherIcons';
@@ -8,14 +8,14 @@ export default function Accordion({
   className,
   ...props
 }: React.ComponentProps<typeof AccordionPrimitive.Root>) {
-  return <AccordionPrimitive.Root {...props} className={cn('accordion', className)} />;
+  return <AccordionPrimitive.Root {...props} className={cn('w-600', className)} />;
 }
 
 function AccordionItem({
   className,
   ...props
 }: React.ComponentProps<typeof AccordionPrimitive.Item>) {
-  return <AccordionPrimitive.Item {...props} className={cn('accordion_item', className)} />;
+  return <AccordionPrimitive.Item {...props} className={cn('overflow-hidden', className)} />;
 }
 
 function AccordionTrigger({
@@ -24,10 +24,18 @@ function AccordionTrigger({
   ...props
 }: React.ComponentProps<typeof AccordionPrimitive.Trigger>) {
   return (
-    <AccordionPrimitive.Header className="accordion_header">
-      <AccordionPrimitive.Trigger className={cn('accordion_trigger', className)} {...props}>
+    <AccordionPrimitive.Header>
+      <AccordionPrimitive.Trigger
+        className={cn(
+          'flex w-full items-center justify-between px-20 py-16',
+          'data-[state=open]:[&>svg]:rotate-180',
+          'data-[disabled]:cursor-not-allowed',
+          className
+        )}
+        {...props}
+      >
         {children}
-        <FeatherIcons.ChevronDown />
+        <FeatherIcons.ChevronDown className="text-gray-400 transition-transform duration-300 ease-out" />
       </AccordionPrimitive.Trigger>
     </AccordionPrimitive.Header>
   );
@@ -39,14 +47,18 @@ function AccordionIconTrigger({
   ...props
 }: React.ComponentProps<typeof AccordionPrimitive.Trigger>) {
   return (
-    <AccordionPrimitive.Header className="accordion_collapsible_header">
+    <AccordionPrimitive.Header className="flex items-center justify-between p-16 pl-20 pr-20">
       {children}
 
       <AccordionPrimitive.Trigger
-        className={cn('accordion_collapsible_trigger', className)}
+        className={cn(
+          'flex cursor-pointer items-center justify-center',
+          'data-[state=open]:[&>svg]:rotate-180',
+          className
+        )}
         {...props}
       >
-        <FeatherIcons.ChevronDown />
+        <FeatherIcons.ChevronDown className="text-gray-400 transition-transform duration-300 ease-out" />
       </AccordionPrimitive.Trigger>
     </AccordionPrimitive.Header>
   );
@@ -56,7 +68,24 @@ function AccordionContent({
   className,
   ...props
 }: React.ComponentProps<typeof AccordionPrimitive.Content>) {
-  return <AccordionPrimitive.Content {...props} className={cn('accordion_content', className)} />;
+  return (
+    <AccordionPrimitive.Content
+      {...props}
+      className={cn(
+        'bg-neutral-50',
+        'data-[state=open]:animate-[slide-down_300ms_ease-out]',
+        'data-[state=closed]:animate-[slide-up_300ms_ease-out]',
+        className
+      )}
+      style={
+        {
+          ...props.style,
+          '--slide-down': 'slide-down 300ms ease-out',
+          '--slide-up': 'slide-up 300ms ease-out',
+        } as React.CSSProperties
+      }
+    />
+  );
 }
 
 Accordion.Item = AccordionItem;
