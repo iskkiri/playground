@@ -8,7 +8,6 @@ interface LinkControlProps {
   editor: Editor;
 }
 
-// TODO: 링크 컨트롤
 export default function LinkControl({ editor }: LinkControlProps) {
   const { isLink } = useEditorState({
     editor,

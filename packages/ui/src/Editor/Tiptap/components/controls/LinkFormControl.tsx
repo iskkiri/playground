@@ -87,7 +87,7 @@ export default function LinkFormControl({
             onKeyDown={handleKeyPress}
             placeholder="https://example.com"
             autoFocus
-            className="rounded-4! px-8! h-40"
+            className="rounded-4 h-40 px-8"
           />
         </label>
 

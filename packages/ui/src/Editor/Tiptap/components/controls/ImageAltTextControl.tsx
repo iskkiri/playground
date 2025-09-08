@@ -59,7 +59,7 @@ export default function ImageAltTextControl({
         placeholder="대체 문구를 입력해주세요"
         onKeyDown={onKeyDownAltTextInput}
         autoFocus
-        className="rounded-4! h-36 px-8"
+        className="rounded-4 h-36 px-8"
       />
 
       <div className="flex justify-end gap-8">

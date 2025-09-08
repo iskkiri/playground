@@ -3,6 +3,7 @@ import Popover from '#src/FloatingUI/Popover/Popover';
 import { Editor, useEditorState } from '@tiptap/react';
 import { useTiptapDispatchContext, useTiptapStateContext } from '../hooks/useTiptapContext';
 import { useSelectedTextPosition } from '../hooks/useSelectedTextPosition';
+import { useTemporaryBackgroundColor } from '../hooks/useTemporaryBackgroundColor';
 import LinkFormControl from './controls/LinkFormControl';
 
 interface LinkFormProps {
@@ -17,6 +18,15 @@ export default function LinkFormPopover({ editor }: LinkFormProps) {
   const position = useSelectedTextPosition({
     editor,
     shouldCalculate: isLinkFormOpen,
+  });
+
+  // 링크 폼이 열리면 선택된 텍스트에 배경색을 적용하여 시각적 피드백 제공
+  // 링크 폼의 input에 포커스가 잡히면 텍스트 선택 영역이 해제되어 사용자가 어떤 텍스트를
+  // 편집하고 있는지 알기 어려우므로 배경색으로 해당 텍스트를 강조표시
+  useTemporaryBackgroundColor({
+    editor,
+    isActive: isLinkFormOpen,
+    temporaryColor: 'rgba(135, 206, 235, 0.6)',
   });
 
   // 링크 폼이 열릴 때만 상태 계산 (리렌더링 최적화)
