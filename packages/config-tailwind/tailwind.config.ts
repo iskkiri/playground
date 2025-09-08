@@ -1,10 +1,8 @@
 import type { Config } from 'tailwindcss';
 
-type PixelObj = Record<number, string>;
-
-const px0_10 = { ...[...Array(11)].map((_, i) => `${i}px`) } as PixelObj;
-const px0_100 = { ...[...Array(101)].map((_, i) => `${i}px`) } as PixelObj;
-const px0_600 = { ...[...Array(601)].map((_, i) => `${i}px`) } as PixelObj;
+const px0_10 = { ...[...Array(11)].map((_, i) => `${i}px`) };
+const px0_100 = { ...[...Array(101)].map((_, i) => `${i}px`) };
+const px0_600 = { ...[...Array(601)].map((_, i) => `${i}px`) };
 
 const config: Config = {
   theme: {
