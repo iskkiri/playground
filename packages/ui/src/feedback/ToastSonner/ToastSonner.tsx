@@ -1,9 +1,8 @@
 'use client';
 
-import './styles/toast-sonner.scss';
-
 import { useCallback } from 'react';
 import { toast as sonnerToast } from 'sonner';
+import { cn } from '@repo/utils/cn';
 import FeatherIcons from '@repo/icons/featherIcons';
 import SuccessIcon from './assets/success_icon.svg';
 import ErrorIcon from './assets/error_icon.svg';
@@ -25,18 +24,28 @@ export default function Toast({ id, type, message, isClose }: ToastProps) {
   const onClose = useCallback(() => sonnerToast.dismiss(id), [id]);
 
   return (
-    <div className="toast-sonner__wrapper">
-      <div className="toast-sonner__content">
+    <div
+      className={cn(
+        'box-border p-12 px-16',
+        'rounded-8 bg-white shadow-[0_0_10px_0_rgba(0,0,0,0.1)]',
+        'flex items-center justify-between',
+        'min-w-[343px]'
+      )}
+    >
+      <div className="flex flex-1 items-center gap-8">
         {type === 'success' && <SuccessIcon width={20} height={20} />}
         {type === 'error' && <ErrorIcon width={20} height={20} />}
         {type === 'warning' && <WraningIcon width={20} height={20} />}
         {type === 'info' && <InfoIcon width={20} height={20} />}
 
-        <p className="toast-sonner__message">{message}</p>
+        <p className="text-14 leading-[22px]">{message}</p>
       </div>
 
       {isClose && (
-        <button className="toast-sonner__close-button" onClick={onClose}>
+        <button
+          className="m-0 flex cursor-pointer items-center justify-center border-none bg-transparent p-0"
+          onClick={onClose}
+        >
           <FeatherIcons.X width={16} height={16} />
         </button>
       )}
