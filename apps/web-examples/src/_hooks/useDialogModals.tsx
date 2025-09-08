@@ -1,16 +1,16 @@
-import type { AlertModalProps } from '@repo/ui/DialogModals/AlertModal/AlertModal';
-import type { ConfirmModalProps } from '@repo/ui/DialogModals/ConfirmModal/ConfirmModal';
-import Modal from '@repo/ui/Modal/Modal';
-import type { BaseModalProps } from '@repo/ui/Modal/types/modal.types';
+import type { AlertModalProps } from '@repo/ui/feedback/AlertModal/AlertModal';
+import type { ConfirmModalProps } from '@repo/ui/feedback/ConfirmModal/ConfirmModal';
+import Modal from '@repo/ui/overlay/Modal/Modal';
+import type { BaseModalProps } from '@repo/ui/overlay/Modal/types/modal.types';
 import dynamic from 'next/dynamic';
 import { useModal } from 'react-use-hook-modal';
 
-const AlertModal = dynamic(() => import('@repo/ui/DialogModals/AlertModal/AlertModal'), {
+const AlertModal = dynamic(() => import('@repo/ui/feedback/AlertModal/AlertModal'), {
   ssr: false,
 });
 
 const ConfirmModal = dynamic(
-  () => import('@repo/ui/DialogModals/ConfirmModal/ConfirmModal'),
+  () => import('@repo/ui/feedback/ConfirmModal/ConfirmModal'),
   { ssr: false }
 );
 

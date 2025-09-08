@@ -1,6 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
-import Button from '@repo/ui/Button/Button';
+import Button from '@repo/ui/general/Button/Button';
 import FeatherIcons from '@repo/icons/featherIcons';
 
 interface SampleCardProps {

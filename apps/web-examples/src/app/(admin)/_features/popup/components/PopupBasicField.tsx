@@ -1,4 +1,4 @@
-import TextInput from '@repo/ui/TextInput/TextInput';
+import TextInput from '@repo/ui/form/TextInput/TextInput';
 import { UseFormRegister } from 'react-hook-form';
 import type { PopupRegisterSchema } from '../schemas/popupRegister.schema';
 

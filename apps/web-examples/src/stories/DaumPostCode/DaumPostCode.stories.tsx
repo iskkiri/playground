@@ -1,8 +1,8 @@
 import React, { useCallback, useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/nextjs';
 import useDaumPostCode from './hooks/useDaumPostCode';
-import TextInput from '@repo/ui/TextInput/TextInput';
-import Button from '@repo/ui/Button/Button';
+import TextInput from '@repo/ui/form/TextInput/TextInput';
+import Button from '@repo/ui/general/Button/Button';
 import DaumPostCode from './DaumPostCode';
 import type { ICoordinates } from './types/coordinates.types';
 import useCoordinates from './hooks/useCoordinates';

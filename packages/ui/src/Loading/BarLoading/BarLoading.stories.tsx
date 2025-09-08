@@ -2,7 +2,7 @@ import { Meta, StoryObj } from '@storybook/react-vite';
 import BarLoadingComponent from './BarLoading';
 
 const meta = {
-  title: 'components/Loading/BarLoading',
+  title: 'Loading/BarLoading',
   component: BarLoadingComponent,
   parameters: {
     layout: 'centered',

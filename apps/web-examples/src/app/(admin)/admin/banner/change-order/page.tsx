@@ -10,12 +10,12 @@ import {
 } from '@/app/(admin)/_features/banner/hooks/react-query/useBanner';
 import { AdminSortableItem } from '../../../_components/AdminSortableItem';
 import useGoBack from '@/_hooks/useGoBack';
-import Pagination from '@repo/ui/Pagination/Pagination';
+import Pagination from '@repo/ui/navigation/Pagination/Pagination';
 import usePagination from '@repo/hooks/usePagination';
 import { useAlertModal } from '@/_hooks/useDialogModals';
 import { useExposureAndOrderDragAndDrop } from '@/app/(admin)/_features/banner/hooks/useExposureAndOrderDragAndDrop';
 import SortableForEmptyList from '@/app/(admin)/_components/SortableForEmptyList';
-import Button from '@repo/ui/Button/Button';
+import Button from '@repo/ui/general/Button/Button';
 import DragHandle from '@/stories/DndKit/components/DragHandle';
 
 export default function AdminBannerChangeOrderPage() {

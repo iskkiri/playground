@@ -18,13 +18,13 @@ import type { PopupListItemData } from '../../_features/popup/api/dtos/getPopupL
 import PaginationWithPageSize from '../../_components/PaginationWithPageSize';
 import useRowSelectionChange from '@/_hooks/useRowSelectionChange';
 import RadioTab from '@/_components/RadioTab';
-import Select from '@repo/ui/Select/Select';
-import TextInput from '@repo/ui/TextInput/TextInput';
+import Select from '@repo/ui/form/Select/Select';
+import TextInput from '@repo/ui/form/TextInput/TextInput';
 import FeatherIcons from '@repo/icons/featherIcons';
-import Button from '@repo/ui/Button/Button';
+import Button from '@repo/ui/general/Button/Button';
 import AppTable from '@/_components/Table';
-import Modal from '@repo/ui/Modal/Modal';
-import ConfirmModal from '@repo/ui/DialogModals/ConfirmModal/ConfirmModal';
+import Modal from '@repo/ui/overlay/Modal/Modal';
+import ConfirmModal from '@repo/ui/feedback/ConfirmModal/ConfirmModal';
 
 export default function AdminPopupListPage() {
   // 페이지네이션

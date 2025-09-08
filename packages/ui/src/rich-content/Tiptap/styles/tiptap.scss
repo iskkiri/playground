@@ -1,0 +1,14 @@
+@use '../../EditorViewer/styles/tiptap-editor-viewer.scss' as *;
+
+/* Basic editor styles */
+.tiptap {
+  @include tiptap-editor-viewer-tags;
+
+  padding: 12px;
+
+  height: 100%;
+  overflow: auto;
+  outline: none;
+  border: 1px solid var(--color-gray-200);
+  border-top: none;
+}

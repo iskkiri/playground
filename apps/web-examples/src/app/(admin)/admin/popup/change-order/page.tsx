@@ -6,7 +6,7 @@ import { SortableContext, verticalListSortingStrategy } from '@dnd-kit/sortable'
 import GoBack from '@/_components/GoBack';
 import { AdminSortableItem } from '../../../_components/AdminSortableItem';
 import useGoBack from '@/_hooks/useGoBack';
-import Pagination from '@repo/ui/Pagination/Pagination';
+import Pagination from '@repo/ui/navigation/Pagination/Pagination';
 import usePagination from '@repo/hooks/usePagination';
 import {
   useGetPopupList,
@@ -14,7 +14,7 @@ import {
 } from '@/app/(admin)/_features/popup/hooks/react-query/useAdminPopup';
 import { useAlertModal } from '@/_hooks/useDialogModals';
 import { useExposureAndOrderDragAndDrop } from '@/app/(admin)/_features/banner/hooks/useExposureAndOrderDragAndDrop';
-import Button from '@repo/ui/Button/Button';
+import Button from '@repo/ui/general/Button/Button';
 import DragHandle from '@/stories/DndKit/components/DragHandle';
 
 export default function AdminBannerChangeOrderPage() {

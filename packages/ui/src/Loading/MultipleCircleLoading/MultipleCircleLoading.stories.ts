@@ -2,7 +2,7 @@ import { Meta, StoryObj } from '@storybook/react-vite';
 import MultipleCircleLoadingComponent from './MultipleCircleLoading';
 
 const meta = {
-  title: 'components/Loading/MultipleCircleLoading',
+  title: 'Loading/MultipleCircleLoading',
   component: MultipleCircleLoadingComponent,
   parameters: {
     layout: 'centered',

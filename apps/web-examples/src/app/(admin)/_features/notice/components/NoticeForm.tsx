@@ -4,11 +4,11 @@ import {
   type FieldArrayWithId,
   type UseFormReturn,
 } from 'react-hook-form';
-import Radio from '@repo/ui/Radio/Radio';
-import TextInput from '@repo/ui/TextInput/TextInput';
+import Radio from '@repo/ui/form/Radio/Radio';
+import TextInput from '@repo/ui/form/TextInput/TextInput';
 import MultipleFileAttachment from '@/_features/file/components/MultipleFileAttachment/MultipleFileAttachment';
 import ImageAttachment from '@/_features/image/components/ImageAttachment/ImageAttachment';
-import Button from '@repo/ui/Button/Button';
+import Button from '@repo/ui/general/Button/Button';
 import dynamic from 'next/dynamic';
 import type { NoticeRegisterSchema } from '../schemas/noticeRegister.schema';
 import type { CKEditor } from '@ckeditor/ckeditor5-react';
@@ -17,7 +17,7 @@ import type { ImageSchema } from '@/_features/image/schemas/image.schema';
 import { formatDateTime } from '@repo/utils/formatDate';
 import { cn } from '@repo/utils/cn';
 
-const Editor = dynamic(() => import('@repo/ui/Editor/CkEditor/CkEditor'), {
+const Editor = dynamic(() => import('@repo/ui/rich-content/CkEditor/CkEditor'), {
   ssr: false,
 });
 

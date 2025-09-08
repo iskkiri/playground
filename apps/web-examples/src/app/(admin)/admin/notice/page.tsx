@@ -11,11 +11,11 @@ import { useGetNoticeList } from '../../_features/notice/hooks/react-query/useNo
 import useNoticeListTable from '../../_features/notice/hooks/useNoticeListTable';
 import { useDeleteNotices } from '../../_features/notice/hooks/react-query/useNotice';
 import NoticeSearchFilter from '../../_features/notice/components/NoticeSearchFilter';
-import Button from '@repo/ui/Button/Button';
+import Button from '@repo/ui/general/Button/Button';
 import AppTable from '@/_components/Table';
 import PaginationWithPageSize from '../../_components/PaginationWithPageSize';
-import Modal from '@repo/ui/Modal/Modal';
-import ConfirmModal from '@repo/ui/DialogModals/ConfirmModal/ConfirmModal';
+import Modal from '@repo/ui/overlay/Modal/Modal';
+import ConfirmModal from '@repo/ui/feedback/ConfirmModal/ConfirmModal';
 import type { NoticeListItemData } from '../../_features/notice/api/dtos/getNoticeList.dto';
 import useRowSelectionChange from '@/_hooks/useRowSelectionChange';
 

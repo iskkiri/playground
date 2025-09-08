@@ -1,5 +1,5 @@
-import TextInput from '@repo/ui/TextInput/TextInput';
-import Button from '@repo/ui/Button/Button';
+import TextInput from '@repo/ui/form/TextInput/TextInput';
+import Button from '@repo/ui/general/Button/Button';
 import ImageAttachment from '@/_features/image/components/ImageAttachment/ImageAttachment';
 import type { UseFormReturn } from 'react-hook-form';
 import type { BannerRegisterSchema } from '../schemas/bannerRegister.schema';

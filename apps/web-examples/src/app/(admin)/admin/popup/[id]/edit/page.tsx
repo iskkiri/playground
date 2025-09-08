@@ -12,7 +12,7 @@ import usePopupSubmit from '@/app/(admin)/_features/popup/hooks/usePopupSubmit';
 import { useGetPopupDetail } from '@/app/(admin)/_features/popup/hooks/react-query/useAdminPopup';
 import useInitialzePopupForm from '@/app/(admin)/_features/popup/hooks/useInitialzePopupForm';
 import useGetIdParam from '@/_hooks/useGetIdParam';
-import Button from '@repo/ui/Button/Button';
+import Button from '@repo/ui/general/Button/Button';
 
 export default function AdminPopupEditPage() {
   const id = useGetIdParam();

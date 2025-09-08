@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { createColumnHelper, type OnChangeFn, type RowSelectionState } from '@tanstack/react-table';
 import FeatherIcons from '@repo/icons/featherIcons';
 import useTable from '@/_hooks/useTable';
-import CheckBox from '@repo/ui/CheckBox/CheckBox';
+import CheckBox from '@repo/ui/form/CheckBox/CheckBox';
 import { formatDate, formatDateTime } from '@repo/utils/formatDate';
 import type { PopupListItemData } from '../api/dtos/getPopupList.dto';
 

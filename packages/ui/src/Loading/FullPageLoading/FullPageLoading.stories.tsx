@@ -2,7 +2,7 @@ import { Meta, StoryObj } from '@storybook/react-vite';
 import FullPageLoadingComponent from './FullPageLoading';
 
 const meta = {
-  title: 'components/Loading/FullPageLoading',
+  title: 'Loading/FullPageLoading',
   component: FullPageLoadingComponent,
   parameters: {
     layout: 'centered',

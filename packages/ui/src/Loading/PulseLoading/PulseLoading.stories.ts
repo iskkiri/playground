@@ -2,7 +2,7 @@ import { Meta, StoryObj } from '@storybook/react-vite';
 import PulseLoadingComponent from './PulseLoading';
 
 const meta = {
-  title: 'components/Loading/PulseLoading',
+  title: 'Loading/PulseLoading',
   component: PulseLoadingComponent,
   parameters: {
     layout: 'centered',

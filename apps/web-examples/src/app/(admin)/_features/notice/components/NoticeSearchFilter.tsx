@@ -1,6 +1,6 @@
 import RadioTab from '@/_components/RadioTab';
-import Select from '@repo/ui/Select/Select';
-import TextInput from '@repo/ui/TextInput/TextInput';
+import Select from '@repo/ui/form/Select/Select';
+import TextInput from '@repo/ui/form/TextInput/TextInput';
 import FeatherIcons from '@repo/icons/featherIcons';
 import { Controller, type Control, type FieldValues, type UseFormRegister } from 'react-hook-form';
 import { noticeSearchOptions } from '../data/notice.data';

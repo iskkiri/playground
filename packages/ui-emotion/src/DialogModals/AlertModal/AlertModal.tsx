@@ -1,6 +1,6 @@
 'use client';
 
-import Modal from '@repo/ui/Modal/Modal';
+import Modal from '@repo/ui/overlay/Modal/Modal';
 import { dialogModalCss } from '../styles/DialogModal.styles';
 import Button, { type ButtonType } from '#src/Button/Button.js';
 
