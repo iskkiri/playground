@@ -25,7 +25,7 @@ export default function ModalFooter<T extends ElementType = 'div'>({
   const Component = as || 'div';
 
   return (
-    <Component className={cn('modal__footer', className)} {...props}>
+    <Component className={cn('flex gap-12 p-20 xl:p-24', className)} {...props}>
       {children}
     </Component>
   );

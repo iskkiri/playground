@@ -39,7 +39,7 @@ export default function ModalCloseTrigger<T extends ElementType = 'button'>({
     <Component
       onClick={handleClick}
       type={Component === 'button' ? 'button' : undefined}
-      className={cn('modal__close-trigger', className)}
+      className={cn('absolute top-28 right-24 bg-transparent border-none cursor-pointer flex items-center justify-center', className)}
       {...props}
     >
       {children}

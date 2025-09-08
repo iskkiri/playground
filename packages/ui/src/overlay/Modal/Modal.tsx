@@ -1,6 +1,6 @@
 'use client';
 
-import './styles/modal.scss';
+import './styles/modal-animations.scss';
 
 import { useState, useCallback, useMemo } from 'react';
 import { ModalDispatchContext, ModalStateContext } from './context/ModalContext';

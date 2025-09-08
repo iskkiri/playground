@@ -25,7 +25,7 @@ export default function ModalBody<T extends ElementType = 'div'>({
   const Component = as || 'div';
 
   return (
-    <Component className={cn('modal__body', className)} {...props}>
+    <Component className={cn('px-20 xl:px-24', className)} {...props}>
       {children}
     </Component>
   );

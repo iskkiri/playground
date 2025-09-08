@@ -25,7 +25,7 @@ export default function ModalHeader<T extends ElementType = 'div'>({
   const Component = as || 'div';
 
   return (
-    <Component className={cn('modal__header', className)} {...props}>
+    <Component className={cn('px-20 pt-24 pb-16 xl:px-24', className)} {...props}>
       {children}
     </Component>
   );

@@ -50,3 +50,19 @@
     transform: translate3d(-50%, -50%, 0) scale(0.9);
   }
 }
+
+.center-modal {
+  position: relative;
+  left: 50%;
+  top: 50%;
+  transform: translate3d(-50%, -50%, 0);
+
+  @include modal-center-animation;
+
+  width: calc(100% - 40px);
+  max-width: 480px;
+
+  border-radius: 16px;
+  background: var(--color-white);
+  box-shadow: 0px 0px 40px 0px rgba(0, 0, 0, 0.1);
+}

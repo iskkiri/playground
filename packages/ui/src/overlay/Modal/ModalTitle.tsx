@@ -25,7 +25,7 @@ export default function ModalTitle<T extends ElementType = 'h2'>({
   const Component = as || 'h2';
 
   return (
-    <Component className={cn('modal__title', className)} {...props}>
+    <Component className={cn('typography-p2-18b', className)} {...props}>
       {children}
     </Component>
   );
