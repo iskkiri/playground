@@ -4,7 +4,7 @@ import type { FieldErrors, FieldValues, UseFormReturn } from 'react-hook-form';
 
 interface UseFormErrorAlertParams<TFieldValues extends FieldValues> {
   errors: FieldErrors;
-  clearErrors: UseFormReturn<TFieldValues>['clearErrors'];
+  clearErrors?: UseFormReturn<TFieldValues>['clearErrors'];
 }
 
 export default function useFormErrorAlert<TFieldValues extends FieldValues>({
@@ -39,7 +39,10 @@ export default function useFormErrorAlert<TFieldValues extends FieldValues>({
     openAlertModal({
       title: '안내',
       content: errorMessage,
-      onClose: closeAlertModal,
+      onClose: () => {
+        clearErrors?.();
+        closeAlertModal();
+      },
     });
   }, [clearErrors, closeAlertModal, errors, findErrorMessage, openAlertModal]);
 }
