@@ -2,13 +2,13 @@ import { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { Controller, useForm } from 'react-hook-form';
 
-import './styles/story.scss';
 import { SingleValue } from 'react-select';
 import Select from './Select';
-import SelectCustomMultiValue from './components/SelectCustomMultiValue';
-import SelectCustomMultiSelectOption from './components/SelectCustomMultiSelectOption';
-import SelectCustomOption from './components/SelectCustomOption';
-import type { SelectOption } from './types/select.types';
+import SelectMultiValue from './components/SelectMultiValue';
+import SelectMultiSelectOption from './components/SelectMultiSelectOption';
+import SelectOption from './components/SelectOption';
+import type { SelectOption as SelectOptionType } from './types/select.types';
+import SelectContainerWithLabel from './components/SelectContainerWithLabel';
 
 const mockOptions = [
   { label: 'Select List1', value: 'Select List1' },
@@ -16,7 +16,7 @@ const mockOptions = [
   { label: 'Select List3', value: 'Select List3', isDisabled: true },
   { label: 'Select List4', value: 'Select List4' },
   { label: 'Select List5', value: 'Select List5' },
-] satisfies SelectOption[];
+] satisfies SelectOptionType[];
 
 const mockMultiSelectOptions = [
   { label: 'Select List1', value: 'Select List1' },
@@ -29,9 +29,9 @@ const mockMultiSelectOptions = [
   { label: 'Select List8', value: 'Select List8' },
   { label: 'Select List9', value: 'Select List9' },
   { label: 'Select List10', value: 'Select List10' },
-] satisfies SelectOption[];
+] satisfies SelectOptionType[];
 
-const isSingleValue = (option: unknown): option is SingleValue<SelectOption> => {
+const isSingleValue = (option: unknown): option is SingleValue<SelectOptionType> => {
   if (option !== null && typeof option === 'object' && 'value' in option) return true;
 
   return false;
@@ -141,7 +141,7 @@ export const SelectWithCustomOption: Story = {
             }
           }}
           value={mockOptions.find((option) => option.value === value) ?? null}
-          components={{ Option: SelectCustomOption }}
+          components={{ Option: SelectOption }}
         />
       </div>
     );
@@ -156,7 +156,6 @@ export const SelectWithLabel: Story = {
       <div style={{ width: 240 }}>
         <Select
           {...props}
-          label="label"
           options={mockOptions}
           // options의 타입으로부터 SingleValue<SelectOption> 타입이 추론되어야 하는데, 스토리북에서 타입추론이 안되는 이슈가 있음
           // => 실제 사용시에는 타입가드 불필요
@@ -170,39 +169,14 @@ export const SelectWithLabel: Story = {
             }
           }}
           value={mockOptions.find((option) => option.value === value) ?? null}
+          components={{
+            SelectContainer: (props) => <SelectContainerWithLabel label="label" {...props} />,
+          }}
           classNames={{
-            container: (_props) => 'select-with-label__container',
-            control: (_props) => 'select-with-label__control',
+            container: () => 'relative',
+            control: () => 'py-14 pt-32',
+            dropdownIndicator: () => 'absolute right-20 top-24',
           }}
-        />
-      </div>
-    );
-  },
-};
-
-export const PortalExample: Story = {
-  render: function Render(props) {
-    const [value, setValue] = useState<string>();
-
-    return (
-      <div style={{ width: 240 }}>
-        <Select
-          {...props}
-          // isDisabled
-          options={mockOptions}
-          // options의 타입으로부터 SingleValue<SelectOption> 타입이 추론되어야 하는데, 스토리북에서 타입추론이 안되는 이슈가 있음
-          // => 실제 사용시에는 타입가드 불필요
-          onChange={(option) => {
-            if (!option) return;
-
-            if (isSingleValue(option) && typeof option.value === 'string') {
-              setValue(option.value);
-            } else {
-              setValue(undefined);
-            }
-          }}
-          value={mockOptions.find((option) => option.value === value) ?? null}
-          isPortal
         />
       </div>
     );
@@ -232,8 +206,8 @@ export const MultiSelectExample: Story = {
           }}
           isClearable={false}
           components={{
-            MultiValue: SelectCustomMultiValue,
-            Option: SelectCustomMultiSelectOption,
+            MultiValue: SelectMultiValue,
+            Option: SelectMultiSelectOption,
           }}
         />
       </div>
