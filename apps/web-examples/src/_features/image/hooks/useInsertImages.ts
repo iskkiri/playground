@@ -3,6 +3,7 @@ import { type UseFieldArrayRemove, type FieldArrayMethodProps } from 'react-hook
 import type { ImageSchema } from '../schemas/image.schema';
 import { validateFileSize } from '@repo/utils/validateFileSize';
 import { useAlertModal } from '@/_hooks/useDialogModals';
+import { readFileAsDataURL } from '@repo/utils/image';
 
 interface UseInsertImagesParams {
   append: (value: ImageSchema | ImageSchema[], options?: FieldArrayMethodProps) => void;
@@ -30,9 +31,9 @@ export default function useInsertImages({ append, remove, fileSizeLimit }: UseIn
           continue;
         }
 
-        const blobImage = URL.createObjectURL(file);
+        const base64Image = await readFileAsDataURL(file);
 
-        append({ file, blobImage });
+        append({ file, base64Image });
       }
     },
     [append, fileSizeLimit, openAlertModal, closeAlertModal]

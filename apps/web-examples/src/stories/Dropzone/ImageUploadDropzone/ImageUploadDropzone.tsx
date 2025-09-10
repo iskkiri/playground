@@ -1,24 +1,22 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useState } from 'react';
 import { useDropzone } from 'react-dropzone';
 import { cn } from '@repo/utils/cn';
 import Button from '@repo/ui/general/Button/Button';
+import { readFileAsDataURL } from '@repo/utils/image';
 
 interface IUploadImage {
   file: File;
-  blobImage: string;
+  base64Image: string;
 }
 
 export default function ImageUploadDropzone() {
   const [uploadImages, setUploadImages] = useState<IUploadImage[]>([]);
-  const blobUrlsRef = useRef<string[]>([]);
 
-  const onDrop = useCallback((files: File[]) => {
+  const onDrop = useCallback(async (files: File[]) => {
     for (const file of files) {
-      const blobImage = URL.createObjectURL(file);
-      if (!blobImage) return;
+      const base64Image = await readFileAsDataURL(file);
 
-      blobUrlsRef.current.push(blobImage);
-      setUploadImages((prev) => [...prev, { file, blobImage }]);
+      setUploadImages((prev) => [...prev, { file, base64Image }]);
     }
   }, []);
 
@@ -31,14 +29,6 @@ export default function ImageUploadDropzone() {
   });
 
   const onOpenFileWindow = useCallback(() => open(), [open]);
-
-  // 컴포넌트 언마운트 시 모든 blob URL 해제
-  useEffect(() => {
-    const blobUrls = blobUrlsRef.current;
-    return () => {
-      blobUrls.forEach((url) => URL.revokeObjectURL(url));
-    };
-  }, []);
 
   return (
     <section className="w-600 mx-auto mt-16 flex flex-col gap-8 border border-neutral-200 p-16">
@@ -61,7 +51,7 @@ export default function ImageUploadDropzone() {
           // eslint-disable-next-line @next/next/no-img-element
           <img
             key={uploadImage.file.name}
-            src={uploadImage.blobImage}
+            src={uploadImage.base64Image}
             alt=""
             className="h-full w-full object-cover"
           />

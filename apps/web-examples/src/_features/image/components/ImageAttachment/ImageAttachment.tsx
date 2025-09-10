@@ -22,7 +22,7 @@ export default function ImageAttachment({
   className,
 }: AdminImageFieldAttachmentProps) {
   const imageUrl = useMemo(
-    () => insertedImageObj?.blobImage || insertedImageObj?.storageImage,
+    () => insertedImageObj?.base64Image || insertedImageObj?.storageImage,
     [insertedImageObj]
   );
 

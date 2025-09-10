@@ -8,7 +8,7 @@ export const getOptionalImageSchema = (message?: string) =>
     .object(
       {
         file: z.instanceof(File).optional(),
-        blobImage: z.string().optional(),
+        base64Image: z.string().optional(),
         storageImage: z.string().optional(), // 스토리지에 저장된 이미지 (ex. S3)
       },
       { message }
@@ -24,16 +24,16 @@ export const getRequiredImageSchema = (message?: string) =>
       /**
        * 수정/편집/업데이트
        * 스토리지(s3)에 저장된 이미지가 존재할 경우 = data.storageImage 가 존재할 경우
-       * => file과 blobImage는 선택사항
+       * => file과 base64Image는 선택사항
        */
       if (data?.storageImage) return true;
 
       /**
        * 생성
        * 스토리지(s3)에 저장된 이미지가 존재하지 않을 경우
-       * => file과 blobImage는 필수
+       * => file과 base64Image는 필수
        */
-      return !!(data?.file && data?.blobImage);
+      return !!(data?.file && data?.base64Image);
     },
     { message }
   );

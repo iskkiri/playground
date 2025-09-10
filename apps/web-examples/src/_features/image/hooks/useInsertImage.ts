@@ -3,6 +3,7 @@ import type { FieldPath, FieldValues, SetValueConfig, UseFormReturn } from 'reac
 import type { ImageSchema } from '../schemas/image.schema';
 import { validateFileSize } from '@repo/utils/validateFileSize';
 import { useAlertModal } from '@/_hooks/useDialogModals';
+import { readFileAsDataURL } from '@repo/utils/image';
 
 interface UseInsertImageParams<TFieldValues extends FieldValues> {
   name: FieldPath<TFieldValues>;
@@ -38,10 +39,9 @@ export default function useInsertImage<TFieldValues extends FieldValues>({
         return;
       }
 
-      const blobImage = URL.createObjectURL(file);
-      if (!blobImage) return;
+      const base64Image = await readFileAsDataURL(file);
 
-      setValue(name, { file, blobImage }, { shouldValidate: true });
+      setValue(name, { file, base64Image }, { shouldValidate: true });
     },
     [fileSizeLimit, name, setValue, openAlertModal, closeAlertModal]
   );
@@ -52,7 +52,7 @@ export default function useInsertImage<TFieldValues extends FieldValues>({
 
       setValue(name, {
         file: undefined,
-        blobImage: undefined,
+        base64Image: undefined,
         storageImage,
       });
     },
