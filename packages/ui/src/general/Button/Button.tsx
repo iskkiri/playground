@@ -32,7 +32,7 @@ export const buttonVariants = cva(
   }
 );
 
-export type ButtonProps = Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'prefix' | 'suffix'> &
+export type ButtonProps = Omit<React.ComponentProps<'button'>, 'prefix' | 'suffix'> &
   VariantProps<typeof buttonVariants> & {
     prefix?: React.ReactNode;
     suffix?: React.ReactNode;
