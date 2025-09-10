@@ -31,37 +31,47 @@ export default function DatePickerCustomHeader({
 
   const selectClassNames = ({ containerClassName }: { containerClassName: string }) => ({
     container: () => containerClassName,
-    control: () => 'date-picker__custom-select-control',
-    menuList: () => 'date-picker__custom-select-menu-list',
-    option: () => 'date-picker__custom-select-option',
+    control: () => 'px-16',
+    menuList: () => 'p-0',
+    option: () => 'rounded-0',
   });
 
   return (
-    <div className="date-picker__custom-header">
-      <button type="button" onClick={decreaseMonth}>
-        <FeatherIcons.ChevronLeft color="#a3a3a3" />
+    <div className="flex items-center justify-between">
+      <button
+        type="button"
+        onClick={decreaseMonth}
+        className="flex h-32 w-32 shrink-0 items-center justify-center border-none bg-transparent"
+      >
+        <FeatherIcons.ChevronLeft color="#a3a3a3" className="shrink-0" />
       </button>
-      <div className="date-picker__custom-header-select-wrapper">
+
+      <div className="flex items-center gap-8">
         <Select
           options={yearsOptions}
           value={yearsOptions.find((option) => option.value === selectedYear)}
           onChange={onChangeYear}
           classNames={selectClassNames({
-            containerClassName: 'date-picker__custom-year-select-container',
+            containerClassName: 'w-104',
           })}
         />
+
         <Select
           options={monthsOptions}
           value={monthsOptions.find((option) => option.value === selectedMonth)}
           onChange={onChangeMonth}
           classNames={selectClassNames({
-            containerClassName: 'date-picker__custom-month-select-container',
+            containerClassName: 'w-84',
           })}
         />
       </div>
 
-      <button type="button" onClick={increaseMonth}>
-        <FeatherIcons.ChevronRight color="#a3a3a3" />
+      <button
+        type="button"
+        onClick={increaseMonth}
+        className="flex h-32 w-32 shrink-0 items-center justify-center border-none bg-transparent"
+      >
+        <FeatherIcons.ChevronRight color="#a3a3a3" className="flex-shrink-0" />
       </button>
     </div>
   );
