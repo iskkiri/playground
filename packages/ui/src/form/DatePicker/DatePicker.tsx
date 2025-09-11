@@ -17,6 +17,7 @@ import useDatePickerRangeStyle from './hooks/useDatePickerRangeStyle';
 import useDatePickerRangeValues from './hooks/useDatePickerRangeValues';
 
 type DatePickerProps = ReactDatePickerProps & {
+  isReadOnly?: boolean;
   cancelButton?: ({ onCancel }: { onCancel: () => void }) => React.ReactNode;
   completeButton?: ({ onComplete }: { onComplete: () => void }) => React.ReactNode;
 };
@@ -32,6 +33,7 @@ export default function DatePicker({
   onChange,
   cancelButton,
   completeButton,
+  isReadOnly = true,
   ...props
 }: DatePickerProps) {
   const ref = useRef<ReactDatePicker | null>(null);
@@ -84,7 +86,7 @@ export default function DatePicker({
         dateFormat="yyyy-MM-dd" // 인풋에 나타나는 날짜 형식
         dateFormatCalendar="yyyy년 MM월" // 팝업 head 날짜 형식 지정
         popperPlacement="bottom"
-        customInput={<DatePickerCustomInput isReadOnly />}
+        customInput={<DatePickerCustomInput isReadOnly={isReadOnly} />}
         calendarContainer={(containerProps: React.ComponentProps<typeof CalendarContainer>) => (
           <DatepickerCustomContainer
             {...containerProps}

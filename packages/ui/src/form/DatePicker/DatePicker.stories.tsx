@@ -38,6 +38,24 @@ export const Basic: Story = {
   },
 };
 
+export const Typeable: Story = {
+  render: function Render() {
+    const [date, setDate] = useState<Date | null>(null);
+
+    return (
+      <div style={{ width: 300 }}>
+        <DatePicker
+          selected={date}
+          onChange={(date) => setDate(date)}
+          placeholderText="날짜를 선택해주세요."
+          portalId="root-portal"
+          isReadOnly={false}
+        />
+      </div>
+    );
+  },
+};
+
 export const Disabled: Story = {
   render: function Render() {
     const [date, setDate] = useState<Date | null>(null);
