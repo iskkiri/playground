@@ -8,6 +8,7 @@ import PopoverContent from '#src/overlay/Popover/PopoverContent';
 import FeatherIcons from '@repo/icons/featherIcons';
 import { formatDate, isValidDateFormat } from '@repo/utils/formatDate';
 import { useDateInputFormatter } from './hooks/useDateInputFormatter';
+import type { MonthChangeEventHandler } from 'react-day-picker';
 
 const meta = {
   title: 'Form/Calendar',
@@ -77,20 +78,31 @@ export const DatePicker: Story = {
 
 export const TypeableDatePicker: Story = {
   render: function Render() {
+    // 모달 열림 여부
     const [isOpen, setIsOpen] = useState(false);
+    // 날짜 선택 여부
     const [date, setDate] = useState<Date>();
 
-    const onSelect = useCallback((date: Date) => {
+    // 연도/월 변경
+    const onMonthChange: MonthChangeEventHandler = useCallback((month) => {
+      setDate(month);
+    }, []);
+
+    // 날짜 선택
+    const onSelectDate = useCallback((date: Date) => {
       setDate(date);
       setIsOpen(false);
     }, []);
 
+    // 날짜 입력 값
     const [value, setValue] = useState<string>('');
+    // 날짜 입력 값 변경
     const onChange = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
       setValue(event.target.value);
     }, []);
     const { onChangeInput } = useDateInputFormatter({ onChange });
 
+    // 날짜를 직접 입력했을 때 유효한 날짜 형식이면 날짜 선택
     useEffect(() => {
       if (!isValidDateFormat(value)) return;
 
@@ -121,8 +133,9 @@ export const TypeableDatePicker: Story = {
             captionLayout="dropdown"
             required
             month={date}
+            onMonthChange={onMonthChange}
             selected={date}
-            onSelect={onSelect}
+            onSelect={onSelectDate}
           />
         </PopoverContent>
       </Popover>
