@@ -5,7 +5,7 @@ import { Controller, useForm } from 'react-hook-form';
 import Button from '#src/general/Button/Button';
 
 const meta = {
-  title: 'Form/DatePicker',
+  title: 'Form/DatePicker/ReactDatepicker',
   component: DatePicker,
   tags: ['autodocs'],
   parameters: {
