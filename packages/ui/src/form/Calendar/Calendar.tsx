@@ -5,6 +5,7 @@ import { DayButton, DayPicker, getDefaultClassNames } from 'react-day-picker';
 import Button from '../../general/Button/Button';
 import { cn } from '@repo/utils/cn';
 import FeatherIcons from '@repo/icons/featherIcons';
+import { ko } from 'react-day-picker/locale';
 
 function Calendar({
   className,
@@ -21,6 +22,8 @@ function Calendar({
 
   return (
     <DayPicker
+      // 한국어 locale 설정
+      locale={ko}
       // 월 범위를 벗어나는 날짜 표시 여부 (기본: true)
       showOutsideDays={showOutsideDays}
       className={cn('bg-white [--cell-size:--spacing(40)]', className)}
@@ -29,6 +32,7 @@ function Calendar({
       // 날짜 포맷터 함수들 (월 드롭다운을 짧은 형태로 표시 등)
       formatters={{
         formatMonthDropdown: (date) => date.toLocaleString('default', { month: 'short' }),
+        formatCaption: (date) => `${date.getFullYear()}년 ${date.getMonth() + 1}월`,
         ...formatters,
       }}
       // 각 캘린더 요소별 CSS 클래스 정의
@@ -77,6 +81,7 @@ function Calendar({
           'typography-p4-14r flex-1 select-none text-gray-700',
           defaultClassNames.weekday
         ),
+        weeks: cn('flex flex-col gap-8', defaultClassNames.weeks),
         week: cn('flex w-full', defaultClassNames.week),
         day: cn('select-none', defaultClassNames.day),
         range_start: cn('bg-primary-light rounded-l-full', defaultClassNames.range_start),
