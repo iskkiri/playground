@@ -1,4 +1,4 @@
-import { AppConfig, appConfig } from '@/common/options/config.options';
+import { AppConfig, appConfig } from '@/config/app.config';
 import { Inject, Injectable } from '@nestjs/common';
 import {
   GetGoogleAuthTokenRequestDto,

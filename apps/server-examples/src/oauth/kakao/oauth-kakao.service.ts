@@ -1,5 +1,5 @@
 import { Inject, Injectable, UnauthorizedException } from '@nestjs/common';
-import { AppConfig, appConfig } from '@/common/options/config.options';
+import { AppConfig, appConfig } from '@/config/app.config';
 import type {
   GetKakaoAuthTokenRequestDto,
   GetKakaoAuthTokenResponseDto,

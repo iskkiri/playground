@@ -1,4 +1,4 @@
-import { AppConfig, appConfig } from '@/common/options/config.options';
+import { AppConfig, appConfig } from '@/config/app.config';
 import { BadRequestException, Inject, Injectable } from '@nestjs/common';
 import { IdentityVerificationClient } from '@portone/server-sdk';
 
