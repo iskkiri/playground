@@ -2,7 +2,7 @@ import { Controller, type UseFormReturn } from 'react-hook-form';
 import type { PopupRegisterSchema } from '../schemas/popupRegister.schema';
 import Radio from '@repo/ui/form/Radio/Radio';
 import TextInput from '@repo/ui/form/TextInput/TextInput';
-import DatePicker from '@repo/ui/form/DatePicker/DatePicker';
+import DatePicker from '@repo/ui/form/DatePicker/react-datepicker/DatePicker';
 
 interface PopUpExposureFieldsProps {
   control: UseFormReturn<PopupRegisterSchema>['control'];
