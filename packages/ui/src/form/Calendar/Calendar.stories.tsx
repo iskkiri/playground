@@ -69,7 +69,13 @@ export const DatePicker: Story = {
         </PopoverTrigger>
 
         <PopoverContent className="rounded-16 bg-white p-24 shadow-[0_0_40px_0_rgba(0,0,0,0.1)]">
-          <Calendar mode="single" required selected={date} onSelect={onSelect} />
+          <Calendar
+            required
+            mode="single"
+            captionLayout="dropdown"
+            selected={date}
+            onSelect={onSelect}
+          />
         </PopoverContent>
       </Popover>
     );
@@ -172,9 +178,9 @@ export const TypeableDatePicker: Story = {
 
         <PopoverContent className="rounded-16 bg-white p-24 shadow-[0_0_40px_0_rgba(0,0,0,0.1)]">
           <Calendar
+            required
             mode="single"
             captionLayout="dropdown"
-            required
             month={date}
             onMonthChange={onMonthChange}
             selected={date}
@@ -186,26 +192,19 @@ export const TypeableDatePicker: Story = {
   },
 };
 
-export const RangeDatePicker: Story = {
+export const RangeForOneDatePicker: Story = {
   render: function Render() {
-    const [isOpen, setIsOpen] = useState(false);
     const [date, setDate] = useState<DateRange>({
       from: undefined,
       to: undefined,
     });
 
-    // TODO: 범위 날짜 선택 시 팝오버를 언제 닫히게 할지 고민 필요
-    const onSelect = useCallback((date: DateRange) => {
-      setDate(date);
+    const onSelect = useCallback((newDate: DateRange) => {
+      setDate(newDate);
     }, []);
 
     return (
-      <Popover
-        placement="bottom"
-        isOpen={isOpen}
-        onOpenChange={setIsOpen}
-        offsetOptions={{ mainAxis: 12 }}
-      >
+      <Popover placement="bottom" offsetOptions={{ mainAxis: 12 }}>
         <PopoverTrigger as="div" className="cursor-pointer">
           <TextInput
             placeholder="날짜를 선택해주세요."
@@ -217,9 +216,98 @@ export const RangeDatePicker: Story = {
         </PopoverTrigger>
 
         <PopoverContent className="rounded-16 bg-white p-24 shadow-[0_0_40px_0_rgba(0,0,0,0.1)]">
-          <Calendar mode="range" required selected={date} onSelect={onSelect} />
+          <Calendar
+            required
+            mode="range"
+            captionLayout="dropdown"
+            selected={date}
+            onSelect={onSelect}
+          />
         </PopoverContent>
       </Popover>
+    );
+  },
+};
+
+export const RangeForTwoDatePickers: Story = {
+  render: function Render() {
+    const [isOpenStartDate, setIsOpenStartDate] = useState(false);
+    const [isOpenEndDate, setIsOpenEndDate] = useState(false);
+    const [date, setDate] = useState<DateRange>({
+      from: undefined,
+      to: undefined,
+    });
+
+    const onSelectStartDate = useCallback((selectedDate: Date) => {
+      setDate((prevDate) => ({ from: selectedDate, to: prevDate.to }));
+      setIsOpenStartDate(false);
+    }, []);
+
+    const onSelectEndDate = useCallback((selectedDate: Date) => {
+      setDate((prevDate) => ({ from: prevDate.from, to: selectedDate }));
+      setIsOpenEndDate(false);
+    }, []);
+
+    return (
+      <div className="flex items-center gap-8">
+        <Popover
+          placement="bottom"
+          offsetOptions={{ mainAxis: 12 }}
+          isOpen={isOpenStartDate}
+          onOpenChange={setIsOpenStartDate}
+        >
+          <PopoverTrigger as="div" className="cursor-pointer">
+            <TextInput
+              placeholder="날짜를 선택해주세요."
+              value={date.from ? formatDate(date.from) : ''}
+              suffix={<FeatherIcons.Calendar color="var(--color-gray-400)" />}
+              className="w-300 pointer-events-none"
+              readOnly
+            />
+          </PopoverTrigger>
+
+          <PopoverContent className="rounded-16 bg-white p-24 shadow-[0_0_40px_0_rgba(0,0,0,0.1)]">
+            <Calendar
+              required
+              mode="range"
+              captionLayout="dropdown"
+              selected={date}
+              onDayClick={onSelectStartDate}
+              disabled={(day) => (date.to ? day > date.to : false)}
+            />
+          </PopoverContent>
+        </Popover>
+
+        <span>~</span>
+
+        <Popover
+          placement="bottom"
+          offsetOptions={{ mainAxis: 12 }}
+          isOpen={isOpenEndDate}
+          onOpenChange={setIsOpenEndDate}
+        >
+          <PopoverTrigger as="div" className="cursor-pointer">
+            <TextInput
+              placeholder="날짜를 선택해주세요."
+              value={date.to ? formatDate(date.to) : ''}
+              suffix={<FeatherIcons.Calendar color="var(--color-gray-400)" />}
+              className="w-300 pointer-events-none"
+              readOnly
+            />
+          </PopoverTrigger>
+
+          <PopoverContent className="rounded-16 bg-white p-24 shadow-[0_0_40px_0_rgba(0,0,0,0.1)]">
+            <Calendar
+              required
+              mode="range"
+              captionLayout="dropdown"
+              selected={date}
+              onDayClick={onSelectEndDate}
+              disabled={(day) => (date.from ? day < date.from : false)}
+            />
+          </PopoverContent>
+        </Popover>
+      </div>
     );
   },
 };
