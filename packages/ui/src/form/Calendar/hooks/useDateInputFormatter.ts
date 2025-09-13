@@ -8,7 +8,7 @@ type UseDateInputFormatterProps = {
 export function useDateInputFormatter({ onChange }: UseDateInputFormatterProps) {
   const previousValueRef = useRef<string>('');
 
-  const onChangeInput = useCallback(
+  const onInputChange = useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
       const target = event.target;
       const inputValue = target.value;
@@ -44,6 +44,6 @@ export function useDateInputFormatter({ onChange }: UseDateInputFormatterProps) 
   );
 
   return {
-    onChangeInput,
+    onInputChange,
   };
 }
