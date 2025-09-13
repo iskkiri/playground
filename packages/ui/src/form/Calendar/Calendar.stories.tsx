@@ -144,10 +144,10 @@ export const TypeableDatePicker: Story = {
     const onChange = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
       setValue(event.target.value);
     }, []);
-    const { onChangeInput } = useDateInputFormatter({ onChange });
+    const { onInputChange } = useDateInputFormatter({ onChange });
     const onChangeTextInput = useCallback(
       (event: React.ChangeEvent<HTMLInputElement>) => {
-        onChangeInput(event);
+        onInputChange(event);
 
         const value = event.target.value;
         if (!isValidDateFormat(value)) return;
@@ -157,7 +157,7 @@ export const TypeableDatePicker: Story = {
         // 월 업데이트
         setMonth(new Date(value));
       },
-      [onChangeInput]
+      [onInputChange]
     );
 
     // 텍스트 입력 클릭 시 팝오버 열림 방지

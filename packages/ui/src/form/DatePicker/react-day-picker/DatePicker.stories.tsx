@@ -87,7 +87,7 @@ export const Range: Story = {
       to: undefined,
     });
 
-    const handleDateRangeChange = useCallback((value: DateRange | undefined) => {
+    const onChangeDateRange = useCallback((value: DateRange | undefined) => {
       setDateRange(value || { from: undefined, to: undefined });
     }, []);
 
@@ -97,7 +97,7 @@ export const Range: Story = {
         mode="range"
         variant="readonly"
         value={dateRange}
-        onChange={handleDateRangeChange}
+        onChange={onChangeDateRange}
         placeholder="날짜를 선택해주세요."
       />
     );
@@ -112,13 +112,15 @@ export const RangeForTwoPickers: Story = {
       to: undefined,
     });
 
-    const onStartDateChange = useCallback((date: Date | undefined) => {
+    const onChangeStartDate = useCallback((date: Date | undefined) => {
       setDateRange((prev) => ({ ...prev, from: date }));
     }, []);
 
-    const onEndDateChange = useCallback((date: Date | undefined) => {
+    const onChangeEndDate = useCallback((date: Date | undefined) => {
       setDateRange((prev) => ({ ...prev, to: date }));
     }, []);
+
+    console.log('dateRange', dateRange);
 
     return (
       <div className="flex items-center gap-8">
@@ -127,7 +129,7 @@ export const RangeForTwoPickers: Story = {
           mode="range-start"
           variant="readonly"
           value={dateRange.from}
-          onChange={onStartDateChange}
+          onChange={onChangeStartDate}
           rangeValue={dateRange}
           maxDate={dateRange.to}
           placeholder="시작 날짜를 선택해주세요."
@@ -140,7 +142,7 @@ export const RangeForTwoPickers: Story = {
           mode="range-end"
           variant="readonly"
           value={dateRange.to}
-          onChange={onEndDateChange}
+          onChange={onChangeEndDate}
           rangeValue={dateRange}
           minDate={dateRange.from}
           placeholder="종료 날짜를 선택해주세요."
