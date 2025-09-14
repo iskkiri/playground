@@ -13,7 +13,7 @@ async function bootstrap() {
   const isProduction = configService.get('NODE_ENV') === 'production';
   const PORT = configService.get<number>('PORT') || 8080;
 
-  app.setGlobalPrefix('api');
+  // app.setGlobalPrefix('api/v1');
 
   // CORS 설정
   app.enableCors({
@@ -48,7 +48,7 @@ async function bootstrap() {
       .addBearerAuth()
       .build();
     const document = SwaggerModule.createDocument(app, config);
-    SwaggerModule.setup('docs', app, document);
+    SwaggerModule.setup('swagger-ui', app, document);
   }
 
   await app.listen(PORT, () => logger.log(`Server is running on ${PORT} port ✅`));
