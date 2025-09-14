@@ -1,6 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { Type } from 'class-transformer';
 import { IsInt, IsOptional } from 'class-validator';
+import { ExposeAll } from '../decorators/expose-all.decorator';
 
 export class PaginationRequestDto {
   @ApiProperty({ description: '현재 페이지', example: 1 })
@@ -16,7 +17,12 @@ export class PaginationRequestDto {
   pageSize?: number;
 }
 
+@ExposeAll()
 export class PaginationResponseDto<TData> {
+  constructor(data: Partial<PaginationResponseDto<TData>>) {
+    Object.assign(this, data);
+  }
+
   @ApiProperty({ description: '아이템 목록', example: [] })
   content: TData[];
 
