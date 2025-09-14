@@ -1,4 +1,4 @@
-import { Controller, Post, Body, Get, Request, UseGuards } from '@nestjs/common';
+import { Controller, Post, Body, Get, UseGuards } from '@nestjs/common';
 import { ApiTags, ApiOperation, ApiResponse, ApiBearerAuth } from '@nestjs/swagger';
 import { UserService } from './user.service';
 import { SignUpRequestDto } from './dtos/sign-up.dto';
@@ -6,6 +6,7 @@ import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 import { JwtUser } from '../user/types/jwt-user.types';
 import { SuccessResponseDto } from '@/common/dtos/success.dto';
 import { GetMeResponseDto } from './dtos/get-me.dto';
+import { CurrentUser } from '@/auth/decorators/current-user.decorator';
 
 @ApiTags('Users')
 @Controller('users')
@@ -24,7 +25,6 @@ export class UserController {
     return this.userService.signUp(dto);
   }
 
-
   @Get('me')
   @UseGuards(JwtAuthGuard)
   @ApiBearerAuth()
@@ -35,7 +35,7 @@ export class UserController {
     type: GetMeResponseDto,
   })
   @ApiResponse({ status: 401, description: '인증 필요' })
-  async getMe(@Request() req: { user: JwtUser }): Promise<GetMeResponseDto> {
-    return this.userService.getMe(req.user.id);
+  async getMe(@CurrentUser() user: JwtUser): Promise<GetMeResponseDto> {
+    return this.userService.getMe(user.id);
   }
 }
