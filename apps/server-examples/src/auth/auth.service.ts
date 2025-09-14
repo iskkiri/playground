@@ -16,11 +16,11 @@ export class AuthService {
     return bcrypt.compare(password, hashedPassword);
   }
 
-  generateToken(payload: JwtPayload): string {
+  generateAccessToken(payload: JwtPayload): string {
     return this.jwtService.sign(payload);
   }
 
-  verifyToken(token: string): JwtPayload {
+  verifyAccessToken(token: string): JwtPayload {
     return this.jwtService.verify(token);
   }
 }
