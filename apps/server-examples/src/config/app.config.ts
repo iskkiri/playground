@@ -8,8 +8,10 @@ export const appConfig = registerAs('app', () => ({
   databaseUrl: process.env.DATABASE_URL!,
 
   // 토큰
-  jwtSecret: process.env.JWT_SECRET!,
-  jwtExpiresIn: process.env.JWT_EXPIRES_IN,
+  accessTokenSecret: process.env.ACCESS_TOKEN_SECRET!,
+  accessTokenExpiresIn: process.env.ACCESS_TOKEN_EXPIRES_IN,
+  refreshTokenSecret: process.env.REFRESH_TOKEN_SECRET!,
+  refreshTokenExpiresIn: process.env.REFRESH_TOKEN_EXPIRES_IN,
 
   // 카카오 로그인
   kakaoClientId: process.env.KAKAO_CLIENT_ID!,
@@ -48,8 +50,10 @@ export const configModuleOptions = {
     DATABASE_URL: z.string().min(1),
 
     // 토큰
-    JWT_SECRET: z.string().min(1),
-    JWT_EXPIRES_IN: z.string().min(1),
+    ACCESS_TOKEN_SECRET: z.string().min(1),
+    ACCESS_TOKEN_EXPIRES_IN: z.string().min(1),
+    REFRESH_TOKEN_SECRET: z.string().min(1),
+    REFRESH_TOKEN_EXPIRES_IN: z.string().min(1),
 
     // 카카오 로그인
     KAKAO_CLIENT_ID: z.string().min(1),
