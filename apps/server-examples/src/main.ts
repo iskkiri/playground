@@ -37,7 +37,11 @@ async function bootstrap() {
   app.useGlobalInterceptors(
     // 응답 데이터를 직렬화(serialize)할 때 사용되는 인터셉터
     // 엔티티 클래스에 정의된 @Exclude(), @Expose() 같은 데코레이터를 해석하여 응답에서 특정 속성을 제외하거나 포함
-    new ClassSerializerInterceptor(app.get(Reflector))
+    new ClassSerializerInterceptor(app.get(Reflector), {
+      // excludeExtraneousValues: true로 설정하면 @Expose() 데코레이터가 없는 속성들은 응답에서 제외됨
+      // 이를 통해 DTO에 정의되지 않은 속성들이 실수로 노출되는 것을 방지
+      excludeExtraneousValues: true,
+    })
   );
 
   if (!isProduction) {

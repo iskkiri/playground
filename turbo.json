@@ -37,8 +37,10 @@
     "AUTH_KAKAO_ID",
     "AUTH_KAKAO_SECRET",
     "DATABASE_URL",
-    "JWT_SECRET",
-    "JWT_EXPIRES_IN"
+    "ACCESS_TOKEN_SECRET",
+    "ACCESS_TOKEN_EXPIRES_IN",
+    "REFRESH_TOKEN_SECRET",
+    "REFRESH_TOKEN_EXPIRES_IN"
   ],
   "ui": "tui",
   "tasks": {
