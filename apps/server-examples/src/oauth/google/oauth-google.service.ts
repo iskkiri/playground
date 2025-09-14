@@ -46,7 +46,7 @@ export class OAuthGoogleService {
         redirect_uri: redirectUri,
       },
     });
-    return data;
+    return new GetGoogleAuthTokenResponseDto(data);
   }
 
   /**
@@ -64,6 +64,6 @@ export class OAuthGoogleService {
       },
     });
     console.log(data);
-    return data;
+    return new GoogleUserInfo(data);
   }
 }

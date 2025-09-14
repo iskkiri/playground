@@ -1,5 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { IsNotEmpty, IsString } from 'class-validator';
+import { ExposeAll } from '../../../common/decorators/expose-all.decorator';
 
 export class GetKakaoUserInfoRequestDto {
   @IsNotEmpty()
@@ -7,7 +8,12 @@ export class GetKakaoUserInfoRequestDto {
   accessToken: string;
 }
 
+@ExposeAll()
 export class KakaoProperties {
+  constructor(data: Partial<KakaoProperties>) {
+    Object.assign(this, data);
+  }
+
   @ApiProperty({
     example: '홍길동',
     description: '카카오 사용자 닉네임',
@@ -29,7 +35,12 @@ export class KakaoProperties {
   thumbnail_image: string;
 }
 
+@ExposeAll()
 export class KakaoAccountProfile {
+  constructor(data: Partial<KakaoAccountProfile>) {
+    Object.assign(this, data);
+  }
+
   @ApiProperty({
     example: '홍길동',
     description: '카카오 사용자 닉네임',
@@ -63,7 +74,12 @@ export class KakaoAccountProfile {
   is_default_nickname: boolean;
 }
 
+@ExposeAll()
 export class KakaoAccount {
+  constructor(data: Partial<KakaoAccount>) {
+    Object.assign(this, data);
+  }
+
   @ApiProperty({
     example: true,
     description: '카카오 사용자 닉네임 동의 여부',
@@ -140,7 +156,12 @@ export class KakaoAccount {
   phone_number: string;
 }
 
+@ExposeAll()
 export class GetKakaoUserInfoResponseDto {
+  constructor(data: Partial<GetKakaoUserInfoResponseDto>) {
+    Object.assign(this, data);
+  }
+
   @ApiProperty({
     example: 1234567890,
     description: '카카오 사용자 고유 ID',

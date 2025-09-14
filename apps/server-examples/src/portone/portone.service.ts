@@ -1,6 +1,7 @@
 import { AppConfig, appConfig } from '@/config/app.config';
 import { BadRequestException, Inject, Injectable } from '@nestjs/common';
 import { IdentityVerificationClient } from '@portone/server-sdk';
+import { VerifyIdentityResponseDto } from './dtos/verify-identity.dto';
 
 @Injectable()
 export class PortoneService {
@@ -20,7 +21,7 @@ export class PortoneService {
    * @param identityVerificationId 본인 인증 검증 ID
    * @returns 고객 인증 정보
    */
-  async verifyIdentity(identityVerificationId: string) {
+  async verifyIdentity(identityVerificationId: string): Promise<VerifyIdentityResponseDto> {
     const response = await this.identityVerificationClient.getIdentityVerification({
       identityVerificationId,
     });
@@ -31,6 +32,6 @@ export class PortoneService {
 
     const verifiedCustomer = response.verifiedCustomer;
 
-    return verifiedCustomer;
+    return new VerifyIdentityResponseDto(verifiedCustomer);
   }
 }

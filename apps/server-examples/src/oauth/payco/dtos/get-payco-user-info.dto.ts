@@ -1,9 +1,15 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { GetKakaoUserInfoRequestDto } from '../../kakao/dtos/get-kakao-user-info.dto';
+import { ExposeAll } from '../../../common/decorators/expose-all.decorator';
 
 export class GetPaycoUserInfoRequestDto extends GetKakaoUserInfoRequestDto {}
 
+@ExposeAll()
 export class PaycoHeader {
+  constructor(data: Partial<PaycoHeader>) {
+    Object.assign(this, data);
+  }
+
   @ApiProperty({
     example: true,
     description: '성공 여부 (true : 성공, false : 실패)',
@@ -23,7 +29,12 @@ export class PaycoHeader {
   resultMessage: string; // 결과 메세지 (SUCCESS : 성공, 그 외 메세지)
 }
 
+@ExposeAll()
 export class PaycoAddress {
+  constructor(data: Partial<PaycoAddress>) {
+    Object.assign(this, data);
+  }
+
   @ApiProperty({
     example: '06234',
     description: '우편번호',
@@ -43,7 +54,12 @@ export class PaycoAddress {
   addressDetail: string; // 상세주소
 }
 
+@ExposeAll()
 export class PaycoUserInfo {
+  constructor(data: Partial<PaycoUserInfo>) {
+    Object.assign(this, data);
+  }
+
   @ApiProperty({
     example: '00000000-0000-0000-0000-00000000000',
     description: '회원 번호',
@@ -134,7 +150,12 @@ export class PaycoUserInfo {
   address?: PaycoAddress; // 주소 | 바로가입 서비스만 이용가능
 }
 
+@ExposeAll()
 export class GetPaycoUserInfoResponseDto {
+  constructor(data: Partial<GetPaycoUserInfoResponseDto>) {
+    Object.assign(this, data);
+  }
+
   @ApiProperty()
   header: PaycoHeader;
 

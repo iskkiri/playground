@@ -1,9 +1,15 @@
 import { GetKakaoUserInfoRequestDto } from '@/oauth/kakao/dtos/get-kakao-user-info.dto';
 import { ApiProperty } from '@nestjs/swagger';
+import { ExposeAll } from '../../../common/decorators/expose-all.decorator';
 
 export class GetGoogleUserInfoRequestDto extends GetKakaoUserInfoRequestDto {}
 
+@ExposeAll()
 export class GoogleUserInfo {
+  constructor(data: Partial<GoogleUserInfo>) {
+    Object.assign(this, data);
+  }
+
   @ApiProperty({
     description: '모든 구글 계정에서 고유하며 재사용되지 않는 식별자',
     example: '110169484474386276334',

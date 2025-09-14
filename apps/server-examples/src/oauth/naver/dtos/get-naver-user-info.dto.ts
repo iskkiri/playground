@@ -1,9 +1,15 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { GetKakaoUserInfoRequestDto } from '../../kakao/dtos/get-kakao-user-info.dto';
+import { ExposeAll } from '../../../common/decorators/expose-all.decorator';
 
 export class GetNaverUserInfoRequestDto extends GetKakaoUserInfoRequestDto {}
 
+@ExposeAll()
 export class NaverUserInfo {
+  constructor(data: Partial<NaverUserInfo>) {
+    Object.assign(this, data);
+  }
+
   @ApiProperty({
     example: 'GZD_XUKbXRQBCAzWFfMPtYf_KpwU0Hzx829Ijlx1Q6P',
     description: '네이버 사용자 고유 ID',
@@ -71,7 +77,12 @@ export class NaverUserInfo {
   birthyear: string;
 }
 
+@ExposeAll()
 export class GetNaverUserInfoResponseDto {
+  constructor(data: Partial<GetNaverUserInfoResponseDto>) {
+    Object.assign(this, data);
+  }
+
   @ApiProperty()
   resultcode: string;
 

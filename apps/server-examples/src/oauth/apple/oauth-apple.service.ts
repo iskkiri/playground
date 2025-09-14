@@ -114,7 +114,7 @@ export class OAuthAppleService {
       this.keysExpirationTime = currentTime + cacheMaxAge;
       this.applePublicKeys = response.data.keys;
 
-      return this.applePublicKeys;
+      return this.applePublicKeys.map((key) => new ApplePublicKey(key));
     } catch (error) {
       console.error('Error fetching Apple public keys:', error);
       throw new UnauthorizedException('Failed to fetch Apple public keys');
@@ -134,7 +134,7 @@ export class OAuthAppleService {
       throw new UnauthorizedException('Invalid token key ID');
     }
 
-    return key;
+    return new ApplePublicKey(key);
   }
 
   /**

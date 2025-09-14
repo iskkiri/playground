@@ -5,6 +5,7 @@ import {
   IdentityVerificationVerifiedCustomer,
 } from '@portone/server-sdk/dist/generated/identityVerification';
 import { IsString } from 'class-validator';
+import { ExposeAll } from '../../common/decorators/expose-all.decorator';
 
 export class VerifyIdentityRequestDto {
   @ApiProperty({
@@ -15,7 +16,12 @@ export class VerifyIdentityRequestDto {
   identityVerificationId: string;
 }
 
+@ExposeAll()
 export class VerifyIdentityResponseDto implements IdentityVerificationVerifiedCustomer {
+  constructor(data: Partial<VerifyIdentityResponseDto>) {
+    Object.assign(this, data);
+  }
+
   @ApiProperty({
     description: '식별 아이디',
     example: 'port-customer-id-00000000-0000-0000-0000-000000000000',

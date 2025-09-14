@@ -1,5 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { IsNotEmpty, IsString } from 'class-validator';
+import { ExposeAll } from '../../../common/decorators/expose-all.decorator';
 
 export class GetNaverAuthTokenRequestDto {
   @ApiProperty({
@@ -19,7 +20,12 @@ export class GetNaverAuthTokenRequestDto {
   state: string;
 }
 
+@ExposeAll()
 export class GetNaverAuthTokenResponseDto {
+  constructor(data: Partial<GetNaverAuthTokenResponseDto>) {
+    Object.assign(this, data);
+  }
+
   access_token: string;
   refresh_token: string;
   token_type: string;

@@ -1,5 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { IsNotEmpty, IsString } from 'class-validator';
+import { ExposeAll } from '../../../common/decorators/expose-all.decorator';
 
 export class GetPaycoAuthTokenRequestDto {
   @ApiProperty({
@@ -19,7 +20,12 @@ export class GetPaycoAuthTokenRequestDto {
   state: string;
 }
 
+@ExposeAll()
 export class GetPaycoAuthTokenResponseDto {
+  constructor(data: Partial<GetPaycoAuthTokenResponseDto>) {
+    Object.assign(this, data);
+  }
+
   access_token: string;
   access_token_secret: string;
   refresh_token: string;

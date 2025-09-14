@@ -1,10 +1,10 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { AppConfig, appConfig } from '@/config/app.config';
-import type {
+import {
   GetNaverAuthTokenRequestDto,
   GetNaverAuthTokenResponseDto,
 } from './dtos/get-naver-auth-token.dto';
-import type {
+import {
   GetNaverUserInfoRequestDto,
   GetNaverUserInfoResponseDto,
   NaverUserInfo,
@@ -50,7 +50,7 @@ export class OAuthNaverService {
         state,
       },
     });
-    return data;
+    return new GetNaverAuthTokenResponseDto(data);
   }
 
   /**
@@ -68,6 +68,7 @@ export class OAuthNaverService {
       },
     });
     console.log(data);
-    return data.response;
+
+    return new NaverUserInfo(data.response);
   }
 }

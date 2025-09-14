@@ -50,7 +50,7 @@ export class OAuthPaycoService {
         state,
       },
     });
-    return data;
+    return new GetPaycoAuthTokenResponseDto(data);
   }
 
   /**
@@ -68,6 +68,6 @@ export class OAuthPaycoService {
       },
     });
     console.log(data);
-    return data.data.member;
+    return new PaycoUserInfo(data.data.member);
   }
 }

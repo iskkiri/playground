@@ -1,5 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { IsNotEmpty, IsOptional, IsString } from 'class-validator';
+import { ExposeAll } from '../../../common/decorators/expose-all.decorator';
 
 export class GetKakaoAuthTokenRequestDto {
   @ApiProperty({
@@ -29,7 +30,12 @@ export class GetKakaoAuthTokenRequestDto {
   nonce?: string;
 }
 
+@ExposeAll()
 export class GetKakaoAuthTokenResponseDto {
+  constructor(data: Partial<GetKakaoAuthTokenResponseDto>) {
+    Object.assign(this, data);
+  }
+
   token_type: string;
   access_token: string;
   id_token: string;

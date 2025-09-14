@@ -1,5 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { IsNotEmpty, IsString } from 'class-validator';
+import { ExposeAll } from '../../../common/decorators/expose-all.decorator';
 
 export class GetGoogleAuthTokenRequestDto {
   @ApiProperty({
@@ -28,7 +29,12 @@ export class GetGoogleAuthTokenRequestDto {
   redirectUri: string;
 }
 
+@ExposeAll()
 export class GetGoogleAuthTokenResponseDto {
+  constructor(data: Partial<GetGoogleAuthTokenResponseDto>) {
+    Object.assign(this, data);
+  }
+
   access_token: string;
   refresh_token: string;
   expires_in: number;

@@ -1,10 +1,10 @@
 import { Inject, Injectable, UnauthorizedException } from '@nestjs/common';
 import { AppConfig, appConfig } from '@/config/app.config';
-import type {
+import {
   GetKakaoAuthTokenRequestDto,
   GetKakaoAuthTokenResponseDto,
 } from './dtos/get-kakao-auth-token.dto';
-import type {
+import {
   GetKakaoUserInfoRequestDto,
   GetKakaoUserInfoResponseDto,
 } from './dtos/get-kakao-user-info.dto';
@@ -81,7 +81,7 @@ export class OAuthKakaoService {
         'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8',
       },
     });
-    return data;
+    return new GetKakaoAuthTokenResponseDto(data);
   }
 
   /**
@@ -99,7 +99,7 @@ export class OAuthKakaoService {
         'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8',
       },
     });
-    return data;
+    return new GetKakaoUserInfoResponseDto(data);
   }
 
   /**
