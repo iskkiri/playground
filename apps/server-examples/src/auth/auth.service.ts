@@ -7,6 +7,7 @@ import { appConfig } from '../config/app.config';
 import { RefreshTokenRequestDto, RefreshTokenResponseDto } from './dtos/refresh-token.dto';
 import { LoginRequestDto, LoginResponseDto } from './dtos/login.dto';
 import { PrismaService } from '../prisma/prisma.service';
+import { SuccessResponseDto } from '@/common/dtos/success.dto';
 
 @Injectable()
 export class AuthService {
@@ -16,10 +17,11 @@ export class AuthService {
     private readonly prisma: PrismaService
   ) {}
 
-  // TODO: 로그인 로직 수정 필요
   /**
    * 로그인
-   * @param dto - 로그인 요청 데이터
+   * @param params - 로그인 요청 데이터
+   * @param params.email - 이메일
+   * @param params.password - 비밀번호
    * @returns 로그인 응답 데이터
    */
   async login({ email, password }: LoginRequestDto): Promise<LoginResponseDto> {
@@ -46,47 +48,67 @@ export class AuthService {
     const accessToken = this.generateAccessToken(payload);
     const refreshToken = this.generateRefreshToken(payload);
 
+    await this.prisma.user.update({
+      where: { id: user.id },
+      data: { refreshToken },
+    });
+
     return new LoginResponseDto({
       accessToken,
       refreshToken,
     });
   }
 
+  /**
+   * 로그아웃
+   * @param userId - 사용자 ID
+   * @returns 로그아웃 성공 여부
+   */
+  async logout(userId: number): Promise<SuccessResponseDto> {
+    await this.prisma.user.update({
+      where: { id: userId },
+      data: { refreshToken: null },
+    });
+
+    return new SuccessResponseDto({ success: true });
+  }
+
   // TODO: 토큰 재발급 로직 수정 필요
   /**
    * 토큰 재발급
-   * @param dto - 토큰 재발급 요청 데이터
+   * @param params - 리프레시 토큰 요청 데이터
+   * @param params.refreshToken - 리프레시 토큰
    * @returns 토큰 재발급 응답 데이터
    */
   async refreshTokens(dto: RefreshTokenRequestDto): Promise<RefreshTokenResponseDto> {
-    try {
-      const payload = this.verifyRefreshToken(dto.refreshToken);
+    const payload = this.verifyRefreshToken(dto.refreshToken);
 
-      // 사용자가 실제로 존재하는지 확인
-      const user = await this.prisma.user.findUnique({
-        where: { id: payload.sub },
-      });
+    // 사용자가 실제로 존재하는지 확인
+    const user = await this.prisma.user.findUnique({
+      where: {
+        id: payload.sub,
+        refreshToken: dto.refreshToken,
+      },
+    });
 
-      if (!user) {
-        throw new UnauthorizedException('유효하지 않은 리프레시 토큰입니다.');
-      }
-
-      const newPayload: JwtPayload = {
-        sub: user.id,
-        email: user.email,
-        role: user.role,
-      };
-
-      const accessToken = this.generateAccessToken(newPayload);
-      const refreshToken = this.generateRefreshToken(newPayload);
-
-      return new RefreshTokenResponseDto({
-        accessToken,
-        refreshToken,
-      });
-    } catch (_error) {
+    if (!user) {
       throw new UnauthorizedException('유효하지 않은 리프레시 토큰입니다.');
     }
+
+    const newPayload: JwtPayload = {
+      sub: user.id,
+      email: user.email,
+      role: user.role,
+    };
+
+    // TODO: Refresh Token Rotation 적용 필요
+    const accessToken = this.generateAccessToken(newPayload);
+    const refreshToken = this.generateRefreshToken(newPayload);
+
+    return new RefreshTokenResponseDto({
+      accessToken,
+      refreshToken,
+    });
   }
 
   /**
@@ -139,8 +161,12 @@ export class AuthService {
    * @returns 토큰 페이로드
    */
   private verifyRefreshToken(token: string): JwtPayload {
-    return this.jwtService.verify(token, {
-      secret: this.config.refreshTokenSecret,
-    });
+    try {
+      return this.jwtService.verify(token, {
+        secret: this.config.refreshTokenSecret,
+      });
+    } catch (_error) {
+      throw new UnauthorizedException('유효하지 않은 리프레시 토큰입니다.');
+    }
   }
 }

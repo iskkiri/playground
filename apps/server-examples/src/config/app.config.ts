@@ -9,9 +9,9 @@ export const appConfig = registerAs('app', () => ({
 
   // 토큰
   accessTokenSecret: process.env.ACCESS_TOKEN_SECRET!,
-  accessTokenExpiresIn: process.env.ACCESS_TOKEN_EXPIRES_IN,
+  accessTokenExpiresIn: process.env.ACCESS_TOKEN_EXPIRES_IN!,
   refreshTokenSecret: process.env.REFRESH_TOKEN_SECRET!,
-  refreshTokenExpiresIn: process.env.REFRESH_TOKEN_EXPIRES_IN,
+  refreshTokenExpiresIn: process.env.REFRESH_TOKEN_EXPIRES_IN!,
 
   // 카카오 로그인
   kakaoClientId: process.env.KAKAO_CLIENT_ID!,
