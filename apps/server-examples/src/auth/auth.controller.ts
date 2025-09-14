@@ -6,7 +6,7 @@ import {
 } from './../portone/dtos/verify-identity.dto';
 import { RefreshTokenRequestDto, RefreshTokenResponseDto } from './dtos/refresh-token.dto';
 import { LoginRequestDto, LoginResponseDto } from './dtos/login.dto';
-import { ApiOkResponse, ApiOperation, ApiTags, ApiResponse } from '@nestjs/swagger';
+import { ApiOkResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { ApiPropertiesDescription } from '@/common/decorators/api-properties-description.decorator';
 import { AuthService } from './auth.service';
 import { SuccessResponseDto } from '@/common/dtos/success.dto';
@@ -37,12 +37,8 @@ export class AuthController {
 
   @Post('login')
   @ApiOperation({ summary: '로그인' })
-  @ApiResponse({
-    status: 200,
-    description: '로그인 성공',
-    type: LoginResponseDto,
-  })
-  @ApiResponse({ status: 401, description: '인증 실패' })
+  @ApiPropertiesDescription({ dto: LoginRequestDto })
+  @ApiOkResponse({ type: LoginResponseDto })
   async login(@Body() dto: LoginRequestDto): Promise<LoginResponseDto> {
     return this.authService.login(dto);
   }
@@ -50,23 +46,15 @@ export class AuthController {
   @Post('logout')
   @UseGuards(JwtAuthGuard)
   @ApiOperation({ summary: '로그아웃' })
-  @ApiResponse({
-    status: 200,
-    description: '로그아웃 성공',
-    type: SuccessResponseDto,
-  })
+  @ApiOkResponse({ type: SuccessResponseDto })
   async logout(@CurrentUser() user: JwtUser): Promise<SuccessResponseDto> {
     return this.authService.logout(user.id);
   }
 
   @Post('refresh')
   @ApiOperation({ summary: '토큰 재발급' })
-  @ApiResponse({
-    status: 200,
-    description: '토큰 재발급 성공',
-    type: RefreshTokenResponseDto,
-  })
-  @ApiResponse({ status: 401, description: '유효하지 않은 리프레시 토큰' })
+  @ApiPropertiesDescription({ dto: RefreshTokenRequestDto })
+  @ApiOkResponse({ type: RefreshTokenResponseDto })
   async refreshTokens(@Body() dto: RefreshTokenRequestDto): Promise<RefreshTokenResponseDto> {
     return this.authService.refreshTokens(dto);
   }
