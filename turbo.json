@@ -35,7 +35,10 @@
     "AUTH_NAVER_ID",
     "AUTH_NAVER_SECRET",
     "AUTH_KAKAO_ID",
-    "AUTH_KAKAO_SECRET"
+    "AUTH_KAKAO_SECRET",
+    "DATABASE_URL",
+    "JWT_SECRET",
+    "JWT_EXPIRES_IN"
   ],
   "ui": "tui",
   "tasks": {
