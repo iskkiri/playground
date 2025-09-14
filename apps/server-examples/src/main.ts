@@ -2,8 +2,8 @@ import { HttpAdapterHost, NestFactory, Reflector } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { ConfigService } from '@nestjs/config';
 import { ClassSerializerInterceptor, Logger, ValidationPipe } from '@nestjs/common';
-import { AllExceptionsFilter } from './common/exception-filter/all-exception.filter';
-import { PrismaClientExceptionFilter } from './common/exception-filter/prisma-client-exception.filter';
+import { AllExceptionsFilter } from './common/exception-filters/all-exception.filter';
+import { PrismaClientExceptionFilter } from './common/exception-filters/prisma-client-exception.filter';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 
 async function bootstrap() {
