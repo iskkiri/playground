@@ -4,6 +4,13 @@ import { z } from 'zod';
 export const appConfig = registerAs('app', () => ({
   port: process.env.PORT!,
 
+  // 데이터베이스
+  databaseUrl: process.env.DATABASE_URL!,
+
+  // 토큰
+  jwtSecret: process.env.JWT_SECRET!,
+  jwtExpiresIn: process.env.JWT_EXPIRES_IN,
+
   // 카카오 로그인
   kakaoClientId: process.env.KAKAO_CLIENT_ID!,
   kakaoClientSecret: process.env.KAKAO_CLIENT_SECRET!,
@@ -36,6 +43,13 @@ export const configModuleOptions = {
   envFilePath: process.env.NODE_ENV === 'development' ? '.env.development' : '.env.production',
   validate: z.object({
     PORT: z.coerce.number(),
+
+    // 데이터베이스
+    DATABASE_URL: z.string().min(1),
+
+    // 토큰
+    JWT_SECRET: z.string().min(1),
+    JWT_EXPIRES_IN: z.string().min(1),
 
     // 카카오 로그인
     KAKAO_CLIENT_ID: z.string().min(1),
