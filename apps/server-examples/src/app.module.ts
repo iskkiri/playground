@@ -7,12 +7,14 @@ import { OAuthModule } from './oauth/oauth.module';
 import { FirebaseModule } from './firebase/firebase.module';
 import { FcmModule } from './firebase/fcm/fcm.module';
 import { PrismaModule } from './prisma/prisma.module';
+import { UserModule } from './user/user.module';
 
 @Module({
   imports: [
     ConfigModule.forRoot(configModuleOptions),
     PrismaModule,
     AuthModule,
+    UserModule,
     OAuthModule,
     FirebaseModule,
     FcmModule,
