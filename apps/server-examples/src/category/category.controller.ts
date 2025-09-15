@@ -8,17 +8,27 @@ import {
   Post,
   Put,
   UseGuards,
+  Query,
 } from '@nestjs/common';
-import { ApiTags, ApiOperation, ApiOkResponse, ApiCreatedResponse, ApiBearerAuth } from '@nestjs/swagger';
+import {
+  ApiTags,
+  ApiOperation,
+  ApiOkResponse,
+  ApiCreatedResponse,
+  ApiBearerAuth,
+} from '@nestjs/swagger';
 import { CategoryService } from './category.service';
 import { CreateCategoryRequestDto } from './dtos/create-category.dto';
 import { UpdateCategoryRequestDto } from './dtos/update-category.dto';
-import { CategoryResponseDto } from './dtos/category-response.dto';
+import { CategoryResponseDto } from './dtos/get-categories.dto';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 import { RolesGuard } from '../auth/guards/roles.guard';
 import { Roles } from '../auth/decorators/roles.decorator';
 import { Role } from '@prisma/client';
 import { ApiPropertiesDescription } from '../common/decorators/api-properties-description.decorator';
+import { SuccessResponseDto } from '@/common/dtos/success.dto';
+import { ApiOkPaginationResponse } from '@/common/decorators/api-paginated-response.decorator';
+import { PaginationRequestDto, PaginationResponseDto } from '@/common/dtos/pagination.dto';
 
 @ApiTags('Categories')
 @Controller('categories')
@@ -26,10 +36,13 @@ export class CategoryController {
   constructor(private readonly categoryService: CategoryService) {}
 
   @Get()
-  @ApiOperation({ summary: '모든 카테고리 조회' })
-  @ApiOkResponse({ type: [CategoryResponseDto] })
-  async findAll(): Promise<CategoryResponseDto[]> {
-    return this.categoryService.findAll();
+  @ApiOperation({ summary: '카테고리 목록 조회 (페이지네이션)' })
+  @ApiOkPaginationResponse(CategoryResponseDto)
+  @ApiPropertiesDescription({ dto: PaginationRequestDto })
+  async getCategories(
+    @Query() paginationDto: PaginationRequestDto
+  ): Promise<PaginationResponseDto<CategoryResponseDto>> {
+    return this.categoryService.getCategories(paginationDto);
   }
 
   @Post()
@@ -39,8 +52,10 @@ export class CategoryController {
   @ApiOperation({ summary: '카테고리 생성' })
   @ApiPropertiesDescription({ dto: CreateCategoryRequestDto })
   @ApiCreatedResponse({ type: CategoryResponseDto })
-  async create(@Body() createCategoryDto: CreateCategoryRequestDto): Promise<CategoryResponseDto> {
-    return this.categoryService.create(createCategoryDto);
+  async createCategory(
+    @Body() createCategoryDto: CreateCategoryRequestDto
+  ): Promise<CategoryResponseDto> {
+    return this.categoryService.createCategory(createCategoryDto);
   }
 
   @Put(':id')
@@ -50,11 +65,11 @@ export class CategoryController {
   @ApiOperation({ summary: '카테고리 수정' })
   @ApiPropertiesDescription({ dto: UpdateCategoryRequestDto })
   @ApiOkResponse({ type: CategoryResponseDto })
-  async update(
+  async updateCategory(
     @Param('id', ParseIntPipe) id: number,
     @Body() updateCategoryDto: UpdateCategoryRequestDto
   ): Promise<CategoryResponseDto> {
-    return this.categoryService.update(id, updateCategoryDto);
+    return this.categoryService.updateCategory(id, updateCategoryDto);
   }
 
   @Delete(':id')
@@ -62,18 +77,8 @@ export class CategoryController {
   @Roles(Role.ADMIN)
   @ApiBearerAuth()
   @ApiOperation({ summary: '카테고리 삭제' })
-  @ApiOkResponse({
-    schema: {
-      type: 'object',
-      properties: {
-        message: {
-          type: 'string',
-          example: '카테고리가 삭제되었습니다. ID: 1',
-        },
-      },
-    },
-  })
-  async remove(@Param('id', ParseIntPipe) id: number) {
-    return this.categoryService.remove(id);
+  @ApiOkResponse({ type: SuccessResponseDto })
+  async deleteCategory(@Param('id', ParseIntPipe) id: number) {
+    return this.categoryService.deleteCategory(id);
   }
 }
