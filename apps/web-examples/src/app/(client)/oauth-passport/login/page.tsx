@@ -1,31 +1,12 @@
 'use client';
 
-import { useCallback } from 'react';
 import NaverLogoIcon from '@/assets/icons/naver-logo.svg';
 import KakaoLogoIcon from '@/assets/icons/kakao-talk-logo.svg';
 import GoogleLogoIcon from '@/assets/icons/google-logo.svg';
+import usePopupSocialLogin from '../../_features/oauth/hooks/usePopupSocialLogin';
 
-export default function LoginPage() {
-  const onNaverLogin = useCallback(() => {
-    const popup = window.open(
-      'http://localhost:8080/oauth-passport/naver',
-      'naverLogin',
-      'width=500,height=500'
-    );
-    if (!popup) return;
-
-    // 팝업에서 오는 메시지 리스닝
-    window.addEventListener('message', (event) => {
-      if (event.origin !== 'http://localhost:8080') return;
-
-      if (event.data.type === 'OAUTH_SUCCESS') {
-        console.log('로그인 성공:', event.data.tokens);
-        // 토큰 저장, 상태 업데이트 등
-
-        popup.close();
-      }
-    });
-  }, []);
+export default function OauthPassportLoginPage() {
+  const { onSocialLogin } = usePopupSocialLogin();
 
   return (
     <>
@@ -39,7 +20,7 @@ export default function LoginPage() {
             <div className="flex w-full flex-col gap-16">
               {/* Naver button */}
               <button
-                onClick={onNaverLogin}
+                onClick={onSocialLogin('naver')}
                 className="rounded-13 typography-p3-16b xl:typography-p2-18b flex h-48 items-center justify-center gap-16 bg-[#03c75a] text-white xl:h-56"
               >
                 <NaverLogoIcon />
@@ -48,7 +29,7 @@ export default function LoginPage() {
 
               {/* Kakao button */}
               <button
-                // onClick={onKakaoLogin}
+                onClick={onSocialLogin('kakao')}
                 className="rounded-13 typography-p3-16b xl:typography-p2-18b flex h-48 items-center justify-center gap-16 bg-[#fee500] text-black xl:h-56"
               >
                 <KakaoLogoIcon />
@@ -57,7 +38,7 @@ export default function LoginPage() {
 
               {/* Google button */}
               <button
-                // onClick={onGoogleLogin}
+                onClick={onSocialLogin('google')}
                 className="rounded-13 typography-p3-16b xl:typography-p2-18b flex h-48 items-center justify-center gap-16 border border-black bg-white text-black xl:h-56"
               >
                 <GoogleLogoIcon />
