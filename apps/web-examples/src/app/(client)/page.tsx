@@ -57,6 +57,11 @@ export default function Home() {
                 </Link>
               </li>
               <li>
+                <Link href={'/oauth-passport/login'} className="typography-p1-20b text-gray-500">
+                  OAuth Login (Passport)
+                </Link>
+              </li>
+              <li>
                 <Link href={'/identity-verification'} className="typography-p1-20b text-gray-500">
                   Identity Verification
                 </Link>
