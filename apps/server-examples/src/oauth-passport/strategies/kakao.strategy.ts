@@ -4,24 +4,6 @@ import { Strategy, type Profile } from 'passport-kakao';
 import { AppConfig, appConfig } from '@/common/config/app.config';
 import { KakaoProfile } from '../dtos/kakao-profile.dto';
 
-/**
- * 카카오 OAuth 2.0 인증 Strategy (Passport.js 방식)
- *
- * Passport 동작 방식:
- * 1. 사용자가 /oauth-passport/kakao에 접근하면 이 strategy가 활성화됨
- * 2. Passport가 자동으로 카카오 OAuth URL 생성 및 리디렉션:
- *    https://kauth.kakao.com/oauth/authorize?
- *      client_id=${KAKAO_CLIENT_ID}&
- *      redirect_uri=http://localhost:${PORT}/oauth-passport/kakao/callback&
- *      response_type=code
- * 3. 사용자가 카카오에서 인증 후 callback URL로 돌아오면 Passport가 자동으로:
- *    a) authorization code를 받아서
- *    b) 카카오 토큰 엔드포인트에 POST 요청 (https://kauth.kakao.com/oauth/token)
- *    c) access_token을 받아와서
- *    d) 카카오 사용자 정보 API 호출 (https://kapi.kakao.com/v2/user/me)
- *    e) 사용자 정보를 가져와서 validate() 메서드 호출
- * 4. validate()에서 반환된 값이 req.user에 설정됨
- */
 @Injectable()
 export class KakaoStrategy extends PassportStrategy(Strategy, 'kakao') {
   constructor(@Inject(appConfig.KEY) config: AppConfig) {
@@ -32,24 +14,6 @@ export class KakaoStrategy extends PassportStrategy(Strategy, 'kakao') {
     });
   }
 
-  /**
-   * 카카오 인증 완료 후 호출되는 검증 메서드
-   *
-   * @param accessToken - 카카오에서 발급받은 access token
-   * @param _refreshToken - 카카오에서 발급받은 refresh token (사용하지 않음)
-   * @param profile - passport-kakao가 자동으로 파싱한 카카오 사용자 정보
-   * @returns KakaoProfile - 변환된 사용자 정보 (컨트롤러에서 req.user로 접근 가능)
-   *
-   * passport-kakao에서 제공하는 profile 구조:
-   * {
-   *   provider: 'kakao',
-   *   id: '1234567890',
-   *   username: '홍길동',
-   *   displayName: '홍길동',
-   *   _raw: '원본 JSON 응답',
-   *   _json: { 파싱된 카카오 API 응답 }
-   * }
-   */
   async validate(
     _accessToken: string,
     _refreshToken: string,
