@@ -9,7 +9,7 @@ export class NaverProfile {
 
   @ApiProperty({
     example: 'naver',
-    description: 'OAuth 제공자',
+    description: 'OAuth 제공자 (항상 "naver")',
   })
   provider: 'naver';
 
