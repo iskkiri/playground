@@ -1,5 +1,5 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { AppConfig, appConfig } from '@/config/app.config';
+import { AppConfig, appConfig } from '@/common/config/app.config';
 import {
   GetNaverAuthTokenRequestDto,
   GetNaverAuthTokenResponseDto,

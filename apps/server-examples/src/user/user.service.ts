@@ -14,9 +14,10 @@ export class UserService {
 
   /**
    * 회원가입
-   * @param email - 이메일
-   * @param password - 비밀번호
-   * @param name - 이름
+   * @param params - 회원가입 요청 데이터
+   * @param params.email - 이메일
+   * @param params.password - 비밀번호
+   * @param params.name - 이름
    * @returns 회원가입 성공 여부
    */
   async signUp({ email, password, name }: SignUpRequestDto): Promise<SuccessResponseDto> {

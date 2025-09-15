@@ -1,4 +1,4 @@
-import { AppConfig, appConfig } from '@/config/app.config';
+import { AppConfig, appConfig } from '@/common/config/app.config';
 import { Inject, Injectable } from '@nestjs/common';
 import { credential } from 'firebase-admin';
 import { initializeApp, type App } from 'firebase-admin/app';
