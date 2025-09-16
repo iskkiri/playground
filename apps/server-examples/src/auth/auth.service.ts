@@ -1,9 +1,10 @@
 import { Injectable, Inject, UnauthorizedException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { ConfigType } from '@nestjs/config';
+import type { Prisma } from '@prisma/client';
 import bcrypt from 'bcryptjs';
 import { randomUUID, createHash } from 'crypto';
-import { JwtPayload } from './types/jwt.types';
+import { JwtPayload, RefreshTokenWithUser } from './types/jwt.types';
 import { appConfig } from '../common/config/app.config';
 import { RefreshTokenRequestDto, RefreshTokenResponseDto } from './dtos/refresh-token.dto';
 import { LoginRequestDto, LoginResponseDto } from './dtos/login.dto';
@@ -115,46 +116,79 @@ export class AuthService {
     const payload = this.verifyRefreshToken(dto.refreshToken);
     const tokenHash = this.hashToken(dto.refreshToken);
 
-    // 토큰이 존재하고 유효한지 확인
-    const storedToken = await this.prisma.refreshToken.findFirst({
-      where: {
-        tokenHash,
-        userId: payload.sub,
-        isRevoked: false,
-        expiresAt: { gt: new Date() },
-      },
-      include: { user: true },
-    });
+    return await this.prisma.$transaction(async (tx) => {
+      // 동시성 문제 해결을 위한 row-level lock 적용
+      //
+      // ❌ 트랜잭션만으로는 동시성 제어 불가능한 이유:
+      // - 트랜잭션은 쓰기(UPDATE/INSERT) 시에만 자동으로 락을 걸음
+      // - 읽기(SELECT) 시에는 락을 걸지 않아서 여러 요청이 동시에 같은 데이터를 읽을 수 있음
+      //
+      // 문제 시나리오:
+      // 요청A: SELECT (토큰 읽기) → 요청B: SELECT (동일 토큰 읽기) → 요청A: UPDATE → 요청B: UPDATE (충돌!)
+      //
+      // ✅ FOR UPDATE로 해결:
+      // 동일한 리프레시 토큰으로 여러 요청이 동시에 들어올 때:
+      // 1. 첫 번째 요청: 토큰을 읽는 순간부터 잠금을 설정
+      // 2. 두 번째 요청: 첫 번째 트랜잭션이 완료될 때까지 대기
+      // 3. 첫 번째 완료 후: 두 번째 요청은 이미 무효화된 토큰을 발견하여 401 반환
+      const storedTokens = await tx.$queryRaw<RefreshTokenWithUser[]>`
+        SELECT
+          rt.*,
+          u.id as user_id,
+          u.email as user_email,
+          u.role as user_role
+        FROM "refresh_tokens" rt
+        JOIN "users" u ON rt."userId" = u.id
+        WHERE rt."tokenHash" = ${tokenHash}
+          AND rt."userId" = ${payload.sub}
+          AND rt."isRevoked" = false
+          AND rt."expiresAt" > NOW()
+        FOR UPDATE OF rt  -- 핵심: refresh_tokens 테이블의 해당 row에 배타적 잠금 설정
+        LIMIT 1           -- 트랜잭션이 완료될 때까지 다른 요청은 이 row에 접근 불가
+      `;
 
-    if (!storedToken) {
-      // 재사용 공격 감지 - 해당 패밀리의 모든 토큰 무효화
-      await this.revokeTokenFamily(payload.sub, tokenHash);
-      throw new UnauthorizedException('유효하지 않은 리프레시 토큰입니다.');
-    }
+      if (storedTokens.length === 0) {
+        // 재사용 공격 감지 - 해당 패밀리의 모든 토큰 무효화
+        await this.revokeTokenFamily(payload.sub, tokenHash, tx);
+        throw new UnauthorizedException('유효하지 않은 리프레시 토큰입니다.');
+      }
 
-    // 현재 토큰 무효화
-    await this.prisma.refreshToken.update({
-      where: { id: storedToken.id },
-      data: { isRevoked: true },
-    });
+      const tokenData = storedTokens[0];
 
-    const user = storedToken.user;
-    const newPayload: JwtPayload = {
-      sub: user.id,
-      email: user.email,
-      role: user.role,
-    };
+      // 현재 토큰 무효화
+      await tx.refreshToken.update({
+        where: { id: tokenData.id },
+        data: { isRevoked: true },
+      });
 
-    // 새 토큰 발급
-    const accessToken = this.generateAccessToken(newPayload);
-    const refreshToken = this.generateRefreshToken(newPayload);
+      // JWT 페이로드 생성을 위한 사용자 정보 추출
+      const user = {
+        id: tokenData.user_id,
+        email: tokenData.user_email,
+        role: tokenData.user_role,
+      };
+      const newPayload: JwtPayload = {
+        sub: user.id,
+        email: user.email,
+        role: user.role,
+      };
 
-    // 새 리프레시 토큰을 같은 패밀리로 저장
-    await this.storeRefreshToken(user.id, refreshToken, storedToken.familyId);
+      // 새 토큰 발급
+      const accessToken = this.generateAccessToken(newPayload);
+      const refreshToken = this.generateRefreshToken(newPayload);
 
-    return new RefreshTokenResponseDto({
-      accessToken,
-      refreshToken,
+      // 새 리프레시 토큰을 같은 패밀리로 저장
+      await this.storeRefreshToken({
+        userId: user.id,
+        refreshToken: refreshToken,
+        familyId: tokenData.familyId,
+        tx,
+      });
+
+      return new RefreshTokenResponseDto({
+        accessToken,
+        refreshToken,
+      });
     });
   }
 
@@ -234,29 +268,31 @@ export class AuthService {
   private async manageUserSessions(userId: number, newRefreshToken: string) {
     const MAX_SESSIONS = 10;
 
-    // 현재 활성화된 세션 개수 확인
-    const activeSessions = await this.prisma.refreshToken.findMany({
-      where: {
-        userId,
-        isRevoked: false,
-        expiresAt: { gt: new Date() },
-      },
-      orderBy: { createdAt: 'asc' }, // 오래된 순으로 정렬
-    });
-
-    // 초과된 세션 개수만큼 오래된 세션 제거
-    if (activeSessions.length >= MAX_SESSIONS) {
-      const sessionsToRemove = activeSessions.slice(0, activeSessions.length - MAX_SESSIONS + 1);
-      const sessionIdsToRemove = sessionsToRemove.map((session) => session.id);
-
-      await this.prisma.refreshToken.updateMany({
-        where: { id: { in: sessionIdsToRemove } },
-        data: { isRevoked: true },
+    this.prisma.$transaction(async (tx) => {
+      // 현재 활성화된 세션 개수 확인
+      const activeSessions = await tx.refreshToken.findMany({
+        where: {
+          userId,
+          isRevoked: false,
+          expiresAt: { gt: new Date() },
+        },
+        orderBy: { createdAt: 'asc' }, // 오래된 순으로 정렬
       });
-    }
 
-    // 새 리프레시 토큰 저장
-    await this.storeRefreshToken(userId, newRefreshToken);
+      // 초과된 세션 개수만큼 오래된 세션 제거
+      if (activeSessions.length >= MAX_SESSIONS) {
+        const sessionsToRemove = activeSessions.slice(0, activeSessions.length - MAX_SESSIONS + 1);
+        const sessionIdsToRemove = sessionsToRemove.map((session) => session.id);
+
+        await tx.refreshToken.updateMany({
+          where: { id: { in: sessionIdsToRemove } },
+          data: { isRevoked: true },
+        });
+      }
+
+      // 새 리프레시 토큰 저장
+      await this.storeRefreshToken({ userId, refreshToken: newRefreshToken, tx });
+    });
   }
 
   /**
@@ -266,11 +302,23 @@ export class AuthService {
    * @param familyId - 토큰 패밀리 ID (선택적)
    * @returns 생성된 토큰 레코드
    */
-  private async storeRefreshToken(userId: number, token: string, familyId?: string) {
-    const tokenHash = this.hashToken(token);
+  private async storeRefreshToken({
+    userId,
+    refreshToken,
+    familyId,
+    tx,
+  }: {
+    userId: number;
+    refreshToken: string;
+    familyId?: string;
+    tx?: Prisma.TransactionClient;
+  }) {
+    const prismaClient = tx || this.prisma;
+
+    const tokenHash = this.hashToken(refreshToken);
     const expiresAt = this.getRefreshTokenExpiryDate();
 
-    return this.prisma.refreshToken.create({
+    return prismaClient.refreshToken.create({
       data: {
         familyId: familyId || randomUUID(),
         tokenHash,
@@ -285,16 +333,22 @@ export class AuthService {
    * @param userId - 사용자 ID
    * @param suspiciousTokenHash - 의심스러운 토큰 해시
    */
-  private async revokeTokenFamily(userId: number, suspiciousTokenHash: string) {
+  private async revokeTokenFamily(
+    userId: number,
+    suspiciousTokenHash: string,
+    tx?: Prisma.TransactionClient
+  ) {
+    const prismaClient = tx || this.prisma;
+
     // 의심스러운 토큰의 패밀리 ID 찾기
-    const suspiciousToken = await this.prisma.refreshToken.findFirst({
+    const suspiciousToken = await prismaClient.refreshToken.findFirst({
       where: { tokenHash: suspiciousTokenHash, userId },
       select: { familyId: true },
     });
 
     if (suspiciousToken) {
       // 해당 패밀리의 모든 토큰 무효화
-      await this.prisma.refreshToken.updateMany({
+      await prismaClient.refreshToken.updateMany({
         where: {
           familyId: suspiciousToken.familyId,
           userId,
