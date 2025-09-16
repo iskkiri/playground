@@ -1,4 +1,4 @@
-import { nextClient } from '@/_api/client';
+import { nextClient } from '@/_api/next-client';
 import type { UploadImageRequestDto, UploadImageResponseDto } from './dtos/uploadImage.dto';
 
 /**

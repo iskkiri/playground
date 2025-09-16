@@ -3,7 +3,7 @@ import Naver, { type NaverProfile } from 'next-auth/providers/naver';
 import Kakao, { KakaoProfile } from 'next-auth/providers/kakao';
 import Google from 'next-auth/providers/google';
 import CredentialsProvider from 'next-auth/providers/credentials';
-import { nextClient } from '@/_api/client';
+import { nextClient } from '@/_api/next-client';
 import type { UserResponseDto } from '@/app/(client)/_features/user/dtos/user.dto';
 
 export const config = {

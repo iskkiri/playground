@@ -3,7 +3,7 @@ import type { Notice } from './dtos/getNoticeDetail.dto';
 import type { CreateNoticeRequestDto } from './dtos/createNotice.dto';
 import type { UpdateNoticeRequestDto } from './dtos/updateNotice.dto';
 import type { PaginationResponseDto } from '@/_api/dtos/pagination.dto';
-import { nextClient } from '@/_api/client';
+import { nextClient } from '@/_api/next-client';
 
 // 공지사항 목록 조회
 export async function getNoticeListApi(params: GetNoticeListRequestDto) {

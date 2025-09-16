@@ -1,4 +1,4 @@
-import { nextClient } from '@/_api/client';
+import { nextClient } from '@/_api/next-client';
 import type { PaginationResponseDto } from '@/_api/dtos/pagination.dto';
 import type { BannerListItemData, GetBannerListRequestDto } from './dtos/getBannerList.dto';
 import type { BannerDetailData } from './dtos/getBannerDetail.dto';

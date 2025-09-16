@@ -1,4 +1,4 @@
-import { nextClient } from '@/_api/client';
+import { nextClient } from '@/_api/next-client';
 import type { GetPopupListRequestDto, PopupListItemData } from './dtos/getPopupList.dto';
 import type { PaginationResponseDto } from '@/_api/dtos/pagination.dto';
 import type { CreatePopupRequestDto } from './dtos/createPopup.dto';

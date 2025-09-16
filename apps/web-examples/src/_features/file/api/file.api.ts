@@ -1,5 +1,5 @@
 import type { DownloadFileResponseDto } from './dtos/downloadFile.dto';
-import { nextClient } from '@/_api/client';
+import { nextClient } from '@/_api/next-client';
 import type { UploadFileRequestDto, UploadFileResponseDto } from './dtos/uploadFile.dto';
 
 // 파일 업로드
