@@ -22,7 +22,8 @@ model User {
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
 
-  posts Post[]
+  posts         Post[]
+  refreshTokens RefreshToken[]
 
   @@map("users")
 }
@@ -37,6 +38,20 @@ model Category {
   posts Post[]
 
   @@map("categories")
+}
+
+model RefreshToken {
+  id        String   @id @default(uuid())
+  familyId  String
+  tokenHash String   @unique
+  userId    Int
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  isRevoked Boolean  @default(false)
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("refresh_tokens")
 }
 
 model Post {

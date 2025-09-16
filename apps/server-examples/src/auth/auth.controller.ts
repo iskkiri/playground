@@ -6,7 +6,8 @@ import {
 } from './../portone/dtos/verify-identity.dto';
 import { RefreshTokenRequestDto, RefreshTokenResponseDto } from './dtos/refresh-token.dto';
 import { LoginRequestDto, LoginResponseDto } from './dtos/login.dto';
-import { ApiOkResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
+import { LogoutRequestDto } from './dtos/logout.dto';
+import { ApiBearerAuth, ApiOkResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { ApiPropertiesDescription } from '@/common/decorators/api-properties-description.decorator';
 import { AuthService } from './auth.service';
 import { SuccessResponseDto } from '@/common/dtos/success.dto';
@@ -45,10 +46,21 @@ export class AuthController {
 
   @Post('logout')
   @UseGuards(JwtAuthGuard)
-  @ApiOperation({ summary: '로그아웃' })
+  @ApiBearerAuth()
+  @ApiOperation({ summary: '로그아웃 (현재 디바이스만)' })
+  @ApiPropertiesDescription({ dto: LogoutRequestDto })
   @ApiOkResponse({ type: SuccessResponseDto })
-  async logout(@CurrentUser() user: JwtUser): Promise<SuccessResponseDto> {
-    return this.authService.logout(user.id);
+  async logout(@Body() dto: LogoutRequestDto): Promise<SuccessResponseDto> {
+    return this.authService.logout(dto);
+  }
+
+  @Post('logout-all')
+  @UseGuards(JwtAuthGuard)
+  @ApiBearerAuth()
+  @ApiOperation({ summary: '모든 디바이스에서 로그아웃' })
+  @ApiOkResponse({ type: SuccessResponseDto })
+  async logoutFromAllDevices(@CurrentUser() user: JwtUser): Promise<SuccessResponseDto> {
+    return this.authService.logoutFromAllDevices(user.id);
   }
 
   @Post('refresh')
