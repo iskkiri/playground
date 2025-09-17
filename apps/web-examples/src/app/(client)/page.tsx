@@ -66,6 +66,11 @@ export default function Home() {
                   Identity Verification
                 </Link>
               </li>
+              <li>
+                <Link href={'/refresh-token-rotation'} className="typography-p1-20b text-gray-500">
+                  Refresh Token Rotation
+                </Link>
+              </li>
             </ul>
           </Accordion.Content>
         </Accordion.Item>
