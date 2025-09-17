@@ -11,6 +11,7 @@ import { FirebaseModule } from './firebase/firebase.module';
 import { FcmModule } from './firebase/fcm/fcm.module';
 import { PrismaModule } from './prisma/prisma.module';
 import { UserModule } from './user/user.module';
+import { TestModule } from './test/test.module';
 
 @Module({
   imports: [
@@ -24,6 +25,7 @@ import { UserModule } from './user/user.module';
     OAuthPassportModule,
     FirebaseModule,
     FcmModule,
+    TestModule,
   ],
   controllers: [],
   providers: [],
