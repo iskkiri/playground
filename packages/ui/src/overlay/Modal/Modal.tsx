@@ -4,13 +4,13 @@ import './styles/modal-animations.scss';
 
 import { useState, useCallback, useMemo } from 'react';
 import { ModalDispatchContext, ModalStateContext } from './context/ModalContext';
-import ModalTrigger from './ModalTrigger';
-import ModalCloseTrigger from './ModalCloseTrigger';
-import ModalHeader from './ModalHeader';
-import ModalTitle from './ModalTitle';
-import ModalBody from './ModalBody';
-import ModalFooter from './ModalFooter';
-import ModalContent from './ModalContent';
+import ModalTrigger from './components/ModalTrigger';
+import ModalCloseTrigger from './components/ModalCloseTrigger';
+import ModalHeader from './components/ModalHeader';
+import ModalTitle from './components/ModalTitle';
+import ModalBody from './components/ModalBody';
+import ModalFooter from './components/ModalFooter';
+import ModalContent from './components/ModalContent';
 
 export interface ModalProps {
   children: React.ReactNode;

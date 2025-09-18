@@ -1,5 +1,5 @@
 import { cloneElement, isValidElement, useCallback, ElementType } from 'react';
-import { useModalDispatchContext } from './hooks/useModalContext';
+import { useModalDispatchContext } from '../hooks/useModalContext';
 import { cn } from '@repo/utils/cn';
 import { AsProp } from '@repo/types/react';
 
@@ -39,7 +39,10 @@ export default function ModalCloseTrigger<T extends ElementType = 'button'>({
     <Component
       onClick={handleClick}
       type={Component === 'button' ? 'button' : undefined}
-      className={cn('absolute top-28 right-24 bg-transparent border-none cursor-pointer flex items-center justify-center', className)}
+      className={cn(
+        'absolute right-24 top-28 flex cursor-pointer items-center justify-center border-none bg-transparent',
+        className
+      )}
       {...props}
     >
       {children}

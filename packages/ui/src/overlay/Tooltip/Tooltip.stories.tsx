@@ -2,8 +2,8 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 import { useState } from 'react';
 import type { Placement } from '@floating-ui/react';
 import Tooltip from './Tooltip';
-import TooltipTrigger from './TooltipTrigger';
-import TooltipContent from './TooltipContent';
+import TooltipTrigger from './components/TooltipTrigger';
+import TooltipContent from './components/TooltipContent';
 import Button from '#src/general/Button/Button';
 import Switch from '#src/form/Switch/Switch';
 

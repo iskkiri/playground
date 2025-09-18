@@ -4,15 +4,15 @@ import { useState, useCallback, useMemo } from 'react';
 import { Drawer as DrawerPrimitive } from 'vaul';
 import { DrawerDispatchContext, DrawerStateContext } from './context/DrawerContext';
 
-import DrawerTrigger from './DrawerTrigger';
-import DrawerPortal from './DrawerPortal';
-import DrawerClose from './DrawerClose';
-import DrawerOverlay from './DrawerOverlay';
-import DrawerContent from './DrawerContent';
-import DrawerHeader from './DrawerHeader';
-import DrawerFooter from './DrawerFooter';
-import DrawerTitle from './DrawerTitle';
-import DrawerDescription from './DrawerDescription';
+import DrawerTrigger from './components/DrawerTrigger';
+import DrawerPortal from './components/DrawerPortal';
+import DrawerClose from './components/DrawerClose';
+import DrawerOverlay from './components/DrawerOverlay';
+import DrawerContent from './components/DrawerContent';
+import DrawerHeader from './components/DrawerHeader';
+import DrawerFooter from './components/DrawerFooter';
+import DrawerTitle from './components/DrawerTitle';
+import DrawerDescription from './components/DrawerDescription';
 
 export type DrawerProps = React.ComponentProps<typeof DrawerPrimitive.Root> & {
   initialOpen?: boolean; // Uncontrolled

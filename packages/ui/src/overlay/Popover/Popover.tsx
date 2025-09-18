@@ -14,8 +14,8 @@ import {
 } from '@floating-ui/react';
 import { PopoverContext } from './context/PopoverContext';
 import type { PopoverOptions } from './types/popover.types';
-import PopoverTrigger from './PopoverTrigger';
-import PopoverContent from './PopoverContent';
+import PopoverTrigger from './components/PopoverTrigger';
+import PopoverContent from './components/PopoverContent';
 
 interface PopoverProps extends PopoverOptions {
   children: React.ReactNode;

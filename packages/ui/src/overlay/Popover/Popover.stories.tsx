@@ -2,8 +2,8 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 import { useState } from 'react';
 import type { Placement } from '@floating-ui/react';
 import Popover from './Popover';
-import PopoverTrigger from './PopoverTrigger';
-import PopoverContent from './PopoverContent';
+import PopoverTrigger from './components/PopoverTrigger';
+import PopoverContent from './components/PopoverContent';
 import Button from '#src/general/Button/Button';
 import Switch from '#src/form/Switch/Switch';
 

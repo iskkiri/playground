@@ -1,6 +1,6 @@
 import { useCallback, isValidElement, cloneElement, useMemo, ElementType } from 'react';
 import { useMergeRefs } from '@floating-ui/react';
-import usePopoverContext from './hooks/usePopoverContext';
+import usePopoverContext from '../hooks/usePopoverContext';
 import { AsProp } from '@repo/types/react';
 
 type PopoverTriggerProps<T extends ElementType = 'button'> = AsProp<T> & {

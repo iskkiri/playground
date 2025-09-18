@@ -1,7 +1,7 @@
 import ReactModal from 'react-modal';
-import { overlayDimStyle } from './styles/overlay.styles';
+import { overlayDimStyle } from '../styles/overlay.styles';
 import { cn } from '@repo/utils/cn';
-import { useModalDispatchContext, useModalStateContext } from './hooks/useModalContext';
+import { useModalDispatchContext, useModalStateContext } from '../hooks/useModalContext';
 
 const CLOSE_TIMEOUT_MS = 150;
 

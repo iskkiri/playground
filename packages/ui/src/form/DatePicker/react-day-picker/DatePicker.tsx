@@ -2,8 +2,8 @@
 
 import { useEffect } from 'react';
 import Popover from '#src/overlay/Popover/Popover';
-import PopoverTrigger from '#src/overlay/Popover/PopoverTrigger';
-import PopoverContent from '#src/overlay/Popover/PopoverContent';
+import PopoverTrigger from '#src/overlay/Popover/components/PopoverTrigger';
+import PopoverContent from '#src/overlay/Popover/components/PopoverContent';
 import TextInput from '../../TextInput/TextInput';
 import { Calendar } from '../../Calendar/Calendar';
 import FeatherIcons from '@repo/icons/featherIcons';

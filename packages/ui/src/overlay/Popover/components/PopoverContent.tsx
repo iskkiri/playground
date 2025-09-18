@@ -1,5 +1,5 @@
 import { cloneElement, isValidElement, ElementType } from 'react';
-import usePopoverContext from './hooks/usePopoverContext';
+import usePopoverContext from '../hooks/usePopoverContext';
 import { FloatingFocusManager, FloatingPortal, useMergeRefs } from '@floating-ui/react';
 import { AsProp } from '@repo/types/react';
 

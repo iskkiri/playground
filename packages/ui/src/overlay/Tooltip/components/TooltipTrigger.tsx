@@ -1,6 +1,6 @@
 import { cloneElement, isValidElement, useCallback, useMemo, ElementType } from 'react';
 import { useMergeRefs } from '@floating-ui/react';
-import useTooltipContext from './hooks/useTooltipContext';
+import useTooltipContext from '../hooks/useTooltipContext';
 import { AsProp } from '@repo/types/react';
 
 type TooltipTriggerProps<T extends ElementType = 'button'> = AsProp<T> & {

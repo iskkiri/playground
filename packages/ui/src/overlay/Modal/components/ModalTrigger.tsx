@@ -1,6 +1,6 @@
 import { cloneElement, isValidElement, useCallback, useMemo, ElementType } from 'react';
 import { useMergeRefs } from 'react-merge-refs';
-import { useModalDispatchContext, useModalStateContext } from './hooks/useModalContext';
+import { useModalDispatchContext, useModalStateContext } from '../hooks/useModalContext';
 import { cn } from '@repo/utils/cn';
 import { AsProp } from '@repo/types/react';
 

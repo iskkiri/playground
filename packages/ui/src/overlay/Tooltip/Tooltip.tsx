@@ -2,8 +2,8 @@
 
 import { useMemo, useState } from 'react';
 import { TooltipContext } from './context/TooltipContext';
-import TooltipContent from './TooltipContent';
-import TooltipTrigger from './TooltipTrigger';
+import TooltipContent from './components/TooltipContent';
+import TooltipTrigger from './components/TooltipTrigger';
 import type { TooltipOptions } from './types/tooltip.types';
 import {
   autoUpdate,
