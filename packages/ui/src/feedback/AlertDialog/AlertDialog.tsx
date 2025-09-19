@@ -5,12 +5,14 @@ import Button, { type ButtonProps } from '../../general/Button/Button';
 import Dialog from '../../overlay/Dialog/Dialog';
 import { cn } from '@repo/utils/cn';
 import { useDialogDispatchContext } from '#src/overlay/Dialog/hooks/useDialogContext';
+import { type OnInteractOutsideEvent } from '#src/overlay/Dialog/types/dialog.types';
 
 export interface AlertModalProps {
   title: string;
   content: React.ReactNode;
   closeButtonText?: string;
   closeButtonType?: ButtonProps['variant'];
+  isPreventOutsideClick?: boolean;
   onClose?: () => void;
   classNames?: {
     content?: string;
@@ -26,10 +28,15 @@ export default function AlertDialog({
   content,
   closeButtonText = '확인',
   closeButtonType = 'primary',
+  isPreventOutsideClick = true,
   onClose,
   classNames,
 }: AlertModalProps) {
   const { onClose: closeModal } = useDialogDispatchContext();
+
+  const onInteractOutside = useCallback((e: OnInteractOutsideEvent) => {
+    e.preventDefault();
+  }, []);
 
   const handleClose = useCallback(() => {
     onClose?.();
@@ -37,7 +44,11 @@ export default function AlertDialog({
   }, [onClose, closeModal]);
 
   return (
-    <Dialog.Content showCloseButton className={classNames?.content}>
+    <Dialog.Content
+      showCloseButton
+      className={classNames?.content}
+      onInteractOutside={isPreventOutsideClick ? onInteractOutside : undefined}
+    >
       <Dialog.Header className={classNames?.header}>
         <Dialog.Title className={classNames?.title}>{title}</Dialog.Title>
       </Dialog.Header>
