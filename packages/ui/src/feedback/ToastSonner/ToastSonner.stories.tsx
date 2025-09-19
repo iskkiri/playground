@@ -13,7 +13,7 @@ const meta: Meta = {
     (Story) => {
       return (
         <>
-          <Toaster />
+          <Toaster className="flex justify-center" />
           <Story />
         </>
       );
