@@ -1,12 +1,12 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { useEffect, useState } from 'react';
 import type { Placement } from '@floating-ui/react';
-import Popover from './Popover';
+import Tooltip from './Tooltip';
 import Button from '#src/general/Button/Button';
 import Switch from '#src/form/Switch/Switch';
 
 const meta = {
-  title: 'Overlay/Popover2',
+  title: 'Overlay/Tooltip2',
   tags: ['autodocs'],
   parameters: {
     layout: 'centered',
@@ -24,17 +24,19 @@ type Story = StoryObj<typeof meta>;
 export const UncontrolledExample: Story = {
   render: function Render() {
     return (
-      <Popover>
-        <Popover.Trigger>
-          <Button variant="primary">Click Me</Button>
-        </Popover.Trigger>
+      <>
+        <Tooltip>
+          <Tooltip.Trigger>
+            <Button variant="primary">Hover Me</Button>
+          </Tooltip.Trigger>
 
-        <Popover.Content sideOffset={12}>
-          <div className="rounded-8 shadow-xs max-w-300 flex flex-col gap-8 border border-gray-200 bg-white p-16">
-            Hello
-          </div>
-        </Popover.Content>
-      </Popover>
+          <Tooltip.Content sideOffset={12}>
+            <div className="rounded-8 shadow-xs max-w-300 flex flex-col gap-8 border border-gray-200 bg-white p-16">
+              Hello
+            </div>
+          </Tooltip.Content>
+        </Tooltip>
+      </>
     );
   },
 };
@@ -44,23 +46,17 @@ export const ControlledExample: Story = {
     const [isOpen, setIsOpen] = useState(false);
 
     return (
-      <Popover open={isOpen} onOpenChange={setIsOpen}>
-        <Popover.Trigger>
-          <Button variant="primary">Click Me</Button>
-        </Popover.Trigger>
+      <Tooltip open={isOpen} onOpenChange={setIsOpen}>
+        <Tooltip.Trigger>
+          <Button variant="primary">Hover Me</Button>
+        </Tooltip.Trigger>
 
-        <Popover.Content sideOffset={12}>
+        <Tooltip.Content sideOffset={12}>
           <div className="rounded-8 shadow-xs max-w-300 flex flex-col gap-8 border border-gray-200 bg-white p-16">
-            <span>Hello</span>
-
-            <Popover.Close asChild>
-              <Button variant="primary" size={48}>
-                Close
-              </Button>
-            </Popover.Close>
+            Hello
           </div>
-        </Popover.Content>
-      </Popover>
+        </Tooltip.Content>
+      </Tooltip>
     );
   },
 };
@@ -68,17 +64,17 @@ export const ControlledExample: Story = {
 export const WithArrowExample: Story = {
   render: function Render() {
     return (
-      <Popover>
-        <Popover.Trigger>
-          <Button variant="primary">Click Me</Button>
-        </Popover.Trigger>
+      <Tooltip>
+        <Tooltip.Trigger>
+          <Button variant="primary">Hover Me</Button>
+        </Tooltip.Trigger>
 
-        <Popover.Content sideOffset={12}>
+        <Tooltip.Content sideOffset={12}>
           <div className="rounded-8 shadow-xs max-w-300 flex flex-col gap-8 border border-gray-200 bg-white p-16">
             Hello
           </div>
 
-          <Popover.Arrow
+          <Tooltip.Arrow
             width={16}
             height={8}
             fill="var(--color-white)"
@@ -87,8 +83,8 @@ export const WithArrowExample: Story = {
               transform: 'translateY(-1px)',
             }}
           />
-        </Popover.Content>
-      </Popover>
+        </Tooltip.Content>
+      </Tooltip>
     );
   },
 };
@@ -117,29 +113,29 @@ export const PositionExample: Story = {
 
     return (
       <div className="gap-100 flex flex-col">
-        <Popover open={isAlwaysOpen ? true : undefined}>
-          <Popover.Trigger style={{ alignSelf: 'center' }}>
-            <Button variant="primary">Click Me</Button>
-          </Popover.Trigger>
+        <Tooltip open={isAlwaysOpen ? true : undefined}>
+          <Tooltip.Trigger style={{ alignSelf: 'center' }}>
+            <Button variant="primary">Hover Me</Button>
+          </Tooltip.Trigger>
 
-          <Popover.Content sideOffset={12} side={side} align={align}>
+          <Tooltip.Content sideOffset={12} side={side} align={align}>
             <div className="rounded-8 shadow-xs max-w-300 flex flex-col gap-8 border border-gray-200 bg-white p-16">
               Hello
             </div>
 
             {isShowArrow && (
-              <Popover.Arrow
+              <Tooltip.Arrow
                 width={16}
                 height={8}
                 fill="var(--color-white)"
+                className="drop-shadow-[0_1px_0_var(--color-gray-200)]"
                 style={{
                   transform: 'translateY(-1px)',
-                  filter: 'drop-shadow(0 1px 0 var(--color-gray-200))',
                 }}
               />
             )}
-          </Popover.Content>
-        </Popover>
+          </Tooltip.Content>
+        </Tooltip>
 
         <div className="flex flex-col gap-16">
           <div className="flex flex-col gap-8">
