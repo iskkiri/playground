@@ -1,11 +1,12 @@
 'use client';
 
-import { useMemo, useState } from 'react';
+import { useMemo, useRef, useState } from 'react';
 import { TooltipContext } from './context/TooltipContext';
 import TooltipContent from './components/TooltipContent';
 import TooltipTrigger from './components/TooltipTrigger';
 import type { TooltipOptions } from './types/tooltip.types';
 import {
+  arrow,
   autoUpdate,
   flip,
   offset,
@@ -21,6 +22,17 @@ import {
 
 interface TooltipProps extends TooltipOptions {
   children: React.ReactNode;
+  /**
+   * controlled일 때(isOpen이 외부에서 주어졌을 경우) 내부 인터랙션은 기본적으로 비활성화
+   * 만약 외부에서 상태값을 넘겨주고, 내부 인터랙션을 사용하고자 할 경우 isInteractionEnabled을 true로 설정
+   * 스토리북 Controlled 예제 참고
+   * */
+  isInteractionEnabled?: boolean;
+  /**
+   * 화살표 표시 여부
+   * @default false
+   */
+  isShowArrow?: boolean;
 }
 
 /**
@@ -35,18 +47,26 @@ export default function Tooltip({
   onOpenChange: setControlledOpen,
   offsetOptions,
   isInteractionEnabled = false,
+  isShowArrow = false,
 }: TooltipProps) {
   const [uncontrolledOpen, setUncontrolledOpen] = useState(initialOpen);
 
   const isOpen = controlledOpen ?? uncontrolledOpen;
   const setIsOpen = setControlledOpen ?? setUncontrolledOpen;
 
+  const arrowRef = useRef<SVGSVGElement>(null);
+
   const data = useFloating({
     placement,
     open: isOpen,
     onOpenChange: setIsOpen,
     whileElementsMounted: autoUpdate,
-    middleware: [offset(offsetOptions), flip(), shift()],
+    middleware: [
+      offset(offsetOptions),
+      flip(),
+      shift(),
+      ...(isShowArrow ? [arrow({ element: arrowRef })] : []),
+    ],
   });
 
   const context = data.context;
@@ -79,10 +99,12 @@ export default function Tooltip({
     () => ({
       isOpen,
       setIsOpen,
+      arrowRef,
+      isShowArrow,
       ...interactions,
       ...data,
     }),
-    [isOpen, setIsOpen, interactions, data]
+    [isOpen, setIsOpen, interactions, data, isShowArrow]
   );
 
   return <TooltipContext.Provider value={values}>{children}</TooltipContext.Provider>;

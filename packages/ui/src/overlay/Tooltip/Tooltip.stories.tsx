@@ -70,9 +70,28 @@ export const ControlledExample: Story = {
   },
 };
 
+export const WithArrowExample: Story = {
+  render: function Render() {
+    return (
+      <Tooltip isShowArrow offsetOptions={{ mainAxis: 12 }}>
+        <TooltipTrigger>
+          <Button variant="primary">Hover Me</Button>
+        </TooltipTrigger>
+
+        <TooltipContent>
+          <div className="rounded-8 shadow-xs max-w-300 flex flex-col gap-8 border border-gray-200 bg-white p-16">
+            Hello
+          </div>
+        </TooltipContent>
+      </Tooltip>
+    );
+  },
+};
+
 export const PositionExample: Story = {
   render: function Render() {
     const [isAlwaysOpen, setIsAlwaysOpen] = useState(false);
+    const [isShowArrow, setIsShowArrow] = useState(false);
 
     // placement
     const [placement, setPlacement] = useState<Placement>('bottom');
@@ -84,10 +103,11 @@ export const PositionExample: Story = {
     ];
 
     return (
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 100 }}>
+      <div className="gap-100 flex flex-col">
         <Tooltip
           isOpen={isAlwaysOpen ? true : undefined}
           placement={placement}
+          isShowArrow={isShowArrow}
           offsetOptions={{ mainAxis: 12 }}
         >
           <TooltipTrigger style={{ alignSelf: 'center' }}>
@@ -101,16 +121,23 @@ export const PositionExample: Story = {
           </TooltipContent>
         </Tooltip>
 
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-          <b>Always Open: {isAlwaysOpen ? 'ON' : 'OFF'}</b>
-          <Switch checked={isAlwaysOpen} onCheckedChange={setIsAlwaysOpen} />
+        <div className="flex flex-col gap-16">
+          <div className="flex flex-col gap-8">
+            <b>Always Open: {isAlwaysOpen ? 'ON' : 'OFF'}</b>
+            <Switch checked={isAlwaysOpen} onCheckedChange={setIsAlwaysOpen} />
+          </div>
+
+          <div className="flex flex-col gap-8">
+            <b>Show Arrow: {isShowArrow ? 'ON' : 'OFF'}</b>
+            <Switch checked={isShowArrow} onCheckedChange={setIsShowArrow} />
+          </div>
         </div>
 
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+        <div className="flex flex-col gap-8">
           <b>Position: {placement}</b>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 16 }}>
+          <div className="grid grid-cols-4 gap-16">
             {placement2DList.map((placementList, i) => (
-              <div key={i} style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+              <div key={i} className="flex flex-col gap-12">
                 {placementList.map((item, j) => (
                   <Button key={j} onClick={() => setPlacement(item)} variant="linePrimary">
                     {item}

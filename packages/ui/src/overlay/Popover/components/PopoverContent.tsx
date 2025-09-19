@@ -1,6 +1,11 @@
 import { cloneElement, isValidElement, ElementType } from 'react';
 import usePopoverContext from '../hooks/usePopoverContext';
-import { FloatingFocusManager, FloatingPortal, useMergeRefs } from '@floating-ui/react';
+import {
+  FloatingArrow,
+  FloatingFocusManager,
+  FloatingPortal,
+  useMergeRefs,
+} from '@floating-ui/react';
 import { AsProp } from '@repo/types/react';
 
 type PopoverContentProps<T extends ElementType = 'div'> = AsProp<T> & {
@@ -39,6 +44,25 @@ export default function PopoverContent<T extends ElementType = 'div'>({
             style: { ...context.floatingStyles, ...style },
             ...context.getFloatingProps({ ...props, onClick: handleClick }),
             ...(typeof children.props === 'object' ? children.props : {}),
+            children: (
+              <>
+                {(children.props as React.PropsWithChildren<unknown>)?.children}
+                {context.isShowArrow && (
+                  <FloatingArrow
+                    ref={context.arrowRef}
+                    context={floatingContext}
+                    fill="var(--color-white)"
+                    stroke="var(--color-gray-200)"
+                    strokeWidth={1}
+                    width={16}
+                    height={8}
+                    style={{
+                      transform: 'translateY(-1px)',
+                    }}
+                  />
+                )}
+              </>
+            ),
           } as React.HTMLAttributes<HTMLElement>)}
         </FloatingFocusManager>
       </FloatingPortal>
@@ -56,6 +80,21 @@ export default function PopoverContent<T extends ElementType = 'div'>({
           {...context.getFloatingProps({ ...props, onClick: handleClick })}
         >
           {children}
+
+          {context.isShowArrow && (
+            <FloatingArrow
+              ref={context.arrowRef}
+              context={floatingContext}
+              fill="var(--color-white)"
+              stroke="var(--color-gray-200)"
+              strokeWidth={1}
+              width={16}
+              height={8}
+              style={{
+                transform: 'translateY(-1px)',
+              }}
+            />
+          )}
         </Component>
       </FloatingFocusManager>
     </FloatingPortal>

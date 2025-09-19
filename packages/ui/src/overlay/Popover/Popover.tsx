@@ -1,7 +1,8 @@
 'use client';
 
-import { useMemo, useState } from 'react';
+import { useMemo, useRef, useState } from 'react';
 import {
+  arrow,
   autoUpdate,
   flip,
   offset,
@@ -35,6 +36,11 @@ interface PopoverProps extends PopoverOptions {
    * 기본값은 false입니다.
    */
   isFocusDisabled?: boolean;
+  /**
+   * 화살표 표시 여부
+   * @default false
+   */
+  isShowArrow?: boolean;
 }
 
 /**
@@ -46,6 +52,7 @@ export default function Popover({ children, ...options }: PopoverProps) {
     isOpen: controlledOpen,
     onOpenChange: setControlledOpen,
     isInteractionEnabled,
+    isShowArrow = false,
     ...restOptions
   } = options;
   const [uncontrolledOpen, setUncontrolledOpen] = useState(options.initialOpen ?? false);
@@ -53,12 +60,19 @@ export default function Popover({ children, ...options }: PopoverProps) {
   const isOpen = controlledOpen ?? uncontrolledOpen;
   const setIsOpen = setControlledOpen ?? setUncontrolledOpen;
 
+  const arrowRef = useRef<SVGSVGElement>(null);
+
   const data = useFloating({
     placement: options.placement,
     open: isOpen,
     onOpenChange: setIsOpen,
     whileElementsMounted: autoUpdate,
-    middleware: [offset(options.offsetOptions), flip(), shift()],
+    middleware: [
+      offset(options.offsetOptions),
+      flip(),
+      shift(),
+      ...(isShowArrow ? [arrow({ element: arrowRef })] : []),
+    ],
   });
 
   const context = data.context;
@@ -78,11 +92,13 @@ export default function Popover({ children, ...options }: PopoverProps) {
     () => ({
       isOpen,
       setIsOpen,
+      arrowRef,
+      isShowArrow,
       ...restOptions,
       ...interactions,
       ...data,
     }),
-    [isOpen, setIsOpen, restOptions, interactions, data]
+    [isOpen, setIsOpen, restOptions, interactions, data, isShowArrow]
   );
 
   return <PopoverContext.Provider value={values}>{children}</PopoverContext.Provider>;

@@ -6,6 +6,13 @@ type Disclosure = {
   setIsOpen: (open: boolean) => void;
 };
 
-export type TooltipContextType = (Disclosure & UseInteractionsReturn & UseFloatingReturn) | null;
+type TooltipArrow = {
+  arrowRef: React.RefObject<SVGSVGElement | null>;
+  isShowArrow: boolean;
+};
+
+export type TooltipContextType =
+  | (Disclosure & UseInteractionsReturn & UseFloatingReturn & TooltipArrow)
+  | null;
 
 export const TooltipContext = createContext<TooltipContextType>(null);
