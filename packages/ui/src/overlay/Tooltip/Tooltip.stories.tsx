@@ -2,8 +2,6 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 import { useState } from 'react';
 import type { Placement } from '@floating-ui/react';
 import Tooltip from './Tooltip';
-import TooltipTrigger from './components/TooltipTrigger';
-import TooltipContent from './components/TooltipContent';
 import Button from '#src/general/Button/Button';
 import Switch from '#src/form/Switch/Switch';
 
@@ -28,15 +26,15 @@ export const UncontrolledExample: Story = {
     return (
       <>
         <Tooltip offsetOptions={{ mainAxis: 12 }}>
-          <TooltipTrigger>
+          <Tooltip.Trigger>
             <Button variant="primary">Hover Me</Button>
-          </TooltipTrigger>
+          </Tooltip.Trigger>
 
-          <TooltipContent>
+          <Tooltip.Content>
             <div className="rounded-8 shadow-xs max-w-300 flex flex-col gap-8 border border-gray-200 bg-white p-16">
               Hello
             </div>
-          </TooltipContent>
+          </Tooltip.Content>
         </Tooltip>
       </>
     );
@@ -55,15 +53,15 @@ export const ControlledExample: Story = {
           onOpenChange={setIsOpen}
           offsetOptions={{ mainAxis: 12 }}
         >
-          <TooltipTrigger>
+          <Tooltip.Trigger>
             <Button variant="primary">Hover Me</Button>
-          </TooltipTrigger>
+          </Tooltip.Trigger>
 
-          <TooltipContent>
+          <Tooltip.Content>
             <div className="rounded-8 shadow-xs max-w-300 flex flex-col gap-8 border border-gray-200 bg-white p-16">
               Hello
             </div>
-          </TooltipContent>
+          </Tooltip.Content>
         </Tooltip>
       </>
     );
@@ -74,15 +72,15 @@ export const WithArrowExample: Story = {
   render: function Render() {
     return (
       <Tooltip isShowArrow offsetOptions={{ mainAxis: 12 }}>
-        <TooltipTrigger>
+        <Tooltip.Trigger>
           <Button variant="primary">Hover Me</Button>
-        </TooltipTrigger>
+        </Tooltip.Trigger>
 
-        <TooltipContent>
+        <Tooltip.Content>
           <div className="rounded-8 shadow-xs max-w-300 flex flex-col gap-8 border border-gray-200 bg-white p-16">
             Hello
           </div>
-        </TooltipContent>
+        </Tooltip.Content>
       </Tooltip>
     );
   },
@@ -110,15 +108,15 @@ export const PositionExample: Story = {
           isShowArrow={isShowArrow}
           offsetOptions={{ mainAxis: 12 }}
         >
-          <TooltipTrigger style={{ alignSelf: 'center' }}>
+          <Tooltip.Trigger style={{ alignSelf: 'center' }}>
             <Button variant="primary">Hover Me</Button>
-          </TooltipTrigger>
+          </Tooltip.Trigger>
 
-          <TooltipContent>
+          <Tooltip.Content>
             <div className="rounded-8 shadow-xs max-w-300 flex flex-col gap-8 border border-gray-200 bg-white p-16">
               Hello
             </div>
-          </TooltipContent>
+          </Tooltip.Content>
         </Tooltip>
 
         <div className="flex flex-col gap-16">
