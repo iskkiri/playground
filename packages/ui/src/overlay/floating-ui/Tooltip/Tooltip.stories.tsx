@@ -1,12 +1,12 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import type { Placement } from '@floating-ui/react';
 import Tooltip from './Tooltip';
 import Button from '#src/general/Button/Button';
 import Switch from '#src/form/Switch/Switch';
 
 const meta = {
-  title: 'Overlay/Tooltip2',
+  title: 'Overlay/Floating-UI/Tooltip',
   tags: ['autodocs'],
   parameters: {
     layout: 'centered',
@@ -25,12 +25,12 @@ export const UncontrolledExample: Story = {
   render: function Render() {
     return (
       <>
-        <Tooltip>
+        <Tooltip offsetOptions={{ mainAxis: 12 }}>
           <Tooltip.Trigger>
             <Button variant="primary">Hover Me</Button>
           </Tooltip.Trigger>
 
-          <Tooltip.Content sideOffset={12}>
+          <Tooltip.Content>
             <div className="rounded-8 shadow-xs max-w-300 flex flex-col gap-8 border border-gray-200 bg-white p-16">
               Hello
             </div>
@@ -46,17 +46,24 @@ export const ControlledExample: Story = {
     const [isOpen, setIsOpen] = useState(false);
 
     return (
-      <Tooltip open={isOpen} onOpenChange={setIsOpen}>
-        <Tooltip.Trigger>
-          <Button variant="primary">Hover Me</Button>
-        </Tooltip.Trigger>
+      <>
+        <Tooltip
+          isInteractionEnabled
+          isOpen={isOpen}
+          onOpenChange={setIsOpen}
+          offsetOptions={{ mainAxis: 12 }}
+        >
+          <Tooltip.Trigger>
+            <Button variant="primary">Hover Me</Button>
+          </Tooltip.Trigger>
 
-        <Tooltip.Content sideOffset={12}>
-          <div className="rounded-8 shadow-xs max-w-300 flex flex-col gap-8 border border-gray-200 bg-white p-16">
-            Hello
-          </div>
-        </Tooltip.Content>
-      </Tooltip>
+          <Tooltip.Content>
+            <div className="rounded-8 shadow-xs max-w-300 flex flex-col gap-8 border border-gray-200 bg-white p-16">
+              Hello
+            </div>
+          </Tooltip.Content>
+        </Tooltip>
+      </>
     );
   },
 };
@@ -64,25 +71,15 @@ export const ControlledExample: Story = {
 export const WithArrowExample: Story = {
   render: function Render() {
     return (
-      <Tooltip>
+      <Tooltip isShowArrow offsetOptions={{ mainAxis: 12 }}>
         <Tooltip.Trigger>
           <Button variant="primary">Hover Me</Button>
         </Tooltip.Trigger>
 
-        <Tooltip.Content sideOffset={12}>
+        <Tooltip.Content>
           <div className="rounded-8 shadow-xs max-w-300 flex flex-col gap-8 border border-gray-200 bg-white p-16">
             Hello
           </div>
-
-          <Tooltip.Arrow
-            width={16}
-            height={8}
-            fill="var(--color-white)"
-            className="drop-shadow-[0_1px_0_var(--color-gray-200)]"
-            style={{
-              transform: 'translateY(-1px)',
-            }}
-          />
         </Tooltip.Content>
       </Tooltip>
     );
@@ -103,37 +100,22 @@ export const PositionExample: Story = {
       ['left', 'left-start', 'left-end'],
     ];
 
-    const [side, setSide] = useState<'top' | 'right' | 'bottom' | 'left'>('bottom');
-    const [align, setAlign] = useState<'start' | 'center' | 'end'>('center');
-
-    useEffect(() => {
-      setSide(placement.split('-')[0] as 'top' | 'right' | 'bottom' | 'left');
-      setAlign(placement.split('-')[1] as 'start' | 'center' | 'end');
-    }, [placement]);
-
     return (
       <div className="gap-100 flex flex-col">
-        <Tooltip open={isAlwaysOpen ? true : undefined}>
+        <Tooltip
+          isOpen={isAlwaysOpen ? true : undefined}
+          placement={placement}
+          isShowArrow={isShowArrow}
+          offsetOptions={{ mainAxis: 12 }}
+        >
           <Tooltip.Trigger style={{ alignSelf: 'center' }}>
             <Button variant="primary">Hover Me</Button>
           </Tooltip.Trigger>
 
-          <Tooltip.Content sideOffset={12} side={side} align={align}>
+          <Tooltip.Content>
             <div className="rounded-8 shadow-xs max-w-300 flex flex-col gap-8 border border-gray-200 bg-white p-16">
               Hello
             </div>
-
-            {isShowArrow && (
-              <Tooltip.Arrow
-                width={16}
-                height={8}
-                fill="var(--color-white)"
-                className="drop-shadow-[0_1px_0_var(--color-gray-200)]"
-                style={{
-                  transform: 'translateY(-1px)',
-                }}
-              />
-            )}
           </Tooltip.Content>
         </Tooltip>
 

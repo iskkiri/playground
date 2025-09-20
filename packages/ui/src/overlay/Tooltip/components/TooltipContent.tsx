@@ -1,88 +1,29 @@
-import { cloneElement, isValidElement, ElementType } from 'react';
-import { FloatingArrow, FloatingPortal, useMergeRefs } from '@floating-ui/react';
-import useTooltipContext from '../hooks/useTooltipContext';
-import { AsProp } from '@repo/types/react';
+import * as React from 'react';
+import { Tooltip as TooltipPrimitive } from 'radix-ui';
 
-type TooltipContentProps<T extends ElementType = 'div'> = AsProp<T> & {
-  asChild?: boolean;
-};
+import { cn } from '@repo/utils/cn';
 
-export default function TooltipContent<T extends ElementType = 'div'>({
-  style,
-  asChild = false,
-  children,
-  as,
+export default function TooltipContent({
+  className,
+  sideOffset = 0,
   ...props
-}: TooltipContentProps<T>) {
-  const context = useTooltipContext();
-  const mergeRefs = useMergeRefs([context.refs.setFloating, props.ref]);
-
-  if (!context.isOpen) return null;
-
-  if (asChild && isValidElement(children)) {
-    return (
-      <FloatingPortal>
-        {cloneElement(children, {
-          ref: mergeRefs,
-          style: {
-            ...context.floatingStyles,
-            ...style,
-          },
-          ...context.getFloatingProps(props),
-          ...(typeof children.props === 'object' ? children.props : {}),
-          children: (
-            <>
-              {(children.props as React.PropsWithChildren<unknown>)?.children}
-              {context.isShowArrow && (
-                <FloatingArrow
-                  ref={context.arrowRef}
-                  context={context.context}
-                  fill="var(--color-white)"
-                  stroke="var(--color-gray-200)"
-                  strokeWidth={1}
-                  width={16}
-                  height={8}
-                  style={{
-                    transform: 'translateY(-1px)',
-                  }}
-                />
-              )}
-            </>
-          ),
-        } as React.HTMLAttributes<HTMLElement>)}
-      </FloatingPortal>
-    );
-  }
-
-  const Component = as || 'div';
-
+}: React.ComponentProps<typeof TooltipPrimitive.Content>) {
   return (
-    <FloatingPortal>
-      <Component
-        ref={mergeRefs}
-        style={{
-          ...context.floatingStyles,
-          ...style,
-        }}
-        {...context.getFloatingProps(props)}
-      >
-        {children}
-
-        {context.isShowArrow && (
-          <FloatingArrow
-            ref={context.arrowRef}
-            context={context.context}
-            fill="var(--color-white)"
-            stroke="var(--color-gray-200)"
-            strokeWidth={1}
-            width={16}
-            height={8}
-            style={{
-              transform: 'translateY(-1px)',
-            }}
-          />
+    <TooltipPrimitive.Portal>
+      <TooltipPrimitive.Content
+        data-slot="tooltip-content"
+        sideOffset={sideOffset}
+        className={cn(
+          'animate-in fade-in-0 zoom-in-95 origin-(--radix-tooltip-content-transform-origin) z-50',
+          'data-[side=top]:slide-in-from-bottom-2',
+          'data-[side=bottom]:slide-in-from-top-2',
+          'data-[side=left]:slide-in-from-right-2',
+          'data-[side=right]:slide-in-from-left-2',
+          'data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95',
+          className
         )}
-      </Component>
-    </FloatingPortal>
+        {...props}
+      />
+    </TooltipPrimitive.Portal>
   );
 }
