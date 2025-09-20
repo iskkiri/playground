@@ -1,12 +1,12 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import type { Placement } from '@floating-ui/react';
 import Popover from './Popover';
 import Button from '#src/general/Button/Button';
 import Switch from '#src/form/Switch/Switch';
 
 const meta = {
-  title: 'Overlay/Popover2',
+  title: 'Overlay/Floating-UI/Popover',
   tags: ['autodocs'],
   parameters: {
     layout: 'centered',
@@ -24,12 +24,12 @@ type Story = StoryObj<typeof meta>;
 export const UncontrolledExample: Story = {
   render: function Render() {
     return (
-      <Popover>
+      <Popover offsetOptions={{ mainAxis: 12 }}>
         <Popover.Trigger>
           <Button variant="primary">Click Me</Button>
         </Popover.Trigger>
 
-        <Popover.Content sideOffset={12}>
+        <Popover.Content>
           <div className="rounded-8 shadow-xs max-w-300 flex flex-col gap-8 border border-gray-200 bg-white p-16">
             Hello
           </div>
@@ -44,20 +44,22 @@ export const ControlledExample: Story = {
     const [isOpen, setIsOpen] = useState(false);
 
     return (
-      <Popover open={isOpen} onOpenChange={setIsOpen}>
+      <Popover
+        isInteractionEnabled
+        isOpen={isOpen}
+        onOpenChange={setIsOpen}
+        offsetOptions={{ mainAxis: 12 }}
+      >
         <Popover.Trigger>
           <Button variant="primary">Click Me</Button>
         </Popover.Trigger>
 
-        <Popover.Content sideOffset={12}>
+        <Popover.Content>
           <div className="rounded-8 shadow-xs max-w-300 flex flex-col gap-8 border border-gray-200 bg-white p-16">
-            <span>Hello</span>
-
-            <Popover.Close asChild>
-              <Button variant="primary" size={48}>
-                Close
-              </Button>
-            </Popover.Close>
+            Hello
+            <Button variant="primary" onClick={() => setIsOpen(false)} size={48}>
+              Close
+            </Button>
           </div>
         </Popover.Content>
       </Popover>
@@ -68,25 +70,15 @@ export const ControlledExample: Story = {
 export const WithArrowExample: Story = {
   render: function Render() {
     return (
-      <Popover>
+      <Popover isShowArrow offsetOptions={{ mainAxis: 12 }}>
         <Popover.Trigger>
           <Button variant="primary">Click Me</Button>
         </Popover.Trigger>
 
-        <Popover.Content sideOffset={12}>
+        <Popover.Content>
           <div className="rounded-8 shadow-xs max-w-300 flex flex-col gap-8 border border-gray-200 bg-white p-16">
             Hello
           </div>
-
-          <Popover.Arrow
-            width={16}
-            height={8}
-            fill="var(--color-white)"
-            className="drop-shadow-[0_1px_0_var(--color-gray-200)]"
-            style={{
-              transform: 'translateY(-1px)',
-            }}
-          />
         </Popover.Content>
       </Popover>
     );
@@ -107,37 +99,22 @@ export const PositionExample: Story = {
       ['left', 'left-start', 'left-end'],
     ];
 
-    const [side, setSide] = useState<'top' | 'right' | 'bottom' | 'left'>('bottom');
-    const [align, setAlign] = useState<'start' | 'center' | 'end'>('center');
-
-    useEffect(() => {
-      setSide(placement.split('-')[0] as 'top' | 'right' | 'bottom' | 'left');
-      setAlign(placement.split('-')[1] as 'start' | 'center' | 'end');
-    }, [placement]);
-
     return (
       <div className="gap-100 flex flex-col">
-        <Popover open={isAlwaysOpen ? true : undefined}>
+        <Popover
+          isOpen={isAlwaysOpen ? true : undefined}
+          placement={placement}
+          isShowArrow={isShowArrow}
+          offsetOptions={{ mainAxis: 12 }}
+        >
           <Popover.Trigger style={{ alignSelf: 'center' }}>
             <Button variant="primary">Click Me</Button>
           </Popover.Trigger>
 
-          <Popover.Content sideOffset={12} side={side} align={align}>
+          <Popover.Content>
             <div className="rounded-8 shadow-xs max-w-300 flex flex-col gap-8 border border-gray-200 bg-white p-16">
               Hello
             </div>
-
-            {isShowArrow && (
-              <Popover.Arrow
-                width={16}
-                height={8}
-                fill="var(--color-white)"
-                style={{
-                  transform: 'translateY(-1px)',
-                  filter: 'drop-shadow(0 1px 0 var(--color-gray-200))',
-                }}
-              />
-            )}
           </Popover.Content>
         </Popover>
 

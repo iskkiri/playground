@@ -1,102 +1,31 @@
-import { cloneElement, isValidElement, ElementType } from 'react';
-import usePopoverContext from '../hooks/usePopoverContext';
-import {
-  FloatingArrow,
-  FloatingFocusManager,
-  FloatingPortal,
-  useMergeRefs,
-} from '@floating-ui/react';
-import { AsProp } from '@repo/types/react';
+import * as React from 'react';
+import { Popover as PopoverPrimitive } from 'radix-ui';
+import { cn } from '@repo/utils/cn';
 
-type PopoverContentProps<T extends ElementType = 'div'> = AsProp<T> & {
-  asChild?: boolean;
-};
-
-export default function PopoverContent<T extends ElementType = 'div'>({
-  style,
-  onClick,
-  asChild = false,
-  children,
-  as,
+export default function PopoverContent({
+  className,
+  align = 'center',
+  sideOffset = 4,
   ...props
-}: PopoverContentProps<T>) {
-  const { context: floatingContext, ...context } = usePopoverContext();
-  const ref = useMergeRefs([context.refs.setFloating, props.ref]);
-
-  const handleClick = (event: React.MouseEvent<HTMLDivElement>) => {
-    // 기존 onClick이 있다면 먼저 실행
-    onClick?.(event);
-
-    // dismissOnContentClick 옵션이 true면 팝오버를 닫음
-    if (context.dismissOnContentClick) {
-      context.setIsOpen(false);
-    }
-  };
-
-  if (!context.isOpen) return null;
-
-  if (asChild && isValidElement(children)) {
-    return (
-      <FloatingPortal>
-        <FloatingFocusManager context={floatingContext} disabled={context.isFocusDisabled}>
-          {cloneElement(children, {
-            ref,
-            style: { ...context.floatingStyles, ...style },
-            ...context.getFloatingProps({ ...props, onClick: handleClick }),
-            ...(typeof children.props === 'object' ? children.props : {}),
-            children: (
-              <>
-                {(children.props as React.PropsWithChildren<unknown>)?.children}
-                {context.isShowArrow && (
-                  <FloatingArrow
-                    ref={context.arrowRef}
-                    context={floatingContext}
-                    fill="var(--color-white)"
-                    stroke="var(--color-gray-200)"
-                    strokeWidth={1}
-                    width={16}
-                    height={8}
-                    style={{
-                      transform: 'translateY(-1px)',
-                    }}
-                  />
-                )}
-              </>
-            ),
-          } as React.HTMLAttributes<HTMLElement>)}
-        </FloatingFocusManager>
-      </FloatingPortal>
-    );
-  }
-
-  const Component = as || 'div';
-
+}: React.ComponentProps<typeof PopoverPrimitive.Content>) {
   return (
-    <FloatingPortal>
-      <FloatingFocusManager context={floatingContext} disabled={context.isFocusDisabled}>
-        <Component
-          ref={ref}
-          style={{ ...context.floatingStyles, ...style }}
-          {...context.getFloatingProps({ ...props, onClick: handleClick })}
-        >
-          {children}
-
-          {context.isShowArrow && (
-            <FloatingArrow
-              ref={context.arrowRef}
-              context={floatingContext}
-              fill="var(--color-white)"
-              stroke="var(--color-gray-200)"
-              strokeWidth={1}
-              width={16}
-              height={8}
-              style={{
-                transform: 'translateY(-1px)',
-              }}
-            />
-          )}
-        </Component>
-      </FloatingFocusManager>
-    </FloatingPortal>
+    <PopoverPrimitive.Portal>
+      <PopoverPrimitive.Content
+        data-slot="popover-content"
+        align={align}
+        sideOffset={sideOffset}
+        className={cn(
+          'outline-hidden origin-(--radix-popover-content-transform-origin) z-50',
+          'data-[side=top]:slide-in-from-bottom-2',
+          'data-[side=bottom]:slide-in-from-top-2',
+          'data-[side=left]:slide-in-from-right-2',
+          'data-[side=right]:slide-in-from-left-2',
+          'data-[state=open]:animate-in data-[state=open]:fade-in-0 data-[state=open]:zoom-in-95',
+          'data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95',
+          className
+        )}
+        {...props}
+      />
+    </PopoverPrimitive.Portal>
   );
 }
