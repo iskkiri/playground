@@ -10,103 +10,84 @@ const meta = {
     layout: 'centered',
   },
   tags: ['autodocs'],
-  args: {
-    mode: 'single',
-    variant: 'readonly',
-    disabled: false,
-    placeholder: '날짜를 선택해주세요.',
-    side: 'bottom',
-    sideOffset: 12,
-    captionLayout: 'dropdown',
-    dateFormat: 'YYYY-MM-DD',
-    classNames: {
-      input: 'w-300',
-    },
-  },
-  argTypes: {
-    mode: {
-      control: 'radio',
-      options: ['single', 'range', 'range-start', 'range-end'],
-    },
-    variant: {
-      control: 'radio',
-      options: ['readonly', 'typeable'],
-    },
-    disabled: {
-      control: 'boolean',
-    },
-  },
 } satisfies Meta<typeof DatePicker>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Basic: Story = {};
-
-// 기존 DatePicker (단일 날짜, 읽기전용)
-export const Single: Story = {
-  render: function Render(props) {
-    const [date, setDate] = useState<Date>();
+export const Basic: Story = {
+  args: {
+    children: null,
+  },
+  render: function Render() {
+    const [date, setDate] = useState<Date | undefined>();
 
     return (
-      <DatePicker
-        {...props}
-        mode="single"
-        variant="readonly"
-        value={date}
-        onChange={setDate}
-        placeholder="날짜를 선택해주세요."
-      />
+      <DatePicker value={date} onChange={setDate}>
+        <DatePicker.Input placeholder="날짜를 선택해주세요" />
+        <DatePicker.Calendar />
+      </DatePicker>
     );
   },
 };
 
-// 기존 TypeableDatePicker (단일 날짜, 타이핑 가능)
-export const SingleTypeable: Story = {
-  render: function Render(props) {
-    const [date, setDate] = useState<Date>();
+export const WithCustomStyles: Story = {
+  args: {
+    children: null,
+  },
+  render: function Render() {
+    const [date, setDate] = useState<Date | undefined>();
 
     return (
-      <DatePicker
-        {...props}
-        mode="single"
-        variant="typeable"
-        value={date}
-        onChange={setDate}
-        placeholder="날짜를 선택해주세요."
-      />
+      <DatePicker value={date} onChange={setDate}>
+        <DatePicker.Input placeholder="날짜를 선택해주세요" />
+        <DatePicker.Calendar side="bottom" captionLayout="dropdown" />
+      </DatePicker>
     );
   },
 };
 
-// 기존 RangeForOneDatePicker (범위 날짜, 하나의 캘린더)
-export const Range: Story = {
-  render: function Render(props) {
-    const [dateRange, setDateRange] = useState<DateRange>({
-      from: undefined,
-      to: undefined,
-    });
-
-    const onChangeDateRange = useCallback((value: DateRange | undefined) => {
-      setDateRange(value || { from: undefined, to: undefined });
-    }, []);
+export const TypeableDatePicker: Story = {
+  args: {
+    children: null,
+  },
+  render: function Render() {
+    const [date, setDate] = useState<Date | undefined>();
 
     return (
-      <DatePicker
-        {...props}
-        mode="range"
-        variant="readonly"
-        value={dateRange}
-        onChange={onChangeDateRange}
-        placeholder="날짜를 선택해주세요."
-      />
+      <DatePicker value={date} onChange={setDate}>
+        <DatePicker.Input
+          interaction="type"
+          placeholder="날짜를 직접 입력하거나 아이콘을 클릭하세요"
+          className="w-300"
+        />
+        <DatePicker.Calendar />
+      </DatePicker>
     );
   },
 };
 
-// 기존 RangeForTwoDatePickers (범위 날짜, 두 개의 DatePicker)
-export const RangeForTwoPickers: Story = {
-  render: function Render(props) {
+export const RangeDatePicker: Story = {
+  args: {
+    children: null,
+  },
+  render: function Render() {
+    const [dateRange, setDateRange] = useState<DateRange | undefined>();
+
+    return (
+      <DatePicker mode="range" value={dateRange} onChange={setDateRange}>
+        <DatePicker.Input placeholder="기간을 선택해주세요" className="w-300" />
+        <DatePicker.Calendar />
+      </DatePicker>
+    );
+  },
+};
+
+export const RangeForTwoDatePickers: Story = {
+  args: {
+    children: null,
+  },
+  render: function Render() {
     const [dateRange, setDateRange] = useState<DateRange>({
       from: undefined,
       to: undefined,
@@ -120,33 +101,19 @@ export const RangeForTwoPickers: Story = {
       setDateRange((prev) => ({ ...prev, to: date }));
     }, []);
 
-    console.log('dateRange', dateRange);
-
     return (
       <div className="flex items-center gap-8">
-        <DatePicker
-          {...props}
-          mode="range-start"
-          variant="readonly"
-          value={dateRange.from}
-          onChange={onChangeStartDate}
-          rangeValue={dateRange}
-          maxDate={dateRange.to}
-          placeholder="시작 날짜를 선택해주세요."
-        />
+        <DatePicker mode="range-start" value={dateRange} onChange={onChangeStartDate}>
+          <DatePicker.Input placeholder="시작일을 선택해주세요" />
+          <DatePicker.Calendar />
+        </DatePicker>
 
         <span>~</span>
 
-        <DatePicker
-          {...props}
-          mode="range-end"
-          variant="readonly"
-          value={dateRange.to}
-          onChange={onChangeEndDate}
-          rangeValue={dateRange}
-          minDate={dateRange.from}
-          placeholder="종료 날짜를 선택해주세요."
-        />
+        <DatePicker mode="range-end" value={dateRange} onChange={onChangeEndDate}>
+          <DatePicker.Input placeholder="종료일을 선택해주세요" />
+          <DatePicker.Calendar />
+        </DatePicker>
       </div>
     );
   },

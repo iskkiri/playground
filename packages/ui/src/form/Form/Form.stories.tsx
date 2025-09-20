@@ -134,9 +134,13 @@ export const Basic = {
                 <Form.Item>
                   <Form.Label isRequired>생년월일</Form.Label>
 
-                  <Form.Control>
-                    <DatePicker {...field} />
-                  </Form.Control>
+                  <DatePicker {...field}>
+                    <Form.Control>
+                      <DatePicker.Input placeholder="생년월일을 선택해주세요" />
+                    </Form.Control>
+
+                    <DatePicker.Calendar />
+                  </DatePicker>
                   <Form.Message />
                 </Form.Item>
               )}
