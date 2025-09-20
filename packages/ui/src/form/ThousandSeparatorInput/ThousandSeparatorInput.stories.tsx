@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { useCallback, useMemo, useState } from 'react';
+import { useCallback, useState } from 'react';
 import ThousandSeparatorInput from './ThousandSeparatorInput';
 import { addThousandSeparator } from '@repo/utils/formatThousandSeparator';
 
@@ -14,7 +14,6 @@ const meta = {
     min: 0,
     max: 1_000_000,
     placeholder: 'Placeholder',
-    isDirty: false,
     className: 'w-400',
   },
 } satisfies Meta<typeof ThousandSeparatorInput>;
@@ -29,9 +28,6 @@ export const Basic: Story = {
       setValue(e.target.value);
     }, []);
 
-    const isDirty = useMemo(() => !!value, [value]);
-    const onClear = useCallback(() => setValue(''), []);
-
     return (
       <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
@@ -43,10 +39,8 @@ export const Basic: Story = {
           {...props}
           min={Number(props.min)}
           max={Number(props.max)}
-          isDirty={isDirty}
           value={value}
           onChange={onChange}
-          onClear={onClear}
         />
       </div>
     );

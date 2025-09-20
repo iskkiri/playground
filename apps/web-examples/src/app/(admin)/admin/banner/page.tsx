@@ -33,7 +33,7 @@ export default function AdminBannerListPage() {
   // 노출 상태 필터
   const { showStatus, onChangeIsShow } = useAdminShowFilter();
   // 검색
-  const { searchType, keyword, control, register, dirtyFields, onSubmit } = useAdminSearch({
+  const { searchType, keyword, control, register, onSubmit } = useAdminSearch({
     initialSearchType: 'title',
   });
 
@@ -123,7 +123,6 @@ export default function AdminBannerListPage() {
                   <FeatherIcons.Search size={20} color={'#ddd'} />
                 </button>
               }
-              isDirty={dirtyFields.keyword}
               className="w-400"
             />
           </form>

@@ -3,42 +3,16 @@
 import { useCallback, useMemo, useState, useRef } from 'react';
 import FeatherIcons from '@repo/icons/featherIcons';
 import { cn } from '@repo/utils/cn';
-import { cva, type VariantProps } from 'class-variance-authority';
 import { useMergeRefs } from 'react-merge-refs';
 
-const inputWrapperVariants = cva(
-  'rounded-12 flex h-48 items-center gap-8 border border-gray-300 bg-white px-20 py-0',
-  {
-    variants: {
-      state: {
-        default: 'focus-within:border-gray-400 hover:border-gray-400',
-        error: 'border-danger',
-        disabled: 'cursor-not-allowed border-gray-100 bg-gray-100',
-      },
-      isDirty: {
-        true: 'focus-within:[&_.input-clear-button]:flex',
-      },
-    },
-    defaultVariants: {
-      state: 'default',
-      isDirty: false,
-    },
-  }
-);
-
-export type TextInputProps = Omit<React.ComponentProps<'input'>, 'prefix'> &
-  VariantProps<typeof inputWrapperVariants> & {
-    isDirty?: boolean;
-    isError?: boolean;
-    prefix?: React.ReactNode;
-    suffix?: React.ReactNode;
-    onClear?: () => void;
-  };
+// TODO: className 제거 & classNames 추가 & wrapper, input, button, prefix, suffix 추가
+export type TextInputProps = Omit<React.ComponentProps<'input'>, 'prefix'> & {
+  prefix?: React.ReactNode;
+  suffix?: React.ReactNode;
+};
 
 export default function TextInput({
-  isDirty,
-  onClear: clear,
-  isError,
+  ref,
   prefix,
   suffix,
   className,
@@ -48,20 +22,7 @@ export default function TextInput({
   const onTogglePasswordVisibility = useCallback(() => setIsPasswordVisible((prev) => !prev), []);
 
   const inputRef = useRef<HTMLInputElement>(null);
-  const mergeRefs = useMergeRefs([restProps.ref, inputRef]);
-
-  const onClear = useCallback(() => {
-    if (!clear || !inputRef.current) return;
-
-    clear();
-    inputRef.current.focus();
-  }, [clear]);
-
-  const inputState = useMemo(() => {
-    if (isError) return 'error';
-    if (restProps.disabled) return 'disabled';
-    return 'default';
-  }, [isError, restProps.disabled]);
+  const mergeRefs = useMergeRefs([ref, inputRef]);
 
   const inputType = useMemo(() => {
     if (restProps.type !== 'password') return restProps.type;
@@ -69,11 +30,20 @@ export default function TextInput({
   }, [restProps.type, isPasswordVisible]);
 
   return (
-    <div className={cn(inputWrapperVariants({ state: inputState, isDirty }), className)}>
+    <div
+      className={cn(
+        cn(
+          'rounded-12 flex h-48 items-center gap-8 border border-gray-300 bg-white px-20 py-0',
+          'enabled:focus-within:border-gray-400 enabled:hover:border-gray-400',
+          'has-[input:disabled]:cursor-not-allowed has-[input:disabled]:border-gray-100 has-[input:disabled]:bg-gray-100',
+          'has-[input:disabled[aria-invalid="true"]]:border-gray-100 has-[input[aria-invalid="true"]]:border-red-500'
+        ),
+        className
+      )}
+    >
       {prefix}
 
       <input
-        {...restProps}
         ref={mergeRefs}
         type={inputType}
         className={cn(
@@ -81,20 +51,8 @@ export default function TextInput({
           'placeholder:text-gray-400',
           'disabled:cursor-not-allowed disabled:text-gray-400'
         )}
+        {...restProps}
       />
-
-      <button
-        onClick={onClear}
-        type="button"
-        aria-label="입력 내용 지우기"
-        className={cn(
-          'input-clear-button',
-          'hidden',
-          'focus-visible:rounded-4 focus-visible:outline-primary focus-visible:outline-solid outline-none focus-visible:outline-1 focus-visible:outline-offset-2'
-        )}
-      >
-        <FeatherIcons.XCircle aria-hidden="true" className="shrink-0 text-gray-300" />
-      </button>
 
       {suffix}
 

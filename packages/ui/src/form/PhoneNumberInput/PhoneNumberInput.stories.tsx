@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { useCallback, useMemo, useState } from 'react';
+import { useCallback, useState } from 'react';
 import PhoneNumberInput from './PhoneNumberInput';
 import { formatPhoneNumber } from '@repo/utils/formatPhoneNumber';
 
@@ -12,7 +12,6 @@ const meta = {
   tags: ['autodocs'],
   args: {
     placeholder: 'Placeholder',
-    isDirty: false,
     className: 'w-400',
   },
 } satisfies Meta<typeof PhoneNumberInput>;
@@ -27,9 +26,6 @@ export const Basic: Story = {
       setValue(e.target.value);
     }, []);
 
-    const isDirty = useMemo(() => !!value, [value]);
-    const onClear = useCallback(() => setValue(''), []);
-
     return (
       <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
@@ -37,13 +33,7 @@ export const Basic: Story = {
           <p>display value : {formatPhoneNumber(value)}</p>
         </div>
 
-        <PhoneNumberInput
-          {...props}
-          isDirty={isDirty}
-          value={value}
-          onChange={onChange}
-          onClear={onClear}
-        />
+        <PhoneNumberInput {...props} value={value} onChange={onChange} />
       </div>
     );
   },

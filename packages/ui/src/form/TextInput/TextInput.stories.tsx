@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import TextInput from './TextInput';
-import { useCallback, useMemo, useState } from 'react';
+import { useCallback, useState } from 'react';
 import FeatherIcons from '@repo/icons/featherIcons';
 
 const meta = {
@@ -13,8 +13,6 @@ const meta = {
   args: {
     placeholder: 'Placeholder',
     disabled: false,
-    isError: false,
-    isDirty: false,
     className: 'w-400',
   },
 } satisfies Meta<typeof TextInput>;
@@ -31,12 +29,6 @@ export const Basic: Story = {
 export const DisabledTextInput: Story = {
   render: function Render(props) {
     return <TextInput {...props} disabled />;
-  },
-};
-
-export const TextInputWithError: Story = {
-  render: function Render(props) {
-    return <TextInput {...props} isError />;
   },
 };
 
@@ -62,9 +54,6 @@ export const Example: Story = {
   render: function Render(props) {
     const [text, setText] = useState('');
 
-    const isDirty = useMemo(() => !!text, [text]);
-    const onClear = useCallback(() => setText(''), []);
-
     const onChange = useCallback(
       (e: React.ChangeEvent<HTMLInputElement>) => setText(e.target.value),
       []
@@ -73,8 +62,6 @@ export const Example: Story = {
     return (
       <TextInput
         {...props}
-        isDirty={isDirty}
-        onClear={onClear}
         onChange={onChange}
         value={text}
         suffix={<FeatherIcons.Search size={20} color={'#A2A9B0'} />}

@@ -22,10 +22,8 @@ export default function NoticeSearchFilter({
   onChangeIsShow,
   control,
   register,
-  dirtyFields,
   onSubmit,
   onReset,
-  onClearField,
 }: NoticeSearchFilterProps) {
   return (
     <>
@@ -76,8 +74,6 @@ export default function NoticeSearchFilter({
                   <FeatherIcons.Search size={20} color={'#ddd'} />
                 </button>
               }
-              isDirty={dirtyFields.keyword}
-              onClear={onClearField('keyword')}
               className="w-400"
             />
           </form>

@@ -83,7 +83,6 @@ export default function LinkFormControl({
             {...register('url')}
             id="link-url"
             type="url"
-            isError={!!errors.url}
             onKeyDown={handleKeyPress}
             placeholder="https://example.com"
             autoFocus

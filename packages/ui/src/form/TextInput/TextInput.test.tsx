@@ -1,4 +1,4 @@
-import { describe, it, expect, vi } from 'vitest';
+import { describe, it, expect } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import TextInput from './TextInput';
@@ -69,31 +69,6 @@ describe('TextInput 컴포넌트', () => {
       await user.click(toggleButton);
 
       expect(input).toHaveAttribute('type', 'password');
-    });
-  });
-
-  describe('클리어 기능', () => {
-    const onClearMock = vi.fn();
-
-    it('클리어 버튼 클릭 시 onClear 콜백이 호출된다', async () => {
-      render(<TextInput onClear={onClearMock} defaultValue="지울 텍스트" />);
-
-      const clearButton = screen.getByLabelText('입력 내용 지우기');
-
-      await user.click(clearButton);
-
-      expect(onClearMock).toHaveBeenCalledTimes(1);
-    });
-
-    it('클리어 버튼 클릭 시 입력 필드가 포커스된다', async () => {
-      render(<TextInput onClear={onClearMock} defaultValue="지울 텍스트" />);
-
-      const input = screen.getByDisplayValue('지울 텍스트');
-      const clearButton = screen.getByLabelText('입력 내용 지우기');
-
-      await user.click(clearButton);
-
-      expect(input).toHaveFocus();
     });
   });
 
