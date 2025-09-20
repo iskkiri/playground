@@ -19,6 +19,8 @@ const NodeView = (props: ResizableImageNodeViewRendererProps) => {
   const onOpenAltTextInput = useCallback(() => setIsAltTextInputOpen(true), []);
   const onCloseAltTextInput = useCallback(() => setIsAltTextInputOpen(false), []);
 
+  const onOpenAutoFocus = useCallback((e: Event) => e.preventDefault(), []);
+
   // 에디터 바깥을 클릭했을 때 선택 해제 (필요 시 주석 해제하여 사용)
   // useEffect(() => {
   //   if (!selected) return;
@@ -49,19 +51,14 @@ const NodeView = (props: ResizableImageNodeViewRendererProps) => {
 
   return (
     <NodeViewWrapper className="image-component" data-drag-handle>
-      <Popover
-        isOpen={selected}
-        isFocusDisabled
-        placement="bottom"
-        offsetOptions={{ mainAxis: 12 }}
-      >
+      <Popover open={selected}>
         <Popover.Trigger asChild>
           <div style={{ display: 'inline-flex' }}>
             <ResizableImageComponent {...props} />
           </div>
         </Popover.Trigger>
 
-        <Popover.Content>
+        <Popover.Content side="bottom" sideOffset={12} onOpenAutoFocus={onOpenAutoFocus}>
           <div className="rounded-4 shadow-xs flex gap-8 border border-gray-200 bg-white p-4">
             {/* 대체 문구 폼 열기 버튼 */}
             <EditorMenuButton onClick={onOpenAltTextInput}>
@@ -74,7 +71,7 @@ const NodeView = (props: ResizableImageNodeViewRendererProps) => {
         </Popover.Content>
       </Popover>
 
-      <Popover isOpen={isAltTextInputOpen} onOpenChange={setIsAltTextInputOpen}>
+      <Popover open={isAltTextInputOpen} onOpenChange={setIsAltTextInputOpen}>
         {/* 가상 Trigger 생성 - 이미지 하단 중앙에 1x1px 투명한 트리거 */}
         <Popover.Trigger asChild>
           <div className="pointer-events-none absolute bottom-0 left-1/2 h-1 w-1 -translate-x-1/2" />

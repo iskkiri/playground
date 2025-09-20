@@ -2,18 +2,18 @@ import { useCallback, useState } from 'react';
 
 export interface UseDatePickerPopoverProps {
   variant: 'readonly' | 'typeable';
-  isOpen?: boolean;
+  open?: boolean;
   onOpenChange?: (open: boolean) => void;
 }
 
 export function useDatePickerPopover({
   variant,
-  isOpen: isOpenProp,
+  open: openProp,
   onOpenChange: onOpenChangeProp,
 }: UseDatePickerPopoverProps) {
   // 내부 팝오버 상태 (제어되지 않는 경우)
   const [isInternalOpen, setIsInternalOpen] = useState(false);
-  const isOpen = isOpenProp ?? isInternalOpen;
+  const isOpen = openProp ?? isInternalOpen;
   const setIsOpen = onOpenChangeProp ?? setIsInternalOpen;
 
   // 텍스트 입력 포커스 시 달력 팝오버 닫기

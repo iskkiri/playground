@@ -37,10 +37,11 @@ export type DatePickerProps<T extends DatePickerMode = 'single'> = {
   placeholder?: ComponentProps<typeof TextInput>['placeholder'];
 
   // Popover에서 상속받는 props
-  placement?: ComponentProps<typeof Popover>['placement'];
-  isOpen?: ComponentProps<typeof Popover>['isOpen'];
+  open?: ComponentProps<typeof Popover>['open'];
   onOpenChange?: ComponentProps<typeof Popover>['onOpenChange'];
-  offsetOptions?: ComponentProps<typeof Popover>['offsetOptions'];
+  side?: ComponentProps<typeof Popover.Content>['side'];
+  align?: ComponentProps<typeof Popover.Content>['align'];
+  sideOffset?: ComponentProps<typeof Popover.Content>['sideOffset'];
 
   // Calendar에서 상속받는 props
   captionLayout?: ComponentProps<typeof Calendar>['captionLayout'];

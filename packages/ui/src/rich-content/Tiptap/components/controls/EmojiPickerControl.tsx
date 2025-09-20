@@ -30,19 +30,14 @@ export default function EmojiPickerControl({ editor }: EmojiPickerControlProps) 
   );
 
   return (
-    <Popover
-      placement="bottom"
-      isOpen={isEmojiPickerOpen}
-      onOpenChange={setIsEmojiPickerOpen}
-      offsetOptions={{ mainAxis: 8 }}
-    >
+    <Popover open={isEmojiPickerOpen} onOpenChange={setIsEmojiPickerOpen}>
       <Popover.Trigger asChild>
         <EditorMenuButton isActive={isEmojiPickerOpen}>
           <EmojiAddIcon className="size-20" />
         </EditorMenuButton>
       </Popover.Trigger>
 
-      <Popover.Content>
+      <Popover.Content side="bottom" sideOffset={8}>
         <EmojiPicker
           onEmojiClick={onEmojiClick}
           lazyLoadEmojis

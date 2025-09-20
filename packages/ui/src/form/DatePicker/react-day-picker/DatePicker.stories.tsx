@@ -15,8 +15,8 @@ const meta = {
     variant: 'readonly',
     disabled: false,
     placeholder: '날짜를 선택해주세요.',
-    placement: 'bottom',
-    offsetOptions: { mainAxis: 12 },
+    side: 'bottom',
+    sideOffset: 12,
     captionLayout: 'dropdown',
     dateFormat: 'YYYY-MM-DD',
     classNames: {

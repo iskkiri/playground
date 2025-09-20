@@ -41,33 +41,28 @@ export default function LinkFormPopover({ editor }: LinkFormProps) {
         : null,
   });
 
+  const onFocusOutside = useCallback((e: Event) => e.preventDefault(), []);
+
   // 폼 닫기 함수
   const onCloseForm = useCallback(() => setIsLinkFormOpen(false), [setIsLinkFormOpen]);
 
   return (
-    <Popover
-      isOpen={isLinkFormOpen}
-      onOpenChange={setIsLinkFormOpen}
-      placement="bottom-start"
-      offsetOptions={{ mainAxis: 8 }}
-    >
+    <Popover open={isLinkFormOpen} onOpenChange={setIsLinkFormOpen}>
       {/* 
         선택된 텍스트의 좌측 하단에 위치하는 가상 Trigger
         - position.bottom: 선택된 텍스트의 하단 Y 좌표
         - position.left: 선택된 텍스트의 좌측 X 좌표
         - sr-only: 스크린 리더용으로만 보이는 요소 (시각적으로는 숨김)
       */}
-      <Popover.Trigger asChild>
-        <div
-          className="sr-only"
-          style={{
-            top: position.bottom,
-            left: position.left,
-          }}
-        />
-      </Popover.Trigger>
+      <Popover.Anchor
+        className="sr-only"
+        style={{
+          top: position.bottom,
+          left: position.left,
+        }}
+      />
 
-      <Popover.Content>
+      <Popover.Content side="bottom" align="start" sideOffset={8} onFocusOutside={onFocusOutside}>
         <LinkFormControl
           url={editorState?.existingUrl || ''}
           editor={editor}

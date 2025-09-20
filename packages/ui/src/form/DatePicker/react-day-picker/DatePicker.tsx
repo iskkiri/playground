@@ -2,8 +2,6 @@
 
 import { useEffect } from 'react';
 import Popover from '#src/overlay/Popover/Popover';
-import PopoverTrigger from '#src/overlay/Popover/components/PopoverTrigger';
-import PopoverContent from '#src/overlay/Popover/components/PopoverContent';
 import TextInput from '../../TextInput/TextInput';
 import { Calendar } from '../../Calendar/Calendar';
 import FeatherIcons from '@repo/icons/featherIcons';
@@ -25,10 +23,11 @@ export default function DatePicker<T extends DatePickerMode = 'single'>({
   // TextInput에서 상속받는 props
   placeholder,
   // Popover에서 상속받는 props
-  isOpen: isOpenProp,
+  open: openProp,
   onOpenChange: onOpenChangeProp,
-  placement = 'bottom',
-  offsetOptions = { mainAxis: 12 },
+  side = 'bottom',
+  align = 'center',
+  sideOffset = 12,
   // Calendar에서 상속받는 props
   captionLayout = 'dropdown',
   required = true,
@@ -47,7 +46,7 @@ export default function DatePicker<T extends DatePickerMode = 'single'>({
   const { isOpen, setIsOpen, closePopover, preventPopoverOpen, togglePopover } =
     useDatePickerPopover({
       variant,
-      isOpen: isOpenProp,
+      open: openProp,
       onOpenChange: onOpenChangeProp,
     });
 
@@ -96,14 +95,9 @@ export default function DatePicker<T extends DatePickerMode = 'single'>({
   }, [isOpen, resetMonth]);
 
   return (
-    <Popover
-      isOpen={disabled ? false : isOpen}
-      onOpenChange={disabled ? undefined : setIsOpen}
-      placement={placement}
-      offsetOptions={offsetOptions}
-    >
-      <PopoverTrigger
-        as="div"
+    <Popover open={disabled ? false : isOpen} onOpenChange={disabled ? undefined : setIsOpen}>
+      <Popover.Trigger
+        // as="div"
         className={cn(
           'cursor-pointer',
           disabled && 'cursor-not-allowed',
@@ -133,9 +127,12 @@ export default function DatePicker<T extends DatePickerMode = 'single'>({
           readOnly={variant === 'readonly'}
           disabled={disabled}
         />
-      </PopoverTrigger>
+      </Popover.Trigger>
 
-      <PopoverContent
+      <Popover.Content
+        side={side}
+        align={align}
+        sideOffset={sideOffset}
         className={cn(
           'rounded-16 bg-white p-24 shadow-[0_0_40px_0_rgba(0,0,0,0.1)]',
           classNames?.popoverContent
@@ -148,7 +145,7 @@ export default function DatePicker<T extends DatePickerMode = 'single'>({
           {...calendarProps}
           {...restCalendarProps}
         />
-      </PopoverContent>
+      </Popover.Content>
     </Popover>
   );
 }
