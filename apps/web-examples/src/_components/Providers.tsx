@@ -12,6 +12,7 @@ import { ModalProvider } from 'react-use-hook-modal';
 import useModalLifeCycle from '@/_hooks/useModalLifeCycle';
 import { NuqsAdapter } from 'nuqs/adapters/next/app';
 import { SessionProvider } from 'next-auth/react';
+import { Toaster } from 'sonner';
 
 export default function Providers({ children }: PropsWithChildren) {
   // NOTE: Avoid useState when initializing the query client if you don't
@@ -28,6 +29,7 @@ export default function Providers({ children }: PropsWithChildren) {
         <Provider>
           <ModalProvider onAfterOpen={onAfterOpen} onAfterClose={onAfterClose} clearTime={300}>
             <NuqsAdapter>
+              <Toaster className="flex justify-center" />
               <GlobalInitialization />
 
               {children}

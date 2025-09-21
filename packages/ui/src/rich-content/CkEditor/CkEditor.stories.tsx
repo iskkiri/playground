@@ -2,12 +2,13 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import type { CKEditor } from '@ckeditor/ckeditor5-react';
 import type { ClassicEditor, Editor, EventInfo } from 'ckeditor5';
-import { Controller, useForm, type SubmitHandler } from 'react-hook-form';
+import { useForm, type SubmitHandler } from 'react-hook-form';
 import { mockFormSchema, type MockFormSchema } from './schemas/mockForm.schema';
 import { zodResolver } from '@hookform/resolvers/zod';
 import CkEditorComponent from './CkEditor';
 import { mockEditorData } from '../EditorViewer/data/editor.data';
 import Button from '#src/general/Button/Button';
+import Form from '#src/form/Form/Form';
 
 const meta = {
   title: 'RichContent/CkEditor',
@@ -60,7 +61,7 @@ export const Basic: Story = {
 export const FormExampleWithReactHookForm: Story = {
   render: function Render() {
     const editorRef = useRef<CKEditor<ClassicEditor> | null>(null);
-    const { control, handleSubmit } = useForm<MockFormSchema>({
+    const form = useForm<MockFormSchema>({
       resolver: zodResolver(mockFormSchema),
       defaultValues: {
         content: '',
@@ -72,32 +73,37 @@ export const FormExampleWithReactHookForm: Story = {
     }, []);
 
     return (
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <Controller
-          control={control}
-          name="content"
-          render={({ field: { onChange, value } }) => (
-            <CkEditorComponent
-              //
-              editorRef={editorRef}
-              placeholder="내용을 입력해 주세요"
-              onChange={(_event, editor) => {
-                const data = editor.getData();
-                onChange(data);
-              }}
-              data={value}
-              height={800}
-            />
-          )}
-        />
+      <Form {...form}>
+        <form onSubmit={form.handleSubmit(onSubmit)}>
+          <Form.Field
+            control={form.control}
+            name="content"
+            render={({ field: { onChange, value } }) => (
+              <Form.Control>
+                <CkEditorComponent
+                  editorRef={editorRef}
+                  placeholder="내용을 입력해 주세요"
+                  onChange={(_event, editor) => {
+                    const data = editor.getData();
 
-        <Button
-          variant="primary"
-          style={{ display: 'block', marginLeft: 'auto', marginTop: 32, width: 100 }}
-        >
-          작성
-        </Button>
-      </form>
+                    onChange(data);
+                  }}
+                  data={value}
+                  height={800}
+                />
+              </Form.Control>
+            )}
+          />
+
+          <Button
+            type="submit"
+            variant="primary"
+            style={{ display: 'block', marginLeft: 'auto', marginTop: 32, width: 100 }}
+          >
+            작성
+          </Button>
+        </form>
+      </Form>
     );
   },
 };
@@ -105,7 +111,7 @@ export const FormExampleWithReactHookForm: Story = {
 export const FormInitializationExampleWithReactHookForm: Story = {
   render: function Render() {
     const editorRef = useRef<CKEditor<ClassicEditor> | null>(null);
-    const { control, reset, handleSubmit } = useForm<MockFormSchema>({
+    const form = useForm<MockFormSchema>({
       resolver: zodResolver(mockFormSchema),
       defaultValues: {
         content: '',
@@ -113,44 +119,44 @@ export const FormInitializationExampleWithReactHookForm: Story = {
     });
 
     useEffect(() => {
-      const timeout = setTimeout(() => {
-        reset({ content: mockEditorData });
-      }, 300);
-
-      return () => clearTimeout(timeout);
-    }, [reset]);
+      form.reset({ content: mockEditorData });
+    }, [form]);
 
     const onSubmit: SubmitHandler<MockFormSchema> = useCallback((values) => {
       console.log(values);
     }, []);
 
     return (
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <Controller
-          control={control}
-          name="content"
-          render={({ field: { onChange, value } }) => (
-            <CkEditorComponent
-              //
-              editorRef={editorRef}
-              placeholder="내용을 입력해 주세요"
-              onChange={(_event, editor) => {
-                const data = editor.getData();
-                onChange(data);
-              }}
-              data={value}
-              height={800}
-            />
-          )}
-        />
+      <Form {...form}>
+        <form onSubmit={form.handleSubmit(onSubmit)}>
+          <Form.Field
+            control={form.control}
+            name="content"
+            render={({ field: { onChange, value } }) => (
+              <Form.Control>
+                <CkEditorComponent
+                  editorRef={editorRef}
+                  placeholder="내용을 입력해 주세요"
+                  onChange={(_event, editor) => {
+                    const data = editor.getData();
+                    onChange(data);
+                  }}
+                  data={value}
+                  height={800}
+                />
+              </Form.Control>
+            )}
+          />
 
-        <Button
-          variant="primary"
-          style={{ display: 'block', marginLeft: 'auto', marginTop: 32, width: 100 }}
-        >
-          작성
-        </Button>
-      </form>
+          <Button
+            type="submit"
+            variant="primary"
+            style={{ display: 'block', marginLeft: 'auto', marginTop: 32, width: 100 }}
+          >
+            작성
+          </Button>
+        </form>
+      </Form>
     );
   },
 };

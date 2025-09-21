@@ -14,16 +14,10 @@ import {
   type SvgFaviconSchema,
 } from '@/app/(client)/_features/favicon/schemas/svgFavicon.schema';
 import type { GeneratedFavicon } from '@/app/(client)/_features/favicon/types/favicon.types';
+import Form from '@repo/ui/form/Form/Form';
 
 export default function SvgFaviconGeneratorPage() {
-  const {
-    register,
-    watch,
-    handleSubmit,
-    setValue,
-    setError,
-    formState: { errors },
-  } = useForm<SvgFaviconSchema>({
+  const form = useForm<SvgFaviconSchema>({
     resolver: zodResolver(svgFaviconSchema),
     defaultValues: {
       svgContent: sampleIcons.Box,
@@ -31,13 +25,12 @@ export default function SvgFaviconGeneratorPage() {
       iconColor: '#000000',
     },
   });
-
-  const onSelectSampleIcon = useCallback(
-    (iconPath: string) => () => {
-      setValue('svgContent', iconPath);
-    },
-    [setValue]
-  );
+  const {
+    watch,
+    handleSubmit,
+    setError,
+    formState: { errors },
+  } = form;
 
   const { generateSvgFavicon, generatedFavicons, setGeneratedFavicons } = useGenerateSvgFavicon();
 
@@ -75,14 +68,13 @@ export default function SvgFaviconGeneratorPage() {
 
       <div className="flex flex-col gap-24">
         {/* 입력 폼 */}
-        <SvgFaviconForm
-          sampleIcons={sampleIcons}
-          onSelectSampleIcon={onSelectSampleIcon}
-          register={register}
-          watch={watch}
-          setValue={setValue}
-          onSubmit={handleSubmit(onSubmit)}
-        />
+        <Form {...form}>
+          <SvgFaviconForm
+            sampleIcons={sampleIcons}
+            control={form.control}
+            onSubmit={handleSubmit(onSubmit)}
+          />
+        </Form>
 
         {/* 미리보기 및 결과 */}
         <div className="space-y-16">
@@ -93,7 +85,7 @@ export default function SvgFaviconGeneratorPage() {
             iconColor={watch('iconColor')}
           />
           {errors.svgContent && (
-            <p className="typography-p4-14r text-error-600 mt-4">{errors.svgContent.message}</p>
+            <p className="typography-p4-14r mt-4 text-red-500">{errors.svgContent.message}</p>
           )}
 
           {/* 생성된 파비콘들 */}

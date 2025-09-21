@@ -12,9 +12,10 @@ import {
   type TextFaviconSchema,
 } from '@/app/(client)/_features/favicon/schemas/textFavicon.schema';
 import GeneratedFavicons from '@/app/(client)/_features/favicon/components/GeneratedFavicons';
+import Form from '@repo/ui/form/Form/Form';
 
 export default function ClientFaviconGenerator() {
-  const { register, watch, handleSubmit, setValue } = useForm<TextFaviconSchema>({
+  const form = useForm<TextFaviconSchema>({
     resolver: zodResolver(textFaviconSchema),
     defaultValues: {
       text: '',
@@ -59,20 +60,17 @@ export default function ClientFaviconGenerator() {
 
       <div className="flex flex-col gap-24">
         {/* 사용자 입력 폼 섹션 */}
-        <TextFaviconForm
-          register={register}
-          watch={watch}
-          setValue={setValue}
-          onSubmit={handleSubmit(onSubmit)}
-        />
+        <Form {...form}>
+          <TextFaviconForm control={form.control} onSubmit={form.handleSubmit(onSubmit)} />
+        </Form>
 
         {/* 미리보기 및 결과 표시 섹션 */}
         <div className="space-y-16">
           {/* 실시간 미리보기 - 사용자가 입력하는 동안 실시간으로 보여주는 미리보기 */}
           <TextFaviconPreview
-            backgroundColor={watch('backgroundColor')}
-            textColor={watch('textColor')}
-            faviconText={watch('text')}
+            backgroundColor={form.watch('backgroundColor')}
+            textColor={form.watch('textColor')}
+            faviconText={form.watch('text')}
           />
 
           {/* 생성된 파비콘들 표시 - 생성 버튼을 눌렀을 때만 표시 */}

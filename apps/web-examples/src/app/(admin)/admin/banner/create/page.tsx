@@ -4,27 +4,18 @@ import GoBack from '@/_components/GoBack';
 import BannerForm from '@/app/(admin)/_features/banner/components/BannerForm';
 import useGoBack from '@/_hooks/useGoBack';
 import useBannerForm from '@/app/(admin)/_features/banner/hooks/useBannerForm';
-import useBannerImagesUpload from '@/app/(admin)/_features/banner/hooks/useBannerImagesUpload';
 import useBannerSubmit from '@/app/(admin)/_features/banner/hooks/useBannerSubmit';
 import { useMemo } from 'react';
+import useUploadImage from '@/_features/image/hooks/react-query/useUploadImage';
 
 export default function AdminBannerCreatePage() {
   const { onGoBack } = useGoBack();
 
   // 배너 폼
-  const { register, watch, setValue, handleSubmit } = useBannerForm();
+  const form = useBannerForm();
 
   // 이미지 업로드
-  const {
-    insertedMobileImageFile,
-    onInsertMobileImage,
-    onRemoveMobileImage,
-    insertedPcImageFile,
-    onInsertPcImage,
-    onRemovePcImage,
-    uploadImageAsync,
-    isUploadImagePending,
-  } = useBannerImagesUpload({ watch, setValue });
+  const { mutateAsync: uploadImageAsync, isPending: isUploadImagePending } = useUploadImage();
 
   // 배너 생성
   const { onSubmit, isCreateBannerPending, isUpdateBannerPending } = useBannerSubmit({
@@ -44,17 +35,10 @@ export default function AdminBannerCreatePage() {
       </div>
 
       <BannerForm
-        //
-        onGoBack={onGoBack}
-        register={register}
-        insertedMobileImageFile={insertedMobileImageFile}
-        onInsertMobileImage={onInsertMobileImage}
-        onRemoveMobileImage={onRemoveMobileImage}
-        insertedPcImageFile={insertedPcImageFile}
-        onInsertPcImage={onInsertPcImage}
-        onRemovePcImage={onRemovePcImage}
-        onSubmit={handleSubmit(onSubmit)}
+        form={form}
+        onSubmit={form.handleSubmit(onSubmit)}
         isSubmitDisabled={isSubmitDisabled}
+        onGoBack={onGoBack}
       />
     </div>
   );

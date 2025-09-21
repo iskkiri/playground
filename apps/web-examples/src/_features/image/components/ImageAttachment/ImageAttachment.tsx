@@ -64,6 +64,7 @@ export default function ImageAttachment({
             <span>{insertedImageObj.file.name}</span>
 
             <button
+              type="button"
               onClick={onRemoveImage}
               className="flex items-center justify-center"
               aria-label="이미지 제거"

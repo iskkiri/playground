@@ -2,7 +2,6 @@ import { useEffect, useCallback } from 'react';
 import { parseAsString, useQueryStates } from 'nuqs';
 import { useForm, type SubmitHandler } from 'react-hook-form';
 import type { AdminSearchSchema } from '../_schemas/adminSearch.schema';
-import useClearField from '@repo/hooks/useClearField';
 
 interface UseAdminSearchParams {
   initialSearchType: string;
@@ -21,20 +20,13 @@ export default function useAdminSearch({ initialSearchType }: UseAdminSearchPara
   );
 
   // 검색 폼
-  const {
-    control,
-    register,
-    reset,
-    resetField,
-    handleSubmit,
-    formState: { dirtyFields },
-  } = useForm<AdminSearchSchema>({
+  const form = useForm<AdminSearchSchema>({
     defaultValues: {
       searchType: '',
       keyword: '',
     },
   });
-  const { onClearField } = useClearField({ resetField });
+  const { reset } = form;
 
   // 검색 쿼리 초기화
   useEffect(() => {
@@ -55,10 +47,7 @@ export default function useAdminSearch({ initialSearchType }: UseAdminSearchPara
   return {
     searchType: search.searchType ?? undefined,
     keyword: search.keyword ?? undefined,
-    control,
-    register,
-    dirtyFields,
-    onClearField,
-    onSubmit: handleSubmit(onSubmit),
+    onSubmit: form.handleSubmit(onSubmit),
+    ...form,
   };
 }

@@ -5,16 +5,9 @@ import { noticeRegisterSchema, type NoticeRegisterSchema } from '../schemas/noti
 
 export default function useNoticeForm() {
   // 공지사항 폼
-  const {
-    control,
-    register,
-    watch,
-    setValue,
-    reset,
-    handleSubmit,
-    clearErrors,
-    formState: { errors },
-  } = useForm<NoticeRegisterSchema>({
+  const form = useForm<NoticeRegisterSchema>({
+    mode: 'onSubmit',
+    reValidateMode: 'onSubmit',
     resolver: zodResolver(noticeRegisterSchema),
     defaultValues: {
       isShow: true,
@@ -25,14 +18,7 @@ export default function useNoticeForm() {
   });
 
   // 폼 에러 알림
-  useFormErrorAlert({ errors, clearErrors });
+  useFormErrorAlert({ errors: form.formState.errors, clearErrors: form.clearErrors });
 
-  return {
-    control,
-    register,
-    watch,
-    setValue,
-    reset,
-    handleSubmit,
-  };
+  return form;
 }

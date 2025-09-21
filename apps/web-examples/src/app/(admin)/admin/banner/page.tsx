@@ -19,12 +19,12 @@ import {
 import useAdminShowFilter from '../../_hooks/useAdminShowFilter';
 import useAdminSearch from '../../_hooks/useAdminSearch';
 import useBannerTable from '../../_features/banner/hooks/useBannerTable';
-import { Controller } from 'react-hook-form';
 import useRowSelectionChange from '@/_hooks/useRowSelectionChange';
 import type { BannerListItemData } from '../../_features/banner/api/dtos/getBannerList.dto';
 import PaginationWithPageSize from '../../_components/PaginationWithPageSize';
 import Modal from '@repo/ui/overlay/Modal/Modal';
 import ConfirmModal from '@repo/ui/feedback/ConfirmModal/ConfirmModal';
+import Form from '@repo/ui/form/Form/Form';
 
 export default function AdminBannerListPage() {
   // 페이지네이션
@@ -33,7 +33,7 @@ export default function AdminBannerListPage() {
   // 노출 상태 필터
   const { showStatus, onChangeIsShow } = useAdminShowFilter();
   // 검색
-  const { searchType, keyword, control, register, onSubmit } = useAdminSearch({
+  const { searchType, keyword, onSubmit, ...form } = useAdminSearch({
     initialSearchType: 'title',
   });
 
@@ -79,7 +79,7 @@ export default function AdminBannerListPage() {
       {/* 필터 & 검색 */}
       <div className="rounded-8 border border-gray-200">
         <div className="grid grid-cols-[200px_auto] items-center border-b border-gray-200">
-          <div className="bg-gray-100 p-16">노출 상태</div>
+          <div className="flex items-center self-stretch bg-gray-100 p-16">노출 상태</div>
 
           <div className="flex gap-8 p-16">
             <RadioTab name="isShow" onChange={onChangeIsShow(null)} checked={showStatus === null}>
@@ -95,37 +95,50 @@ export default function AdminBannerListPage() {
         </div>
 
         <div className="grid grid-cols-[200px_auto] items-center border-b border-gray-200">
-          <div className="bg-gray-100 p-16">검색</div>
+          <div className="flex items-center self-stretch bg-gray-100 p-16">검색</div>
 
-          <form onSubmit={onSubmit} className="flex gap-8 p-16">
-            <Controller
-              control={control}
-              name="searchType"
-              render={({ field: { onChange, value } }) => (
-                <Select
-                  //
-                  options={bannerSearchOptions}
-                  onChange={(option) => onChange(option?.value)}
-                  value={
-                    bannerSearchOptions.find((option) => option.value === value) ??
-                    bannerSearchOptions[0]
-                  }
-                  className="w-160"
-                />
-              )}
-            />
+          <Form {...form}>
+            <form onSubmit={onSubmit} className="flex gap-8 p-16">
+              <Form.Field
+                control={form.control}
+                name="searchType"
+                render={({ field }) => (
+                  <Form.Control>
+                    <Select
+                      options={bannerSearchOptions}
+                      onChange={(option) => field.onChange(option?.value)}
+                      value={
+                        bannerSearchOptions.find((option) => option.value === field.value) ??
+                        bannerSearchOptions[0]
+                      }
+                      classNames={{
+                        container: () => 'w-160',
+                        control: () => ' border-gray-300',
+                      }}
+                    />
+                  </Form.Control>
+                )}
+              />
 
-            <TextInput
-              {...register('keyword')}
-              type="search"
-              suffix={
-                <button type="submit">
-                  <FeatherIcons.Search size={20} color={'#ddd'} />
-                </button>
-              }
-              classNames={{ wrapper: 'w-400' }}
-            />
-          </form>
+              <Form.Field
+                control={form.control}
+                name="keyword"
+                render={({ field }) => (
+                  <Form.Control>
+                    <TextInput
+                      {...field}
+                      suffix={
+                        <button type="submit">
+                          <FeatherIcons.Search size={20} color={'#ddd'} />
+                        </button>
+                      }
+                      classNames={{ wrapper: 'w-400 h-40 rounded-8' }}
+                    />
+                  </Form.Control>
+                )}
+              />
+            </form>
+          </Form>
         </div>
       </div>
 

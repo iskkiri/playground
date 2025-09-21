@@ -26,8 +26,9 @@ export default function NoticeListPage() {
   // 노출 상태 필터
   const { showStatus, onChangeIsShow } = useAdminShowFilter();
   // 검색
-  const { searchType, keyword, control, register, dirtyFields, onClearField, onSubmit } =
-    useAdminSearch({ initialSearchType: 'title' });
+  const { searchType, keyword, onSubmit, ...form } = useAdminSearch({
+    initialSearchType: 'title',
+  });
 
   // 필터 초기화
   const { onReset } = useResetSearchFilter();
@@ -73,12 +74,9 @@ export default function NoticeListPage() {
       <NoticeSearchFilter
         showStatus={showStatus}
         onChangeIsShow={onChangeIsShow}
-        control={control}
-        register={register}
-        dirtyFields={dirtyFields}
+        form={form}
         onSubmit={onSubmit}
         onReset={onReset}
-        onClearField={onClearField}
       />
 
       <div className="flex flex-col gap-16">

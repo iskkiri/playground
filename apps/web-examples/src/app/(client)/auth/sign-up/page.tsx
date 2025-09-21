@@ -1,13 +1,13 @@
 'use client';
 
-import { Controller } from 'react-hook-form';
 import { parseAsString, parseAsStringEnum, useQueryStates } from 'nuqs';
 import { useEffect } from 'react';
 import useSignUpForm from '../../_features/user/hooks/useSignUpForm';
 import TextInput from '@repo/ui/form/TextInput/TextInput';
 import RadioTab from '@/_components/RadioTab';
-import DatePicker from '@repo/ui/form/DatePicker/react-datepicker/DatePicker';
+import DatePicker from '@repo/ui/form/DatePicker/react-day-picker/DatePicker';
 import Button from '@repo/ui/general/Button/Button';
+import Form from '@repo/ui/form/Form/Form';
 
 export default function SignUpPage() {
   const [searchParams] = useQueryStates({
@@ -19,7 +19,8 @@ export default function SignUpPage() {
     birthDate: parseAsString.withDefault(''),
   });
 
-  const { control, register, watch, reset, onSubmit } = useSignUpForm();
+  const { onSubmit, ...form } = useSignUpForm();
+  const { control, reset } = form;
 
   // 소셜 로그인 정보 초기화
   useEffect(() => {
@@ -39,68 +40,89 @@ export default function SignUpPage() {
         <h1 className="typography-h5-32b text-center">회원가입</h1>
       </div>
 
-      <form onSubmit={onSubmit} className="mt-48 xl:mt-60">
-        <div className="flex flex-col gap-24">
-          <label className="flex flex-col gap-8">
-            <span className="typography-p4-14b text-gray-700">
-              이메일 <b className="font-bold text-red-500">*</b>
-            </span>
-            <TextInput {...register('email')} disabled />
-          </label>
+      <Form {...form}>
+        <form onSubmit={onSubmit} className="mt-48 flex flex-col gap-24 xl:mt-60">
+          <Form.Field
+            control={control}
+            name="email"
+            render={({ field }) => (
+              <Form.Item>
+                <Form.Label isRequired>이메일</Form.Label>
+                <Form.Control>
+                  <TextInput {...field} disabled />
+                </Form.Control>
+                <Form.Message />
+              </Form.Item>
+            )}
+          />
 
-          <label className="flex flex-col gap-8">
-            <span className="typography-p4-14b text-gray-700">
-              닉네임 <b className="font-bold text-red-500">*</b>
-            </span>
-            <TextInput {...register('nickname')} placeholder="닉네임을 입력해주세요." />
-          </label>
+          <Form.Field
+            control={control}
+            name="nickname"
+            render={({ field }) => (
+              <Form.Item>
+                <Form.Label isRequired>닉네임</Form.Label>
+                <Form.Control>
+                  <TextInput {...field} placeholder="닉네임을 입력해주세요." />
+                </Form.Control>
+                <Form.Message />
+              </Form.Item>
+            )}
+          />
 
-          <div className="flex flex-col gap-8">
-            <span className="typography-p4-14b text-gray-700">
-              성별 <b className="font-bold text-red-500">*</b>
-            </span>
-            <div className="flex gap-8">
-              <RadioTab
-                value="MALE"
-                {...register('gender')}
-                checked={watch('gender') === 'MALE'}
-                className="flex-1"
-              >
-                남성
-              </RadioTab>
-              <RadioTab
-                value="FEMALE"
-                {...register('gender')}
-                checked={watch('gender') === 'FEMALE'}
-                className="flex-1"
-              >
-                여성
-              </RadioTab>
-            </div>
-          </div>
+          <Form.Field
+            control={control}
+            name="gender"
+            render={({ field }) => (
+              <Form.Item>
+                <Form.Label isRequired>성별</Form.Label>
+                <Form.Control>
+                  <div className="flex gap-8">
+                    <RadioTab
+                      {...field}
+                      checked={field.value === 'MALE'}
+                      value="MALE"
+                      className="flex-1"
+                    >
+                      남성
+                    </RadioTab>
+                    <RadioTab
+                      {...field}
+                      checked={field.value === 'FEMALE'}
+                      value="FEMALE"
+                      className="flex-1"
+                    >
+                      여성
+                    </RadioTab>
+                  </div>
+                </Form.Control>
+                <Form.Message />
+              </Form.Item>
+            )}
+          />
 
-          <div className="flex flex-col gap-8">
-            <span className="typography-p4-14b text-gray-700">
-              생년월일 <b className="font-bold text-red-500">*</b>
-            </span>
-            <Controller
-              control={control}
-              name="birthDate"
-              render={({ field: { value, onChange } }) => (
-                <DatePicker
-                  selected={value}
-                  onChange={(date) => onChange(date)}
-                  placeholderText={'생년월일 선택'}
-                />
-              )}
-            />
-          </div>
-        </div>
+          <Form.Field
+            control={control}
+            name="birthDate"
+            render={({ field }) => (
+              <Form.Item>
+                <Form.Label isRequired>생년월일</Form.Label>
+                <Form.Control>
+                  <DatePicker mode="single" value={field.value} onChange={field.onChange}>
+                    <DatePicker.Input placeholder="생년월일 선택" />
+                    <DatePicker.Calendar />
+                  </DatePicker>
+                </Form.Control>
+                <Form.Message />
+              </Form.Item>
+            )}
+          />
 
-        <Button variant="primary" size={48} type="submit" className="mt-48 w-full xl:mt-60">
-          가입하기
-        </Button>
-      </form>
+          <Button variant="primary" size={48} type="submit" className="mt-48 w-full xl:mt-60">
+            가입하기
+          </Button>
+        </form>
+      </Form>
     </div>
   );
 }

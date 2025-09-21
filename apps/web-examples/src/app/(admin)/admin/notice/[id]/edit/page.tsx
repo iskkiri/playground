@@ -9,11 +9,11 @@ import NoticeForm from '@/app/(admin)/_features/notice/components/NoticeForm';
 import useNoticeForm from '@/app/(admin)/_features/notice/hooks/useNoticeForm';
 import useInitializeNoticeForm from '@/app/(admin)/_features/notice/hooks/useInitializeNoticeForm';
 import useNoticeSubmit from '@/app/(admin)/_features/notice/hooks/useNoticeSubmit';
-import useNoticeThumbnailUpload from '@/app/(admin)/_features/notice/hooks/useNoticeThumbnailUpload';
 import useNoticeFileUpload from '@/app/(admin)/_features/notice/hooks/useNoticeFileUpload';
 import useGoBack from '@/_hooks/useGoBack';
 import useCkEditorUploadImages from '@/_features/image/hooks/useCkEditorUploadImages';
 import useGetIdParam from '@/_hooks/useGetIdParam';
+import useUploadImage from '@/_features/image/hooks/react-query/useUploadImage';
 
 export default function NoticeEditPage() {
   const id = useGetIdParam();
@@ -24,29 +24,24 @@ export default function NoticeEditPage() {
   const { onUploadImageWhenSubmit } = useCkEditorUploadImages({ editorRef });
 
   // 공지사항 폼
-  const { control, register, watch, setValue, reset, handleSubmit } = useNoticeForm();
+  const form = useNoticeForm();
 
   // 공지사항 상세 조회
   const { data: noticeDetail, isLoading: isGetNoticeLoading } = useGetNoticeDetail(id);
 
   // 썸네일 업로드
-  const { insertedImageObj, onInsertImage, onRemoveImage, uploadImageAsync, isUploadImagePending } =
-    useNoticeThumbnailUpload({
-      watch,
-      setValue,
-      storageImage: noticeDetail?.thumbnail,
-    });
+  const { mutateAsync: uploadImageAsync, isPending: isUploadImagePending } = useUploadImage();
 
   // 파일 업로드
   const { fields, onInsertFiles, onRemoveFile, uploadFileAsync, isUploadFilePending } =
-    useNoticeFileUpload({ control });
+    useNoticeFileUpload({ control: form.control });
 
   /**
    * @docs https://github.com/react-hook-form/react-hook-form/issues/3378
    * race condition
    * 반드시 useFieldArray 선언 이후에 초기화
    */
-  useInitializeNoticeForm({ noticeDetail, reset });
+  useInitializeNoticeForm({ noticeDetail, reset: form.reset });
 
   // 공지사항 생성 및 수정
   const { onSubmit, isCreateNoticePending, isUpdateNoticePending } = useNoticeSubmit({
@@ -75,17 +70,13 @@ export default function NoticeEditPage() {
 
         return (
           <NoticeForm
+            form={form}
             createdAt={noticeDetail?.createdAt}
-            control={control}
-            register={register}
             fields={fields}
             onInsertFiles={onInsertFiles}
             onRemoveFile={onRemoveFile}
-            insertedImageObj={insertedImageObj}
-            onInsertImage={onInsertImage}
-            onRemoveImage={onRemoveImage}
             editorRef={editorRef}
-            onSubmit={handleSubmit(onSubmit)}
+            onSubmit={form.handleSubmit(onSubmit)}
             isSubmitDisabled={isSubmitDisabled}
             onGoBack={onGoBack}
           />

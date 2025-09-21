@@ -1,22 +1,14 @@
 import { useForm, type SubmitHandler } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useCallback } from 'react';
-import useFormErrorAlert from '@/_hooks/useFormErrorAlert';
 import useSignUp from './react-query/useSignUp';
 import { signUpSchema, type SignUpSchema } from '../schemas/signUp.schema';
 
 export default function useSignUpForm() {
-  const formMethods = useForm<SignUpSchema>({
+  const form = useForm<SignUpSchema>({
     resolver: zodResolver(signUpSchema),
   });
-  const {
-    handleSubmit,
-    clearErrors,
-    formState: { errors },
-  } = formMethods;
-
-  // 폼 에러 처리
-  useFormErrorAlert({ errors, clearErrors });
+  const { handleSubmit } = form;
 
   const { mutate: signUp } = useSignUp();
   const onSubmit: SubmitHandler<SignUpSchema> = useCallback(
@@ -34,7 +26,7 @@ export default function useSignUpForm() {
   );
 
   return {
-    ...formMethods,
+    ...form,
     onSubmit: handleSubmit(onSubmit),
   };
 }

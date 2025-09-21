@@ -81,7 +81,7 @@ export default function DatePickerInput({
   }, [interaction, inputValue, date, mode]);
 
   return (
-    <Popover.Trigger asChild={interaction === 'type'} className={cn('cursor-pointer')}>
+    <Popover.Trigger asChild={interaction === 'type'} className={cn('w-fit cursor-pointer')}>
       <WrapperComponent>
         <TextInput
           readOnly={interaction === 'click'}

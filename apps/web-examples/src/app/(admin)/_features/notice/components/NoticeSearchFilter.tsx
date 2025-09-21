@@ -2,26 +2,23 @@ import RadioTab from '@/_components/RadioTab';
 import Select from '@repo/ui/form/Select/Select';
 import TextInput from '@repo/ui/form/TextInput/TextInput';
 import FeatherIcons from '@repo/icons/featherIcons';
-import { Controller, type Control, type FieldValues, type UseFormRegister } from 'react-hook-form';
+import { type UseFormReturn } from 'react-hook-form';
 import { noticeSearchOptions } from '../data/notice.data';
 import type { AdminSearchSchema } from '@/app/(admin)/_schemas/adminSearch.schema';
+import Form from '@repo/ui/form/Form/Form';
 
 interface NoticeSearchFilterProps {
   showStatus: boolean | null;
   onChangeIsShow: (isShow: boolean | null) => () => void;
-  control: Control<AdminSearchSchema>;
-  register: UseFormRegister<AdminSearchSchema>;
-  dirtyFields: FieldValues;
+  form: UseFormReturn<AdminSearchSchema>;
   onSubmit: () => void;
   onReset: () => void;
-  onClearField: (name: 'searchType' | 'keyword') => () => void;
 }
 
 export default function NoticeSearchFilter({
   showStatus,
   onChangeIsShow,
-  control,
-  register,
+  form,
   onSubmit,
   onReset,
 }: NoticeSearchFilterProps) {
@@ -47,36 +44,49 @@ export default function NoticeSearchFilter({
         <div className="grid grid-cols-[200px_auto] items-center">
           <div className="flex items-center self-stretch bg-gray-100 p-16">검색</div>
 
-          <form onSubmit={onSubmit} className="flex gap-8 p-16">
-            <Controller
-              control={control}
-              name="searchType"
-              render={({ field: { onChange, value } }) => (
-                <Select
-                  //
-                  options={noticeSearchOptions}
-                  onChange={(option) => onChange(option?.value)}
-                  value={
-                    noticeSearchOptions.find((option) => option.value === value) ??
-                    noticeSearchOptions[0]
-                  }
-                  aria-label="검색 유형"
-                  className="w-160"
-                />
-              )}
-            />
+          <Form {...form}>
+            <form onSubmit={onSubmit} className="flex gap-8 p-16">
+              <Form.Field
+                control={form.control}
+                name="searchType"
+                render={({ field: { onChange, value } }) => (
+                  <Form.Control>
+                    <Select
+                      options={noticeSearchOptions}
+                      onChange={(option) => onChange(option?.value)}
+                      value={
+                        noticeSearchOptions.find((option) => option.value === value) ??
+                        noticeSearchOptions[0]
+                      }
+                      aria-label="검색 유형"
+                      classNames={{
+                        container: () => 'w-160',
+                        control: () => 'border-gray-300',
+                      }}
+                    />
+                  </Form.Control>
+                )}
+              />
 
-            <TextInput
-              {...register('keyword')}
-              type="search"
-              suffix={
-                <button type="submit">
-                  <FeatherIcons.Search size={20} color={'#ddd'} />
-                </button>
-              }
-              classNames={{ wrapper: 'w-400' }}
-            />
-          </form>
+              <Form.Field
+                control={form.control}
+                name="keyword"
+                render={({ field }) => (
+                  <Form.Control>
+                    <TextInput
+                      {...field}
+                      suffix={
+                        <button>
+                          <FeatherIcons.Search size={20} color={'#ddd'} />
+                        </button>
+                      }
+                      classNames={{ wrapper: 'w-400 h-40 rounded-8' }}
+                    />
+                  </Form.Control>
+                )}
+              />
+            </form>
+          </Form>
         </div>
       </div>
 

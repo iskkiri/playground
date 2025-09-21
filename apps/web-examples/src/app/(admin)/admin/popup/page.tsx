@@ -1,6 +1,5 @@
 'use client';
 
-import { Controller } from 'react-hook-form';
 import { pageSizeOptions } from '@/_data/pageSizeOptions';
 import { popupSearchOptions } from '../../_features/popup/data/popup.data';
 import Link from 'next/link';
@@ -25,6 +24,7 @@ import Button from '@repo/ui/general/Button/Button';
 import AppTable from '@/_components/Table';
 import Modal from '@repo/ui/overlay/Modal/Modal';
 import ConfirmModal from '@repo/ui/feedback/ConfirmModal/ConfirmModal';
+import Form from '@repo/ui/form/Form/Form';
 
 export default function AdminPopupListPage() {
   // 페이지네이션
@@ -33,7 +33,7 @@ export default function AdminPopupListPage() {
   // 노출 상태 필터
   const { showStatus, onChangeIsShow } = useAdminShowFilter();
   // 검색
-  const { searchType, keyword, control, register, onSubmit } = useAdminSearch({
+  const { searchType, keyword, onSubmit, ...form } = useAdminSearch({
     initialSearchType: 'title',
   });
 
@@ -98,35 +98,48 @@ export default function AdminPopupListPage() {
         <div className="grid grid-cols-[200px_auto] items-center border-b border-gray-200">
           <div className="flex items-center self-stretch bg-gray-100 p-16">검색</div>
 
-          <form onSubmit={onSubmit} className="flex gap-8 p-16">
-            <Controller
-              control={control}
-              name="searchType"
-              render={({ field: { onChange, value } }) => (
-                <Select
-                  //
-                  options={popupSearchOptions}
-                  onChange={(option) => onChange(option?.value)}
-                  value={
-                    popupSearchOptions.find((option) => option.value === value) ??
-                    popupSearchOptions[0]
-                  }
-                  className="w-160"
-                />
-              )}
-            />
+          <Form {...form}>
+            <form onSubmit={onSubmit} className="flex gap-8 p-16">
+              <Form.Field
+                control={form.control}
+                name="searchType"
+                render={({ field }) => (
+                  <Form.Control>
+                    <Select
+                      options={popupSearchOptions}
+                      onChange={(option) => field.onChange(option?.value)}
+                      value={
+                        popupSearchOptions.find((option) => option.value === field.value) ??
+                        popupSearchOptions[0]
+                      }
+                      classNames={{
+                        container: () => 'w-160',
+                        control: () => 'border-gray-300',
+                      }}
+                    />
+                  </Form.Control>
+                )}
+              />
 
-            <TextInput
-              {...register('keyword')}
-              type="search"
-              suffix={
-                <button>
-                  <FeatherIcons.Search size={20} color={'#ddd'} />
-                </button>
-              }
-              classNames={{ wrapper: 'w-400' }}
-            />
-          </form>
+              <Form.Field
+                control={form.control}
+                name="keyword"
+                render={({ field }) => (
+                  <Form.Control>
+                    <TextInput
+                      suffix={
+                        <button>
+                          <FeatherIcons.Search size={20} color={'#ddd'} />
+                        </button>
+                      }
+                      classNames={{ wrapper: 'w-400 h-40 rounded-8' }}
+                      {...field}
+                    />
+                  </Form.Control>
+                )}
+              />
+            </form>
+          </Form>
         </div>
       </div>
 

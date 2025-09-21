@@ -6,11 +6,11 @@ import type { CKEditor } from '@ckeditor/ckeditor5-react';
 import type { ClassicEditor } from 'ckeditor5';
 import NoticeForm from '@/app/(admin)/_features/notice/components/NoticeForm';
 import useNoticeForm from '@/app/(admin)/_features/notice/hooks/useNoticeForm';
-import useNoticeThumbnailUpload from '@/app/(admin)/_features/notice/hooks/useNoticeThumbnailUpload';
 import useNoticeFileUpload from '@/app/(admin)/_features/notice/hooks/useNoticeFileUpload';
 import useNoticeSubmit from '@/app/(admin)/_features/notice/hooks/useNoticeSubmit';
 import useGoBack from '@/_hooks/useGoBack';
 import useCkEditorUploadImages from '@/_features/image/hooks/useCkEditorUploadImages';
+import useUploadImage from '@/_features/image/hooks/react-query/useUploadImage';
 
 export default function NoticeCreatePage() {
   const { onGoBack } = useGoBack();
@@ -20,20 +20,14 @@ export default function NoticeCreatePage() {
   const { onUploadImageWhenSubmit } = useCkEditorUploadImages({ editorRef });
 
   // 공지사항 폼
-  const { control, register, watch, setValue, handleSubmit } = useNoticeForm();
+  const form = useNoticeForm();
 
   // 썸네일 업로드
-  const { insertedImageObj, onInsertImage, onRemoveImage, uploadImageAsync, isUploadImagePending } =
-    useNoticeThumbnailUpload({
-      watch,
-      setValue,
-    });
+  const { mutateAsync: uploadImageAsync, isPending: isUploadImagePending } = useUploadImage();
 
   // 파일 업로드
   const { fields, onInsertFiles, onRemoveFile, uploadFileAsync, isUploadFilePending } =
-    useNoticeFileUpload({
-      control,
-    });
+    useNoticeFileUpload({ control: form.control });
 
   // 공지사항 생성
   const { onSubmit, isCreateNoticePending, isUpdateNoticePending } = useNoticeSubmit({
@@ -58,16 +52,12 @@ export default function NoticeCreatePage() {
 
       <NoticeForm
         //
-        control={control}
-        register={register}
+        form={form}
         fields={fields}
         onInsertFiles={onInsertFiles}
         onRemoveFile={onRemoveFile}
-        insertedImageObj={insertedImageObj}
-        onInsertImage={onInsertImage}
-        onRemoveImage={onRemoveImage}
         editorRef={editorRef}
-        onSubmit={handleSubmit(onSubmit)}
+        onSubmit={form.handleSubmit(onSubmit)}
         isSubmitDisabled={isSubmitDisabled}
         onGoBack={onGoBack}
       />
