@@ -124,7 +124,7 @@ export default function AdminPopupListPage() {
                   <FeatherIcons.Search size={20} color={'#ddd'} />
                 </button>
               }
-              className="w-400"
+              classNames={{ wrapper: 'w-400' }}
             />
           </form>
         </div>

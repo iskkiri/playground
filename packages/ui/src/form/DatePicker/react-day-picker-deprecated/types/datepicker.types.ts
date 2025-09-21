@@ -9,7 +9,7 @@ export type DatePickerMode = 'single' | 'range' | 'range-start' | 'range-end';
 type DatePickerClassNames = {
   popoverTrigger?: string;
   popoverContent?: string;
-  input?: string;
+  input?: ComponentProps<typeof TextInput>['classNames'];
   calendar?: ComponentProps<typeof Calendar>['classNames'];
 };
 

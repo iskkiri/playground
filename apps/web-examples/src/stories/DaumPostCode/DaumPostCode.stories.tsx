@@ -29,7 +29,12 @@ export const PopUp: Story = {
 
     return (
       <div className="flex gap-16">
-        <TextInput readOnly placeholder="주소를 입력해주세요." value={address} className="w-400" />
+        <TextInput
+          readOnly
+          placeholder="주소를 입력해주세요."
+          value={address}
+          classNames={{ wrapper: 'w-400' }}
+        />
         <Button variant="primary" onClick={onOpenDaumPostCode}>
           주소검색
         </Button>
@@ -64,7 +69,7 @@ export const Embed: Story = {
             readOnly
             placeholder="주소를 입력해주세요."
             value={address}
-            className="w-400"
+            classNames={{ wrapper: 'w-400' }}
           />
           <Button variant="primary" onClick={onOpenPostCode}>
             주소검색
@@ -116,7 +121,7 @@ export const Coordinates: Story = {
             readOnly
             placeholder="주소를 입력해주세요."
             value={address}
-            className="w-400"
+            classNames={{ wrapper: 'w-400' }}
           />
           <Button variant="primary" onClick={onOpenDaumPostCode}>
             주소검색

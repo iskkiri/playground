@@ -59,7 +59,7 @@ export const TypeableDatePicker: Story = {
         <DatePicker.Input
           interaction="type"
           placeholder="날짜를 직접 입력하거나 아이콘을 클릭하세요"
-          className="w-300"
+          classNames={{ wrapper: 'w-300' }}
         />
         <DatePicker.Calendar />
       </DatePicker>
@@ -76,7 +76,7 @@ export const RangeDatePicker: Story = {
 
     return (
       <DatePicker mode="range" value={dateRange} onChange={setDateRange}>
-        <DatePicker.Input placeholder="기간을 선택해주세요" className="w-300" />
+        <DatePicker.Input placeholder="기간을 선택해주세요" classNames={{ wrapper: 'w-300' }} />
         <DatePicker.Calendar />
       </DatePicker>
     );

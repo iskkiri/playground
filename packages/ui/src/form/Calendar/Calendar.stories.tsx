@@ -82,7 +82,7 @@ export const DatePicker: Story = {
             placeholder="날짜를 선택해주세요."
             value={date ? formatDate(date) : ''}
             suffix={<FeatherIcons.Calendar color="var(--color-gray-400)" />}
-            className="w-300 pointer-events-none"
+            classNames={{ wrapper: 'w-300 pointer-events-none' }}
             readOnly
           />
         </Popover.Trigger>
@@ -214,7 +214,7 @@ export const TypeableDatePicker: Story = {
                 <FeatherIcons.Calendar color="var(--color-gray-400)" />
               </button>
             }
-            className="w-300"
+            classNames={{ wrapper: 'w-300' }}
           />
         </Popover.Trigger>
 
@@ -275,7 +275,7 @@ export const RangeForOneDatePicker: Story = {
             placeholder="날짜를 선택해주세요."
             value={date.from && date.to ? `${formatDate(date.from)} ~ ${formatDate(date.to)}` : ''}
             suffix={<FeatherIcons.Calendar color="var(--color-gray-400)" />}
-            className="w-300 pointer-events-none"
+            classNames={{ wrapper: 'w-300 pointer-events-none' }}
             readOnly
           />
         </Popover.Trigger>
@@ -367,7 +367,7 @@ export const RangeForTwoDatePickers: Story = {
               placeholder="날짜를 선택해주세요."
               value={date.from ? formatDate(date.from) : ''}
               suffix={<FeatherIcons.Calendar color="var(--color-gray-400)" />}
-              className="w-300 pointer-events-none"
+              classNames={{ wrapper: 'w-300 pointer-events-none' }}
               readOnly
             />
           </Popover.Trigger>
@@ -398,7 +398,7 @@ export const RangeForTwoDatePickers: Story = {
               placeholder="날짜를 선택해주세요."
               value={date.to ? formatDate(date.to) : ''}
               suffix={<FeatherIcons.Calendar color="var(--color-gray-400)" />}
-              className="w-300 pointer-events-none"
+              classNames={{ wrapper: 'w-300 pointer-events-none' }}
               readOnly
             />
           </Popover.Trigger>

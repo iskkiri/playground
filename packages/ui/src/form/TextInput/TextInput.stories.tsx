@@ -13,7 +13,9 @@ const meta = {
   args: {
     placeholder: 'Placeholder',
     disabled: false,
-    className: 'w-400',
+    classNames: {
+      wrapper: 'w-400',
+    },
   },
 } satisfies Meta<typeof TextInput>;
 

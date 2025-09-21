@@ -20,7 +20,9 @@ const meta = {
     captionLayout: 'dropdown',
     dateFormat: 'YYYY-MM-DD',
     classNames: {
-      input: 'w-300',
+      input: {
+        wrapper: 'w-300',
+      },
     },
   },
   argTypes: {

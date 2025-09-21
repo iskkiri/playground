@@ -12,7 +12,9 @@ const meta = {
   tags: ['autodocs'],
   args: {
     placeholder: 'Placeholder',
-    className: 'w-400',
+    classNames: {
+      wrapper: 'w-400',
+    },
   },
 } satisfies Meta<typeof PhoneNumberInput>;
 

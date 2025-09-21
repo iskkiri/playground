@@ -124,7 +124,13 @@ export default function DatePicker<T extends DatePickerMode = 'single'>({
                 <FeatherIcons.Calendar color="var(--color-gray-400)" />
               )
             }
-            className={cn(variant === 'readonly' && 'pointer-events-none', classNames?.input)}
+            classNames={{
+              wrapper: cn(
+                variant === 'readonly' && 'pointer-events-none',
+                classNames?.input?.wrapper
+              ),
+              input: classNames?.input?.input ?? '',
+            }}
             readOnly={variant === 'readonly'}
             disabled={disabled}
           />

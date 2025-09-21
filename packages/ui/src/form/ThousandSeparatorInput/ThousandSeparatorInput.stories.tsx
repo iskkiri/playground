@@ -14,7 +14,9 @@ const meta = {
     min: 0,
     max: 1_000_000,
     placeholder: 'Placeholder',
-    className: 'w-400',
+    classNames: {
+      wrapper: 'w-400',
+    },
   },
 } satisfies Meta<typeof ThousandSeparatorInput>;
 

@@ -5,17 +5,20 @@ import FeatherIcons from '@repo/icons/featherIcons';
 import { cn } from '@repo/utils/cn';
 import { useMergeRefs } from 'react-merge-refs';
 
-// TODO: className 제거 & classNames 추가 & wrapper, input, button, prefix, suffix 추가
-export type TextInputProps = Omit<React.ComponentProps<'input'>, 'prefix'> & {
+export type TextInputProps = Omit<React.ComponentProps<'input'>, 'prefix' | 'className'> & {
   prefix?: React.ReactNode;
   suffix?: React.ReactNode;
+  classNames?: {
+    wrapper?: string;
+    input?: string;
+  };
 };
 
 export default function TextInput({
   ref,
   prefix,
   suffix,
-  className,
+  classNames,
   ...restProps
 }: TextInputProps) {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
@@ -38,7 +41,7 @@ export default function TextInput({
           'has-[input:disabled]:cursor-not-allowed has-[input:disabled]:border-gray-100 has-[input:disabled]:bg-gray-100',
           'has-[input:disabled[aria-invalid="true"]]:border-gray-100 has-[input[aria-invalid="true"]]:border-red-500'
         ),
-        className
+        classNames?.wrapper
       )}
     >
       {prefix}
@@ -49,7 +52,8 @@ export default function TextInput({
         className={cn(
           'typography-p3-16r h-full w-full min-w-0 flex-1 shrink-0 border-none bg-transparent text-gray-900 outline-none',
           'placeholder:text-gray-400',
-          'disabled:cursor-not-allowed disabled:text-gray-400'
+          'disabled:cursor-not-allowed disabled:text-gray-400',
+          classNames?.input
         )}
         {...restProps}
       />

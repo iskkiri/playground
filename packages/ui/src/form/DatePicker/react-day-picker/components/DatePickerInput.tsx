@@ -19,7 +19,7 @@ interface DatePickerInputProps
 }
 
 export default function DatePickerInput({
-  className,
+  classNames,
   interaction = 'click',
   ...props
 }: DatePickerInputProps) {
@@ -89,7 +89,10 @@ export default function DatePickerInput({
           onChange={interaction === 'type' ? onChange : undefined}
           onClick={interaction === 'type' ? preventPopoverOpen : undefined}
           onFocus={interaction === 'type' ? closePopover : undefined}
-          className={cn(interaction === 'click' && 'pointer-events-none', className)}
+          classNames={{
+            ...classNames,
+            wrapper: cn(interaction === 'click' && 'pointer-events-none', classNames?.wrapper),
+          }}
           suffix={
             <InputSuffixComponent interaction={interaction} onToggleCalendar={onToggleCalendar} />
           }

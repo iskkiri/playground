@@ -151,7 +151,7 @@ export const SortableWithDragHandleListAnswer: Story = {
             <div className="flex w-full gap-16">
               <TextInput
                 placeholder="답변 입력"
-                className="w-full"
+                classNames={{ wrapper: 'w-full' }}
                 onChange={(e) => {
                   setFields(
                     fields.map((field, i) =>
