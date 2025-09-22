@@ -7,7 +7,7 @@ import type { DatePickerMode, DatePickerOnChange, DatePickerValue } from './type
 import DatePickerInput from './components/DatePickerInput';
 import DatePickerCalendar from './components/DatePickerCalendar';
 import Popover from '#src/overlay/Popover/Popover';
-import { getCalendarMonth } from './utils/datePickerUtils';
+import { getCalendarMonth } from './utils/datePicker.util';
 
 export interface DatePickerProps<T extends DatePickerMode = 'single'> {
   children: React.ReactNode;

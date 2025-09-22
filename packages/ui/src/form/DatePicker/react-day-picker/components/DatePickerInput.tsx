@@ -8,14 +8,17 @@ import { cn } from '@repo/utils/cn';
 import { isValidDateFormat } from '@repo/utils/formatDate';
 import { useDateInputFormatter } from '../../../Calendar/hooks/useDateInputFormatter';
 import { useDatePickerContext } from '../hooks/useDatePickerContext';
-import { getInputValue } from '../utils/datePickerUtils';
+import { getInputValue } from '../utils/datePicker.util';
 
 interface DatePickerInputProps
   extends Omit<
     React.ComponentProps<typeof TextInput>,
-    'value' | 'onChange' | 'onClick' | 'onFocus' | 'suffix' | 'readOnly'
+    'value' | 'onChange' | 'onClick' | 'onFocus' | 'suffix' | 'readOnly' | 'classNames'
   > {
   interaction?: 'click' | 'type';
+  classNames?: {
+    trigger?: string;
+  } & React.ComponentProps<typeof TextInput>['classNames'];
 }
 
 export default function DatePickerInput({
@@ -81,7 +84,10 @@ export default function DatePickerInput({
   }, [interaction, inputValue, date, mode]);
 
   return (
-    <Popover.Trigger asChild={interaction === 'type'} className={cn('w-fit cursor-pointer')}>
+    <Popover.Trigger
+      asChild={interaction === 'type'}
+      className={cn('cursor-pointer', classNames?.trigger)}
+    >
       <WrapperComponent>
         <TextInput
           readOnly={interaction === 'click'}
@@ -90,8 +96,8 @@ export default function DatePickerInput({
           onClick={interaction === 'type' ? preventPopoverOpen : undefined}
           onFocus={interaction === 'type' ? closePopover : undefined}
           classNames={{
-            ...classNames,
             wrapper: cn(interaction === 'click' && 'pointer-events-none', classNames?.wrapper),
+            input: classNames?.input,
           }}
           suffix={
             <InputSuffixComponent interaction={interaction} onToggleCalendar={onToggleCalendar} />
