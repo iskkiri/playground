@@ -12,6 +12,8 @@ const meta: Meta<typeof Textarea> = {
   args: {
     placeholder: 'Placeholder',
     className: 'w-400 h-120',
+    disabled: false,
+    'aria-invalid': false,
   },
 };
 
@@ -28,7 +30,7 @@ export const DisabledTextarea: Story = {
 
 export const TextareaWithError: Story = {
   render: function Render(props) {
-    return <Textarea {...props} isError />;
+    return <Textarea {...props} aria-invalid />;
   },
 };
 
