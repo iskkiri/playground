@@ -39,7 +39,7 @@ export default function TextInput({
           'rounded-12 flex h-48 items-center gap-8 border border-gray-300 bg-white px-20 py-0',
           'enabled:focus-within:border-gray-400 enabled:hover:border-gray-400',
           'has-[input:disabled]:cursor-not-allowed has-[input:disabled]:border-gray-100 has-[input:disabled]:bg-gray-100',
-          'has-[input:disabled[aria-invalid="true"]]:border-gray-100 has-[input[aria-invalid="true"]]:border-red-500'
+          'has-[input:enabled[aria-invalid="true"]]:border-red-500'
         ),
         classNames?.wrapper
       )}
@@ -47,6 +47,7 @@ export default function TextInput({
       {prefix}
 
       <input
+        data-slot="input"
         ref={mergeRefs}
         type={inputType}
         className={cn(

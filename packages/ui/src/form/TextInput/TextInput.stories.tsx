@@ -13,6 +13,7 @@ const meta = {
   args: {
     placeholder: 'Placeholder',
     disabled: false,
+    'aria-invalid': false,
     classNames: {
       wrapper: 'w-400',
     },
@@ -31,6 +32,12 @@ export const Basic: Story = {
 export const DisabledTextInput: Story = {
   render: function Render(props) {
     return <TextInput {...props} disabled />;
+  },
+};
+
+export const TextInputWithError: Story = {
+  render: function Render(props) {
+    return <TextInput {...props} aria-invalid />;
   },
 };
 
