@@ -19,21 +19,35 @@ export default function useColumnPinningTable({ userList }: UseUserTableParams) 
       [
         columnHelper.display({
           id: 'select',
-          size: 60,
+          size: 50,
           header: ({ table }) => (
             <CheckBox
               checked={table.getIsAllPageRowsSelected()}
-              onChange={table.getToggleAllPageRowsSelectedHandler()}
+              onCheckedChange={() => table.toggleAllPageRowsSelected()}
             />
           ),
           cell: ({ row }) => (
             <CheckBox
               checked={row.getIsSelected()}
               disabled={!row.getCanSelect()}
-              onChange={row.getToggleSelectedHandler()}
+              onCheckedChange={() => row.toggleSelected()}
             />
           ),
           enableSorting: false,
+          meta: {
+            setHeaderCellProps: () => ({
+              classNames: {
+                headerCellContent: 'flex items-center justify-center',
+              },
+            }),
+            setCellProps: () => ({
+              style: {
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+              },
+            }),
+          },
         }),
         columnHelper.accessor('name', {
           header: '이름',

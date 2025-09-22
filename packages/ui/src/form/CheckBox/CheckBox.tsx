@@ -1,72 +1,34 @@
 'use client';
 
+import * as React from 'react';
+import { Checkbox as CheckboxPrimitive } from 'radix-ui';
+
 import { cn } from '@repo/utils/cn';
-import { cva } from 'class-variance-authority';
 import FeatherIcons from '@repo/icons/featherIcons';
 
-export type CheckBoxProps = React.ComponentProps<'input'>;
-
-const checkBoxVariants = cva(
-  cn(
-    'typography-p3-16r flex w-fit cursor-pointer items-center gap-6 text-neutral-400',
-    'focus-visible:[&>svg]:rounded-4 focus-visible:[&>svg]:outline-primary focus-visible:[&>svg]:outline-2 focus-visible:[&>svg]:outline-offset-2'
-  ),
-  {
-    variants: {
-      checked: {
-        true: 'text-gray-900',
-        false: '',
-      },
-      disabled: {
-        true: 'cursor-not-allowed text-neutral-300',
-        false: '',
-      },
-    },
-    defaultVariants: {
-      checked: false,
-      disabled: false,
-    },
-  }
-);
-
-const checkBoxIconVariants = cva('', {
-  variants: {
-    checked: {
-      true: 'text-primary',
-      false: '',
-    },
-    disabled: {
-      true: 'text-neutral-300',
-      false: '',
-    },
-  },
-  defaultVariants: {
-    checked: false,
-    disabled: false,
-  },
-});
-
-export default function CheckBox({
-  children,
-  checked,
-  disabled,
+export default function Checkbox({
   className,
-  ...restProps
-}: CheckBoxProps) {
+  ...props
+}: React.ComponentProps<typeof CheckboxPrimitive.Root>) {
   return (
-    <label className={cn(checkBoxVariants({ checked, disabled }), className)}>
-      <input
-        type="checkbox"
-        checked={checked}
-        disabled={disabled}
-        className="sr-only"
-        {...restProps}
-      />
-      <FeatherIcons.CheckSquare
-        className={cn(checkBoxIconVariants({ checked, disabled }))}
-        aria-hidden="true"
-      />
-      {children && children}
-    </label>
+    <CheckboxPrimitive.Root
+      data-slot="checkbox"
+      className={cn(
+        'shadow-xs rounded-4 flex size-20 shrink-0 items-center justify-center border border-gray-300 outline-none transition-shadow',
+        'enabled:data-[state=checked]:border-primary enabled:data-[state=checked]:bg-primary enabled:data-[state=checked]:text-white',
+        'enabled:aria-invalid:border-red-500 enabled:aria-invalid:ring-red-500/20',
+        'disabled:cursor-not-allowed disabled:border-gray-200 disabled:bg-gray-200 disabled:text-white',
+        'focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-3',
+        className
+      )}
+      {...props}
+    >
+      <CheckboxPrimitive.Indicator
+        data-slot="checkbox-indicator"
+        className="flex items-center justify-center text-current transition-none"
+      >
+        <FeatherIcons.Check size={16} />
+      </CheckboxPrimitive.Indicator>
+    </CheckboxPrimitive.Root>
   );
 }

@@ -46,9 +46,10 @@ export default function AppTable<RowData>({ table }: AppTableProps<RowData>) {
                   <th
                     {...headerCellProps}
                     key={header.id}
-                    className={
-                      'typography-p3-16b group sticky top-0 z-50 h-48 cursor-pointer border-b border-r border-b-[#c6c6c6] border-r-[#e0e0e0] bg-[#f4f4f4] p-12 align-middle text-[#6f6f6f]'
-                    }
+                    className={cn(
+                      'typography-p3-16b group sticky top-0 z-50 h-48 cursor-pointer border-b border-r border-b-[#c6c6c6] border-r-[#e0e0e0] bg-[#f4f4f4] p-12 align-middle text-[#6f6f6f]',
+                      headerCellProps.classNames?.headerCell
+                    )}
                     style={{
                       ...headerCellProps.style,
                       ...(width && { width }),
@@ -59,7 +60,12 @@ export default function AppTable<RowData>({ table }: AppTableProps<RowData>) {
                       }),
                     }}
                   >
-                    <div className="flex items-center justify-between">
+                    <div
+                      className={cn(
+                        'flex items-center justify-between',
+                        headerCellProps.classNames?.headerCellContent
+                      )}
+                    >
                       {flexRender(header.column.columnDef.header, header.getContext())}
 
                       {header.column.getCanSort() && (

@@ -22,6 +22,10 @@ interface TableHeaderCellProps {
   // 예를 들어, 특정 header cell의 배경 색상을 변경하고 싶을 경우에는 style을 설정할 수도 있습니다.
   // inline style을 설정하는 이유는 기존 테이블 스타일을 오버라이딩 하기 위함입니다. (css priority)
   style?: React.CSSProperties;
+  classNames?: {
+    headerCell?: string;
+    headerCellContent?: string;
+  };
 }
 
 // Table Row 에 설정할 props의 타입을 설정합니다.

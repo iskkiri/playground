@@ -14,6 +14,7 @@ const meta = {
     children: '전체 동의',
     checked: false,
     disabled: false,
+    'aria-invalid': false,
   },
 } satisfies Meta<typeof CheckBox>;
 
@@ -25,13 +26,13 @@ export const Basic: Story = {
     const [args, updateArgs] = useArgs();
 
     const onChange = useCallback(
-      (e: React.ChangeEvent<HTMLInputElement>) => {
-        updateArgs({ checked: e.target.checked });
+      (checked: boolean) => {
+        updateArgs({ checked });
       },
       [updateArgs]
     );
 
-    return <CheckBox {...props} checked={args.checked} onChange={onChange} />;
+    return <CheckBox {...props} checked={args.checked} onCheckedChange={onChange} />;
   },
 };
 
@@ -39,13 +40,10 @@ export const Example: Story = {
   render: function Render(props) {
     const [consent, setConsent] = useState(false);
 
-    const onChange = useCallback(
-      (e: React.ChangeEvent<HTMLInputElement>) => setConsent(e.target.checked),
-      []
-    );
+    const onChange = useCallback((checked: boolean) => setConsent(checked), []);
 
     return (
-      <CheckBox {...props} checked={consent} onChange={onChange}>
+      <CheckBox {...props} checked={consent} onCheckedChange={onChange}>
         [필수] 이용약관 동의하기
       </CheckBox>
     );
