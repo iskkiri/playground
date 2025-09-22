@@ -1,6 +1,7 @@
-import { Injectable, Inject, UnauthorizedException } from '@nestjs/common';
+import { Injectable, Inject, UnauthorizedException, Logger } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { ConfigType } from '@nestjs/config';
+import { Cron } from '@nestjs/schedule';
 import type { Prisma } from '@prisma/client';
 import bcrypt from 'bcryptjs';
 import { randomUUID, createHash } from 'crypto';
@@ -14,6 +15,8 @@ import { SuccessResponseDto } from '@/common/dtos/success.dto';
 
 @Injectable()
 export class AuthService {
+  private readonly logger = new Logger(AuthService.name);
+
   constructor(
     private readonly jwtService: JwtService,
     @Inject(appConfig.KEY) private readonly config: ConfigType<typeof appConfig>,
@@ -356,6 +359,30 @@ export class AuthService {
         data: { isRevoked: true },
       });
     }
+  }
+
+  /**
+   * 만료된 리프레시 토큰 정리 (토큰 수명의 1/2 주기로 실행)
+   * 3일마다 새벽 2시에 실행 (refreshToken 수명이 7일일 때)
+   */
+  @Cron('0 2 */3 * *')
+  async cleanupExpiredTokens() {
+    const deletedCount = await this.prisma.refreshToken.deleteMany({
+      where: {
+        OR: [
+          {
+            isRevoked: true,
+          },
+          {
+            expiresAt: {
+              lt: new Date(),
+            },
+          },
+        ],
+      },
+    });
+
+    this.logger.log(`만료된 리프레시 토큰 정리 완료: ${deletedCount.count}개 삭제`);
   }
 
   /**

@@ -7,12 +7,12 @@ import { KakaoAuthGuard } from './guards/kakao-auth.guard';
 import { KakaoProfile } from './dtos/kakao-profile.dto';
 import { GoogleAuthGuard } from './guards/google-auth.guard';
 import { GoogleProfile } from './dtos/google-profile.dto';
-import { OAuthResponseService } from './oauth-response.service';
+import { OAuthPassportService } from './oauth-passport.service';
 
 @ApiTags('OAuth Passport')
 @Controller('oauth-passport')
 export class OAuthPassportController {
-  constructor(private readonly oauthResponseService: OAuthResponseService) {}
+  constructor(private readonly oauthResponseService: OAuthPassportService) {}
 
   @Get('naver')
   @UseGuards(NaverAuthGuard)

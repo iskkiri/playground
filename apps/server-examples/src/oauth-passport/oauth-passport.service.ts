@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 
 @Injectable()
-export class OAuthResponseService {
+export class OAuthPassportService {
   /**
    * OAuth 인증 성공 후 팝업 윈도우에 전달할 HTML을 생성하는 메서드
    *
