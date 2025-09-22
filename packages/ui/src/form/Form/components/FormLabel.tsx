@@ -21,7 +21,7 @@ export default function FormLabel({
     <Label
       data-slot="form-label"
       data-error={!!error}
-      className={cn('flex gap-4 text-sm font-bold text-gray-700', className)}
+      className={cn('flex gap-4 text-sm text-gray-700', className)}
       htmlFor={formItemId}
       {...props}
     >
