@@ -1,3 +1,4 @@
+import { Request } from 'express';
 import { Inject, Injectable } from '@nestjs/common';
 import { PassportStrategy } from '@nestjs/passport';
 import { Strategy, type Profile } from 'passport-kakao';
@@ -12,6 +13,15 @@ export class KakaoStrategy extends PassportStrategy(Strategy, 'kakao') {
       clientSecret: config.kakaoClientSecret,
       callbackURL: `http://localhost:${config.port}/oauth-passport/kakao/callback`,
     });
+  }
+
+  authenticate(req: Request, options?: Record<string, unknown>) {
+    const origin = req.headers.origin || req.get('Referer');
+    if (origin) {
+      const state = Buffer.from(origin).toString('base64');
+      return super.authenticate(req, { ...options, state });
+    }
+    return super.authenticate(req, options);
   }
 
   async validate(

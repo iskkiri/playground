@@ -1,3 +1,4 @@
+import { Request } from 'express';
 import { Inject, Injectable } from '@nestjs/common';
 import { PassportStrategy } from '@nestjs/passport';
 import { Strategy, type Profile } from 'passport-naver-v2';
@@ -15,6 +16,15 @@ export class NaverStrategy extends PassportStrategy(Strategy, 'naver') {
       clientSecret: config.naverClientSecret,
       callbackURL: `http://localhost:${config.port}/oauth-passport/naver/callback`,
     });
+  }
+
+  authenticate(req: Request, options?: Record<string, unknown>) {
+    const origin = req.headers.origin || req.get('Referer');
+    if (origin) {
+      const state = Buffer.from(origin).toString('base64');
+      return super.authenticate(req, { ...options, state });
+    }
+    return super.authenticate(req, options);
   }
 
   async validate(

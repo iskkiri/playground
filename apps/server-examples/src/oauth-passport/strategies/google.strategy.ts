@@ -1,3 +1,4 @@
+import { Request } from 'express';
 import { Inject, Injectable } from '@nestjs/common';
 import { PassportStrategy } from '@nestjs/passport';
 import { Strategy, type Profile } from 'passport-google-oauth20';
@@ -16,6 +17,15 @@ export class GoogleStrategy extends PassportStrategy(Strategy, 'google') {
       callbackURL: `http://localhost:${config.port}/oauth-passport/google/callback`,
       scope: ['profile', 'email'],
     });
+  }
+
+  authenticate(req: Request, options?: Record<string, unknown>) {
+    const origin = req.headers.origin || req.get('Referer');
+    if (origin) {
+      const state = Buffer.from(origin).toString('base64');
+      return super.authenticate(req, { ...options, state });
+    }
+    return super.authenticate(req, options);
   }
 
   async validate(
