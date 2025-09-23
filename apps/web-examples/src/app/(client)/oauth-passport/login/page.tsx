@@ -4,9 +4,11 @@ import NaverLogoIcon from '@/assets/icons/naver-logo.svg';
 import KakaoLogoIcon from '@/assets/icons/kakao-talk-logo.svg';
 import GoogleLogoIcon from '@/assets/icons/google-logo.svg';
 import usePopupSocialLogin from '../../_features/oauth/hooks/usePopupSocialLogin';
+import useIdentityVerification from '../../_features/auth/hooks/useIdentityVerification';
 
 export default function OauthPassportLoginPage() {
-  const { onSocialLogin } = usePopupSocialLogin();
+  const { verifyIdentityWithKGInisis } = useIdentityVerification();
+  const { onSocialLogin } = usePopupSocialLogin({ verifyIdentityWithKGInisis });
 
   return (
     <>
