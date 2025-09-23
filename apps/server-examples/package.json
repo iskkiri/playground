@@ -20,7 +20,7 @@
     "test:e2e": "jest --config ./test/jest-e2e.json",
     "check-types": "tsc --noEmit",
     "studio:dev": "dotenv -e .env.development -- prisma studio",
-    "db:push": "dotenv -e .env.development -- prisma db push",
+    "db:push": "dotenv -e .env.development -- prisma db push --force-reset",
     "db:seed": "dotenv -e .env.development -- npx prisma db seed"
   },
   "dependencies": {

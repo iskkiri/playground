@@ -51,11 +51,20 @@ export class AuthService {
       role: user.role,
     };
 
+    return this.issueTokens(payload);
+  }
+
+  /**
+   * 토큰 발급
+   * @param userId - 사용자 ID
+   * @returns 토큰 발급 응답 데이터
+   */
+  async issueTokens(payload: JwtPayload): Promise<LoginResponseDto> {
     const accessToken = this.generateAccessToken(payload);
     const refreshToken = this.generateRefreshToken(payload);
 
     // 세션 개수 제한 및 새 리프레시 토큰 저장
-    await this.manageUserSessions(user.id, refreshToken);
+    await this.manageUserSessions(payload.sub, refreshToken);
 
     return new LoginResponseDto({
       accessToken,

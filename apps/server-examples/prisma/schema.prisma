@@ -7,24 +7,40 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+enum SocialProvider {
+  google
+  naver
+  kakao
+}
+
 enum Role {
   USER
   ADMIN
 }
 
+enum Status {
+  ACTIVE
+  INACTIVE
+  PENDING
+}
+
 model User {
-  id           Int      @id @default(autoincrement())
-  email        String   @unique
+  id           Int             @id @default(autoincrement())
+  socialId     String?
+  provider     SocialProvider?
+  email        String          @unique
   password     String
   name         String
-  role         Role     @default(USER)
+  role         Role            @default(USER)
+  status       Status          @default(ACTIVE)
   refreshToken String?
-  createdAt    DateTime @default(now())
-  updatedAt    DateTime @updatedAt
+  createdAt    DateTime        @default(now())
+  updatedAt    DateTime        @updatedAt
 
   posts         Post[]
   refreshTokens RefreshToken[]
 
+  @@unique([socialId, provider])
   @@map("users")
 }
 

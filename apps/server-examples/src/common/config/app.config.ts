@@ -25,6 +25,9 @@ export const appConfig = registerAs('app', () => ({
   googleClientId: process.env.GOOGLE_CLIENT_ID!,
   googleClientSecret: process.env.GOOGLE_CLIENT_SECRET!,
 
+  // OAuth 응답 허용 Origin 목록
+  allowedOrigins: process.env.ALLOWED_ORIGINS!.split(','),
+
   // 파이어베이스 서비스 계정 키
   googleApplicationCredentials: process.env.GOOGLE_APPLICATION_CREDENTIALS!,
 
@@ -66,6 +69,12 @@ export const configModuleOptions = {
     // 구글 로그인
     GOOGLE_CLIENT_ID: z.string().min(1),
     GOOGLE_CLIENT_SECRET: z.string().min(1),
+
+    // OAuth 응답 허용 Origin 목록
+    ALLOWED_ORIGINS: z
+      .string()
+      .transform((str) => JSON.parse(str))
+      .pipe(z.array(z.string().url()).min(1)),
 
     // 파이어베이스 서비스 계정 키
     GOOGLE_APPLICATION_CREDENTIALS: z.string().min(1),
