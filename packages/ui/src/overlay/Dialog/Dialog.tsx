@@ -14,20 +14,13 @@ import DialogFooter from './components/DialogFooter';
 import DialogTitle from './components/DialogTitle';
 import DialogDescription from './components/DialogDescription';
 
-export interface DialogProps extends React.ComponentProps<typeof DialogPrimitive.Root> {
-  children: React.ReactNode;
-  open?: boolean; // Controlled
-  onOpenChange?(open: boolean): void; // Controlled
-  defaultOpen?: boolean; // Uncontrolled
-}
-
 export default function Dialog({
   children,
   open,
   onOpenChange,
   defaultOpen = false,
   ...props
-}: DialogProps) {
+}: React.ComponentProps<typeof DialogPrimitive.Root>) {
   const [uncontrolledOpen, setUncontrolledOpen] = useState(defaultOpen);
 
   const actualOpen = open ?? uncontrolledOpen;

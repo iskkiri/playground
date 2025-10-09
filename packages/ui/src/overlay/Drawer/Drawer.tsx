@@ -14,12 +14,12 @@ import DrawerFooter from './components/DrawerFooter';
 import DrawerTitle from './components/DrawerTitle';
 import DrawerDescription from './components/DrawerDescription';
 
-export type DrawerProps = React.ComponentProps<typeof DrawerPrimitive.Root> & {
-  initialOpen?: boolean; // Uncontrolled
-};
-
-export default function Drawer({ open, onOpenChange, initialOpen = false, ...props }: DrawerProps) {
-  const [uncontrolledOpen, setUncontrolledOpen] = useState(initialOpen);
+export default function Drawer({
+  open = false,
+  onOpenChange,
+  ...props
+}: React.ComponentProps<typeof DrawerPrimitive.Root>) {
+  const [uncontrolledOpen, setUncontrolledOpen] = useState(open);
 
   const actualOpen = open ?? uncontrolledOpen;
   const setIsOpen = onOpenChange ?? setUncontrolledOpen;
