@@ -40,6 +40,15 @@ export const appConfig = registerAs('app', () => ({
 
   // 포트원
   portoneSecretKey: process.env.PORTONE_SECRET_KEY!,
+
+  // AWS S3
+  awsRegion: process.env.AWS_REGION!,
+  awsBucketName: process.env.AWS_BUCKET_NAME!,
+  awsAccessKeyId: process.env.AWS_ACCESS_KEY_ID!,
+  awsSecretAccessKey: process.env.AWS_SECRET_ACCESS_KEY!,
+
+  // CloudFront
+  cloudFrontUrl: process.env.CLOUDFRONT_URL!,
 }));
 export type AppConfig = ConfigType<typeof appConfig>;
 
@@ -88,6 +97,15 @@ export const configModuleOptions = {
 
     // 포트원
     PORTONE_SECRET_KEY: z.string().min(1),
+
+    // AWS S3
+    AWS_REGION: z.string().min(1),
+    AWS_BUCKET_NAME: z.string().min(1),
+    AWS_ACCESS_KEY_ID: z.string().min(1),
+    AWS_SECRET_ACCESS_KEY: z.string().min(1),
+
+    // CloudFront
+    CLOUDFRONT_URL: z.url(),
   }).parse,
   load: [appConfig],
 } satisfies ConfigModuleOptions;

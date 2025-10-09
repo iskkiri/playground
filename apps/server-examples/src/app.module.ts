@@ -12,6 +12,7 @@ import { FcmModule } from './firebase/fcm/fcm.module';
 import { PrismaModule } from './prisma/prisma.module';
 import { UserModule } from './user/user.module';
 import { TestModule } from './test/test.module';
+import { ImageModule } from './image/image.module';
 
 @Module({
   imports: [
@@ -26,6 +27,7 @@ import { TestModule } from './test/test.module';
     FirebaseModule,
     FcmModule,
     TestModule,
+    ImageModule,
   ],
   controllers: [],
   providers: [],
