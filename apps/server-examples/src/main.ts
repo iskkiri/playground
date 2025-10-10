@@ -4,7 +4,7 @@ import { ConfigService } from '@nestjs/config';
 import { ClassSerializerInterceptor, Logger, ValidationPipe } from '@nestjs/common';
 import { AllExceptionsFilter } from './common/exception-filters/all-exception.filter';
 import { PrismaClientExceptionFilter } from './common/exception-filters/prisma-client-exception.filter';
-import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
+import { DocumentBuilder, SwaggerModule, type SwaggerCustomOptions } from '@nestjs/swagger';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -52,7 +52,12 @@ async function bootstrap() {
       .addBearerAuth()
       .build();
     const document = SwaggerModule.createDocument(app, config);
-    SwaggerModule.setup('swagger-ui', app, document);
+    const customOptions: SwaggerCustomOptions = {
+      swaggerOptions: {
+        persistAuthorization: true,
+      },
+    };
+    SwaggerModule.setup('swagger-ui', app, document, customOptions);
   }
 
   await app.listen(PORT, () => logger.log(`Server is running on ${PORT} port ✅`));

@@ -4,17 +4,17 @@ import { IsInt, IsOptional } from 'class-validator';
 import { ExposeAll } from '../decorators/expose-all.decorator';
 
 export class PaginationRequestDto {
-  @ApiProperty({ description: '현재 페이지', example: 1, required: false })
+  @ApiProperty({ description: '현재 페이지', example: 1, required: false, default: 1 })
   @IsOptional()
   @IsInt()
   @Type(() => Number)
-  page?: number;
+  page: number = 1;
 
-  @ApiProperty({ description: '페이지 크기', example: 10, required: false })
+  @ApiProperty({ description: '페이지 크기', example: 10, required: false, default: 10 })
   @IsOptional()
   @IsInt()
   @Type(() => Number)
-  pageSize?: number;
+  pageSize: number = 10;
 }
 
 @ExposeAll()
