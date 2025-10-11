@@ -3,7 +3,7 @@ import type { Table } from '@tanstack/react-table';
 import type { MockUser } from '@/_features/user/api/dtos/getUser.dto';
 import { getUserQueryOptions } from '@/_features/user/hooks/react-query/useGetUsers';
 import useDownloadExcel from '@/_features/excel/hooks/useDownloadExcel';
-import { formatDate } from '@repo/utils/formatDate';
+import { formatDateISO } from '@repo/utils/formatDate';
 import { useQueryClient } from '@tanstack/react-query';
 
 interface UseUserListExcelDownloadParams {
@@ -38,7 +38,7 @@ export default function useUserListExcelDownload({ table }: UseUserListExcelDown
           name: row.name,
           phone: row.phone,
           email: row.email,
-          createdAt: formatDate(row.createdAt),
+          createdAt: formatDateISO(row.createdAt),
         }) satisfies Omit<MockUser, 'id'>,
       []
     );
@@ -46,7 +46,7 @@ export default function useUserListExcelDownload({ table }: UseUserListExcelDown
     downloadExcel({
       colHeaders,
       rows,
-      filename: `회원목록-${formatDate(new Date())}`,
+      filename: `회원목록-${formatDateISO(new Date())}`,
     });
   }, [colHeaders, downloadExcel, queryClient]);
 

@@ -2,7 +2,7 @@ import connectToDatabase from '@/_lib/mongodb';
 import User from '../models/user.model';
 import type { SignUpRequestDto } from '../dtos/signUp.dto';
 import { BadRequestException, HttpException } from '@/_shared/httpException';
-import { formatDate } from '@repo/utils/formatDate';
+import { formatDateISO } from '@repo/utils/formatDate';
 
 class UserService {
   /**
@@ -36,7 +36,7 @@ class UserService {
         email,
         nickname,
         gender,
-        birthDate: formatDate(birthDate),
+        birthDate: formatDateISO(birthDate),
       });
 
       return 'success';

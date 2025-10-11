@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 import { Calendar } from './Calendar';
 import TextInput from '../TextInput/TextInput';
 import FeatherIcons from '@repo/icons/featherIcons';
-import { formatDate, isValidDateFormat } from '@repo/utils/formatDate';
+import { formatDateISO, isValidDateFormat } from '@repo/utils/formatDate';
 import { useDateInputFormatter } from './hooks/useDateInputFormatter';
 import type { DateRange } from 'react-day-picker';
 import Popover from '#src/overlay/Popover/Popover';
@@ -80,7 +80,7 @@ export const DatePicker: Story = {
         <Popover.Trigger className="cursor-pointer">
           <TextInput
             placeholder="날짜를 선택해주세요."
-            value={date ? formatDate(date) : ''}
+            value={date ? formatDateISO(date) : ''}
             suffix={<FeatherIcons.Calendar color="var(--color-gray-400)" />}
             classNames={{ wrapper: 'w-300 pointer-events-none' }}
             readOnly
@@ -178,7 +178,7 @@ export const TypeableDatePicker: Story = {
       // 월 업데이트
       setMonth(date);
       // 날짜 입력 값 업데이트
-      setValue(date ? formatDate(date) : '');
+      setValue(date ? formatDateISO(date) : '');
       // 팝오버 닫기
       setIsOpen(false);
     }, []);
@@ -273,7 +273,9 @@ export const RangeForOneDatePicker: Story = {
         <Popover.Trigger className="cursor-pointer">
           <TextInput
             placeholder="날짜를 선택해주세요."
-            value={date.from && date.to ? `${formatDate(date.from)} ~ ${formatDate(date.to)}` : ''}
+            value={
+              date.from && date.to ? `${formatDateISO(date.from)} ~ ${formatDateISO(date.to)}` : ''
+            }
             suffix={<FeatherIcons.Calendar color="var(--color-gray-400)" />}
             classNames={{ wrapper: 'w-300 pointer-events-none' }}
             readOnly
@@ -365,7 +367,7 @@ export const RangeForTwoDatePickers: Story = {
           <Popover.Trigger className="cursor-pointer">
             <TextInput
               placeholder="날짜를 선택해주세요."
-              value={date.from ? formatDate(date.from) : ''}
+              value={date.from ? formatDateISO(date.from) : ''}
               suffix={<FeatherIcons.Calendar color="var(--color-gray-400)" />}
               classNames={{ wrapper: 'w-300 pointer-events-none' }}
               readOnly
@@ -396,7 +398,7 @@ export const RangeForTwoDatePickers: Story = {
           <Popover.Trigger className="cursor-pointer">
             <TextInput
               placeholder="날짜를 선택해주세요."
-              value={date.to ? formatDate(date.to) : ''}
+              value={date.to ? formatDateISO(date.to) : ''}
               suffix={<FeatherIcons.Calendar color="var(--color-gray-400)" />}
               classNames={{ wrapper: 'w-300 pointer-events-none' }}
               readOnly

@@ -1,6 +1,6 @@
 import type { DateRange } from 'react-day-picker';
 import type { DatePickerMode } from '../types/datepicker.types';
-import { formatDate } from '@repo/utils/formatDate';
+import { formatDateISO } from '@repo/utils/formatDate';
 import { isDate, isDateRange } from '../types/datepicker.types';
 
 /**
@@ -59,25 +59,25 @@ export function getInputValue(
   if (mode === 'single') {
     if (!isDate(dateValue)) return '';
 
-    return formatDate(dateValue);
+    return formatDateISO(dateValue);
   }
 
   if (mode === 'range') {
     if (!isDateRange(dateValue)) return '';
 
-    return `${formatDate(dateValue.from)} ~ ${formatDate(dateValue.to)}`;
+    return `${formatDateISO(dateValue.from)} ~ ${formatDateISO(dateValue.to)}`;
   }
 
   if (mode === 'range-start') {
     if (!isDateRange(dateValue)) return '';
 
-    return `${formatDate(dateValue.from)}`;
+    return `${formatDateISO(dateValue.from)}`;
   }
 
   if (mode === 'range-end') {
     if (!isDateRange(dateValue)) return '';
 
-    return `${formatDate(dateValue.to)}`;
+    return `${formatDateISO(dateValue.to)}`;
   }
 
   return '';

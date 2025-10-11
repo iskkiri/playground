@@ -4,7 +4,7 @@ import { createColumnHelper, type OnChangeFn, type RowSelectionState } from '@ta
 import FeatherIcons from '@repo/icons/featherIcons';
 import useTable from '@/_hooks/useTable';
 import CheckBox from '@repo/ui/form/CheckBox/CheckBox';
-import { formatDate, formatDateTime } from '@repo/utils/formatDate';
+import { formatDateISO, formatDateTime } from '@repo/utils/formatDate';
 import type { PopupListItemData } from '../api/dtos/getPopupList.dto';
 
 interface UsePopupTableParams {
@@ -82,7 +82,7 @@ export default function usePopupTable({
         size: 100,
         cell: ({ row }) => (
           <div className="text-center">
-            {row.original.startDate ? formatDate(row.original.startDate) : '-'}
+            {row.original.startDate ? formatDateISO(row.original.startDate) : '-'}
           </div>
         ),
       }),
@@ -91,7 +91,7 @@ export default function usePopupTable({
         size: 100,
         cell: ({ row }) => (
           <div className="text-center">
-            {row.original.endDate ? formatDate(row.original.endDate) : '-'}
+            {row.original.endDate ? formatDateISO(row.original.endDate) : '-'}
           </div>
         ),
       }),
