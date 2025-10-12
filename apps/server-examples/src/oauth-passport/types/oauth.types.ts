@@ -1,5 +1,5 @@
 import type { LoginResponseDto } from '@/auth/dtos/login.dto';
-import type { SocialProvider } from '@prisma/client';
+import type { SocialProvider } from 'generated/prisma';
 
 export interface ProcessOAuthCallbackParams {
   socialId: string;

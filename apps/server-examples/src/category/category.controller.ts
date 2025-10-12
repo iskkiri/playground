@@ -24,7 +24,7 @@ import { CategoryResponseDto } from './dtos/get-categories.dto';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 import { RolesGuard } from '../auth/guards/roles.guard';
 import { Roles } from '../auth/decorators/roles.decorator';
-import { Role } from '@prisma/client';
+import { Role } from 'generated/prisma';
 import { ApiPropertiesDescription } from '../common/decorators/api-properties-description.decorator';
 import { SuccessResponseDto } from '@/common/dtos/success.dto';
 import { ApiOkPaginationResponse } from '@/common/decorators/api-paginated-response.decorator';

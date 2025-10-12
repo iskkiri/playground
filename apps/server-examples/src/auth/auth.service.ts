@@ -2,16 +2,17 @@ import { Injectable, Inject, UnauthorizedException, Logger } from '@nestjs/commo
 import { JwtService } from '@nestjs/jwt';
 import { ConfigType } from '@nestjs/config';
 import { Cron } from '@nestjs/schedule';
-import type { Prisma } from '@prisma/client';
+import type { Prisma } from 'generated/prisma';
 import bcrypt from 'bcryptjs';
 import { randomUUID, createHash } from 'crypto';
-import { JwtPayload, RefreshTokenWithUser } from './types/jwt.types';
+import { JwtPayload } from './types/jwt.types';
 import { appConfig } from '../common/config/app.config';
 import { RefreshTokenRequestDto, RefreshTokenResponseDto } from './dtos/refresh-token.dto';
 import { LoginRequestDto, LoginResponseDto } from './dtos/login.dto';
 import { LogoutRequestDto } from './dtos/logout.dto';
 import { PrismaService } from '../prisma/prisma.service';
 import { SuccessResponseDto } from '@/common/dtos/success.dto';
+import { getRefreshTokenWithUser } from 'generated/prisma/sql';
 
 @Injectable()
 export class AuthService {
@@ -143,21 +144,7 @@ export class AuthService {
       // 1. 첫 번째 요청: 토큰을 읽는 순간부터 잠금을 설정
       // 2. 두 번째 요청: 첫 번째 트랜잭션이 완료될 때까지 대기
       // 3. 첫 번째 완료 후: 두 번째 요청은 이미 무효화된 토큰을 발견하여 401 반환
-      const storedTokens = await tx.$queryRaw<RefreshTokenWithUser[]>`
-        SELECT
-          rt.*,
-          u.id as user_id,
-          u.email as user_email,
-          u.role as user_role
-        FROM "refresh_tokens" rt
-        JOIN "users" u ON rt."userId" = u.id
-        WHERE rt."tokenHash" = ${tokenHash}
-          AND rt."userId" = ${payload.sub}
-          AND rt."isRevoked" = false
-          AND rt."expiresAt" > NOW()
-        FOR UPDATE OF rt  -- 핵심: refresh_tokens 테이블의 해당 row에 배타적 잠금 설정
-        LIMIT 1           -- 트랜잭션이 완료될 때까지 다른 요청은 이 row에 접근 불가
-      `;
+      const storedTokens = await tx.$queryRawTyped(getRefreshTokenWithUser(tokenHash, payload.sub));
 
       if (storedTokens.length === 0) {
         // 재사용 공격 감지 - 해당 패밀리의 모든 토큰 무효화

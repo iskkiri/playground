@@ -1,4 +1,4 @@
-import { PrismaClient } from '@prisma/client';
+import { PrismaClient } from 'generated/prisma';
 
 export async function seedCategories(prisma: PrismaClient) {
   console.log('카테고리 시딩 시작...');

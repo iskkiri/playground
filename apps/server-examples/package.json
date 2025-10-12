@@ -19,9 +19,11 @@
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json",
     "check-types": "tsc --noEmit",
-    "studio:dev": "dotenv -e .env.development -- prisma studio",
-    "db:push": "dotenv -e .env.development -- prisma db push --force-reset",
-    "db:seed": "dotenv -e .env.development -- npx prisma db seed"
+    "prisma:generate": "dotenv -e .env.development -- prisma generate",
+    "prisma:sql": "dotenv -e .env.development -- prisma generate --sql",
+    "prisma:studio": "dotenv -e .env.development -- prisma studio",
+    "prisma:push": "dotenv -e .env.development -- prisma db push --force-reset",
+    "prisma:seed": "dotenv -e .env.development -- npx prisma db seed"
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.839.0",
