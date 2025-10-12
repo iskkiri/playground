@@ -399,11 +399,11 @@ export class AuthService {
    * @returns 환경변수 설정에 따른 만료 날짜
    */
   private getRefreshTokenExpiryDate(): Date {
-    const expiresIn = this.config.refreshTokenExpiresIn; // "7d", "1w", "24h" 등
+    const expiresIn = this.config.refreshTokenExpiresIn; // "7d", "1w", "24h", "30m", "60s" 등
     const now = new Date();
 
-    // 숫자 + 단위 파싱 (예: "7d", "24h", "1w")
-    const match = expiresIn.match(/^(\d+)([dwh])$/);
+    // 숫자 + 단위 파싱 (예: "7d", "24h", "30m", "60s")
+    const match = expiresIn.match(/^(\d+)([wdhms])$/);
     if (!match) {
       throw new Error(`Invalid REFRESH_TOKEN_EXPIRES_IN format: ${expiresIn}`);
     }
@@ -412,12 +412,16 @@ export class AuthService {
     const value = parseInt(amount, 10);
 
     switch (unit) {
-      case 'd': // days
-        return new Date(now.getTime() + value * 24 * 60 * 60 * 1000);
       case 'w': // weeks
         return new Date(now.getTime() + value * 7 * 24 * 60 * 60 * 1000);
+      case 'd': // days
+        return new Date(now.getTime() + value * 24 * 60 * 60 * 1000);
       case 'h': // hours
         return new Date(now.getTime() + value * 60 * 60 * 1000);
+      case 'm': // minutes
+        return new Date(now.getTime() + value * 60 * 1000);
+      case 's': // seconds
+        return new Date(now.getTime() + value * 1000);
       default:
         throw new Error(`Unsupported time unit: ${unit}`);
     }
