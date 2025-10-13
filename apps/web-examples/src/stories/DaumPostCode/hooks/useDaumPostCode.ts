@@ -1,5 +1,6 @@
 import { useCallback } from 'react';
 import { Address, useDaumPostcodePopup } from 'react-daum-postcode';
+import { formatFullAddress } from '../utils/address.util';
 
 interface UseDaumPostCodeParams {
   onCompleteAddress: (address: string) => void;
@@ -10,18 +11,7 @@ const useDaumPostCode = ({ onCompleteAddress }: UseDaumPostCodeParams) => {
 
   const onComplete = useCallback(
     (data: Address) => {
-      let fullAddress = data.address;
-      let extraAddress = '';
-
-      if (data.addressType === 'R') {
-        if (data.bname !== '') {
-          extraAddress += data.bname;
-        }
-        if (data.buildingName !== '') {
-          extraAddress += extraAddress !== '' ? `, ${data.buildingName}` : data.buildingName;
-        }
-        fullAddress += extraAddress !== '' ? ` (${extraAddress})` : '';
-      }
+      const fullAddress = formatFullAddress(data);
 
       onCompleteAddress(fullAddress);
     },
@@ -29,13 +19,19 @@ const useDaumPostCode = ({ onCompleteAddress }: UseDaumPostCodeParams) => {
   );
 
   const onOpenDaumPostCode = useCallback(() => {
+    // 팝업창을 화면 중앙에 위치시키기 위한 계산
+    const width = 500;
+    const height = 500;
+    const left = window.screenX + (window.outerWidth - width) / 2;
+    const top = window.screenY + (window.outerHeight - height) / 2;
+
     open({
       onComplete,
       popupTitle: '주소검색',
-      width: 500,
-      height: 500,
-      top: (window.outerHeight - 500) / 2,
-      left: (window.innerWidth - 500) / 2,
+      width,
+      height,
+      top,
+      left,
     });
   }, [onComplete, open]);
 
