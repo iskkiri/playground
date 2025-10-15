@@ -3,7 +3,7 @@ import { ConfigType } from '@nestjs/config';
 import { S3Client, PutObjectCommand, DeleteObjectCommand } from '@aws-sdk/client-s3';
 import sharp from 'sharp';
 import { appConfig } from '../common/config/app.config';
-import { generateUniqueFileKey, extractKeyFromUrl, validateFile } from '../common/utils/file.util';
+import { generateUniqueFileKey, extractKeyFromUrl } from '../common/utils/file.util';
 import { ImageOptimizationOptions, OptimizedImageResult } from './types/image-optimization.types';
 import { UploadImageResponseDto } from './dtos/upload-image.dto';
 import { SuccessResponseDto } from '@/common/dtos/success.dto';
@@ -35,16 +35,6 @@ export class ImageService {
    * @returns 업로드된 이미지 URL과 S3 키
    */
   async uploadImage(file: Express.Multer.File, category?: string): Promise<UploadImageResponseDto> {
-    // 파일 검증
-    validateFile(file, {
-      allowedMimeTypes: ['image/jpeg', 'image/jpg', 'image/png', 'image/gif'],
-      maxSize: 5 * 1024 * 1024, // 5MB
-      errorMessages: {
-        invalidType: '이미지 파일만 업로드 가능합니다. (jpg, jpeg, png, gif)',
-        oversized: '파일 크기는 5MB를 초과할 수 없습니다.',
-      },
-    });
-
     // 이미지 최적화
     const optimized = await this.optimizeImage(file, {
       format: 'webp',
