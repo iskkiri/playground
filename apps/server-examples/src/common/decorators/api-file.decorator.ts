@@ -14,6 +14,7 @@ export function ApiFile(options: ApiFileOptions = {}) {
     ApiBody({
       schema: {
         type: 'object',
+        required: [fieldName],
         properties: {
           [fieldName]: {
             type: 'string',
@@ -22,6 +23,6 @@ export function ApiFile(options: ApiFileOptions = {}) {
           },
         },
       },
-    }),
+    })
   );
 }
