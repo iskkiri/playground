@@ -4,7 +4,7 @@ import { CreateCategoryRequestDto } from './dtos/create-category.dto';
 import { UpdateCategoryRequestDto } from './dtos/update-category.dto';
 import { SuccessResponseDto } from '@/common/dtos/success.dto';
 import { CategoryResponseDto } from './dtos/get-categories.dto';
-import { PaginationResponseDto, type PaginationRequestDto } from '@/common/dtos/pagination.dto';
+import { PaginationResponseDto, type PaginationQueryDto } from '@/common/dtos/pagination.dto';
 
 @Injectable()
 export class CategoryService {
@@ -17,7 +17,7 @@ export class CategoryService {
   async getCategories({
     page = 1,
     pageSize = 10,
-  }: PaginationRequestDto): Promise<PaginationResponseDto<CategoryResponseDto>> {
+  }: PaginationQueryDto): Promise<PaginationResponseDto<CategoryResponseDto>> {
     const [categories, totalCount] = await Promise.all([
       this.prisma.category.findMany({
         orderBy: {

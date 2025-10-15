@@ -28,7 +28,7 @@ import { Role } from 'generated/prisma';
 import { ApiPropertiesDescription } from '../common/decorators/api-properties-description.decorator';
 import { SuccessResponseDto } from '@/common/dtos/success.dto';
 import { ApiOkPaginationResponse } from '@/common/decorators/api-paginated-response.decorator';
-import { PaginationRequestDto, PaginationResponseDto } from '@/common/dtos/pagination.dto';
+import { PaginationQueryDto, PaginationResponseDto } from '@/common/dtos/pagination.dto';
 
 @ApiTags('Categories')
 @Controller('categories')
@@ -38,9 +38,9 @@ export class CategoryController {
   @Get()
   @ApiOperation({ summary: '카테고리 목록 조회 (페이지네이션)' })
   @ApiOkPaginationResponse(CategoryResponseDto)
-  @ApiPropertiesDescription({ dto: PaginationRequestDto })
+  @ApiPropertiesDescription({ dto: PaginationQueryDto })
   async getCategories(
-    @Query() paginationDto: PaginationRequestDto
+    @Query() paginationDto: PaginationQueryDto
   ): Promise<PaginationResponseDto<CategoryResponseDto>> {
     return this.categoryService.getCategories(paginationDto);
   }

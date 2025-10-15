@@ -3,7 +3,7 @@ import { Type } from 'class-transformer';
 import { IsInt, IsOptional, IsUUID } from 'class-validator';
 import { ExposeAll } from '../decorators/expose-all.decorator';
 
-export class PaginationRequestDto {
+export class PaginationQueryDto {
   @ApiProperty({ description: '현재 페이지', example: 1, required: false, default: 1 })
   @IsOptional()
   @IsInt()
