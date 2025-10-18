@@ -34,13 +34,14 @@ export default function DatePickerInput({
 
   // Input 상태 (typeable용) - mode에 따라 다른 형식
   const [inputValue, setInputValue] = useState<string>(() => getInputValue(date, mode));
+  const [isFocused, setIsFocused] = useState(false);
 
   // date가 변경될 때 inputValue 업데이트 (readonly 모드용)
   useEffect(() => {
-    if (interaction === 'type') return;
+    if (interaction === 'type' && isFocused) return;
 
     setInputValue(getInputValue(date, mode));
-  }, [date, mode, interaction]);
+  }, [date, mode, interaction, isFocused]);
 
   // 날짜 입력 포맷터
   const { onInputChange } = useDateInputFormatter({
@@ -53,6 +54,11 @@ export default function DatePickerInput({
       // input 상태 업데이트
       onInputChange(e);
       const value = e.target.value;
+
+      if (!value) {
+        setDate(undefined);
+        return;
+      }
 
       if (!isValidDateFormat(value)) return;
 
@@ -70,8 +76,13 @@ export default function DatePickerInput({
     e.stopPropagation();
   }, []);
 
-  // 팝오버 닫기 (type 모드용)
-  const closePopover = useCallback(() => onOpenChange(false), [onOpenChange]);
+  // 포커스 시 팝오버 닫기 (type 모드용)
+  const onFocus = useCallback(() => {
+    setIsFocused(true);
+    onOpenChange(false);
+  }, [onOpenChange]);
+
+  const onBlur = useCallback(() => setIsFocused(false), []);
 
   // 캘린더 아이콘 토글 핸들러 (type 모드용)
   const onToggleCalendar = useCallback(() => onOpenChange(!isOpen), [onOpenChange, isOpen]);
@@ -94,7 +105,8 @@ export default function DatePickerInput({
           value={value}
           onChange={interaction === 'type' ? onChange : undefined}
           onClick={interaction === 'type' ? preventPopoverOpen : undefined}
-          onFocus={interaction === 'type' ? closePopover : undefined}
+          onFocus={interaction === 'type' ? onFocus : undefined}
+          onBlur={interaction === 'type' ? onBlur : undefined}
           classNames={{
             wrapper: cn(interaction === 'click' && 'pointer-events-none', classNames?.wrapper),
             input: classNames?.input,
