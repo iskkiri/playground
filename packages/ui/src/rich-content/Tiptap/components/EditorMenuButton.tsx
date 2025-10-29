@@ -25,6 +25,7 @@ export default function EditorMenuButton({
   return (
     <button
       type="button"
+      aria-pressed={!!isActive}
       className={cn(editorMenuButtonVariants({ isActive }), className)}
       {...restProps}
     >
