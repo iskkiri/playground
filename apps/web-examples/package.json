@@ -60,7 +60,7 @@
     "react-intersection-observer": "^9.16.0",
     "react-modal": "^3.16.1",
     "react-responsive": "^10.0.1",
-    "react-use-hook-modal": "^1.6.1",
+    "react-use-hook-modal": "^2.0.1",
     "sonner": "^2.0.5",
     "swiper": "^11.2.10",
     "zod": "^3.25.67"

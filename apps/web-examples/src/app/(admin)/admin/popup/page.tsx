@@ -22,9 +22,8 @@ import TextInput from '@repo/ui/form/TextInput/TextInput';
 import FeatherIcons from '@repo/icons/featherIcons';
 import Button from '@repo/ui/general/Button/Button';
 import AppTable from '@/_components/Table';
-import Modal from '@repo/ui/overlay/Modal/Modal';
-import ConfirmModal from '@repo/ui/feedback/ConfirmModal/ConfirmModal';
 import Form from '@repo/ui/form/Form/Form';
+import { useConfirmModal } from '@/_hooks/useDialogModals';
 
 export default function AdminPopupListPage() {
   // 페이지네이션
@@ -62,16 +61,21 @@ export default function AdminPopupListPage() {
   });
 
   // 팝업 삭제
+  const { openConfirmModal } = useConfirmModal();
   const { mutate: deletePopups } = useDeletePopupsMutation();
-  const onDeletePopups = useCallback(() => {
-    const ids = selectedRowIdList.map((rowId) => rowId.toString());
 
-    deletePopups(ids, {
-      onSuccess: () => {
-        resetRowSelection();
-      },
+  const onOpenDeletePopupsConfirmModal = useCallback(async () => {
+    const { confirmed } = await openConfirmModal({
+      title: '삭제',
+      content: '선택된 팝업을 삭제하시겠습니까?',
+      confirmButtonText: '삭제',
+      confirmButtonType: 'danger',
     });
-  }, [deletePopups, resetRowSelection, selectedRowIdList]);
+    if (!confirmed) return;
+
+    const ids = selectedRowIdList.map((rowId) => rowId.toString());
+    deletePopups(ids, { onSuccess: () => resetRowSelection() });
+  }, [deletePopups, openConfirmModal, resetRowSelection, selectedRowIdList]);
 
   return (
     <div className="flex flex-col gap-32 px-20 py-40">
@@ -161,21 +165,13 @@ export default function AdminPopupListPage() {
           </div>
 
           <div className="flex gap-16">
-            <Modal>
-              <Modal.Trigger asChild>
-                <Button variant="danger" onClick={onDeletePopups} disabled={!isSelected}>
-                  선택 삭제
-                </Button>
-              </Modal.Trigger>
-
-              <ConfirmModal
-                title="삭제"
-                content="선택된 팝업을 삭제하시겠습니까?"
-                confirmButtonText="삭제"
-                confirmButtonType="danger"
-                onConfirm={onDeletePopups}
-              />
-            </Modal>
+            <Button
+              variant="danger"
+              onClick={onOpenDeletePopupsConfirmModal}
+              disabled={!isSelected}
+            >
+              선택 삭제
+            </Button>
 
             <Link href={'/admin/popup/change-order'}>
               <Button variant="linePrimary">노출 및 순서 변경</Button>

@@ -75,7 +75,7 @@ export function useCreatePopup() {
 export function useUpdatePopup() {
   const queryClient = useQueryClient();
   const { onError } = useOnErrorAlert();
-  const { openAlertModal, closeAlertModal } = useAlertModal();
+  const { openAlertModal } = useAlertModal();
 
   return useMutation({
     mutationFn: updatePopupApi,
@@ -85,7 +85,6 @@ export function useUpdatePopup() {
       openAlertModal({
         title: '팝업 수정 완료',
         content: '팝업 수정이 완료되었습니다.',
-        onClose: closeAlertModal,
       });
     },
     onError,
@@ -109,7 +108,7 @@ export function useDeletePopupsMutation() {
 // 팝업 노출 설정 및 순서 변경
 export function useUpdatePopupOrder() {
   const queryClient = useQueryClient();
-  const { openAlertModal, closeAlertModal } = useAlertModal();
+  const { openAlertModal } = useAlertModal();
   const { onError } = useOnErrorAlert();
 
   return useMutation({
@@ -119,7 +118,6 @@ export function useUpdatePopupOrder() {
       openAlertModal({
         title: '안내',
         content: '팝업 순서 변경이 완료되었습니다.',
-        onClose: closeAlertModal,
       });
     },
     onError,

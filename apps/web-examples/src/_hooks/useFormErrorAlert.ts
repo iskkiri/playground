@@ -11,7 +11,7 @@ export default function useFormErrorAlert<TFieldValues extends FieldValues>({
   errors,
   clearErrors,
 }: UseFormErrorAlertParams<TFieldValues>) {
-  const { openAlertModal, closeAlertModal } = useAlertModal();
+  const { openAlertModal } = useAlertModal();
 
   // errors의 depth를 알 수 없는 경우를 대비하여 재귀적으로 에러 메시지를 찾는 함수
   const findErrorMessage = useCallback((errorObj: FieldErrors): string => {
@@ -39,10 +39,6 @@ export default function useFormErrorAlert<TFieldValues extends FieldValues>({
     openAlertModal({
       title: '안내',
       content: errorMessage,
-      onClose: () => {
-        clearErrors?.();
-        closeAlertModal();
-      },
-    });
-  }, [clearErrors, closeAlertModal, errors, findErrorMessage, openAlertModal]);
+    }).then(() => clearErrors?.());
+  }, [clearErrors, errors, findErrorMessage, openAlertModal]);
 }

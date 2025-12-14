@@ -22,7 +22,7 @@ export default function useInsertImage<TFieldValues extends FieldValues>({
   fileSizeLimit,
 }: UseInsertImageParams<TFieldValues>) {
   const insertedImageObj: ImageSchema = watch(name);
-  const { openAlertModal, closeAlertModal } = useAlertModal();
+  const { openAlertModal } = useAlertModal();
 
   const onInsertImage = useCallback(
     async (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -34,7 +34,6 @@ export default function useInsertImage<TFieldValues extends FieldValues>({
         openAlertModal({
           title: '파일 크기 초과',
           content: `파일 크기는 ${fileSizeLimit}MB를 초과할 수 없습니다.`,
-          onClose: closeAlertModal,
         });
         return;
       }
@@ -43,7 +42,7 @@ export default function useInsertImage<TFieldValues extends FieldValues>({
 
       setValue(name, { file, base64Image }, { shouldValidate: true });
     },
-    [fileSizeLimit, name, setValue, openAlertModal, closeAlertModal]
+    [fileSizeLimit, name, setValue, openAlertModal]
   );
 
   const onRemoveImage = useCallback(

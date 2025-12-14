@@ -3,14 +3,17 @@
 import { useCallback } from 'react';
 import Modal from '../../overlay/Modal/Modal';
 import Button, { type ButtonProps } from '../../general/Button/Button';
-import { useModalDispatchContext } from '../../overlay/Modal/hooks/useModalContext';
+import type { InjectedProps } from 'react-use-hook-modal';
 
-export interface AlertModalProps {
+type AlertModalResult = {
+  reason: 'confirm' | 'overlay';
+};
+
+export interface AlertModalProps extends InjectedProps<AlertModalResult> {
   title: string;
   content: React.ReactNode;
   closeButtonText?: string;
   closeButtonType?: ButtonProps['variant'];
-  onClose?: () => void;
   className?: string;
 }
 
@@ -19,31 +22,38 @@ export default function AlertModal({
   content,
   closeButtonText = '확인',
   closeButtonType = 'primary',
-  onClose,
   className,
+  isOpen,
+  close,
 }: AlertModalProps) {
-  const { onClose: closeModal } = useModalDispatchContext();
-
-  const handleClose = useCallback(() => {
-    onClose?.();
-    closeModal();
-  }, [onClose, closeModal]);
+  const onClose = useCallback(
+    (result: AlertModalResult) => () => {
+      close({ result });
+    },
+    [close]
+  );
 
   return (
-    <Modal.Content className={className}>
-      <Modal.Header>
-        <Modal.Title>{title}</Modal.Title>
-      </Modal.Header>
+    <Modal isOpen={isOpen} onOpenChange={onClose({ reason: 'overlay' })}>
+      <Modal.Content className={className}>
+        <Modal.Header>
+          <Modal.Title>{title}</Modal.Title>
+        </Modal.Header>
 
-      <Modal.Body>
-        <p className="typography-p3-16r whitespace-pre-wrap text-gray-700">{content}</p>
-      </Modal.Body>
+        <Modal.Body>
+          <p className="typography-p3-16r whitespace-pre-wrap text-gray-700">{content}</p>
+        </Modal.Body>
 
-      <Modal.Footer>
-        <Button onClick={handleClose} variant={closeButtonType} className="flex-1">
-          {closeButtonText}
-        </Button>
-      </Modal.Footer>
-    </Modal.Content>
+        <Modal.Footer>
+          <Button
+            onClick={onClose({ reason: 'confirm' })}
+            variant={closeButtonType}
+            className="flex-1"
+          >
+            {closeButtonText}
+          </Button>
+        </Modal.Footer>
+      </Modal.Content>
+    </Modal>
   );
 }

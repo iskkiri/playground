@@ -22,7 +22,7 @@ export default function AdminBannerChangeOrderPage() {
   // 페이지네이션
   const { page, onChangePage } = usePagination();
 
-  const { openAlertModal, closeAlertModal } = useAlertModal();
+  const { openAlertModal } = useAlertModal();
 
   // 미노출 팝업 목록 조회
   const { data: hiddenPopupListResponse } = useGetPopupList({
@@ -54,7 +54,6 @@ export default function AdminBannerChangeOrderPage() {
         openAlertModal({
           title: '안내',
           content: '노출 배너는 최대 10개까지만 설정할 수 있습니다.',
-          onClose: closeAlertModal,
         });
       },
       maxVisibleItems: 10,

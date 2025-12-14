@@ -4,7 +4,7 @@ import { isBaseError } from '@/_api/dtos/base.dto';
 import { useAlertModal } from './useDialogModals';
 
 export default function useOnErrorAlert() {
-  const { openAlertModal, closeAlertModal } = useAlertModal();
+  const { openAlertModal } = useAlertModal();
 
   const onError = useCallback(
     (error: unknown) => {
@@ -12,7 +12,6 @@ export default function useOnErrorAlert() {
         openAlertModal({
           title: '안내',
           content: error.response.data.message,
-          onClose: closeAlertModal,
         });
       }
 
@@ -20,11 +19,10 @@ export default function useOnErrorAlert() {
         openAlertModal({
           title: '안내',
           content: error.message,
-          onClose: closeAlertModal,
         });
       }
     },
-    [closeAlertModal, openAlertModal]
+    [openAlertModal]
   );
 
   return { onError };

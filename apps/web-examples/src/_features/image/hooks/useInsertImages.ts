@@ -13,7 +13,7 @@ interface UseInsertImagesParams {
 
 // React Hook Form을 이용하여 여러 장의 이미지를 업로드할 때 사용하는 Custom Hook
 export default function useInsertImages({ append, remove, fileSizeLimit }: UseInsertImagesParams) {
-  const { openAlertModal, closeAlertModal } = useAlertModal();
+  const { openAlertModal } = useAlertModal();
 
   // Multiple Upload (여러 장의 이미지가 업로드가 가능할 경우)
   const onInsertImages = useCallback(
@@ -26,7 +26,6 @@ export default function useInsertImages({ append, remove, fileSizeLimit }: UseIn
           openAlertModal({
             title: '파일 크기 초과',
             content: `파일 크기는 ${fileSizeLimit}MB를 초과할 수 없습니다.`,
-            onClose: closeAlertModal,
           });
           continue;
         }
@@ -36,7 +35,7 @@ export default function useInsertImages({ append, remove, fileSizeLimit }: UseIn
         append({ file, base64Image });
       }
     },
-    [append, fileSizeLimit, openAlertModal, closeAlertModal]
+    [append, fileSizeLimit, openAlertModal]
   );
 
   const onRemoveImages = useCallback(

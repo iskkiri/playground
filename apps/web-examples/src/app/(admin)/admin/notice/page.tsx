@@ -14,10 +14,9 @@ import NoticeSearchFilter from '../../_features/notice/components/NoticeSearchFi
 import Button from '@repo/ui/general/Button/Button';
 import AppTable from '@/_components/Table';
 import PaginationWithPageSize from '../../_components/PaginationWithPageSize';
-import Modal from '@repo/ui/overlay/Modal/Modal';
-import ConfirmModal from '@repo/ui/feedback/ConfirmModal/ConfirmModal';
 import type { NoticeListItemData } from '../../_features/notice/api/dtos/getNoticeList.dto';
 import useRowSelectionChange from '@/_hooks/useRowSelectionChange';
+import { useConfirmModal } from '@/_hooks/useDialogModals';
 
 export default function NoticeListPage() {
   // 페이지네이션
@@ -55,16 +54,22 @@ export default function NoticeListPage() {
   });
 
   // 공지사항 삭제
+  const { openConfirmModal } = useConfirmModal();
   const { mutate: deleteNotice } = useDeleteNotices();
-  const onDeleteNotices = useCallback(() => {
-    const ids = selectedRowIdList.map((rowId) => rowId.toString());
 
-    deleteNotice(ids, {
-      onSuccess: () => {
-        resetRowSelection();
-      },
+  const onOpenDeleteNoticesConfirmModal = useCallback(async () => {
+    const { confirmed } = await openConfirmModal({
+      title: '삭제',
+      content: '선택된 공지사항을 삭제하시겠습니까?',
+      confirmButtonText: '삭제',
+      confirmButtonType: 'danger',
     });
-  }, [deleteNotice, resetRowSelection, selectedRowIdList]);
+
+    if (!confirmed) return;
+
+    const ids = selectedRowIdList.map((rowId) => rowId.toString());
+    deleteNotice(ids, { onSuccess: () => resetRowSelection() });
+  }, [deleteNotice, openConfirmModal, resetRowSelection, selectedRowIdList]);
 
   return (
     <div className="flex flex-col gap-32 px-20 py-40">
@@ -92,21 +97,13 @@ export default function NoticeListPage() {
           </div>
 
           <div className="flex gap-16">
-            <Modal>
-              <Modal.Trigger asChild>
-                <Button onClick={onDeleteNotices} disabled={!isSelected} variant="danger">
-                  선택 삭제
-                </Button>
-              </Modal.Trigger>
-
-              <ConfirmModal
-                title="삭제"
-                content="선택된 공지사항을 삭제하시겠습니까?"
-                confirmButtonText="삭제"
-                confirmButtonType="danger"
-                onConfirm={onDeleteNotices}
-              />
-            </Modal>
+            <Button
+              onClick={onOpenDeleteNoticesConfirmModal}
+              disabled={!isSelected}
+              variant="danger"
+            >
+              선택 삭제
+            </Button>
 
             <Link href={'/admin/notice/create'}>
               <Button variant="primary">추가하기</Button>

@@ -8,19 +8,17 @@ import { signUpAction } from '../../actions/user.action';
 
 export default function useSignUp() {
   const router = useRouter();
-  const { openAlertModal, closeAlertModal } = useAlertModal();
+  const { openAlertModal } = useAlertModal();
   const { onError } = useOnErrorAlert();
 
   const redirectToLoginPage = useCallback(() => {
     openAlertModal({
       title: '안내',
       content: '회원가입에 성공했습니다. 로그인을 진행해주세요.',
-      onClose: () => {
-        router.replace('/auth/sign-in');
-        closeAlertModal();
-      },
+    }).then(() => {
+      router.replace('/auth/sign-in');
     });
-  }, [router, closeAlertModal, openAlertModal]);
+  }, [router, openAlertModal]);
 
   return useMutation({
     mutationFn: signUpAction,

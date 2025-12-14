@@ -22,9 +22,8 @@ import useBannerTable from '../../_features/banner/hooks/useBannerTable';
 import useRowSelectionChange from '@/_hooks/useRowSelectionChange';
 import type { BannerListItemData } from '../../_features/banner/api/dtos/getBannerList.dto';
 import PaginationWithPageSize from '../../_components/PaginationWithPageSize';
-import Modal from '@repo/ui/overlay/Modal/Modal';
-import ConfirmModal from '@repo/ui/feedback/ConfirmModal/ConfirmModal';
 import Form from '@repo/ui/form/Form/Form';
+import { useConfirmModal } from '@/_hooks/useDialogModals';
 
 export default function AdminBannerListPage() {
   // 페이지네이션
@@ -61,16 +60,21 @@ export default function AdminBannerListPage() {
   });
 
   // 배너 삭제
+  const { openConfirmModal } = useConfirmModal();
   const { mutate: deleteBanners } = useDeleteBannersMutation();
-  const onDeleteBanners = useCallback(() => {
-    const ids = selectedRowIdList.map((rowId) => rowId.toString());
 
-    deleteBanners(ids, {
-      onSuccess: () => {
-        resetRowSelection();
-      },
+  const onOpenDeleteBannersConfirmModal = useCallback(async () => {
+    const { confirmed } = await openConfirmModal({
+      title: '삭제',
+      content: '선택된 배너를 삭제하시겠습니까?',
+      confirmButtonText: '삭제',
+      confirmButtonType: 'danger',
     });
-  }, [deleteBanners, resetRowSelection, selectedRowIdList]);
+    if (!confirmed) return;
+
+    const ids = selectedRowIdList.map((rowId) => rowId.toString());
+    deleteBanners(ids, { onSuccess: () => resetRowSelection() });
+  }, [openConfirmModal, deleteBanners, resetRowSelection, selectedRowIdList]);
 
   return (
     <div className="flex flex-col gap-32 px-20 py-40">
@@ -160,21 +164,13 @@ export default function AdminBannerListPage() {
           </div>
 
           <div className="flex gap-16">
-            <Modal>
-              <Modal.Trigger asChild>
-                <Button variant="danger" onClick={onDeleteBanners} disabled={!isSelected}>
-                  선택 삭제
-                </Button>
-              </Modal.Trigger>
-
-              <ConfirmModal
-                title="삭제"
-                content="선택된 배너를 삭제하시겠습니까?"
-                confirmButtonText="삭제"
-                confirmButtonType="danger"
-                onConfirm={onDeleteBanners}
-              />
-            </Modal>
+            <Button
+              variant="danger"
+              onClick={onOpenDeleteBannersConfirmModal}
+              disabled={!isSelected}
+            >
+              선택 삭제
+            </Button>
 
             <Link href={'/admin/banner/change-order'}>
               <Button variant="linePrimary">노출 및 순서 변경</Button>

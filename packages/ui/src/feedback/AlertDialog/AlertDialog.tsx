@@ -4,16 +4,19 @@ import { useCallback } from 'react';
 import Button, { type ButtonProps } from '../../general/Button/Button';
 import Dialog from '../../overlay/Dialog/Dialog';
 import { cn } from '@repo/utils/cn';
-import { useDialogDispatchContext } from '#src/overlay/Dialog/hooks/useDialogContext';
 import { type OnInteractOutsideEvent } from '#src/overlay/Dialog/types/dialog.types';
+import type { InjectedProps } from 'react-use-hook-modal';
 
-export interface AlertModalProps {
+type AlertDialogResult = {
+  reason: 'confirm' | 'close';
+};
+
+export interface AlertDialogProps extends InjectedProps<AlertDialogResult> {
   title: string;
   content: React.ReactNode;
   closeButtonText?: string;
   closeButtonType?: ButtonProps['variant'];
   isPreventOutsideClick?: boolean;
-  onClose?: () => void;
   classNames?: {
     content?: string;
     header?: string;
@@ -29,46 +32,49 @@ export default function AlertDialog({
   closeButtonText = '확인',
   closeButtonType = 'primary',
   isPreventOutsideClick = true,
-  onClose,
   classNames,
-}: AlertModalProps) {
-  const { onClose: closeModal } = useDialogDispatchContext();
-
+  isOpen,
+  close,
+}: AlertDialogProps) {
   const onInteractOutside = useCallback((e: OnInteractOutsideEvent) => {
     e.preventDefault();
   }, []);
 
-  const handleClose = useCallback(() => {
-    onClose?.();
-    closeModal();
-  }, [onClose, closeModal]);
+  const onClose = useCallback(
+    (result: AlertDialogResult) => () => {
+      close({ result });
+    },
+    [close]
+  );
 
   return (
-    <Dialog.Content
-      showCloseButton
-      className={classNames?.content}
-      onInteractOutside={isPreventOutsideClick ? onInteractOutside : undefined}
-    >
-      <Dialog.Header className={classNames?.header}>
-        <Dialog.Title className={classNames?.title}>{title}</Dialog.Title>
-      </Dialog.Header>
-
-      <Dialog.Description
-        className={cn(
-          'typography-p3-16r whitespace-pre-wrap text-gray-700',
-          classNames?.description
-        )}
+    <Dialog open={isOpen} onOpenChange={onClose({ reason: 'close' })}>
+      <Dialog.Content
+        showCloseButton
+        className={classNames?.content}
+        onInteractOutside={isPreventOutsideClick ? onInteractOutside : undefined}
       >
-        {content}
-      </Dialog.Description>
+        <Dialog.Header className={classNames?.header}>
+          <Dialog.Title className={classNames?.title}>{title}</Dialog.Title>
+        </Dialog.Header>
 
-      <Dialog.Footer className={classNames?.footer}>
-        <Dialog.Close asChild onClick={handleClose}>
-          <Button variant={closeButtonType} className="flex-1">
-            {closeButtonText}
-          </Button>
-        </Dialog.Close>
-      </Dialog.Footer>
-    </Dialog.Content>
+        <Dialog.Description
+          className={cn(
+            'typography-p3-16r whitespace-pre-wrap text-gray-700',
+            classNames?.description
+          )}
+        >
+          {content}
+        </Dialog.Description>
+
+        <Dialog.Footer className={classNames?.footer}>
+          <Dialog.Close asChild onClick={onClose({ reason: 'confirm' })}>
+            <Button variant={closeButtonType} className="flex-1">
+              {closeButtonText}
+            </Button>
+          </Dialog.Close>
+        </Dialog.Footer>
+      </Dialog.Content>
+    </Dialog>
   );
 }

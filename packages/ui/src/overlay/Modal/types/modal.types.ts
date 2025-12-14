@@ -1,8 +1,3 @@
-export interface BaseModalProps {
-  isOpen: boolean;
-  onClose: () => void;
-}
-
 export type ModalStateContextType = {
   isOpen: boolean;
 };

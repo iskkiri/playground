@@ -56,7 +56,7 @@
     "react-paginate": "^8.3.0",
     "react-select": "^5.10.1",
     "react-toastify": "^11.0.5",
-    "react-use-hook-modal": "^1.6.1",
+    "react-use-hook-modal": "^2.0.1",
     "sonner": "^2.0.5",
     "tailwindcss": "^4.1.10",
     "tiptap-extension-resizable-image": "^2.0.0",

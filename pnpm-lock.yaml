@@ -561,8 +561,8 @@ importers:
         specifier: ^10.0.1
         version: 10.0.1(react@19.1.0)
       react-use-hook-modal:
-        specifier: ^1.6.1
-        version: 1.6.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        specifier: ^2.0.1
+        version: 2.0.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       sonner:
         specifier: ^2.0.5
         version: 2.0.5(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
@@ -1003,8 +1003,8 @@ importers:
         specifier: ^11.0.5
         version: 11.0.5(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       react-use-hook-modal:
-        specifier: ^1.6.1
-        version: 1.6.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        specifier: ^2.0.1
+        version: 2.0.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       sonner:
         specifier: ^2.0.5
         version: 2.0.5(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
@@ -3249,6 +3249,7 @@ packages:
 
   '@mswjs/data@0.16.2':
     resolution: {integrity: sha512-/C0d/PBcJyQJokUhcjO4HiZPc67hzllKlRtD1XELygl2t991/ATAAQJVcStn4YtVALsNodruzOHT0JIvgr0hnA==}
+    deprecated: Package no longer supported. Contact Support at https://www.npmjs.com/support for more info.
 
   '@mswjs/interceptors@0.39.2':
     resolution: {integrity: sha512-RuzCup9Ct91Y7V79xwCb146RaBRHZ7NBbrIUySumd1rpKqHL5OonaqrGIbug5hNwP/fRyxFMA6ISgw4FTtYFYg==}
@@ -10436,6 +10437,16 @@ packages:
     peerDependencies:
       react: ^19.1.0
       react-dom: ^19.1.0
+
+  react-use-hook-modal@2.0.1:
+    resolution: {integrity: sha512-bhnBAJlMbFXjcDgj2uCh2zE2Zkwy/qxGws0EJhg0kbqEdi52b4yYieQ5Jh2pYOlDt7Y+sKlby8II+POYAekczQ==}
+    engines: {node: '>=14.0.0'}
+    peerDependencies:
+      react: ^19.1.0
+      react-dom: '*'
+    peerDependenciesMeta:
+      react-dom:
+        optional: true
 
   react@19.1.0:
     resolution: {integrity: sha512-FS+XFBNvn3GTAWq26joslQgWNoFu08F4kl0J4CgdNKADkdSGXQyTCnKteIAJy96Br6YbpEU1LSzV5dYtjMkMDg==}
@@ -23785,6 +23796,12 @@ snapshots:
   react-use-hook-modal@1.6.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0):
     dependencies:
       react: 19.1.0
+      react-dom: 19.1.0(react@19.1.0)
+
+  react-use-hook-modal@2.0.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0):
+    dependencies:
+      react: 19.1.0
+    optionalDependencies:
       react-dom: 19.1.0(react@19.1.0)
 
   react@19.1.0: {}

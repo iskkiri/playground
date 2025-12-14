@@ -84,7 +84,7 @@ export function useCreateBanner() {
 export function useUpdateBanner() {
   const queryClient = useQueryClient();
   const { onError } = useOnErrorAlert();
-  const { openAlertModal, closeAlertModal } = useAlertModal();
+  const { openAlertModal } = useAlertModal();
 
   return useMutation({
     mutationFn: updateBannerApi,
@@ -94,7 +94,6 @@ export function useUpdateBanner() {
       openAlertModal({
         title: '배너 수정 완료',
         content: '배너 수정이 완료되었습니다.',
-        onClose: closeAlertModal,
       });
     },
     onError,
@@ -118,7 +117,7 @@ export function useDeleteBannersMutation() {
 // 배너 노출 설정 및 순서 변경
 export function useUpdateBannerOrder() {
   const queryClient = useQueryClient();
-  const { openAlertModal, closeAlertModal } = useAlertModal();
+  const { openAlertModal } = useAlertModal();
   const { onError } = useOnErrorAlert();
 
   return useMutation({
@@ -128,7 +127,6 @@ export function useUpdateBannerOrder() {
       openAlertModal({
         title: '안내',
         content: '배너 순서 변경이 완료되었습니다.',
-        onClose: closeAlertModal,
       });
     },
     onError,

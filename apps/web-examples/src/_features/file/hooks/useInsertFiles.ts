@@ -11,7 +11,7 @@ interface UseInsertFilesParams {
 }
 
 export default function useInsertFiles({ append, remove, fileSizeLimit }: UseInsertFilesParams) {
-  const { openAlertModal, closeAlertModal } = useAlertModal();
+  const { openAlertModal } = useAlertModal();
 
   const onInsertFiles = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -23,7 +23,6 @@ export default function useInsertFiles({ append, remove, fileSizeLimit }: UseIns
           openAlertModal({
             title: '파일 크기 초과',
             content: `파일 크기는 ${fileSizeLimit}MB를 초과할 수 없습니다.`,
-            onClose: closeAlertModal,
           });
           continue;
         }
@@ -31,7 +30,7 @@ export default function useInsertFiles({ append, remove, fileSizeLimit }: UseIns
         append({ file, filename: file.name });
       }
     },
-    [append, fileSizeLimit, openAlertModal, closeAlertModal]
+    [append, fileSizeLimit, openAlertModal]
   );
 
   const onRemoveFile = useCallback(
