@@ -62,7 +62,7 @@
     "react-responsive": "^10.0.1",
     "react-use-hook-modal": "^2.0.1",
     "sonner": "^2.0.5",
-    "swiper": "^11.2.10",
+    "swiper": "^12.1.2",
     "zod": "^3.25.67"
   },
   "devDependencies": {
